@@ -1,11 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Trello Clone</h1>
+        <h1 className="css-test">Trello Clone</h1>
       </header>
     </div>
   );
