@@ -7,12 +7,8 @@ const cardRoute = require('./routes/cardRoute');
 const userRoute = require('./routes/userRoute');
 
 const PORT = process.env.PORT || 5001;
-<<<<<<< HEAD
-// const cors = require('cors');
 
-=======
 const cors = require("cors");
->>>>>>> 64a301c16622d5ad1833d6ea2c9a6a102290f46e
 
 // Express app
 const app = express();
