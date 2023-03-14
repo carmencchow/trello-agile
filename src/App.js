@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
@@ -7,6 +6,7 @@ function App() {
       <header className="App-header">
         <h1>Trello Clone</h1>
         <h2>Schema Branch</h2>
+        <h1 className="css-test">Trello Clone</h1>
       </header>
     </div>
   );
