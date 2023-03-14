@@ -1,18 +1,13 @@
 const express = require('express');
-
-// import functions from cardController
-const { getCard, createCard } = require('../controllers/cardController')
+const { getCard, getCards, createCard } = require('../controllers/cardController')
 
 const router = express.Router();
 
-// ROUTES for card
-router.get('/', getCard) //>
+// localhost:5000/api/card
+router.get('/', getCards) 
+router.get('/:id', getCard) 
 router.post('/create', createCard)
 
 // UPDATE, ARCHIVE, EDIT card
-
-
-
-
 
 module.exports = router

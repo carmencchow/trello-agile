@@ -1,19 +1,23 @@
 const User = require('../models/userModel');
 const mongoose = require('mongoose');
 
-// REGISTER a user
-const register = async (req, res) => {}
+// REGISTER user
+const register = async (req, res) => {
+  console.log('registering user')
+}
 
-
-// LOGIN card
-const login = async (req, res) => {}
+// LOGIN user
+const login = async (req, res) => {
+  const { email, password } = req.body;
+  if (!email || password)
+    return res.status(400).send({ message: 'Please fill in all required fields' });
+    console.log('logging in user')
+}
 
 // LOGOUT user
-const logout = async (req, res) => {}
+const logout = async (req, res) => {
+  console.log('logging out user')
+}
 
-
-// REGISTER a user
-// LOGIN
-// LOGOUT
 
 module.exports = { register, login, logout }
