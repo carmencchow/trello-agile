@@ -8,7 +8,6 @@ const boardSchema = new Schema({
     required: true
   },
   
-
 }, { timestamps: true });
 
 module.exports = mongoose.model('Board', boardSchema);
