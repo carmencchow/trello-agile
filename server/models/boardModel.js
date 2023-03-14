@@ -7,23 +7,21 @@ const boardSchema = new Schema({
     unique: true,
     required: true
   },
+
+  // Do we need this?
   visibility: {
     type: String,
-  }
+  },
+
+  // Lists associated with this board
+  lists: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'list',
+    }
+  ]
 }, { timestamps: true });
 
 module.exports = mongoose.model('Board', boardSchema);
 
 
-
-const boardData = [
-  {
-    "title": "Project",
-  },
-  {
-    "title": "Meetings",
-  },
-  {
-    "title": "Assignments",
-  }
-]
