@@ -1,15 +1,19 @@
 const User = require('../models/userModel');
 const mongoose = require('mongoose');
 
-// GET a user
+// REGISTER a user
+const register = async (req, res) => {}
+
+
+// LOGIN card
+const login = async (req, res) => {}
+
+// LOGOUT user
+const logout = async (req, res) => {}
 
 
 // REGISTER a user
-
-
 // LOGIN
-
-
 // LOGOUT
 
-// module.exports = { getUser, deleteUser, editUser }
+module.exports = { register, login, logout }
