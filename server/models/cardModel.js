@@ -13,10 +13,43 @@ const cardSchema = new Schema({
   comment: {
     type: String,
   },
-  // Members, Checklist, Labels, Dates ...
-  addons: {
-    type: Array
+
+  // Optional: labels, members, dates ...
+  labels: [
+      {
+        text: {
+          type: String,
+        },
+        color: {
+          type: String,
+        },
+        background: {
+          type: String,
+        },
+        selected: {
+          type: Boolean,
+        },
+      },
+    ],
+  
+  members: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+      }
+    }
+  ],
+
+  dates: {
+    startDate: {
+      type: Date,
+    },
+    dueDate: {
+      type: Date
+    }
   }
+
 })
 
 module.exports = mongoose.model('Card', cardSchema);
