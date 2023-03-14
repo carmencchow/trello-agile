@@ -1,13 +1,18 @@
-require("dotenv").config();
+require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
-const boardRoute = require("./routes/boardRoute");
-const listRoute = require("./routes/listRoute");
-const cardRoute = require("./routes/cardRoute");
-const userRoute = require("./routes/userRoute");
+const boardRoute = require('./routes/boardRoute');
+const listRoute = require('./routes/listRoute');
+const cardRoute = require('./routes/cardRoute');
+const userRoute = require('./routes/userRoute');
 
 const PORT = process.env.PORT || 5001;
+<<<<<<< HEAD
+// const cors = require('cors');
+
+=======
 const cors = require("cors");
+>>>>>>> 64a301c16622d5ad1833d6ea2c9a6a102290f46e
 
 // Express app
 const app = express();
@@ -27,11 +32,22 @@ app.get("/test", (req, res) => {
 });
 
 // Routes
-app.use("/user", userRoute);
-app.use("/board", boardRoute);
-app.use("/list", listRoute);
-app.use("/card", cardRoute);
+app.use('/user', userRoute);
+app.use('/board', boardRoute);
+app.use('/list', listRoute);
+app.use('/card', cardRoute);
 
+<<<<<<< HEAD
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`connected to MONGODB and listening to port ${PORT}`);
+    })
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+=======
 // Connect to MongoDB
 // mongoose
 //   .connect(process.env.MONGO_URI)
@@ -47,3 +63,4 @@ app.use("/card", cardRoute);
 app.listen(PORT, () => {
   console.log(`Connected and listening to port ${PORT}`);
 });
+>>>>>>> 64a301c16622d5ad1833d6ea2c9a6a102290f46e
