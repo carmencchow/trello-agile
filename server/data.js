@@ -18,27 +18,36 @@ const workspaceData = [
 
 const boardData = [
   {
-    "category": "To Do",
-    "task": "Start agile project"
+    "title": "Project",
   },
   {
-    "category": "Doing",
-    "task": ["Decide on roles for our team", "Design the agile project"]
+    "title": "Meetings",
   },
   {
-    "category": "Done",
-    "task": "Decide what to build" 
-  },
-  {
-    "category": "To Do",
-    "task": "Start agile project"
-  },
-  {
-    "category": "Doing",
-    "task": ["Decide on roles for our team", "Design the agile project"]
-  },
-  {
-    "category": "Done",
-    "task": "Decide what to build" 
+    "title": "Assignments",
   }
+  // {
+  //   "category": "To Do",
+  //   "task": "Start agile project"
+  // },
+  // {
+  //   "category": "Doing",
+  //   "task": ["Decide on roles for our team", "Design the agile project"]
+  // },
+  // {
+  //   "category": "Done",
+  //   "task": "Decide what to build" 
+  // },
+  // {
+  //   "category": "To Do",
+  //   "task": "Start agile project"
+  // },
+  // {
+  //   "category": "Doing",
+  //   "task": ["Decide on roles for our team", "Design the agile project"]
+  // },
+  // {
+  //   "category": "Done",
+  //   "task": "Decide what to build" 
+  // }
 ]

@@ -1,9 +1,15 @@
+require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
+const boardRoute = require('./routes/boardRoute');
+const listRoute = require('./routes/listRoute');
+const cardRoute = require('./routes/cardRoute');
+const userRoute = require('./routes/userRoute');
+
 const PORT = process.env.PORT || 5001;
 <<<<<<< HEAD
 // const cors = require('cors');
-require('dotenv').config();
+
 =======
 const cors = require("cors");
 >>>>>>> 64a301c16622d5ad1833d6ea2c9a6a102290f46e
@@ -24,6 +30,12 @@ app.use((req, res, next) => {
 app.get("/test", (req, res) => {
   res.send("Testing the server.");
 });
+
+// Routes
+app.use('/user', userRoute);
+app.use('/board', boardRoute);
+app.use('/list', listRoute);
+app.use('/card', cardRoute);
 
 <<<<<<< HEAD
 mongoose.connect(process.env.MONGO_URI)
