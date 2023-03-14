@@ -1,5 +1,7 @@
 require("dotenv").config();
 const express = require("express");
+
+
 const mongoose = require("mongoose");
 const boardRoute = require("./routes/boardRoute");
 const listRoute = require("./routes/listRoute");
@@ -26,10 +28,15 @@ app.use((req, res, next) => {
 // });
 
 // Routes
-app.use("/api/user", userRoute);
 app.use("/api/board", boardRoute);
 app.use("/api/list", listRoute);
 app.use("/api/card", cardRoute);
+app.use("/api/user", userRoute);
+
+app.get('/loaddata', (req, res) => {
+  // loop through 10 
+
+})
 
 mongoose
   .connect(process.env.MONGO_URI)
