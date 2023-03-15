@@ -1,13 +1,18 @@
-import TrelloCard from './TrelloCard';
-import './TrelloList.css';
+import TrelloCard from "./TrelloCard";
+import "./TrelloList.css";
 
-const TrelloList = ({title}) => {
+
+export const TrelloList = ({ name, cards }) => {
   return (
-    <div className='list-container'>
-      <h3>{title}</h3>
-      <TrelloCard />
-      </div>
-  )
+    <div>
+      <h2>{name}</h2>
+      {cards?.map((card) => (
+        <TrelloCard
+          key={card._id}
+          title={card.title}
+          description={card.description}
+        />
+      ))}
+    </div>
+  );
 };
-
-export default TrelloList;
