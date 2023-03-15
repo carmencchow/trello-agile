@@ -1,9 +1,7 @@
 const List = require('../models/listModel');
-const Board = require('../models/boardModel')
 const mongoose = require('mongoose');
 
-// GET ALL lists
-// TODO: Return lists by board id?
+// GET all lists (working)
 const getLists = async (req, res) => {
   try {
     const lists = await List.find({}).sort({ timestamp: 1})
@@ -13,7 +11,7 @@ const getLists = async (req, res) => {
     }
 }
 
-// GET A list
+// GET a list (working)
 const getList = async (req, res) => {
   try {
     const list = await List.findOne({_id: req.params.id});
@@ -22,12 +20,14 @@ const getList = async (req, res) => {
     }
     return res.status(200).send({ message: 'Returning list', list });
   } catch (err){
-    return res.status(500).send(err);
+    console.log(err)
+    return res.status(500).send('No lists found');
   }
 }
 
-// DELETE list????????
 // TODO: DELETING A LIST(S) BY BOARD NAME/ID
+// SHOULD THIS JUST BE DELETE LIST WHEN CARD.LENGTH === 0;
+
 const deleteList = async (req, res) => {
   try {
     const listId = await List.findOneAndDelete({_id: req.params.id });
@@ -42,41 +42,28 @@ const deleteList = async (req, res) => {
 
 // CREATE list
 const createList = async (req, res) => {
-  
-  // TODO: Create list by boardId 
   const name = req.body.name;
-  // TEST boardID = 410be1bd191d4316952c9fa
-  const boardId = req.body.boardId; 
   try{
-    const result = await List.create({ name: name, owner: boardId });
+    const result = await List.create({ name: name });
     return res.status(201).send({ messagin: "New list created", result });
   } catch (err){
     return res.status(500).send({ message: 'Error: Unable to create list.  '})
   }
 } 
 
-// TODO: UPDATE list: name (String)
+// UPDATE name (working)
 const updateListName = async (req, res) => {
-  const { id, title } = req.body
-  if (!mongoose.Types.ObjectId.isValid(id)){
-    return res.status(400).send({ message: 'Invalid list id' })
-  }
+  const { id, name } = req.body
+  // if (!mongoose.Types.ObjectId.isValid(id)){
+  //   return res.status(400).send({ message: 'Invalid list id' })
+  // }
   try {
-    const list = await List.findOneAndUpdate({ _id: id }, { title }, { new: true })
-    console.log(list._id, list.title)
+    const list = await List.findOneAndUpdate({ id: id }, { name }, { new: true })
+    console.log(list._id, list.name)
     res.status(200).send({ message: 'List name updated', list })
   } catch (err) {
     res.status(500).send({ message: 'Error occurred while trying to update name'})
   }
 }
-
-
-// UPDATE cards (Array)???
-
-// UPDATE owner (Object_id) ???
-
-// MOVE list??
-
-// ARCHIVE list??
 
 module.exports = { createList, getList, getLists, deleteList, updateListName }

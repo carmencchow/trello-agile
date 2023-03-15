@@ -7,12 +7,14 @@ const router = express.Router();
 
 // ROUTES /api/list 
 router.get('/', getLists) 
-// router.get('/:id', getList) 
-router.get('/:boardId/:listid', getList) 
+router.get('/:id', getList) 
 router.post('/', createList)
+router.delete('/:id', deleteList)
+router.put('/:id', updateListName)
+
+// router.delete('/:boardId/:listId', deleteList)
+// router.get('/:boardId/:listid', getList) 
 // router.post('/:boardId/:listId', createList)
-router.delete('/:boardId/:listId', deleteList)
 // router.put('/:boardId/:listId', updateList)
-router.put('/', updateListName)
 
 module.exports = router

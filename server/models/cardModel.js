@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const cardSchema = new Schema({
   
-  title: {
+  name: {
     type: String,
     required: true
   },
@@ -16,21 +16,21 @@ const cardSchema = new Schema({
 
   // Optional: labels, members, dates ...
   labels: [
-      {
-        text: {
-          type: String,
-        },
-        color: {
-          type: String,
-        },
-        background: {
-          type: String,
-        },
-        selected: {
-          type: Boolean,
-        },
+    {
+      text: {
+        type: String,
       },
-    ],
+      color: {
+        type: String,
+      },
+      background: {
+        type: String,
+      },
+      selected: {
+        type: Boolean,
+      },
+    },
+  ],
 
   lists: [
     {

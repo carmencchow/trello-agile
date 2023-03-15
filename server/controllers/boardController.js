@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 // Everything working except 'editBoardName'
 
 
-// GET A board
+// GET A board (working)
 const getBoard = async (req, res) => {
   try {
     const board = await Board.findOne({_id: req.params.id});
@@ -17,7 +17,7 @@ const getBoard = async (req, res) => {
   }
 }
 
-// GET ALL boards
+// GET ALL boards (working)
 const getBoards = async (req, res) => {
   console.log('Getting all boards')
   try {
@@ -29,20 +29,20 @@ const getBoards = async (req, res) => {
     }
   }
 
-// CREATE board 
+// CREATE board (working)
 const createBoard = async (req, res) => {
   const title = req.body.title;
-  // const titleExists = await Board.findById({ title: title })
-  // if (!titleExists)
+  // const isBoard = await Board.findOne({ title: title })
+  // if (!isBoard)
     try {
       const result = await Board.create({ title });
-      return res.status(201).send({ message: 'Creating board', result});
+      return res.status(201).send({ message: 'Creating board', result });
     } catch (err) {
       return res.status(500).send({ message: 'Error: Board already exists.'});
     }
-};
+ };
 
-// DELETE A BOARD
+// DELETE A BOARD (working)
 const deleteBoard = async (req, res) => {
   try {
     const boardId = await Board.findOneAndDelete({_id: req.params.id });
@@ -55,14 +55,14 @@ const deleteBoard = async (req, res) => {
   }
 }
 
-// NOT WORKING: UPDATE BOARD's NAME
+// UPDATE a board's name (working)
 const updateBoardName = async (req, res) => {
   const { id, title } = req.body
-  if (!mongoose.Types.ObjectId.isValid(id)){
-    return res.status(400).send({ message: 'Invalid board id' })
-  }
+  // if (!mongoose.Types.ObjectId.isValid(id)){
+  //   return res.status(400).send({ message: 'Invalid board id' })
+  // }
   try {
-    const board = await Board.findOneAndUpdate({ _id: id }, { title }, { new: true })
+    const board = await Board.findOneAndUpdate({ id: id }, { title }, { new: true })
     console.log(board._id, board.title)
     res.status(200).send({ message: 'Board name updated', board })
   } catch (err) {
