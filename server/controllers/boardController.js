@@ -6,9 +6,9 @@ const getBoard = async (req, res) => {
   try {
     const board = await Board.findOne({_id: req.params.id});
     if(!board){
-      return res.status(404).send('Board not found');
+      return res.status(404).send({ message: 'Board not found' });
     }
-    return res.send('Returning board');
+    return res.status(200).send({ message: 'Returning board', board });
   } catch (err){
     return res.status(500).send(err);
   }
@@ -16,28 +16,27 @@ const getBoard = async (req, res) => {
 
 // GET boards
 const getBoards = async (req, res) => {
-  console.log('getting all boards')
+  console.log('Getting all boards')
   try {
     const boards = await Board.find({})
     // const boards = await Board.find({}).sort({ name: 1 })
-    res.status(200).json(boards)
+    res.status(200).json({ message: 'Showing all boards in the workspace', boards })
     } catch (err) {
-      console.log(err.message);
-      res.sendStatus(500);
+      res.sendStatus(500).json({ message: 'No boards to show' });
     }
   }
 
-// CREATE board working
+// CREATE board 
 const createBoard = async (req, res) => {
   const title = req.body.title;
-
-  
-  try {
-    const result = await Board.create({ title });
-    return res.status(201).send({ message: 'Creating board', result});
-  } catch (err) {
-    return res.status(500).send({ message: 'Board not created '});
-  }
+  // const titleExists = await Board.findById({ title: title })
+  // if (!titleExists)
+    try {
+      const result = await Board.create({ title });
+      return res.status(201).send({ message: 'Creating board', result});
+    } catch (err) {
+      return res.status(500).send({ message: 'Error: Board already exists.'});
+    }
 };
 
 // DELETE board
@@ -53,4 +52,19 @@ const deleteBoard = async (req, res) => {
   }
 }
 
-module.exports = { getBoard, getBoards, createBoard, deleteBoard }
+// UPDATE board
+const editBoardName = async (req, res) => {
+  const { id, title } = req.body
+  if (!mongoose.Types.ObjectId.isValid(id)){
+    return res.status(400).send({ message: 'Invalid board id' })
+  }
+  try {
+    const board = await Board.findOneAndUpdate({ _id: id }, { title }, { new: true })
+    console.log(board._id, board.title)
+    res.status(200).send({ message: 'Board name updated', board })
+  } catch (err) {
+    res.status(500).send({ message: 'Error occurred while trying to update the name'})
+  }
+}
+
+module.exports = { getBoard, editBoardName, getBoards, createBoard, deleteBoard }
