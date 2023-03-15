@@ -7,11 +7,6 @@ function App() {
     <div className="App">
       <Header />
       <TrelloList title={'To Do'} />
-      <header className="App-header">
-        <h1>Trello Clone</h1>
-        <h2>Schema Branch</h2>
-        <h1 className="css-test">Trello Clone</h1>
-      </header>
     </div>
   );
 }
