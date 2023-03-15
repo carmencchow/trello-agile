@@ -1,12 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./components/Header";
+import TrelloList from "./components/TrelloList";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Trello Clone</h1>
-      </header>
+      <Header />
+      <TrelloList title={'To Do'} />
     </div>
   );
 }
