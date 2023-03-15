@@ -1,27 +1,29 @@
 const express = require("express");
 const User = require("../models/userModel");
-const { login, logout, register } = require("../controllers/userController");
+// const { register } = require("../controllers/userController");
+// const { auth, requiresAuth } = require("express-openid-connect");
 
 const router = express.Router();
-// Load Users Data. Only hit once or duplicates will ensue. Duplicates...
-router.get("/get-users", (req, res) => {
+
+router.get("/", async (req, res) => {
+  res.send(
+    "User endpoints, check routes/userRoute for endpoints. Unless you're using login functions, that's in server.js"
+  );
+});
+
+router.get("/users", async (req, res) => {
   try {
-    let user = new User({
-      name: "JohnnyAppleseed",
-      email: "JohnnyApple@gmail.com",
-      password: "pa$$w0rd",
-      boards: [],
-    });
-    user.save();
-    res.send("User loaded to database.");
+    const users = await User.find({});
+    res.status(200).json(users);
   } catch (err) {
     console.log(err);
-    res.send("Error generating Data");
+    res.status(500).send("Internal server error");
   }
 });
+
 // ROUTES '/api/user'
-router.post("/register", register);
-router.post("/login", login);
-router.post("/logout", logout);
+// router.post("/register", register);
+// router.post("/login", login);
+// router.post("/logout", logout);
 
 module.exports = router;
