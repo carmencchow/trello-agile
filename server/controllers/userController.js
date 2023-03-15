@@ -1,6 +1,5 @@
-const bcrypt = require("bcrypt");
-const mongoose = require("mongoose");
-const User = require("../models/userModel");
+// const mongoose = require("mongoose");
+// const User = require("../models/userModel");
 
 // REGISTER user
 // const register = async (req, res) => {
