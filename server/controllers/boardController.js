@@ -1,7 +1,10 @@
 const Board = require('../models/boardModel');
 const mongoose = require('mongoose');
 
-// GET board
+// Everything working except 'editBoardName'
+
+
+// GET A board
 const getBoard = async (req, res) => {
   try {
     const board = await Board.findOne({_id: req.params.id});
@@ -14,7 +17,7 @@ const getBoard = async (req, res) => {
   }
 }
 
-// GET boards
+// GET ALL boards
 const getBoards = async (req, res) => {
   console.log('Getting all boards')
   try {
@@ -39,7 +42,7 @@ const createBoard = async (req, res) => {
     }
 };
 
-// DELETE board
+// DELETE A BOARD
 const deleteBoard = async (req, res) => {
   try {
     const boardId = await Board.findOneAndDelete({_id: req.params.id });
@@ -48,12 +51,12 @@ const deleteBoard = async (req, res) => {
     }
     return res.send('Board deleted');
   } catch (err) {
-    return res.status(500).send(err);
+    return res.status(500).send({ message: 'Error deleting board'});
   }
 }
 
-// UPDATE board
-const editBoardName = async (req, res) => {
+// NOT WORKING: UPDATE BOARD's NAME
+const updateBoardName = async (req, res) => {
   const { id, title } = req.body
   if (!mongoose.Types.ObjectId.isValid(id)){
     return res.status(400).send({ message: 'Invalid board id' })
@@ -67,4 +70,4 @@ const editBoardName = async (req, res) => {
   }
 }
 
-module.exports = { getBoard, editBoardName, getBoards, createBoard, deleteBoard }
+module.exports = { getBoard, updateBoardName, getBoards, createBoard, deleteBoard }
