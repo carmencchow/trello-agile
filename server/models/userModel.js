@@ -15,6 +15,18 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  lists: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'list',
+    },
+  ],
+  cards: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'card',
+    },
+  ],
   boards: [
     {
       type: mongoose.Schema.Types.ObjectId,

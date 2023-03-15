@@ -1,6 +1,17 @@
 const List = require('../models/listModel');
+const Board = require('../models/boardModel')
 const mongoose = require('mongoose');
 
+// GET ALL lists
+// TODO: Return lists by board id?
+const getLists = async (req, res) => {
+  try {
+    const lists = await List.find({}).sort({ timestamp: 1})
+    res.status(200).json({ message: 'Returning all lists', lists })
+    } catch (err) {
+      res.sendStatus(500).json({ message: 'Error getting lists' });
+    }
+}
 
 // GET A list
 const getList = async (req, res) => {
@@ -13,18 +24,6 @@ const getList = async (req, res) => {
   } catch (err){
     return res.status(500).send(err);
   }
-}
-
-// GET ALL lists
-// TODO: Return lists by board id?
-const getLists = async (req, res) => {
-  console.log('getting all lists')
-  try {
-    const lists = await List.find({}).sort({ timestamp: 1})
-    res.status(200).json({ message: 'Returning all lists', lists })
-    } catch (err) {
-      res.sendStatus(500).json({ message: 'Error getting lists' });
-    }
 }
 
 // DELETE list????????

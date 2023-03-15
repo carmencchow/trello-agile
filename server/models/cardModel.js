@@ -31,13 +31,25 @@ const cardSchema = new Schema({
         },
       },
     ],
-  
-  members: [
+
+  lists: [
     {
-      user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'user',
-      }
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'list',
+    },
+  ],
+
+  boards: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'board',
+    },
+  ],
+
+  users: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'user',
     }
   ],
 
