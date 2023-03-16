@@ -115,7 +115,8 @@ router.get("/me", auth, async (req, res) => {
     // request.user is getting fetched from Middleware after token authentication
     const user = await User.findById(req.user.id);
     res.json(user);
-  } catch (e) {
+  } catch (error) {
+    console.log(error);
     res.send({ message: "Error in Fetching user" });
   }
 });

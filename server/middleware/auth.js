@@ -10,8 +10,8 @@ module.exports = function (req, res, next) {
     const decoded = jwt.verify(token, "randomString");
     req.user = decoded.user;
     next();
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error(error);
     res.status(500).send({ message: "Invalid Token" });
   }
 };
