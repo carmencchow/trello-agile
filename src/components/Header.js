@@ -1,9 +1,7 @@
+import Profile from "./Profile";
+
 function Header() {
-  return (
-    <div className='header'>
-      Trello header wide that spread the top of the whole screen!
-    </div>
-  )
+  return <Profile />;
 }
 
 export default Header;
