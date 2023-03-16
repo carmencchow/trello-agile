@@ -32,25 +32,18 @@ const cardSchema = new Schema({
     },
   ],
 
-  lists: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'list',
-    },
-  ],
-
-  boards: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'board',
-    },
-  ],
-
   users: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'user',
     }
+  ],
+
+  owner: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'list',
+    },
   ],
 
   dates: {

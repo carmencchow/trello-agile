@@ -1,5 +1,5 @@
 const Card = require('../models/cardModel');
-const List = require('../models/listModel');
+// const List = require('../models/listModel');
 const User = require('../models/userModel');
 const mongoose = require('mongoose');
 
@@ -61,7 +61,6 @@ const deleteMembers = async (req, res) => {
   }
 };
 
-
 const updateMembers = async (req, res) => {};
 const addMembers = async (req, res) => {};
 
@@ -86,6 +85,7 @@ const createCard = async (req, res) => {
   // if (!isCard)
     try {
       const result = await Card.create({ name });
+      await result.save();
       console.log('Card created')
       return res.status(201).send({ message: result });
     } catch (err) {
@@ -93,11 +93,12 @@ const createCard = async (req, res) => {
     }
   };
 
-// UPDATE a card's name (working)
+// UPDATE card details (working)
 const updateCardName = async (req, res) => {
   const { id, name } = req.body
   try {
     const card = await Card.findOneAndUpdate({ id: id }, { name }, { new: true })
+    await card.save();
     console.log(card._id, card.name)
     res.status(200).send({ message: 'Card name updated', card })
   } catch (err) {
@@ -106,4 +107,4 @@ const updateCardName = async (req, res) => {
   }
 }
 
-module.exports = { getCard, getCards, deleteCard, createCard, updateCardName, getMembersFromCard, updateMembers,deleteMembers, addMembers }
+module.exports = { getCard, getCards, deleteCard, createCard, updateCardName, getMembersFromCard, updateMembers, deleteMembers, addMembers }

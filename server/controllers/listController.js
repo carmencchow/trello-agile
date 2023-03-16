@@ -47,7 +47,7 @@ const createList = async (req, res) => {
     const result = await List.create({ name: name });
     return res.status(201).send({ messagin: "New list created", result });
   } catch (err){
-    return res.status(500).send({ message: 'Error: Unable to create list.  '})
+    return res.status(500).send({ message: 'Unable to create board. Try again or use a different name '})
   }
 } 
 

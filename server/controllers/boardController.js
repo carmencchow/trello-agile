@@ -1,9 +1,6 @@
 const Board = require('../models/boardModel');
 const mongoose = require('mongoose');
 
-// Everything working except 'editBoardName'
-
-
 // GET A board (working)
 const getBoard = async (req, res) => {
   try {
@@ -21,8 +18,7 @@ const getBoard = async (req, res) => {
 const getBoards = async (req, res) => {
   console.log('Getting all boards')
   try {
-    const boards = await Board.find({})
-    // const boards = await Board.find({}).sort({ name: 1 })
+    const boards = await Board.find({}).sort({ name: 1 })
     res.status(200).json({ message: 'Showing all boards in the workspace', boards })
     } catch (err) {
       res.sendStatus(500).json({ message: 'No boards to show' });

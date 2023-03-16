@@ -14,7 +14,7 @@ const boardSchema = new Schema({
   },
 
   // Users associated with this board
-  user: {
+  users: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
   } ,
