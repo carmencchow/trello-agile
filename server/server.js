@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-
-
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const boardRoute = require("./routes/boardRoute");
 const listRoute = require("./routes/listRoute");
@@ -14,6 +13,8 @@ const cors = require("cors");
 const app = express();
 
 // Middleware
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
@@ -33,10 +34,9 @@ app.use("/api/list", listRoute);
 app.use("/api/card", cardRoute);
 app.use("/api/user", userRoute);
 
-app.get('/loaddata', (req, res) => {
-  // loop through 10 
-
-})
+app.get("/loaddata", (req, res) => {
+  // loop through 10
+});
 
 mongoose
   .connect(process.env.MONGO_URI)
