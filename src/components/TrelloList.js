@@ -2,9 +2,10 @@ import TrelloCard from "./TrelloCard";
 import "./TrelloList.css";
 
 
+
 export const TrelloList = ({ name, cards }) => {
   return (
-    <div>
+    <div className='list-div'>
       <h2>{name}</h2>
       {cards?.map((card) => (
         <TrelloCard

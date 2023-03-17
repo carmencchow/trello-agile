@@ -1,8 +1,8 @@
 import { Card, Typography, CardContent } from '@mui/material';
 
-const TrelloCard = ({ title, description }) => {
+const TrelloCard = ({ _id, title, description }) => {
   return (
-    <Card sx={{ width: 280, height: 100, p: 2, m: 1 }}>
+    <Card key={_id} sx={{ width: 280, height: 100, p: 2, m: 1 }}>
       <CardContent>
         <Typography variant="h6" component="h3" gutterBottom>
           {title}
