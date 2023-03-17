@@ -7,19 +7,16 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 const auth = require("../middleware/auth");
 // Load Users Data. Only hit once or duplicates will ensue. Duplicates...
-router.get("/get-users", (req, res) => {
+router.get("/get-users", async (req, res) => {
   try {
-    let user = new User({
-      name: "JohnnyAppleseed",
-      email: "JohnnyApple@gmail.com",
-      password: "pa$$w0rd",
-      boards: [],
-    });
-    user.save();
-    res.send("User loaded to database.");
+    const users = await User.find({});
+    if (!users) {
+      res.status(401).send("Users not found");
+    }
+    res.status(200).send(users);
   } catch (err) {
     console.log(err);
-    res.send("Error generating Data");
+    res.status(500).send("Server error");
   }
 });
 
