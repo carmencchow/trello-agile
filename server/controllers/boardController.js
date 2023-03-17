@@ -1,5 +1,5 @@
-const Board = require('../models/boardModel');
-const mongoose = require('mongoose');
+const Board = require("../models/boardModel");
+const mongoose = require("mongoose");
 
 // GET A board (working)
 const getBoard = async (req, res) => {
@@ -12,7 +12,7 @@ const getBoard = async (req, res) => {
   } catch (err){
     return res.status(500).send(err);
   }
-}
+};
 
 // GET ALL boards (working)
 const getBoards = async (req, res) => {
@@ -24,6 +24,7 @@ const getBoards = async (req, res) => {
       res.sendStatus(500).json({ message: 'No boards to show' });
     }
   }
+};
 
 // CREATE board (working)
 const createBoard = async (req, res) => {
@@ -46,11 +47,11 @@ const createBoard = async (req, res) => {
 // DELETE A BOARD (working)
 const deleteBoard = async (req, res) => {
   try {
-    const boardId = await Board.findOneAndDelete({_id: req.params.id });
-    if(!boardId){
-      return res.status(404).send('Board not found');
+    const boardId = await Board.findOneAndDelete({ _id: req.params.id });
+    if (!boardId) {
+      return res.status(404).send("Board not found");
     }
-    return res.send('Board deleted');
+    return res.send("Board deleted");
   } catch (err) {
     return res.status(500).send({ message: 'Error deleting board'});
   }
@@ -66,6 +67,6 @@ const updateBoardName = async (req, res) => {
   } catch (err) {
     res.status(500).send({ message: 'Error occurred while trying to update the name'})
   }
-}
+};
 
 module.exports = { getBoard, updateBoardName, getBoards, createBoard, deleteBoard }

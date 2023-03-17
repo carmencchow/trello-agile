@@ -1,11 +1,11 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const cardSchema = new Schema({
   
   name: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
     type: String,
@@ -13,6 +13,13 @@ const cardSchema = new Schema({
   comment: {
     type: String,
   },
+
+  parentList: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "list",
+    },
+  ],
 
   // Optional: labels, members, dates ...
   labels: [
@@ -32,11 +39,14 @@ const cardSchema = new Schema({
     },
   ],
 
-  users: [
+
+  members: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'user',
-    }
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
+      },
+    },
   ],
 
   owner: [
@@ -51,10 +61,9 @@ const cardSchema = new Schema({
       type: Date,
     },
     dueDate: {
-      type: Date
-    }
-  }
+      type: Date,
+    },
+  },
+});
 
-})
-
-module.exports = mongoose.model('Card', cardSchema);
+module.exports = mongoose.model("Card", cardSchema);
