@@ -12,11 +12,14 @@ const listSchema = new Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'card',
     }
-  ],  
-  owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'board',
-  },
-}, { timestamps: true });
+  ], 
+
+  owner: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'board',
+    },
+  ]
+})
 
 module.exports = mongoose.model('List', listSchema);

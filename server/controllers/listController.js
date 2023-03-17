@@ -25,16 +25,14 @@ const getList = async (req, res) => {
   }
 }
 
-// TODO: DELETING A LIST(S) BY BOARD NAME/ID
-// SHOULD THIS JUST BE DELETE LIST WHEN CARD.LENGTH === 0;
-
+// DELETING a list
 const deleteList = async (req, res) => {
   try {
     const listId = await List.findOneAndDelete({_id: req.params.id });
     if(!listId){
       return res.status(404).send('List not found');
     }
-    return res.send('List deleted from board');
+    return res.send('List deleted.');
   } catch (err) {
     return res.status(500).send({ message: 'Error deleting list'})
   }
@@ -45,18 +43,15 @@ const createList = async (req, res) => {
   const name = req.body.name;
   try{
     const result = await List.create({ name: name });
-    return res.status(201).send({ messagin: "New list created", result });
+    return res.status(201).send({ message: "New list created", result });
   } catch (err){
-    return res.status(500).send({ message: 'Unable to create board. Try again or use a different name '})
+    return res.status(500).send({ message: 'Unable to create list.'})
   }
 } 
 
-// UPDATE name (working)
+// UPDATE name 
 const updateListName = async (req, res) => {
   const { id, name } = req.body
-  // if (!mongoose.Types.ObjectId.isValid(id)){
-  //   return res.status(400).send({ message: 'Invalid list id' })
-  // }
   try {
     const list = await List.findOneAndUpdate({ id: id }, { name }, { new: true })
     console.log(list._id, list.name)

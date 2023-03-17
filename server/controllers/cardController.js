@@ -1,5 +1,4 @@
 const Card = require('../models/cardModel');
-// const List = require('../models/listModel');
 const User = require('../models/userModel');
 const mongoose = require('mongoose');
 
@@ -77,12 +76,9 @@ const deleteCard = async (req, res) => {
   }
 }
 
-// TODO: CREATE a card, VALIDATE FIRST! 
+// CREATE a card 
 const createCard = async (req, res) => {
   const name = req.body.name;
-// make sure card doesn't already exist
-  // const isCard = await Card.find().select({ name: name, _id: 0 })
-  // if (!isCard)
     try {
       const result = await Card.create({ name });
       await result.save();

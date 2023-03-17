@@ -14,10 +14,12 @@ const boardSchema = new Schema({
   },
 
   // Users associated with this board
-  users: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
-  } ,
+  users: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'user',
+    }
+  ],
 
   // Lists associated with this board
   lists: [

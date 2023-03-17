@@ -28,15 +28,20 @@ const getBoards = async (req, res) => {
 // CREATE board (working)
 const createBoard = async (req, res) => {
   const title = req.body.title;
-  // const isBoard = await Board.findOne({ title: title })
-  // if (!isBoard)
-    try {
-      const result = await Board.create({ title });
-      return res.status(201).send({ message: 'Creating board', result });
-    } catch (err) {
-      return res.status(500).send({ message: 'Error: Board already exists.'});
-    }
- };
+  try {
+    const newBoard = await Board.create({
+      title: title,
+      user: [],
+      lists: [],
+    });
+    await newBoard.save();
+    return res.status(201).send({ message: "Creating board", newBoard });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send({ message: "Board not created " });
+  }
+};
+
 
 // DELETE A BOARD (working)
 const deleteBoard = async (req, res) => {
@@ -54,9 +59,6 @@ const deleteBoard = async (req, res) => {
 // UPDATE a board's name (working)
 const updateBoardName = async (req, res) => {
   const { id, title } = req.body
-  // if (!mongoose.Types.ObjectId.isValid(id)){
-  //   return res.status(400).send({ message: 'Invalid board id' })
-  // }
   try {
     const board = await Board.findOneAndUpdate({ id: id }, { title }, { new: true })
     console.log(board._id, board.title)
