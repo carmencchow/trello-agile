@@ -6,8 +6,7 @@ const boardSchema = new Schema(
     title: {
       type: String,
     },
-
-    // Do we need this?
+ 
     visibility: {
       type: String,
     },

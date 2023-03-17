@@ -1,34 +1,106 @@
 const Card = require('../models/cardModel');
+const User = require('../models/userModel');
 const mongoose = require('mongoose');
 
-const createCard = async (req, res) => {
-  console.log('creating card')
-}
 
-// GET cards
-const getCards = async (req, res) => {
-  console.log('getting cards')
+// GET all cards (working)
+const getCards = async (req, res) => { 
   try {
-    const cards = await Card.find({}).sort({ name: 1})
-    res.status(200).json(cards)
-    } catch (err) {
-      console.log(err.message);
-      res.sendStatus(500);
+    const cards = await Card.find()
+    if(!cards){
+      return res.status(404).send({ message: 'No cardss' });
+    }
+    return res.status(200).send({ message: 'Returning all cards', cards });
+    } catch (err){
+      return res.status(500).send(err);
     }
   }
 
-
-// GET card
-const getCard = async (req, res) => {
-  console.log('getting card')
+// GET a card (working)
+const getCard = async (req, res) => { 
+  try {
+    const card = await Card.findOne({_id: req.params.id});
+    if(!card){
+      return res.status(404).send({ message: 'Card not found' });
+    }
+    return res.status(200).send({ message: 'Returning card', card });
+  } catch (err){
+    return res.status(500).send(err);
+  }
 }
 
-// DELETE card
+// GET ONLY members from a card (working)
+const getMembersFromCard = async (req, res) => {
+  try {
+    const users = await User.find({ cards: req.params.id })
+    console.log(users)
+    res.status(200).send({ message: 'The members', users: users.map((
+      user => { 
+        return  { name: user.name, email: user.email } 
+      })) 
+    });
+  } catch (err){
+    console.log(err)
+    res.status(500).send({ message: 'Cannot find members'})
+  }  
+};
+
+// TODO: UPDATE members of a card
+const deleteMembers = async (req, res) => {
+  try {
+    const users = await User.findOneAndDelete({ cards: req.params.id })
+    console.log(users)
+    res.status(200).send({ users: users.map((
+      user => {
+        return { name: user.name }
+      }
+    ))})
+  } catch (err) {
+    return res.status(500).send( 'error')
+  }
+};
+
+const updateMembers = async (req, res) => {};
+const addMembers = async (req, res) => {};
+
+// DELETE a card (working)
 const deleteCard = async (req, res) => {
-  console.log('creating board')
+  try {
+    const cardId = await Card.findOneAndDelete({_id: req.params.id });
+    if(!cardId){
+      return res.status(404).send('Card not found');
+    }
+    return res.send('Card deleted');
+  } catch (err) {
+    return res.status(500).send({ message: 'Error deleting card'});
+  }
 }
 
-// POST card
-// UPDATE card
+// CREATE a card 
+const createCard = async (req, res) => {
+  const name = req.body.name;
+    try {
+      const result = await Card.create({ name });
+      await result.save();
+      console.log('Card created')
+      return res.status(201).send({ message: result });
+    } catch (err) {
+      return res.status(500).send({ message: 'Card already exists. Try a different name.'});
+    }
+  };
 
-module.exports = { getCard, getCards, deleteCard, createCard }
+// UPDATE card details (working)
+const updateCardName = async (req, res) => {
+  const { id, name } = req.body
+  try {
+    const card = await Card.findOneAndUpdate({ id: id }, { name }, { new: true })
+    await card.save();
+    console.log(card._id, card.name)
+    res.status(200).send({ message: 'Card name updated', card })
+  } catch (err) {
+    console.log(err)
+    res.status(500).send({ message: 'Error occurred while trying to update the card'})
+  }
+}
+
+module.exports = { getCard, getCards, deleteCard, createCard, updateCardName, getMembersFromCard, updateMembers, deleteMembers, addMembers }
