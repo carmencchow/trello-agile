@@ -1,12 +1,17 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header";
-import TrelloList from "./components/TrelloList";
+import Home from "./components/Home";
+
+// import TrelloList from "./components/TrelloList";
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <TrelloList title={'To Do'} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
