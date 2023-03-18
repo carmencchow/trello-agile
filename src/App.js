@@ -1,12 +1,21 @@
-import "./App.css";
+import { useEffect } from "react";
 import Header from "./components/Header";
-import TrelloList from "./components/TrelloList";
+import { Board } from "./components/Board";
+import { useDispatch, useSelector } from "react-redux";
+import { getList } from "./store/thunks/fetchList";
 
 function App() {
+  const dispatch = useDispatch();
+  const lists = useSelector((state) => state.lists);
+
+  useEffect(() => {
+    dispatch(getList());
+  }, [dispatch]);
+
   return (
     <div className="App">
       <Header />
-      <TrelloList title={'To Do'} />
+      <Board lists={lists} />
     </div>
   );
 }

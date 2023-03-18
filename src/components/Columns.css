@@ -1,0 +1,13 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.grid-item {
+  width: 100%;
+}
+
+.header {
+  text-align: center;
+}
