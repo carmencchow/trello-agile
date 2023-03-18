@@ -1,14 +1,18 @@
-import { Card } from '@mui/material';
-import { Typography } from '@mui/material'
+import { Card, Typography, CardContent } from "@mui/material";
 
-const TrelloCard = () => {
+const TrelloCard = ({ _id, title, description }) => {
   return (
-    <Card style={{width: 280, height: 100, padding: 5, marginLeft: 4 }}>
-      <Typography className='gutterButtom'>
-        <h4>What would you like to do</h4>
-      </Typography>
+    <Card key={_id} sx={{ width: 280, height: 100, p: 2, m: 1 }}>
+      <CardContent>
+        <Typography variant="h6" component="h3" gutterBottom>
+          {title}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {description}
+        </Typography>
+      </CardContent>
     </Card>
-  )
+  );
 };
 
 export default TrelloCard;

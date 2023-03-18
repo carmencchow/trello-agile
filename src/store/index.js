@@ -1,9 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { listReducer } from './slices/ListSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import { listReducer } from "./slices/ListSlice";
 
 export const store = configureStore({
   reducer: {
-    lists: listReducer
+    lists: listReducer,
   },
 });
 
+export * from "./thunks/fetchList";
