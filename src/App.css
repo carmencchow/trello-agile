@@ -1,3 +1,7 @@
 .App {
   text-align: center;
 }
+
+.header {
+  border: 1px red solid;
+}
