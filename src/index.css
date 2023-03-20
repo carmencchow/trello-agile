@@ -81,3 +81,20 @@ code {
 .link-style:hover {
   background-color: rgba(23, 43, 77, 0.8);
 }
+
+.user-panel {
+  display: flex;
+  justify-content: end;
+  margin-right: 4em;
+  padding: 1em;
+}
+
+.login-landing {
+  margin-left: 33%;
+  margin-top: 12%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  width: 33%;
+  border: 1px red solid;
+}

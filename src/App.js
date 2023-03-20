@@ -4,6 +4,7 @@ import { Board } from "./components/Board";
 import { useDispatch, useSelector } from "react-redux";
 import { getList } from "./store/thunks/fetchList";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./components/Login";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Header />} />
           <Route path="/lists" element={<Board lists={lists} />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>
