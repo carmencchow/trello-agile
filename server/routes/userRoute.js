@@ -79,7 +79,7 @@ router.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({
-        message: "Incorrect Password!",
+        message: "Incorrect Username or Password",
       });
     }
     const payload = {
@@ -88,22 +88,14 @@ router.post("/login", async (req, res) => {
       },
     };
 
-    jwt.sign(
-      payload,
-      "randomString",
-      {
-        expiresIn: 3600,
-      },
-      (err, token) => {
-        if (err) throw err;
-        res.status(200).json({
-          token,
-        });
-      }
-    );
+    const token = jwt.sign(payload, "randomString", { expiresIn: "1h" });
+    res.cookie("token", token, {
+      httpOnly: true,
+    });
+    res.status(200).send({ token });
   } catch (error) {
-    console.log(error.message);
-    res.status(500).send("Server error");
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
   }
 });
 
