@@ -1,4 +1,5 @@
 const Board = require("../models/boardModel");
+const User = require("../models/userModel");
 const mongoose = require("mongoose");
 
 // GET A board (working)
@@ -34,12 +35,16 @@ const getBoards = async (req, res) => {
 const createBoard = async (req, res) => {
   const title = req.body.title;
   try {
+    const user = await User.findById({ _id: req.user.id });
     const newBoard = await Board.create({
       title: title,
       user: [],
       lists: [],
     });
+    newBoard.user.push(user._id);
     await newBoard.save();
+    user.boards.push(newBoard._id);
+    await user.save();
     return res.status(201).send({ message: "Creating board", newBoard });
   } catch (err) {
     console.log(err);
