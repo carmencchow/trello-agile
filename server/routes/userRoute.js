@@ -102,7 +102,7 @@ router.post("/login", async (req, res) => {
 router.get("/me", auth, async (req, res) => {
   try {
     // request.user is getting fetched from Middleware after token authentication
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(req.user.id).populate("boards");
     res.json({
       username: user.username,
       boards: user.boards,
