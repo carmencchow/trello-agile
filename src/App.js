@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getList } from "./store/thunks/fetchList";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
+import Home from "./components/Home";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Header />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/lists" element={<Board lists={lists} />} />
           <Route path="/login" element={<Login />} />
         </Routes>

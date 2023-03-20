@@ -21,7 +21,7 @@ const Login = () => {
       );
       localStorage.setItem("token", res.data.token);
       setServerResponse(res.data.message);
-      navigate("/workspaces");
+      navigate("/home");
       getUserProfile();
     } catch (error) {
       setServerResponse(error.response.data);
