@@ -7,7 +7,7 @@ This is a two-week Agile project that is part of Parsity’s software engineerin
 ### Deployment
 
 ### Features
-• AuthO for user authentication<br>
+• JWT for user authentication<br>
 • Ability for the user to create, add, delete, and edit cards, lists and boards<br>
 • Drag and drop feature to visualise status of cards<br> 
 
