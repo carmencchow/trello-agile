@@ -1,0 +1,10 @@
+.header {
+  text-align: center;
+}
+
+.login-btn-layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10em;
+}

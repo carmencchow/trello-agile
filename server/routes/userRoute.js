@@ -7,19 +7,16 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 const auth = require("../middleware/auth");
 // Load Users Data. Only hit once or duplicates will ensue. Duplicates...
-router.get("/get-users", (req, res) => {
+router.get("/get-users", async (req, res) => {
   try {
-    let user = new User({
-      name: "JohnnyAppleseed",
-      email: "JohnnyApple@gmail.com",
-      password: "pa$$w0rd",
-      boards: [],
-    });
-    user.save();
-    res.send("User loaded to database.");
+    const users = await User.find({});
+    if (!users) {
+      res.status(401).send("Users not found");
+    }
+    res.status(200).send(users);
   } catch (err) {
     console.log(err);
-    res.send("Error generating Data");
+    res.status(500).send("Server error");
   }
 });
 
@@ -82,7 +79,7 @@ router.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({
-        message: "Incorrect Password!",
+        message: "Incorrect Username or Password",
       });
     }
     const payload = {
@@ -91,22 +88,14 @@ router.post("/login", async (req, res) => {
       },
     };
 
-    jwt.sign(
-      payload,
-      "randomString",
-      {
-        expiresIn: 3600,
-      },
-      (err, token) => {
-        if (err) throw err;
-        res.status(200).json({
-          token,
-        });
-      }
-    );
+    const token = jwt.sign(payload, "randomString", { expiresIn: "1h" });
+    res.cookie("token", token, {
+      httpOnly: true,
+    });
+    res.status(200).send({ token });
   } catch (error) {
-    console.log(error.message);
-    res.status(500).send("Server error");
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
   }
 });
 
