@@ -14,13 +14,13 @@ const userSchema = new Schema({
   lists: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'list',
+      ref: "list",
     },
   ],
   cards: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'card',
+      ref: "card",
     },
   ],
   boards: [

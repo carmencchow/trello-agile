@@ -6,13 +6,13 @@ const boardSchema = new Schema(
     title: {
       type: String,
     },
- 
+
     visibility: {
       type: String,
     },
 
     // Users associated with this board
-    user: { type: Array },
+    user: [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
 
     // Lists associated with this board
     lists: [
@@ -25,4 +25,4 @@ const boardSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Board", boardSchema);
+module.exports = mongoose.model("board", boardSchema);

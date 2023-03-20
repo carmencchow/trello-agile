@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import axios from "axios";
 
@@ -13,6 +15,7 @@ const Workspaces = () => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     try {
       const res = await axios.get("http://localhost:5000/api/user/me");
+
       setUserInfo(res.data);
     } catch (error) {
       throw error;
@@ -28,10 +31,10 @@ const Workspaces = () => {
       <Navbar />
       <div>
         <div className="user-panel">
-          {/* This will be used in the workspaces section */}
-          {userInfo && (
+          {userInfo ? (
             <div>
-              Hi, {userInfo.username}!<h4>Your boards:</h4>
+              Hi, <strong>{userInfo.username}!</strong>
+              <p>Your boards:</p>
               {userInfo.boards.length > 0 ? (
                 userInfo.boards.map((board, index) => {
                   return (
@@ -41,8 +44,15 @@ const Workspaces = () => {
                   );
                 })
               ) : (
-                <p>"You don't have any boards, yet.</p>
+                <p>You don't have any boards, yet.</p>
               )}
+            </div>
+          ) : (
+            <div>
+              <h1>You're not logged in!</h1>
+              <Button component={Link} to="/login" variant="contained">
+                Log In
+              </Button>
             </div>
           )}
         </div>

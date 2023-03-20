@@ -14,7 +14,11 @@ const Navbar = () => {
   return (
     <div className="navbar-layout">
       <div className="logo-style">
-        <h1>Trello</h1>
+        <h1 className="trello-home">
+          <Link className="no-underline" to="/">
+            Trello
+          </Link>
+        </h1>
       </div>
       <div className="option-placement">
         {selectOptions.map((option) => {
