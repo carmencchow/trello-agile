@@ -9,7 +9,7 @@ export const Board = ({ lists }) => {
   const onDragEnd = () => {
     //handle the logic for dropping an item
   };
-
+// console.log(lists, 'lists not funct')
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Provider store={store}>
