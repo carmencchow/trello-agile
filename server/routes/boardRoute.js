@@ -13,11 +13,11 @@ const {
 const router = express.Router();
 
 // ROUTES '/api/board/'
-router.get("/", getBoards);
-router.get("/:id", getBoard);
+router.get("/", auth, getBoards);
+router.get("/:id", auth, getBoard);
 router.post("/", auth, createBoard);
-router.delete("/:id", deleteBoard);
-router.put("/:id", updateBoardName);
+router.delete("/:id", auth, deleteBoard);
+router.put("/:id", auth, updateBoardName);
 
 // GET by :id
 module.exports = router;
