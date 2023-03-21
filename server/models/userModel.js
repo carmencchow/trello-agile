@@ -5,6 +5,9 @@ const userSchema = new Schema({
   username: {
     type: String,
   },
+  organization: {
+    type: String, 
+  },
   email: {
     type: String,
   },
@@ -14,13 +17,13 @@ const userSchema = new Schema({
   lists: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'list',
+      ref: "list",
     },
   ],
   cards: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'card',
+      ref: "card",
     },
   ],
   boards: [

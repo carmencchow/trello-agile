@@ -35,6 +35,10 @@ router.post("/signup", async (req, res) => {
       username,
       email,
       password,
+      lists: [],
+      cards: [],
+      boards: [],
+      organization: "Parsity",
     });
 
     const salt = await bcrypt.genSalt(10);
@@ -102,8 +106,11 @@ router.post("/login", async (req, res) => {
 router.get("/me", auth, async (req, res) => {
   try {
     // request.user is getting fetched from Middleware after token authentication
-    const user = await User.findById(req.user.id);
-    res.json(user);
+    const user = await User.findById(req.user.id).populate("boards");
+    res.json({
+      username: user.username,
+      boards: user.boards,
+    });
   } catch (error) {
     console.log(error);
     res.send({ message: "Error in Fetching user" });

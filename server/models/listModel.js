@@ -5,7 +5,6 @@ const listSchema = new Schema(
   {
     name: {
       type: String,
-      unique: true,
       required: true,
     },
     cards: [
@@ -24,5 +23,4 @@ const listSchema = new Schema(
   { timestamps: true }
 );
 
-
-module.exports = mongoose.model("List", listSchema);
+module.exports = mongoose.model("list", listSchema);

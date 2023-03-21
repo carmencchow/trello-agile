@@ -41,6 +41,13 @@ code {
   border: 1px red solid;
 }
 
+.trello-home {
+  text-decoration: none;
+}
+.no-underline {
+  text-decoration: none;
+  color: white;
+}
 .logo-style {
   padding-left: 2em;
   align-items: center;
