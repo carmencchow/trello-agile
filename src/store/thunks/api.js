@@ -13,6 +13,11 @@ export const fetchLists = async () => {
 };
 
 export const fetchBoards = async () => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    throw new Error("No token found in localStorage");
+  }
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   try {
     const response = await axios.get(`${BASE_URL}board`);
     console.log(response.data.boards, 'response.data.boards boards endpoint');

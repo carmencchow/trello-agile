@@ -21,6 +21,7 @@ export const fetchData = createAsyncThunk(
       fetchLists(),
       fetchBoards(),
     ]);
+    console.log(listData, boardData, 'logging response in thunk');
     return { listData, boardData };
   }
 );

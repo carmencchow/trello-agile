@@ -2,7 +2,7 @@ import TrelloCard from "./TrelloCard";
 import "./TrelloList.css";
 import { Draggable } from "react-beautiful-dnd";
 
-export const TrelloList = ({ name, cards }) => {
+export const TrelloList = ({ name, cards, _id, board }) => {
   console.log(cards, "check cards");
   return (
     <div className="list-div">

@@ -17,6 +17,8 @@ function App() {
     dispatch(fetchData());
   }, [dispatch]);
 
+  console.log(lists, 'lists app.js');
+
   return (
     <div className="App">
       <BrowserRouter>
