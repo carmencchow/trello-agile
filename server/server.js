@@ -26,10 +26,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.get("/test", (req, res) => {
-//   res.send("Testing the server.");
-// });
-
 // Routes
 app.use("/api/board", boardRoute);
 app.use("/api/list", listRoute);
@@ -45,7 +41,11 @@ app.get("/loaddata", async (req, res) => {
       let board = new Board({
         title: uniqueTitle,
         user: [],
-        lists: [], // will be populated with lists in the same endpoint call
+        lists: [],
+        cards: [],
+        boards: [],
+        organization: "Parsity",
+        // will be populated with lists in the same endpoint call
       });
       await board.save();
       // 3 lists
