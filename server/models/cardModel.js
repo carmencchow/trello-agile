@@ -47,13 +47,6 @@ const cardSchema = new Schema({
     },
   ],
 
-  owner: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "list",
-    },
-  ],
-
   dates: {
     startDate: {
       type: Date,

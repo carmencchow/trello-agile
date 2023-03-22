@@ -48,6 +48,11 @@ code {
   text-decoration: none;
   color: white;
 }
+
+.logout-btn {
+  padding-bottom: 0.5em;
+  margin-bottom: 10px;
+}
 .logo-style {
   padding-left: 2em;
   align-items: center;
