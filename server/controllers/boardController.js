@@ -75,6 +75,7 @@ const createBoard = async (req, res) => {
 
     await newBoard.save();
     user.boards.push(newBoard._id);
+    user.lists.push(todoList._id, doingList._id, doneList._id);
     await user.save();
     return res.status(201).send({ message: "Creating board", newBoard });
   } catch (err) {
