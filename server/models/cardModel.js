@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const cardSchema = new Schema({
-  name: {
+  title: {
     type: String,
     required: true,
   },
@@ -44,13 +44,6 @@ const cardSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",
       },
-    },
-  ],
-
-  owner: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "list",
     },
   ],
 

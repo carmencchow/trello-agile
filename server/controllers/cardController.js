@@ -1,62 +1,63 @@
-const Card = require('../models/cardModel');
-const User = require('../models/userModel');
-const mongoose = require('mongoose');
-
+const Card = require("../models/cardModel");
+const User = require("../models/userModel");
+const List = require("../models/listModel");
+const mongoose = require("mongoose");
 
 // GET all cards (working)
-const getCards = async (req, res) => { 
+const getCards = async (req, res) => {
   try {
-    const cards = await Card.find()
-    if(!cards){
-      return res.status(404).send({ message: 'No cardss' });
+    const cards = await Card.find();
+    if (!cards) {
+      return res.status(404).send({ message: "No cardss" });
     }
-    return res.status(200).send({ message: 'Returning all cards', cards });
-    } catch (err){
-      return res.status(500).send(err);
-    }
-  }
-
-// GET a card (working)
-const getCard = async (req, res) => { 
-  try {
-    const card = await Card.findOne({_id: req.params.id});
-    if(!card){
-      return res.status(404).send({ message: 'Card not found' });
-    }
-    return res.status(200).send({ message: 'Returning card', card });
-  } catch (err){
+    return res.status(200).send({ message: "Returning all cards", cards });
+  } catch (err) {
     return res.status(500).send(err);
   }
-}
+};
+
+// GET a card (working)
+const getCard = async (req, res) => {
+  try {
+    const card = await Card.findOne({ _id: req.params.id });
+    if (!card) {
+      return res.status(404).send({ message: "Card not found" });
+    }
+    return res.status(200).send({ message: "Returning card", card });
+  } catch (err) {
+    return res.status(500).send(err);
+  }
+};
 
 // GET ONLY members from a card (working)
 const getMembersFromCard = async (req, res) => {
   try {
-    const users = await User.find({ cards: req.params.id })
-    console.log(users)
-    res.status(200).send({ message: 'The members', users: users.map((
-      user => { 
-        return  { name: user.name, email: user.email } 
-      })) 
+    const users = await User.find({ cards: req.params.id });
+    console.log(users);
+    res.status(200).send({
+      message: "The members",
+      users: users.map((user) => {
+        return { name: user.name, email: user.email };
+      }),
     });
-  } catch (err){
-    console.log(err)
-    res.status(500).send({ message: 'Cannot find members'})
-  }  
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ message: "Cannot find members" });
+  }
 };
 
 // TODO: UPDATE members of a card
 const deleteMembers = async (req, res) => {
   try {
-    const users = await User.findOneAndDelete({ cards: req.params.id })
-    console.log(users)
-    res.status(200).send({ users: users.map((
-      user => {
-        return { name: user.name }
-      }
-    ))})
+    const users = await User.findOneAndDelete({ cards: req.params.id });
+    console.log(users);
+    res.status(200).send({
+      users: users.map((user) => {
+        return { name: user.name };
+      }),
+    });
   } catch (err) {
-    return res.status(500).send( 'error')
+    return res.status(500).send("error");
   }
 };
 
@@ -66,41 +67,74 @@ const addMembers = async (req, res) => {};
 // DELETE a card (working)
 const deleteCard = async (req, res) => {
   try {
-    const cardId = await Card.findOneAndDelete({_id: req.params.id });
-    if(!cardId){
-      return res.status(404).send('Card not found');
-    }
-    return res.send('Card deleted');
-  } catch (err) {
-    return res.status(500).send({ message: 'Error deleting card'});
-  }
-}
+    const card = await Card.findByIdAndDelete({ _id: req.params.id });
 
-// CREATE a card 
-const createCard = async (req, res) => {
-  const name = req.body.name;
-    try {
-      const result = await Card.create({ name });
-      await result.save();
-      console.log('Card created')
-      return res.status(201).send({ message: result });
-    } catch (err) {
-      return res.status(500).send({ message: 'Card already exists. Try a different name.'});
+    if (!card) {
+      return res.status(404).send("Card not found");
     }
-  };
+    const list = await List.findById(card.parentList);
+
+    list.cards = list.cards.filter(
+      (cardId) => cardId.toString() !== card._id.toString()
+    );
+    await list.save();
+    return res.send("Card deleted");
+  } catch (err) {
+    return res.status(500).send({ message: "Error deleting card" });
+  }
+};
+
+// CREATE a card
+const createCard = async (req, res) => {
+  const title = req.body.title;
+  const listId = req.query.listId;
+  try {
+    const parentList = await List.findById(listId);
+    const result = await Card.create({ title, parentList: parentList._id });
+    console.log(result);
+
+    await result.save();
+    parentList.cards.push(result._id);
+    await parentList.save();
+    console.log("Card created");
+    return res.status(201).send({ message: result });
+  } catch (err) {
+    // return res
+    //   .status(500)
+    //   .send({ message: "Card already exists. Try a different name." });
+    console.log(err);
+    return res.status(500).send({ message: err.message });
+  }
+};
 
 // UPDATE card details (working)
 const updateCardName = async (req, res) => {
-  const { id, name } = req.body
+  const { title } = req.body;
   try {
-    const card = await Card.findOneAndUpdate({ id: id }, { name }, { new: true })
+    const card = await Card.findById({ _id: req.params.id });
+    if (!card) {
+      res.status(404).send("Card not found");
+    }
+    card.title = title;
     await card.save();
-    console.log(card._id, card.name)
-    res.status(200).send({ message: 'Card name updated', card })
+    // console.log(card._id, card.name);
+    res.status(200).send({ message: "Card name updated", card });
   } catch (err) {
-    console.log(err)
-    res.status(500).send({ message: 'Error occurred while trying to update the card'})
+    console.log(err);
+    res
+      .status(500)
+      .send({ message: "Error occurred while trying to update the card" });
   }
-}
+};
 
-module.exports = { getCard, getCards, deleteCard, createCard, updateCardName, getMembersFromCard, updateMembers, deleteMembers, addMembers }
+module.exports = {
+  getCard,
+  getCards,
+  deleteCard,
+  createCard,
+  updateCardName,
+  getMembersFromCard,
+  updateMembers,
+  deleteMembers,
+  addMembers,
+};

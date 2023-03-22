@@ -1,18 +1,31 @@
-const express = require('express');
-const { getCard, getCards, createCard, updateMembers,  updateCardName, getMembersFromCard, deleteCard, deleteMembers } = require('../controllers/cardController')
+const express = require("express");
+const auth = require("../middleware/auth");
+
+const {
+  getCard,
+  getCards,
+  createCard,
+  updateMembers,
+  updateCardName,
+  getMembersFromCard,
+  deleteCard,
+  deleteMembers,
+} = require("../controllers/cardController");
 
 const router = express.Router();
 
 //localhost:5000/api/card
-router.get('/', getCards) 
-router.get('/:id', getCard) 
-router.post('/', createCard)
-router.delete('/:id', deleteCard)
-router.put('/:id', updateCardName)
-router.get('/members/:id', getMembersFromCard)
-router.delete('/members/:id', deleteMembers)
-router.put('/members/:id', updateMembers)
+router.get("/", auth, getCards);
+router.get("/:id", auth, getCard);
+router.post("/", auth, createCard);
+router.delete("/:id", auth, deleteCard);
+router.put("/:id", auth, updateCardName);
+
+// Are we going to use these endpoints for the MVP?
+router.get("/members/:id", auth, getMembersFromCard);
+router.delete("/members/:id", auth, deleteMembers);
+router.put("/members/:id", auth, updateMembers);
 
 // ARCHIVE CARD????
 
-module.exports = router
+module.exports = router;

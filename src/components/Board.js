@@ -38,6 +38,12 @@ const Board = () => {
     getBoard();
   }, [])
 
+// export const Board = ({ lists }) => {
+//  const onDragEnd = () => {
+//    //handle the logic for dropping an item
+//  };
+// console.log(lists, 'lists not funct')
+
   return (
     <div>
       <Navbar/>
