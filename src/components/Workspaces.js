@@ -22,6 +22,11 @@ const Workspaces = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
+
   useEffect(() => {
     getUserProfile();
   }, []);
@@ -33,19 +38,31 @@ const Workspaces = () => {
         <div className="user-panel">
           {userInfo ? (
             <div>
-              Hi, <strong>{userInfo.username}!</strong>
-              <p>Your boards:</p>
-              {userInfo.boards.length > 0 ? (
-                userInfo.boards.map((board, index) => {
-                  return (
-                    <div key={index}>
-                      <h5>{board.title}</h5>
-                    </div>
-                  );
-                })
-              ) : (
-                <p>You don't have any boards, yet.</p>
-              )}
+              <div className="logout-btn">
+                <Button
+                  variant="contained"
+                  onClick={() => {
+                    handleLogout();
+                  }}
+                >
+                  Logout
+                </Button>
+              </div>
+              <div>
+                Hi, <strong>{userInfo.username}!</strong>
+                <p>Your boards:</p>
+                {userInfo.boards.length > 0 ? (
+                  userInfo.boards.map((board, index) => {
+                    return (
+                      <div key={index}>
+                        <h5>{board.title}</h5>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <p>You don't have any boards, yet.</p>
+                )}
+              </div>
             </div>
           ) : (
             <div>
