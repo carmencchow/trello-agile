@@ -1,4 +1,5 @@
 const express = require("express");
+const auth = require("../middleware/auth");
 
 const {
   getCard,
@@ -14,9 +15,9 @@ const {
 const router = express.Router();
 
 //localhost:5000/api/card
-router.get("/", getCards);
+router.get("/", auth, getCards);
 router.get("/:id", getCard);
-router.post("/", createCard);
+router.post("/", auth, createCard);
 router.delete("/:id", deleteCard);
 router.put("/:id", updateCardName);
 router.get("/members/:id", getMembersFromCard);
