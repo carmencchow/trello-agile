@@ -15,7 +15,6 @@ const listSchema = new Schema(
       },
     ],
 
-    // If we want to move the list to another board:
     board: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "board",

@@ -2,7 +2,25 @@ const Board = require("../models/boardModel");
 const User = require("../models/userModel");
 const mongoose = require("mongoose");
 
-// GET A board (working)
+// GET a board by id (NEW ENDPOINT)
+// const getBoard = async (req, res) => {
+//   try {
+//     const board = await Board.findOne({ _id: req.params.id }).populate({
+//       path: "lists",
+//       populate: {
+//         path: "cards",
+//       },
+//     });
+//     if (!board) {
+//       return res.status(404).send({ message: "Board not found" });
+//     }
+//     return res.status(200).send({ message: "Returning board", board });
+//   } catch (err) {
+//     return res.status(500).send(err);
+//   }
+// };
+
+// GET a board by id (OLD ENDPOINT)
 const getBoard = async (req, res) => {
   try {
     const board = await Board.findOne({ _id: req.params.id });
@@ -14,6 +32,7 @@ const getBoard = async (req, res) => {
     return res.status(500).send(err);
   }
 };
+
 
 // GET ALL boards (working)
 const getBoards = async (req, res) => {
