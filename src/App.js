@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Header from "./components/Header";
-import { Board } from "./components/Board";
+import Board from "./components/Board";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "./store/thunks/fetchList";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -23,7 +23,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Header />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/lists" element={<Board lists={lists} />} />
+          {/* <Route path="/lists" element={<Board lists={lists} />} /> */}
+          <Route path="/board/:id" element={<Board/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/workspaces" element={<Workspaces />} />
         </Routes>
