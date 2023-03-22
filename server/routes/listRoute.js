@@ -13,11 +13,11 @@ const {
 const router = express.Router();
 
 // ROUTES /api/list
-router.get("/", getLists);
-router.get("/:id", getList);
+router.get("/", auth, getLists);
+router.get("/:id", auth, getList);
 router.post("/", auth, createList);
-router.delete("/:id", deleteList);
-router.put("/:id", updateListName);
+router.delete("/:id", auth, deleteList);
+router.put("/:id", auth, updateListName);
 
 // router.delete('/:boardId/:listId', deleteList)
 // router.get('/:boardId/:listid', getList)

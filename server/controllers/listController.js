@@ -1,6 +1,7 @@
 const List = require("../models/listModel");
 const User = require("../models/userModel");
 const Board = require("../models/boardModel");
+// const Card = require("../models/cardModel");
 
 // GET all lists (working)
 const getLists = async (req, res) => {
@@ -29,19 +30,31 @@ const getList = async (req, res) => {
 
 // DELETING a list
 const deleteList = async (req, res) => {
+  const listId = req.params.id;
+  console.log(listId);
   try {
-    const listId = await List.findOneAndDelete({ _id: req.params.id });
-    if (!listId) {
-      return res.status(404).send("List not found");
+    const deletedList = await List.findByIdAndDelete({ _id: listId });
+    if (!deletedList) {
+      res.status(404).send("List item not found.");
     }
+    const users = await User.find({ lists: listId });
+
+    await Promise.all(
+      users.map(async (user) => {
+        user.lists.pull(listId);
+        await user.save();
+      })
+    );
+    await Board.updateMany({ lists: listId }, { $pull: { lists: listId } });
+    // await Card.deleteMany({ parentList: listId });
     return res.send("List deleted.");
   } catch (err) {
+    console.log(err);
     return res.status(500).send({ message: "Error deleting list" });
   }
 };
 
 // CREATE list
-// In order to get to the users list, you need to go to user and find their user.board with the correct board id, then go into that boards data and find their board.lists and create a new list in that board.
 const createList = async (req, res) => {
   const name = req.body.name;
   const boardId = req.query.boardId;
@@ -74,16 +87,20 @@ const createList = async (req, res) => {
 
 // UPDATE name
 const updateListName = async (req, res) => {
-  const { id, name } = req.body;
   try {
-    const list = await List.findOneAndUpdate(
-      { id: id },
-      { name },
-      { new: true }
-    );
-    console.log(list._id, list.name);
+    const { name } = req.body;
+    if (!name) {
+      return res.status(404).send("No name for list");
+    }
+    const list = await List.findById({ _id: req.params.id });
+    if (!list) {
+      return res.status(404).send("No list found");
+    }
+    list.name = name;
+    await list.save();
     res.status(200).send({ message: "List name updated", list });
   } catch (err) {
+    console.log(err);
     res
       .status(500)
       .send({ message: "Error occurred while trying to update name" });
