@@ -25,14 +25,6 @@ const Board = () => {
     message: ''
   });
 
-  // const listName = await List.findOne({ list });
-  // if (listName){
-  //   res.status(400).send({ message: 'List already exists. Please use a different name.'});
-  // } 
-
-
-
-
   const [list, setLists] = useState([])
   // const [list, setLists] = useState([
   //   board: '',
@@ -54,17 +46,17 @@ const Board = () => {
  
  // ********* TEST CARDS (DRAG & DROP WORKS): **********
 
-  const [item, setItem] = useState(['test_card 1', 'test_card 2', 'test_card 3', 'test_card 4', 'test_card 5', 'test_card 6', 'test_card 7', 'test_card 8', 'test_card 9'])
+  // const [item, setItem] = useState(['test_card 1', 'test_card 2', 'test_card 3', 'test_card 4', 'test_card 5', 'test_card 6', 'test_card 7', 'test_card 8', 'test_card 9'])
   
-  const drop = (e) => {
-    const copyItems = [...item];
-    const dragItemContent = copyItems[dragItem.current];
-    copyItems.splice(dragItem.current, 1);
-    copyItems.splice(dragOverItem.current, 0, dragItemContent);
-    dragItem.current = null;
-    dragOverItem.current = null;
-    setItem(copyItems);
-  };
+  // const drop = (e) => {
+  //   const copyItems = [...item];
+  //   const dragItemContent = copyItems[dragItem.current];
+  //   copyItems.splice(dragItem.current, 1);
+  //   copyItems.splice(dragOverItem.current, 0, dragItemContent);
+  //   dragItem.current = null;
+  //   dragOverItem.current = null;
+  //   setItem(copyItems);
+  // };
 
   const dragStart = (e, position) => {
     dragItem.current = position
