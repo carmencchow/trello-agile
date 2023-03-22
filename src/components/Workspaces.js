@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import axios from "axios";
+import './Workspaces.css';
 
 const Workspaces = () => {
   const [userInfo, setUserInfo] = useState("");
+  const navigate = useNavigate();
 
   const getUserProfile = async () => {
     const token = localStorage.getItem("token");
@@ -17,6 +19,9 @@ const Workspaces = () => {
       const res = await axios.get("http://localhost:5000/api/user/me");
 
       setUserInfo(res.data);
+      console.log('Displaying user boards:', res.data.boards.map((board) => {
+        return board._id
+      }))
     } catch (error) {
       throw error;
     }
@@ -30,6 +35,11 @@ const Workspaces = () => {
   useEffect(() => {
     getUserProfile();
   }, []);
+
+   const goToBoard = (id) => {
+    navigate(`/board/${id}`)
+    console.log(id)
+  }
 
   return (
     <div>
@@ -54,8 +64,10 @@ const Workspaces = () => {
                 {userInfo.boards.length > 0 ? (
                   userInfo.boards.map((board, index) => {
                     return (
-                      <div key={index}>
+                    <div className="boards-container">
+                      <div key={index} className="boards" onClick={() => goToBoard(board._id)}>
                         <h5>{board.title}</h5>
+                      </div>
                       </div>
                     );
                   })
@@ -63,8 +75,10 @@ const Workspaces = () => {
                   <p>You don't have any boards, yet.</p>
                 )}
               </div>
+              
             </div>
           ) : (
+            
             <div>
               <h1>You're not logged in!</h1>
               <Button component={Link} to="/login" variant="contained">
