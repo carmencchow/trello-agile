@@ -1,6 +1,7 @@
 input{
-  border: 1px solid grey;
+  border: 1px solid transparent;
+  border-radius: 3px;
   height: 50px;
-  width: 350p;
-  background-color: white;
+  width: 220px;
+  background-color: ffffff;
 }

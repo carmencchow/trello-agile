@@ -45,7 +45,7 @@ const Workspaces = () => {
     <div>
       <Navbar />
       <div>
-        <div className="user-panel">
+        {/* <div className="user-panel"> */}
           {userInfo ? (
             <div>
               <div className="logout-btn">
@@ -68,7 +68,7 @@ const Workspaces = () => {
                       <div key={index} className="boards" onClick={() => goToBoard(board._id)}>
                         <h5>{board.title}</h5>
                       </div>
-                      </div>
+                    </div>
                     );
                   })
                 ) : (
@@ -87,7 +87,7 @@ const Workspaces = () => {
             </div>
           )}
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 };
