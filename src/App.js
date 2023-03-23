@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Header from "./components/Header";
 import Board from "./components/Board";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchData } from "./store/thunks/fetchList";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
@@ -10,8 +10,8 @@ import Workspaces from "./components/Workspaces";
 
 function App() {
   const dispatch = useDispatch();
-  const lists = useSelector((state) => state.data.lists);
-  const boards = useSelector((state) => state.data.boards);
+  // const lists = useSelector((state) => state.data.lists);
+  // const boards = useSelector((state) => state.data.boards);
 
   useEffect(() => {
     dispatch(fetchData());
@@ -24,7 +24,7 @@ function App() {
           <Route path="/" element={<Header />} />
           <Route path="/home" element={<Home />} />
           {/* <Route path="/lists" element={<Board lists={lists} />} /> */}
-          <Route path="/board/:id" element={<Board/>} />
+          <Route path="/board/:id" element={<Board />} />
           <Route path="/login" element={<Login />} />
           <Route path="/workspaces" element={<Workspaces />} />
         </Routes>
