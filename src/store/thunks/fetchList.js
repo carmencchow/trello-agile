@@ -1,27 +1,27 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import { fetchLists, fetchBoards } from './api'
+import { fetchLists, fetchBoards, fetchCards } from './api'
 
-export const getList = createAsyncThunk("list/getList", async () => {
-  const response = await axios.get("http://localhost:5000/api/list/");
-  console.log(response.data.lists, "initial fetch data.lists");
-  return response.data.lists;
-});
-
-export const getBoards = createAsyncThunk("list/getList", async () => {
-  const response = await axios.get("http://localhost:5000/api/board/");
-  console.log(response.data, "initial fetch data boards");
-  return response.data;
-});
 
 export const fetchData = createAsyncThunk(
   'data/fetchData',
-  async () => {
-    const [listData, boardData] = await Promise.all([
-      fetchLists(),
-      fetchBoards(),
-    ]);
-    console.log(listData, boardData, 'logging response in thunk');
-    return { listData, boardData };
+  async (_, { dispatch }) => {
+    dispatch({ type: 'data/fetchData/pending' });
+    try {
+      const listData = await fetchLists();
+      const boardData = await fetchBoards();
+      // const cardData = await fetchCards();
+      console.log(listData, 'listData fetch');
+      console.log(boardData, 'boardData fetch');
+      // console.log(cardData, 'cardData fetch');
+      dispatch({ 
+        type: 'data/fetchData/fulfilled', 
+        payload: { listDataPayload: listData,
+           boardDataPayload: boardData,
+            // cardDataPayload: cardData 
+        } 
+      });
+    } catch (error) {
+      dispatch({ type: 'data/fetchData/rejected', error });
+    }
   }
 );

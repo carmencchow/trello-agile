@@ -3,8 +3,8 @@ import { TrelloList } from "./TrelloList";
 import { Grid } from "@mui/material";
 import "./Columns.css";
 import { store } from "../store";
-import { Provider } from "react-redux";
-import { useState } from "react";
+import { Provider, useSelector } from "react-redux";
+import { useState} from "react";
 
 export const Board = ({ lists }) => {
   const [currentLists, setLists] = useState(lists);
@@ -14,8 +14,8 @@ export const Board = ({ lists }) => {
       return;
     }
 
-    const sourceList = currentLists.find((list) => list.name === result.source.droppableId);
-    const destinationList = currentLists.find((list) => list.name === result.destination.droppableId);
+    const sourceList = currentLists.find((list) => list._id.toString() === result.source.droppableId);
+    const destinationList = currentLists.find((list) => list._id.toString() === result.destination.droppableId);    
 
     const card = sourceList.cards.find((card) => card._id === parseInt(result.draggableId));
 
@@ -43,7 +43,7 @@ export const Board = ({ lists }) => {
         <Grid container spacing={2}>
           {currentLists.map((list) => (
             <Grid key={list.name} item xs={12} sm={6} md={4} lg={3}>
-              <Droppable droppableId={list.name}>
+              <Droppable droppableId={`${list._id}`}>
                 {(provided) => (
                   <div ref={provided.innerRef} {...provided.droppableProps}>
                     <TrelloList name={list.name} cards={list.cards} />

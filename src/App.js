@@ -7,17 +7,25 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import Workspaces from "./components/Workspaces";
+import { CircularProgress } from "@mui/material";
 
 function App() {
   const dispatch = useDispatch();
-  const lists = useSelector((state) => state.data.lists);
-  const boards = useSelector((state) => state.data.boards);
+  const { lists, boards, cards, status, error } = useSelector((state) => state.data);
 
   useEffect(() => {
     dispatch(fetchData());
   }, [dispatch]);
 
-  console.log(lists, 'lists app.js');
+console.log(cards, 'cards app.js');
+
+  if (status === 'loading') {
+    return <CircularProgress />;
+  }
+
+  if (status === 'failed') {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className="App">

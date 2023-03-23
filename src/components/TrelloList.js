@@ -8,7 +8,11 @@ export const TrelloList = ({ name, cards, _id, board }) => {
     <div className="list-div">
       <h2>{name}</h2>
       {cards?.map((card, index) => (
-        <Draggable key={card._id} draggableId={`${card._id}`} index={index}>
+        <Draggable
+        key={`${_id}-${card._id}`}
+        draggableId={`${name}`}
+        index={index}
+      >
           {(provided) => (
             <div
               ref={provided.innerRef}
