@@ -1,7 +1,6 @@
 const Card = require("../models/cardModel");
 const User = require("../models/userModel");
 const List = require("../models/listModel");
-const mongoose = require("mongoose");
 
 // GET all cards (working)
 const getCards = async (req, res) => {
