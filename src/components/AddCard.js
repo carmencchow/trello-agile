@@ -5,16 +5,13 @@ import './AddCard.css'
 const AddCard = ({ open }) => {
   if (!open) return null;
   return (
-    <div className="list-modal">
+    <div>
       <div className="overlay">
-        {/* <div onClick={(e) => { e.stopPropagation()}}> */}
-      
-          <div className="modal-heading">
-            <input type="text" className="card"></input>
-          </div>
+        <div className="modal-heading">
+          <input type="text" className="card" placeholder="Enter a title for this card..."></input>
         </div>
       </div>
-    // </div>
+    </div>
   )
 }
 

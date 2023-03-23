@@ -1,18 +1,18 @@
 import React from 'react'
-import { AiFillCloseSquare } from 'react-icons/ai'
+import { GrFormClose } from 'react-icons/gr'
 import './ListModal.css'
 
 const ListModal = ({ open, onClose }) => {
   if(!open) return null;
 
   return (
+    <div className="main">
     <div className="list-modal">
       <div onClick={onClose} className="overlay">
-        <div onClick={(e) => { e.stopPropagation()}}>
       
-          <div className="modal-heading">
+          <div className="list-modal-heading">
             <p>List actions</p>        
-            <AiFillCloseSquare className="close" onClick={onClose}/>
+            <GrFormClose className="close" onClick={onClose}/>
           </div>
 
           <p>Add card ...</p>

@@ -22,7 +22,6 @@ const getBoard = async (req, res) => {
   }
 };
 
-
 // GET ALL boards (working)
 const getBoards = async (req, res) => {
   try {
