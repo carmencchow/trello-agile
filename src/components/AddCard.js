@@ -1,6 +1,5 @@
-import React from 'react'
-import { AiFillCloseSquare } from 'react-icons/ai'
-import './AddCard.css'
+import React from "react";
+import "./AddCard.css";
 
 const AddCard = ({ open }) => {
   if (!open) return null;
@@ -15,4 +14,4 @@ const AddCard = ({ open }) => {
   )
 }
 
-export default AddCard
+export default AddCard;

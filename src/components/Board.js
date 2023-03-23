@@ -15,19 +15,19 @@ const Board = () => {
   const [openModal, setOpenModal] = useState(false);
   const [openNewCard, setOpenNewCard] = useState(false);
   const [board, setBoard] = useState({
-    board: { 
-      _id: '', 
-      title: '', 
-      user: [], 
-      lists: []},
-    message: ''
+    board: {
+      _id: "",
+      title: "",
+      user: [],
+      lists: [],
+    },
+    message: "",
   });
-
-  // const [list, setLists] = useState([])
 
   useEffect(() => {
     const getBoard = async () => {
       const res = await axios.get(`http://localhost:5000/api/board/${id}`);
+      // console.log(list);
       setBoard(res.data.board);
       console.log("Board info:", res.data);
       // console.log("List info:", res.data.board.lists[0].cards);
@@ -39,7 +39,6 @@ const Board = () => {
   if (!board) {
     return <div>Loading...</div>;
   }
-
 
   const toggleModal = () => {
     setOpenModal(!openModal)
@@ -85,4 +84,4 @@ const Board = () => {
     )
   }
 
-export default Board
+export default Board;
