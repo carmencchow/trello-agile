@@ -1,6 +1,6 @@
-import React from 'react'
-import { AiFillCloseSquare } from 'react-icons/ai'
-import './AddCard.css'
+import React from "react";
+// import { AiFillCloseSquare } from "react-icons";
+import "./AddCard.css";
 
 const AddCard = ({ open }) => {
   if (!open) return null;
@@ -8,14 +8,14 @@ const AddCard = ({ open }) => {
     <div className="list-modal">
       <div className="overlay">
         {/* <div onClick={(e) => { e.stopPropagation()}}> */}
-      
-          <div className="modal-heading">
-            <input type="text" className="card"></input>
-          </div>
+
+        <div className="modal-heading">
+          <input type="text" className="card"></input>
         </div>
       </div>
+    </div>
     // </div>
-  )
-}
+  );
+};
 
-export default AddCard
+export default AddCard;
