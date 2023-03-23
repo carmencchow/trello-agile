@@ -5,15 +5,12 @@ import Navbar from './Navbar'
 import { TrelloList } from "./TrelloList";
 import { store } from "../store";
 import { Provider } from "react-redux";
-import { BsThreeDots } from 'react-icons/bs'
-import ListModal from '../components/ListModal'
 import AddCard from '../components/AddCard'
+import List from '../components/List'
 import "./Board.css";
 
 const Board = () => {
   const { id } = useParams();
-  const [openModal, setOpenModal] = useState(false);
-  const [openNewCard, setOpenNewCard] = useState(false);
   const [board, setBoard] = useState({
     board: {
       _id: "",
@@ -40,12 +37,8 @@ const Board = () => {
     return <div>Loading...</div>;
   }
 
-  const toggleModal = () => {
-    setOpenModal(!openModal)
-    console.log('open modal')
-  }
-
   return (
+
     <div className="board-container">
       <Navbar/>
       <h3>{board.title}</h3>
@@ -53,30 +46,13 @@ const Board = () => {
       <div className="container">
         {board.lists && board.lists.map((list) => {
           return (
+
+            <List
+              key={list._id}
+              name={list.name}
+              cards={list.cards}
+            />
           
-            <div key={list._id} className="list">
-              <span className="list-header">
-                <p className="list-name">{list.name}</p>
-
-                <span className="dots" onClick={() => toggleModal()}><BsThreeDots/></span>
-              </span>
-
-              <ListModal open={openModal} onClose={() => setOpenModal(false)}/>
-    
-              {list.cards.map((card) => (
-                <div key={card._id} className="cards">
-                  {card.title}
-                </div>
-              ))}
-
-            <div>
-            </div>
- 
-            <span className="add-card" onClick={() => setOpenNewCard(true)}> + Add a card
-            <AddCard open={openNewCard}/>
-            </span>
- 
-          </div>
           )
         })}
       </div>
