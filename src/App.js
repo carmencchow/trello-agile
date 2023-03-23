@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import Workspaces from "./components/Workspaces";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,7 +26,7 @@ function App() {
           <Route path="/" element={<Header />} />
           <Route path="/home" element={<Home />} />
           {/* <Route path="/lists" element={<Board lists={lists} />} /> */}
-          <Route path="/board/:id" element={<Board />} />
+          <Route path="/board/:id" element={<Provider store={store}><Board /></Provider>} />
           <Route path="/login" element={<Login />} />
           <Route path="/workspaces" element={<Workspaces />} />
         </Routes>

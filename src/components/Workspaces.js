@@ -64,8 +64,8 @@ const Workspaces = () => {
                 {userInfo.boards.length > 0 ? (
                   userInfo.boards.map((board, index) => {
                     return (
-                    <div className="boards-container">
-                      <div key={index} className="boards" onClick={() => goToBoard(board._id)}>
+                    <div key={board._id} className="boards-container">
+                      <div className="boards" onClick={() => goToBoard(board._id)}>
                         <h5>{board.title}</h5>
                       </div>
                       </div>
