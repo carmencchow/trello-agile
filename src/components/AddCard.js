@@ -23,7 +23,6 @@ const AddCard = ({ open, onClose }) => {
                onChange={handleInput}
                 >
              </input>
-             <button>Save</button>
            </div>
          </div>
       </div>

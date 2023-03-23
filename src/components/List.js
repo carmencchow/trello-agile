@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { BsThreeDots } from 'react-icons/bs'
 import ListModal from '../components/ListModal'
 import AddCard from '../components/AddCard'
+import SaveCardBtn from './SaveCardBtn'
+import './List.css'
 
 const List = ({ name, cards }) => {
   const [openModal, setOpenModal] = useState(false)
@@ -9,6 +11,10 @@ const List = ({ name, cards }) => {
 
   const toggleModal = () => {
     setOpenModal(!openModal)
+  }
+
+  const handleSave = () => {
+    console.log('saving card')
   }
 
   return (
@@ -30,13 +36,16 @@ const List = ({ name, cards }) => {
       <div>
     </div>
     
-    <AddCard open={openNewCard}/>
-    
-    <button 
-      className="add-card" onClick={() => { setOpenNewCard(true) }}>Add a card
-    </button>
-    
+    <div className="input-field">
+      <AddCard open={openNewCard}/>
     </div>
+
+    <div className="card-btns">
+      <button className="add-card" onClick={() => { setOpenNewCard(true) }}>Add a card</button>
+      <SaveCardBtn/>    
+    </div>
+  
+  </div>
     
     )
   }

@@ -1,0 +1,9 @@
+.card-btns{
+  display: flex;
+  justify-content: center;
+}
+.input-field{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
