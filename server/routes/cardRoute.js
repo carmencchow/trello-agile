@@ -16,7 +16,8 @@ const router = express.Router();
 
 //localhost:5000/api/card
 router.get("/", auth, getCards);
-router.get("/:id", auth, getCard);
+router.get("/:id", getCard); //DELETE AFTER USE
+// router.get("/:id", auth, getCard);
 router.post("/", auth, createCard);
 router.delete("/:id", auth, deleteCard);
 router.put("/:id", auth, updateCardName);

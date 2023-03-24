@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { GrClose } from 'react-icons/gr'
 import "./AddCard.css";
 
-const AddCard = ({ open, onClose }) => {
+const AddCard = ({ open, close, onClose }) => {
   const [input, setInput] = useState('');
   if (!open) return null;
 
@@ -12,7 +12,7 @@ const AddCard = ({ open, onClose }) => {
   
     return (
       <div className="input-container">
-        <div onClick={onClose} className="new-card">
+        <div onClick={close} className="new-card">
           <input type="text" 
             className="card" 
             value={input}

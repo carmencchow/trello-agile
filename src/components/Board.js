@@ -79,13 +79,11 @@ const Board = () => {
       <div className="container">
         {board.lists && board.lists.map((list) => {
           return (
-
             <List
               key={list._id}
               name={list.name}
               cards={list.cards}
             />
-            
           )          
         })}
       </div>
