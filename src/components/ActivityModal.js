@@ -1,9 +1,15 @@
 import React from 'react'
 import { GrFormClose } from 'react-icons/gr'
-import './ListModal.css'
+import './ActivityModal.css'
 
-const ListModal = ({ open, onClose }) => {
+const ActivityModal = ({ open, onClose }) => {
   if(!open) return null;
+
+  // const toggleModal = () => {
+  //   setOpenModal(!openModal);
+  //   console.log("open modal");
+  // };
+
 
   return (
     <div className="main">
@@ -25,4 +31,4 @@ const ListModal = ({ open, onClose }) => {
   )
 }
 
-export default ListModal
+export default ActivityModal

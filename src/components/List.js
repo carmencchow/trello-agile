@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { BsThreeDots } from 'react-icons/bs'
 import { GrClose } from 'react-icons/gr'
-import ListModal from '../components/ListModal'
+import ListModal from './ActivityModal'
 import AddCard from '../components/AddCard'
 import SaveCardBtn from './SaveCardBtn'
 import CancelCard from './CancelCard'
@@ -22,8 +22,6 @@ const List = ({ name, cards }) => {
       <p className="list-name">{name}</p>
       <span className="dots" onClick={() => toggleModal()}><BsThreeDots/></span>
       </span>
-
-      {/* <ListModal open={openModal} onClose={() => setOpenModal(false)}/> */}
 
       {cards.map((card) => (
         <div key={card._id} className="cards">
@@ -48,7 +46,6 @@ const List = ({ name, cards }) => {
           </div>
         }
       
-
       </div>
     </div>
     

@@ -61,11 +61,6 @@ const Board = () => {
     return <div>Loading...</div>;
   }
 
-  const toggleModal = () => {
-    setOpenModal(!openModal);
-    console.log("open modal");
-  };
-
   return (
 
     <div className="board-container">
