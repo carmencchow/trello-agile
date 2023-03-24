@@ -76,7 +76,7 @@ const Workspaces = () => {
                         className="boards"
                         onClick={() => goToBoard(board._id)}
                       >
-                        <h5>{board.title}</h5>
+                        <h5 className="title">{board.title}</h5>
                       </div>
                     </div>
                   );
