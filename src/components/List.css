@@ -25,7 +25,7 @@
   align-items: center;
 }
 .cards:hover{
-  background-color: lightgreen;
+  background-color: rgb(209, 230, 243);
 }
 .cards:hover .icon{
   display: block;
