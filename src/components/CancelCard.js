@@ -2,7 +2,7 @@ import React from 'react'
 import { GrClose } from 'react-icons/gr'
 import './CancelCard.css'
 
-const CancelCard = () => {
+const CancelCard = ({ onClose }) => {
 
   const closeCard = () => {
     console.log('Cancel card')

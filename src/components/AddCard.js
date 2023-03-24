@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import { useEffect } from 'react-router-dom'
 import "./AddCard.css";
-import SaveCardBtn from './SaveCardBtn'
-import CancelCard from './CancelCard'
-import axios from 'axios'
-import { AiFillCloseSquare } from 'react-icons/ai'
 
 const AddCard = ({ open, close }) => {
   const [input, setInput] = useState('');
@@ -24,6 +19,7 @@ const AddCard = ({ open, close }) => {
             onChange={handleInput}/>
           </div>
         </div>
+
       )
     }
 

@@ -71,6 +71,10 @@ const List = ({ name, cards, _id }) => {
         )}
       </Droppable>
 
+      <CardPopup 
+        open={openModal}
+        onClose={() => setOpenModal(false)}/>
+      
       <div>
         {openModal && <ListModal toggleModal={toggleModal} />}
       </div>
