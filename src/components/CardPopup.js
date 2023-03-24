@@ -27,13 +27,12 @@ const CardPopup = ({ open, onClose }) => {
             <p>Activity</p>
             <p>Archive</p>
             <p>Members</p>
-
           </div>
 
-          </div>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
+}
 
 export default CardPopup
