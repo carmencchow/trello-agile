@@ -20,4 +20,4 @@ export const dataSlice = createSlice({
         state.board = action.payload;
       });
   },
-});
+}); 
