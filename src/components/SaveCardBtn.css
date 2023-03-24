@@ -1,0 +1,13 @@
+.save{
+  width: 60px;
+  height: 36px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 3px;
+  background-color: lightgrey;
+  margin-top: 10px;
+}
+.save:hover{
+  color: white;
+  background-color: darkgray;
+}
