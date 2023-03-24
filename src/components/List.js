@@ -1,20 +1,18 @@
 import React, { useState } from 'react'
 import { BsThreeDots } from 'react-icons/bs'
+import { GrClose } from 'react-icons/gr'
 import ListModal from '../components/ListModal'
 import AddCard from '../components/AddCard'
 import SaveCardBtn from './SaveCardBtn'
+import CancelCard from './CancelCard'
 import './List.css'
 
 const List = ({ name, cards }) => {
   const [openModal, setOpenModal] = useState(false)
   const [openNewCard, setOpenNewCard] = useState(false)
-
+  
   const toggleModal = () => {
     setOpenModal(!openModal)
-  }
-
-  const handleSave = () => {
-    console.log('saving card')
   }
 
   return (
@@ -40,7 +38,16 @@ const List = ({ name, cards }) => {
     
       <AddCard open={openNewCard}/>
       
-      { !openNewCard ? <button className="add-card" onClick={() => { setOpenNewCard(true) }}>Add a card</button> : <SaveCardBtn/>}
+        { !openNewCard ? 
+          <button className="add-card" 
+            onClick={() => { setOpenNewCard(true) }}>
+              Add a card</button> : 
+          <div className="card-btns">
+              <SaveCardBtn/>  
+              <CancelCard/>
+          </div>
+        }
+      
 
       </div>
     </div>

@@ -1,13 +1,5 @@
-input{
-  border: 1px solid transparent;
-  border-radius: 3px;
-  height: 50px;
-  width: 228px;
-  background-color: ffffff;
-}
-.add-card:hover{
-  color: white;
-  background-color: darkgray;
+button{
+  cursor: pointer;
 }
 .cancel{
   width: 40px;

@@ -1,6 +1,7 @@
 .card-btns{
   display: flex;
   justify-content: center;
+  flex-direction: row;
 }
 .input-field{
   display: flex;
@@ -10,5 +11,6 @@
   align-items: center;
 }
 .add-card:hover{
-
+  color: white;
+  background-color: darkgray;
 }
