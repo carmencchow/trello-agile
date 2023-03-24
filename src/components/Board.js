@@ -86,8 +86,8 @@ const Board = () => {
               name={list.name}
               cards={list.cards}
             />
-          
-          )
+            
+          )          
         })}
       </div>
     </div>
