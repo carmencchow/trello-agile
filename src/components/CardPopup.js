@@ -1,23 +1,35 @@
 import React from 'react'
 import { GrFormClose } from 'react-icons/gr'
 import './CardPopup.css'
+import List from '../components/List'
+
 
 const CardPopup = ({ open, onClose }) => {
   if(!open) return null;
 
+  const changeColor = () => {
+    console.log('changing color')
+  }
+
   return (
     <div className="card-background">
       <div className="card-popup">
-        <div onClick={onClose} className="overlay">    
+        <div onClick={onClose}>    
           <div className="card-popup-heading">
-            <p>List actions</p>        
-            <GrFormClose className="close" onClick={onClose}/>
+            <p>CARD NAME:_____________</p>  
+            <div className="right-side">      
+              <GrFormClose className="close" onClick={onClose}/>
+              <span className="color" onClick={changeColor}>Color</span>
+            </div>
           </div>
 
           <div className="card-content">
-            <p>Add card ...</p>
-            <p>Delete card ...</p>
-            <p>Sort by ...</p>
+            <p>Description</p>
+            <span></span>
+            <p>Activity</p>
+            <p>Archive</p>
+            <p>Members</p>
+
           </div>
 
           </div>

@@ -24,10 +24,35 @@
   display: flex;
   justify-content: space-between;
   height: 100px;
-  background-color: #f5dd29;
+  background-color: #7bc86c;
+}
+.card-popup-heading p{
+  margin-left: 25px;
 }
 .card-content{
-  border: 1px solid lightsalmon;
   width: 90%;
   margin: 20px auto;
+}
+.close{
+  cursor: pointer;
+  font-size: 25px;
+  margin: 10px;
+  padding: 5px;
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 50%; 
+}
+.color{
+  background-color: rgba(0,0,0,0.1);
+  width: 80px;
+  height: 30px;
+  text-align: center;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.right-side{
+  display: flex;
+  flex-direction: column;
+}
+p{
+  font-weight: bolder;
 }

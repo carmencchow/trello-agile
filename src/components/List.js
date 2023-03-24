@@ -30,7 +30,9 @@ const List = ({ name, cards }) => {
         </div>
       ))}
 
-        <CardPopup open={openModal}/>
+        <CardPopup 
+          open={openModal}
+          onClose={() => setOpenModal(false)}/>
         
       <div>
     </div>
