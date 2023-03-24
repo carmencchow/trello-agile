@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { BsThreeDots } from 'react-icons/bs'
 import AddCard from '../components/AddCard'
 import SaveCardBtn from './SaveCardBtn'
-import CancelCard from './CancelCard'
 import CardPopup from './CardPopup'
 import { GrEdit } from 'react-icons/gr'
 import './List.css'
@@ -34,8 +33,10 @@ const List = ({ name, cards }) => {
 
       <CardPopup 
         open={openModal}
-        onClose={() => setOpenModal(false)}/>
-      
+        onClose={() => setOpenModal(false)}
+        name={name}
+        cards={cards}
+      />
       <div>
     </div>
     
@@ -51,7 +52,6 @@ const List = ({ name, cards }) => {
               Add a card</button> : 
           <div className="card-btns">
               <SaveCardBtn/>  
-              <CancelCard/>
           </div>
         }
       

@@ -54,3 +54,45 @@
 p{
   font-weight: bolder;
 }
+
+/* Color bar */
+
+span{ 
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+.color-row{
+  display: flex;
+  justify-content: end;
+  justify-content: space-between;
+  width: 30%;
+}
+.color-container{
+  height: 20px;
+}
+.red{
+  background-color: red;
+}
+.orange{
+  background-color: orange;
+}
+.yellow{
+  background-color: rgb(218, 218, 7);
+}
+.green{
+  background-color: lightgreen;
+}
+.blue{
+  background-color: lightskyblue;
+}
+.purple{
+  background-color: plum;
+}
+.pink{
+  background-color: pink;
+}
+.brown{
+  background-color: burlywood;
+}
+

@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Navbar from "./Navbar";
+import List from '../components/List'
 import io from "socket.io-client";
 import { store } from "../store";
 import { Provider } from "react-redux";
-import AddCard from '../components/AddCard'
-import List from '../components/List'
 import "./Board.css";
 
 const socket = io.connect("http://localhost:3001");

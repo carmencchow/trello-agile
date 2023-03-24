@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { GrClose } from 'react-icons/gr'
 import "./AddCard.css";
 
-const AddCard = ({ open, close }) => {
+const AddCard = ({ open, onClose }) => {
   const [input, setInput] = useState('');
   if (!open) return null;
 
@@ -11,15 +12,17 @@ const AddCard = ({ open, close }) => {
   
     return (
       <div className="input-container">
-        <div onClick={close} className="new-card">
+        <div onClick={onClose} className="new-card">
           <input type="text" 
             className="card" 
             value={input}
             placeholder="Enter a title for this card..."
             onChange={handleInput}/>
+          
+            <button className="cancel" onClick={onClose}><GrClose/></button>
+
           </div>
         </div>
-
       )
     }
 

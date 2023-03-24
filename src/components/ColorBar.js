@@ -12,7 +12,7 @@ const ColorBar = () => {
   return (
     <div className="color-container">
       <div className="color-row">
-        <span className="red" value={bgColor} onClick={colorChange}></span>
+        <span className="red" onClick={colorChange}></span>
         <span className="orange"></span>
         <span className="yellow"></span>
         <span className="green"></span>
