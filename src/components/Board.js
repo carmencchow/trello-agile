@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import axios from 'axios'
-import Navbar from './Navbar'
-import { TrelloList } from "./TrelloList";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import Navbar from "./Navbar";
+import io from "socket.io-client";
 import { store } from "../store";
 import { Provider } from "react-redux";
 import AddCard from '../components/AddCard'
 import List from '../components/List'
 import "./Board.css";
 
+const socket = io.connect("http://localhost:3001");
+
 const Board = () => {
+  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
+  const [messageReceived, setMessageReceived] = useState("");
+
   const { id } = useParams();
   const [board, setBoard] = useState({
     board: {
@@ -21,7 +27,25 @@ const Board = () => {
     message: "",
   });
 
+  const sendMessage = () => {
+    socket.emit("send_update", { message });
+    setMessageReceived(message);
+    setMessages([...messages, message]);
+    setMessage("");
+  };
+
   useEffect(() => {
+    socket.on("receive_update", (data) => {
+      setMessageReceived(data.message);
+    });
+  }, [socket]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error("No token found in localStorage");
+    }
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     const getBoard = async () => {
       const res = await axios.get(`http://localhost:5000/api/board/${id}`);
       // console.log(list);
@@ -37,10 +61,25 @@ const Board = () => {
     return <div>Loading...</div>;
   }
 
+  const toggleModal = () => {
+    setOpenModal(!openModal);
+    console.log("open modal");
+  };
+
   return (
 
     <div className="board-container">
-      <Navbar/>
+      <Navbar />
+      <div>
+        <input
+          value={message}
+          placeholder="Message..."
+          onChange={(event) => {
+            setMessage(event.target.value);
+          }}
+        ></input>
+        <button onClick={sendMessage}>Send</button>
+      </div>
       <h3>{board.title}</h3>
 
       <div className="container">
@@ -57,7 +96,7 @@ const Board = () => {
         })}
       </div>
     </div>
-    )
-  }
+  );
+};
 
 export default Board;
