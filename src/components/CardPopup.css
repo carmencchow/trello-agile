@@ -1,25 +1,33 @@
-.overlay{
+/* .card-background{
   width: 100%;
-}.main{
-  display: flex;
-  justify-content: center;
-}
-.list-modal{
+  background-color: rgba(0,0,0,0.5); 
+  position: fixed;
+  display: none;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+} */
+.card-popup{
+  z-index: 2;
   height: 600px;
   width: 700px;
   position: absolute;
-  border-radius: 5px;
   background-color: #f4f5f7;
   border: 1px solid lightgrey;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%)
 }
-.list-modal-heading{
+.card-popup-heading{
   display: flex;
   justify-content: space-between;
+  height: 100px;
+  background-color: #f5dd29;
 }
-.overlay{
-  display: flex;
-  flex-direction: column;
+.card-content{
+  border: 1px solid lightsalmon;
+  width: 90%;
+  margin: 20px auto;
 }

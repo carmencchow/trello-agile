@@ -6,18 +6,21 @@ const CardPopup = ({ open, onClose }) => {
   if(!open) return null;
 
   return (
-    <div className="list-modal">
-      <div onClick={onClose} className="overlay">
-      
-          <div className="list-modal-heading">
+    <div className="card-background">
+      <div className="card-popup">
+        <div onClick={onClose} className="overlay">    
+          <div className="card-popup-heading">
             <p>List actions</p>        
             <GrFormClose className="close" onClick={onClose}/>
           </div>
 
-          <p>Add card ...</p>
-          <p>Delete card ...</p>
-          <p>Sort by ...</p>
+          <div className="card-content">
+            <p>Add card ...</p>
+            <p>Delete card ...</p>
+            <p>Sort by ...</p>
+          </div>
 
+          </div>
         </div>
       </div>
     )
