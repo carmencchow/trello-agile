@@ -1,8 +1,6 @@
 import React from 'react'
 import { GrFormClose } from 'react-icons/gr'
 import './CardPopup.css'
-import List from '../components/List'
-
 
 const CardPopup = ({ open, onClose }) => {
   if(!open) return null;
