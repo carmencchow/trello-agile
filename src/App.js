@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Header from "./components/Header";
 import Board from "./components/Board";
 import { useDispatch } from "react-redux";
-import { fetchData } from "./store/thunks/fetchList";
+import { FetchList } from "./store/thunks/fetchList";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./components/Home";
@@ -14,7 +14,7 @@ function App() {
   // const boards = useSelector((state) => state.data.boards);
 
   useEffect(() => {
-    dispatch(fetchData());
+    dispatch(FetchList());
   }, [dispatch]);
 
   return (
