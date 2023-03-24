@@ -1,18 +1,11 @@
 import React from 'react'
 import { GrFormClose } from 'react-icons/gr'
-import './ActivityModal.css'
+import './CardPopup.css'
 
-const ActivityModal = ({ open, onClose }) => {
+const CardPopup = ({ open, onClose }) => {
   if(!open) return null;
 
-  // const toggleModal = () => {
-  //   setOpenModal(!openModal);
-  //   console.log("open modal");
-  // };
-
-
   return (
-    <div className="main">
     <div className="list-modal">
       <div onClick={onClose} className="overlay">
       
@@ -27,8 +20,7 @@ const ActivityModal = ({ open, onClose }) => {
 
         </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
 
-export default ActivityModal
+export default CardPopup

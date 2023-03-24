@@ -1,15 +1,16 @@
-.main{
+.overlay{
+  width: 100%;
+}.main{
   display: flex;
   justify-content: center;
 }
 .list-modal{
-  height: 300px;
-  width: 300px;
-  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
-  border: 1px solid grey;
+  height: 600px;
+  width: 700px;
   position: absolute;
   border-radius: 5px;
-  background-color: rgb(255, 254, 254);
+  background-color: #f4f5f7;
+  border: 1px solid lightgrey;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%)
