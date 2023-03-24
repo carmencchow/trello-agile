@@ -26,9 +26,7 @@ const SaveCardBtn = () => {
 
   return (
     <div>
-      <button 
-        className="save" 
-        onClick={handleSave}>Save</button>
+      <button className="save" onClick={handleSave}>Save</button>
     </div>
   )
 }

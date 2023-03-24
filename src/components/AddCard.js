@@ -12,24 +12,19 @@ const AddCard = ({ open, close }) => {
 
   const handleInput = (e) => {
     setInput(e.target.value)
-    console.log(e.target.value)
   }  
   
     return (
       <div className="input-container">
         <div onClick={close} className="new-card">
-          {/* <div onClick={(e) => { e.stopPropagation()}}> */}
-            {/* <AiFillCloseSquare className="close" onClick={close}/> */}
-
-            <input type="text" 
-              className="card" 
-              value={input}
-              placeholder="Enter a title for this card..."
-              onChange={handleInput}/>
+          <input type="text" 
+            className="card" 
+            value={input}
+            placeholder="Enter a title for this card..."
+            onChange={handleInput}/>
           </div>
         </div>
-      //  </div>
-    )
-  }
+      )
+    }
 
 export default AddCard
