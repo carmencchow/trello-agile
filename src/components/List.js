@@ -18,10 +18,10 @@ const List = ({ name, cards }) => {
 
   return (
     <div className="list">
-      <span className="list-header">
-      <p className="list-name">{name}</p>
-      <span className="dots"><BsThreeDots/></span>
-      </span>
+      <div className="list-header">
+        <p className="list-name">{name}</p>
+        <span className="dots"><BsThreeDots/></span>
+      </div>
 
       {cards.map((card) => (
         <div key={card._id} 

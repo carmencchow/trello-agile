@@ -1,5 +1,6 @@
 import React from 'react'
 import { GrFormClose } from 'react-icons/gr'
+import ColorBar from '../components/ColorBar'
 import './CardPopup.css'
 
 const CardPopup = ({ open, onClose }) => {
@@ -19,9 +20,12 @@ const CardPopup = ({ open, onClose }) => {
               <GrFormClose className="close" onClick={onClose}/>
               <span className="color" onClick={changeColor}>Color</span>
             </div>
+
           </div>
 
           <div className="card-content">
+          <ColorBar/>
+
             <p>Description</p>
             <span></span>
             <p>Activity</p>
