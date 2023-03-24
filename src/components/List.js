@@ -4,6 +4,7 @@ import AddCard from '../components/AddCard'
 import SaveCardBtn from './SaveCardBtn'
 import CancelCard from './CancelCard'
 import CardPopup from './CardPopup'
+import { GrEdit } from 'react-icons/gr'
 import './List.css'
 
 const List = ({ name, cards }) => {
@@ -27,6 +28,7 @@ const List = ({ name, cards }) => {
           className="cards"
           onClick={() => openCard()}>
           {card.title}
+          <span className="icon">{<GrEdit/>}</span>
         </div>
       ))}
 

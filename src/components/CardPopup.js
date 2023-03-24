@@ -12,7 +12,7 @@ const CardPopup = ({ open, onClose }) => {
   return (
     <div className="card-background">
       <div className="card-popup">
-        <div onClick={onClose}>    
+        <div>    
           <div className="card-popup-heading">
             <p>CARD NAME:_____________</p>  
             <div className="right-side">      
@@ -27,13 +27,12 @@ const CardPopup = ({ open, onClose }) => {
             <p>Activity</p>
             <p>Archive</p>
             <p>Members</p>
-
           </div>
 
-          </div>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
+}
 
 export default CardPopup
