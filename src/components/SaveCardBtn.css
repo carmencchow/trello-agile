@@ -5,11 +5,9 @@
   font-size: 14px;
   border-radius: 3px;
   background-color: lightgrey;
-  margin-top: 5px;
-  margin-left: 10px;
+  margin-top: 10px;
 }
 .save:hover{
   color: white;
   background-color: darkgray;
-
 }

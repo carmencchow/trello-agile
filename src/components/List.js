@@ -25,7 +25,7 @@ const List = ({ name, cards }) => {
       <span className="dots" onClick={() => toggleModal()}><BsThreeDots/></span>
       </span>
 
-      <ListModal open={openModal} onClose={() => setOpenModal(false)}/>
+      {/* <ListModal open={openModal} onClose={() => setOpenModal(false)}/> */}
 
       {cards.map((card) => (
         <div key={card._id} className="cards">
@@ -37,15 +37,13 @@ const List = ({ name, cards }) => {
     </div>
     
     <div className="input-field">
+    
       <AddCard open={openNewCard}/>
-    </div>
+      
+      { !openNewCard ? <button className="add-card" onClick={() => { setOpenNewCard(true) }}>Add a card</button> : <SaveCardBtn/>}
 
-    <div className="card-btns">
-      <button className="add-card" onClick={() => { setOpenNewCard(true) }}>Add a card</button>
-      <SaveCardBtn/>    
+      </div>
     </div>
-  
-  </div>
     
     )
   }
