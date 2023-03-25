@@ -6,18 +6,34 @@ import axios from 'axios'
 const CardPopup = ({ open, onClose, _id }) => {
   const [color, setColor] = useState("green")
   const [cardData, setCardData] = useState(null)
+  const [removedCard, setRemovedCard] = useState(null)
+
+  const colorArr = ["red", "orange", "yellow", "green", "blue", "purple", "pink", "brown"]
   
   const fetchCardInfo = async (id) => {
     const res = await axios.get(`http://localhost:5000/api/card/${id}`)    
-    console.log('Card details: ', res.data)
+    console.log('Open modal: ', res.data)
     setCardData(res.data)
+  }
+
+  // Archive list, get list from db and remove from view
+  const handleArchive = async (id) => {
+    const card = await axios.get(`http://localhost:5000/api/card/${id}`)
+    setRemovedCard(card.data)
+    console.log('Archiving card')
+  }
+
+
+  // Edit
+  const handleEdit = async (id) => {
+    console.log('Editing card')
   }
 
   useEffect(() =>{
     fetchCardInfo(_id)
   }, [])
 
-  if(!open || cardData ===null) return null;
+  if(!open || cardData === null) return null;
 
   return (
     <div className="card-background">
@@ -34,20 +50,20 @@ const CardPopup = ({ open, onClose, _id }) => {
           <p>Click to change  your color</p>
 
             <div className="color-row"> 
-              <span className="red" onClick={() => setColor("red")}></span>
-              <span className="orange" onClick={() => setColor("orange")}></span>
-              <span className="yellow" onClick={() => setColor("yellow")}></span>
-              <span className="green" onClick={() => setColor("green")}></span>
-              <span className="blue" onClick={() => setColor("blue")}></span>
-              <span className="purple" onClick={() => setColor("purple")}></span>
-              <span className="pink" onClick={() => setColor("pink")}></span>
-              <span className="brown" onClick={() => setColor("brown")}></span>
+              {colorArr.map((color) => {
+                return (
+                  <span className={`${color}`} onClick={() => setColor(`${color}`)}></span>
+                )
+              })}
             </div>
 
-            <p>Description</p>
-            <p>Activity</p>
-            <p>Archive</p>
+            <p>Label: {cardData.card.labels}</p>
+            <p>Activity: </p>
+            <p>Activity: </p>
+            <p className="archive" onClick={handleArchive}>Archive this card</p>
+            <p className="edit" onClick={handleEdit}>Edit this card</p>
             <p>Members{cardData.card.members}</p>
+            
           </div>
 
         </div>

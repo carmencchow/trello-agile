@@ -95,3 +95,7 @@ span{
 h2{
   padding-left: 30px;
 }
+.archive:hover{
+  color: blue;
+  cursor: pointer;
+}
