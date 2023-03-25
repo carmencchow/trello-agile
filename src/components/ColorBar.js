@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './ColorBar.css'
 
 const ColorBar = () => {
-  const [bgColor, setBgColor] = useState
+  const [color, setColor] = useState('');
   
   const colors = [
     "#FF0000", 
@@ -25,7 +25,10 @@ const ColorBar = () => {
       <div className="color-row">
         {colors.map((color, idx) => {
           return (
-            <span>{color}</span>
+            <div> 
+              value={color}
+              onClick={(e) => setColor(e.target.value)}/
+            </div>
           )        
         })}
 

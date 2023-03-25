@@ -1,21 +1,19 @@
 import React, { useState } from 'react'
 import { GrFormClose } from 'react-icons/gr'
-// import ColorBar from '../components/ColorBar'
 import './CardPopup.css'
+import ColorBar from './ColorBar'
 
-const CardPopup = ({ open, onClose, cards }) => {
-  const [bgColor, setBgColor] = useState("yellow")
+const CardPopup = ({ open, onClose }) => {
   if(!open) return null;
 
   const colorChange = (e) => {
     console.log('change color to classname', e.target.value)
-    setBgColor(e.target.value)
   }
 
   return (
     <div className="card-background">
       <div className="card-popup">
-        <div>   
+        <div onClick={onClose}>   
           <div className="card-popup-heading">
             <p>CARD NAME: </p>  
             <div className="right-side">      
@@ -36,8 +34,9 @@ const CardPopup = ({ open, onClose, cards }) => {
               <span className="brown"></span>
             </div>
           
+            <ColorBar/>
+
             <p>Description</p>
-            <span></span>
             <p>Activity</p>
             <p>Archive</p>
             <p>Members</p>

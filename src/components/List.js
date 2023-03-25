@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { GrClose, GrEdit } from "react-icons/gr";
-// import ListModal from "./ActivityModal";
 import AddCard from "../components/AddCard";
 import SaveCardBtn from "./SaveCardBtn";
-// import CancelCard from "./CancelCard";
 import CardPopup from "./CardPopup";
 import "./List.css";
 import { Droppable, Draggable } from "react-beautiful-dnd";
@@ -13,9 +11,9 @@ const List = ({ name, cards, _id }) => {
   const [openModal, setOpenModal] = useState(false);
   const [openNewCard, setOpenNewCard] = useState(false);
 
-  const toggleModal = () => {
-    setOpenModal(!openModal);
-  };
+  // const toggleModal = () => {
+  //   setOpenModal(!openModal);
+  // };
 
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
@@ -40,9 +38,7 @@ const List = ({ name, cards, _id }) => {
     <div className="list">
       <span className="list-header">
         <p className="list-name">{name}</p>
-        <span className="dots" onClick={() => toggleModal()}>
-          <BsThreeDots />
-        </span>
+        <BsThreeDots />
       </span>
 
       <Droppable droppableId={_id}>
@@ -61,8 +57,10 @@ const List = ({ name, cards, _id }) => {
                     {...provided.dragHandleProps}
                     key={card._id}
                     className="cards"
+                    onClick={() => setOpenModal(true)}
                   >
                     {card.title}
+
                     <span className="icon">{<GrEdit/>}</span>
                   </div>
                 )}
@@ -76,10 +74,6 @@ const List = ({ name, cards, _id }) => {
       <CardPopup 
         open={openModal}
         onClose={() => setOpenModal(false)}/>
-      
-      {/* <div>
-        {openModal && <ListModal toggleModal={toggleModal} />}
-      </div> */}
 
       <div className="input-field">
         <AddCard open={openNewCard} />
@@ -96,7 +90,6 @@ const List = ({ name, cards, _id }) => {
         ) : (
           <div className="card-btns">
             <SaveCardBtn />
-            {/* <CancelCard /> */}
           </div>
         )}
       </div>
