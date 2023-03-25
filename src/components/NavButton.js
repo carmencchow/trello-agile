@@ -1,7 +1,7 @@
 export const Navbutton = ({ option }) => {
   return (
-    <div>
-      <h3 className="navbutton-style">{option}</h3>
+    <div className="navbutton-style">
+      <h3>{option}</h3>
     </div>
   );
 };
