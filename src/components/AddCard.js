@@ -22,7 +22,7 @@ const AddCard = ({ open, close, onClose }) => {
           
             <button className="cancel" onClick={onClose}><GrClose/></button>
 
-          </div>
+          </div>c
         </div>
       )
     }
