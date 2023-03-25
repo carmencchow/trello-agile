@@ -12,7 +12,8 @@ const AddCard = ({ open, close, onClose }) => {
   
     return (
       <div className="input-container">
-        <div onClick={close} className="new-card">
+        <div>
+        {/* <div onClick={close} className="new-card"> */}
           <input type="text" 
             className="card" 
             value={input}
