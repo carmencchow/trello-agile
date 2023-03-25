@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
-import { GrClose } from "react-icons/gr";
-import ListModal from "./ActivityModal";
+// import { GrClose } from "react-icons/gr";
+// import ListModal from "./ActivityModal";
 import AddCard from "../components/AddCard";
 import SaveCardBtn from "./SaveCardBtn";
 import CancelCard from "./CancelCard";
@@ -16,24 +16,26 @@ const List = ({ name, cards, _id }) => {
     setOpenModal(!openModal);
   };
 
-  const onDragEnd = (result) => {
-    const { destination, source, draggableId } = result;
+  // const onDragEnd = (result) => {
+  //   const { destination, source, draggableId } = result;
 
-    if (!destination) {
-      return;
-    }
+  //   if (!destination) {
+  //     return;
+  //   }
 
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      return;
-    }
+  //   if (
+  //     destination.droppableId === source.droppableId &&
+  //     destination.index === source.index
+  //   ) {
+  //     return;
+  //   }
 
-    console.log(`Moving card ${draggableId} from ${source.droppableId} to ${destination.droppableId}`);
+  //   console.log(
+  //     `Moving card ${draggableId} from ${source.droppableId} to ${destination.droppableId}`
+  //   );
 
-    //update the state to move card
-  };
+  //   //update the state to move card
+  // };
 
   return (
     <div className="list">
@@ -48,11 +50,7 @@ const List = ({ name, cards, _id }) => {
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
             {cards.map((card, index) => (
-              <Draggable
-                key={card._id}
-                draggableId={card._id}
-                index={index}
-              >
+              <Draggable key={card._id} draggableId={card._id} index={index}>
                 {(provided) => (
                   <div
                     ref={provided.innerRef}
@@ -71,13 +69,9 @@ const List = ({ name, cards, _id }) => {
         )}
       </Droppable>
 
-      <CardPopup 
-        open={openModal}
-        onClose={() => setOpenModal(false)}/>
-      
-      <div>
-        {openModal && <ListModal toggleModal={toggleModal} />}
-      </div>
+      {/* <CardPopup open={openModal} onClose={() => setOpenModal(false)} />
+
+      <div>{openModal && <ListModal toggleModal={toggleModal} />}</div> */}
 
       <div className="input-field">
         <AddCard open={openNewCard} />
