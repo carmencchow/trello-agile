@@ -1,56 +1,50 @@
 import React, { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
-import { GrClose, GrEdit } from "react-icons/gr";
+import { GrEdit } from "react-icons/gr";
 import AddCard from "../components/AddCard";
-import SaveCardBtn from "./SaveCardBtn";
 import CardPopup from "./CardPopup";
+import CancelCard from "./CancelCard";
 import "./List.css";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
-const List = ({ name, cards, _id }) => {
-  // const [openModal, setOpenModal] = useState(false);
+const List = ({ name, cards, id, listId }) => {
   const [openNewCard, setOpenNewCard] = useState(false);
   const [cardId, setCardId] = useState(null);
 
-  // const toggleModal = () => {
-  //   setOpenModal(!openModal);
+  // const onDragEnd = (result) => {
+  //   const { destination, source, draggableId } = result;
+
+  //   if (!destination) {
+  //     return;
+  //   }
+
+  //   if (
+  //     destination.droppableId === source.droppableId &&
+  //     destination.index === source.index
+  //   ) {
+  //     return;
+  //   }
+
+  //   console.log(
+  //     `Moving card ${draggableId} from ${source.droppableId} to ${destination.droppableId}`
+  //   );
+
+  //   //update the state to move card
   // };
-
-  const onDragEnd = (result) => {
-    const { destination, source, draggableId } = result;
-
-    if (!destination) {
-      return;
-    }
-
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      return;
-    }
-
-    console.log(`Moving card ${draggableId} from ${source.droppableId} to ${destination.droppableId}`);
-
-    //update the state to move card
-  };
 
   return (
     <div className="list">
       <span className="list-header">
         <p className="list-name">{name}</p>
-        <BsThreeDots />
-      </span>
+          <BsThreeDots />
+        </span>
 
-      <Droppable droppableId={_id}>
+      <Droppable droppableId={id}>
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
             {cards.map((card, index) => (
-              <Draggable
-                key={card._id}
-                draggableId={card._id}
-                index={index}
-              >
+              <Draggable key={card._id} draggableId={card._id} index={index}>
+
                 {(provided) => (
                   <div
                     ref={provided.innerRef}
@@ -60,12 +54,11 @@ const List = ({ name, cards, _id }) => {
                     className="cards"
                     onClick={() => {
                       setCardId(card._id)
-                      // setOpenModal(true)
                     }}
-                  >
+                 >
                     {card.title}
-
-                    <span className="icon">{<GrEdit/>}</span>
+                    
+                   <span className="icon">{<GrEdit/>}</span>
                   </div>
                 )}
               </Draggable>
@@ -75,17 +68,16 @@ const List = ({ name, cards, _id }) => {
         )}
       </Droppable>
 
-{/* Model appear in the DOM tree */}
+    {/* Display modal */}
       {cardId !==null && 
         <CardPopup 
           open={cardId !== null}
           onClose={() => setCardId(null)}
           _id={cardId}
-        />
-        }
+        />}
 
-      <div className="input-field">
-        <AddCard open={openNewCard} />
+    <div className="input-field">
+        <AddCard open={openNewCard} listId={listId} id={id} />
 
         {!openNewCard ? (
           <button
@@ -98,7 +90,7 @@ const List = ({ name, cards, _id }) => {
           </button>
         ) : (
           <div className="card-btns">
-            <SaveCardBtn />
+            <CancelCard />
           </div>
         )}
       </div>
@@ -106,4 +98,6 @@ const List = ({ name, cards, _id }) => {
   );
 };
 
+
 export default List;
+
