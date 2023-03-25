@@ -3,12 +3,12 @@ import { BsThreeDots } from "react-icons/bs";
 // import { GrClose } from "react-icons/gr";
 // import ListModal from "./ActivityModal";
 import AddCard from "../components/AddCard";
-import SaveCardBtn from "./SaveCardBtn";
+// import SaveCardBtn from "./SaveCardBtn";
 import CancelCard from "./CancelCard";
 import "./List.css";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
-const List = ({ name, cards, _id }) => {
+const List = ({ name, cards, id, listId }) => {
   const [openModal, setOpenModal] = useState(false);
   const [openNewCard, setOpenNewCard] = useState(false);
 
@@ -46,7 +46,7 @@ const List = ({ name, cards, _id }) => {
         </span>
       </span>
 
-      <Droppable droppableId={_id}>
+      <Droppable droppableId={id}>
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
             {cards.map((card, index) => (
@@ -74,7 +74,7 @@ const List = ({ name, cards, _id }) => {
       <div>{openModal && <ListModal toggleModal={toggleModal} />}</div> */}
 
       <div className="input-field">
-        <AddCard open={openNewCard} />
+        <AddCard open={openNewCard} listId={listId} id={id} />
 
         {!openNewCard ? (
           <button
@@ -87,7 +87,6 @@ const List = ({ name, cards, _id }) => {
           </button>
         ) : (
           <div className="card-btns">
-            <SaveCardBtn />
             <CancelCard />
           </div>
         )}
