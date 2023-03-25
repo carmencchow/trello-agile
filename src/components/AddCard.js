@@ -18,7 +18,7 @@ const AddCard = ({ open, close, listId, id, onClose }) => {
 
   return (
     <div className="input-container">
-      {/* <div onClick={close} className="new-card"> */}
+      <div onClick={close} className="new-card">
         <input
           type="text"
           className="card"
@@ -33,7 +33,7 @@ const AddCard = ({ open, close, listId, id, onClose }) => {
         onCardSaved={handleCardSaved}
         id={id}
       />
-       <button className="cancel" onClick={onClose}><GrClose/></button>
+       {/* <button className="cancel" onClick={onClose}><GrClose/></button> */}
     </div>
   );
 };

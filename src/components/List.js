@@ -7,7 +7,7 @@ import CancelCard from "./CancelCard";
 import "./List.css";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
-const List = ({ name, cards, id, listId }) => {
+const List = ({ name, cards, id, listId, onClose }) => {
   const [openNewCard, setOpenNewCard] = useState(false);
   const [cardId, setCardId] = useState(null);
 
@@ -90,7 +90,8 @@ const List = ({ name, cards, id, listId }) => {
           </button>
         ) : (
           <div className="card-btns">
-            <CancelCard />
+            <CancelCard onClick={() =>onClose}/>
+
           </div>
         )}
       </div>
