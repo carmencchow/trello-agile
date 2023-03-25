@@ -13,27 +13,27 @@ span{
   height: 20px;
 }
 .red{
-  background-color: red;
+  background-color: #FF0000 ;
 }
 .orange{
-  background-color: orange;
+  background-color:  #FFA500;
 }
 .yellow{
-  background-color: rgb(218, 218, 7);
+  background-color: #dada07;
 }
 .green{
-  background-color: lightgreen;
+  background-color: #90EE90;
 }
 .blue{
-  background-color: lightskyblue;
+  background-color: #87cefa;
 }
 .purple{
-  background-color: plum;
+  background-color: #dda0dd;
 }
 .pink{
-  background-color: pink;
+  background-color: #ffc0cb;
 }
 .brown{
-  background-color: burlywood;
+  background-color: #deb887;
 }
 
