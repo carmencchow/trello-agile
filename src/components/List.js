@@ -8,8 +8,9 @@ import "./List.css";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 const List = ({ name, cards, _id }) => {
-  const [openModal, setOpenModal] = useState(false);
+  // const [openModal, setOpenModal] = useState(false);
   const [openNewCard, setOpenNewCard] = useState(false);
+  const [cardId, setCardId] = useState(null);
 
   // const toggleModal = () => {
   //   setOpenModal(!openModal);
@@ -57,7 +58,10 @@ const List = ({ name, cards, _id }) => {
                     {...provided.dragHandleProps}
                     key={card._id}
                     className="cards"
-                    onClick={() => setOpenModal(true)}
+                    onClick={() => {
+                      setCardId(card._id)
+                      // setOpenModal(true)
+                    }}
                   >
                     {card.title}
 
@@ -71,9 +75,14 @@ const List = ({ name, cards, _id }) => {
         )}
       </Droppable>
 
-      <CardPopup 
-        open={openModal}
-        onClose={() => setOpenModal(false)}/>
+{/* Model appear in the DOM tree */}
+      {cardId !==null && 
+        <CardPopup 
+          open={cardId !== null}
+          onClose={() => setCardId(null)}
+          _id={cardId}
+        />
+        }
 
       <div className="input-field">
         <AddCard open={openNewCard} />
