@@ -15,6 +15,7 @@ const {
 const router = express.Router();
 
 //localhost:5000/api/card
+router.get("/", getCards);
 router.get("/", auth, getCards);
 router.get("/:id", auth, getCard);
 router.post("/", auth, createCard);
@@ -25,7 +26,5 @@ router.put("/:id", auth, updateCardName);
 router.get("/members/:id", auth, getMembersFromCard);
 router.delete("/members/:id", auth, deleteMembers);
 router.put("/members/:id", auth, updateMembers);
-
-// ARCHIVE CARD????
 
 module.exports = router;

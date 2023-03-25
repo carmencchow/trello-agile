@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { GrClose } from 'react-icons/gr'
 import "./AddCard.css";
 import SaveCardBtn from "./SaveCardBtn";
 
-const AddCard = ({ open, close, listId, id }) => {
+const AddCard = ({ open, close, listId, id, onClose }) => {
   const [input, setInput] = useState("");
 
   if (!open) return null;
@@ -17,7 +18,7 @@ const AddCard = ({ open, close, listId, id }) => {
 
   return (
     <div className="input-container">
-      <div onClick={close} className="new-card">
+      {/* <div onClick={close} className="new-card"> */}
         <input
           type="text"
           className="card"
@@ -32,6 +33,7 @@ const AddCard = ({ open, close, listId, id }) => {
         onCardSaved={handleCardSaved}
         id={id}
       />
+       <button className="cancel" onClick={onClose}><GrClose/></button>
     </div>
   );
 };

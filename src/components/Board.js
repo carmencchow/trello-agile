@@ -3,11 +3,10 @@ import { useParams } from "react-router-dom";
 import { DragDropContext } from "react-beautiful-dnd";
 import axios from "axios";
 import Navbar from "./Navbar";
+import List from '../components/List'
 import io from "socket.io-client";
 // import { store } from "../store";
 import { useDispatch } from "react-redux";
-// import AddCard from "../components/AddCard";
-import List from "../components/List";
 import "./Board.css";
 import { fetchData } from "../store/thunks/fetchList";
 import { useSelector } from "react-redux";

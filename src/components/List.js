@@ -1,20 +1,15 @@
 import React, { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
-// import { GrClose } from "react-icons/gr";
-// import ListModal from "./ActivityModal";
+import { GrEdit } from "react-icons/gr";
 import AddCard from "../components/AddCard";
-// import SaveCardBtn from "./SaveCardBtn";
+import CardPopup from "./CardPopup";
 import CancelCard from "./CancelCard";
 import "./List.css";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 const List = ({ name, cards, id, listId }) => {
-  const [openModal, setOpenModal] = useState(false);
   const [openNewCard, setOpenNewCard] = useState(false);
-
-  const toggleModal = () => {
-    setOpenModal(!openModal);
-  };
+  const [cardId, setCardId] = useState(null);
 
   // const onDragEnd = (result) => {
   //   const { destination, source, draggableId } = result;
@@ -41,16 +36,15 @@ const List = ({ name, cards, id, listId }) => {
     <div className="list">
       <span className="list-header">
         <p className="list-name">{name}</p>
-        <span className="dots" onClick={() => toggleModal()}>
           <BsThreeDots />
         </span>
-      </span>
 
       <Droppable droppableId={id}>
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
             {cards.map((card, index) => (
               <Draggable key={card._id} draggableId={card._id} index={index}>
+
                 {(provided) => (
                   <div
                     ref={provided.innerRef}
@@ -58,8 +52,13 @@ const List = ({ name, cards, id, listId }) => {
                     {...provided.dragHandleProps}
                     key={card._id}
                     className="cards"
-                  >
+                    onClick={() => {
+                      setCardId(card._id)
+                    }}
+                 >
                     {card.title}
+                    
+                   <span className="icon">{<GrEdit/>}</span>
                   </div>
                 )}
               </Draggable>
@@ -69,11 +68,15 @@ const List = ({ name, cards, id, listId }) => {
         )}
       </Droppable>
 
-      {/* <CardPopup open={openModal} onClose={() => setOpenModal(false)} />
+    {/* Display modal */}
+      {cardId !==null && 
+        <CardPopup 
+          open={cardId !== null}
+          onClose={() => setCardId(null)}
+          _id={cardId}
+        />}
 
-      <div>{openModal && <ListModal toggleModal={toggleModal} />}</div> */}
-
-      <div className="input-field">
+    <div className="input-field">
         <AddCard open={openNewCard} listId={listId} id={id} />
 
         {!openNewCard ? (
@@ -95,4 +98,6 @@ const List = ({ name, cards, id, listId }) => {
   );
 };
 
+
 export default List;
+
