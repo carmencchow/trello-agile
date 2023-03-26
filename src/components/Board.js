@@ -1,32 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { DragDropContext } from "react-beautiful-dnd";
 import axios from "axios";
 import Navbar from "./Navbar";
-import List from '../components/List'
-import io from "socket.io-client";
+import List from "../components/List";
+// import io from "socket.io-client";
 // import { store } from "../store";
 import { useDispatch } from "react-redux";
 import "./Board.css";
 import { fetchData } from "../store/thunks/fetchList";
 import { useSelector } from "react-redux";
 
-const socket = io.connect("http://localhost:3001");
+// const socket = io.connect("http://localhost:3001");
 
 const Board = () => {
   const dispatch = useDispatch();
-  const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
-  const [setMessageReceived] = useState("");
+  // const [message, setMessage] = useState("");
+  // const [messages, setMessages] = useState([]);
+  // const [setMessageReceived] = useState("");
 
   const { id } = useParams();
 
-  const sendMessage = () => {
-    socket.emit("send_update", { message });
-    setMessageReceived(message);
-    setMessages([...messages, message]);
-    setMessage("");
-  };
+  // const sendMessage = () => {
+  //   socket.emit("send_update", { message });
+  //   setMessageReceived(message);
+  //   setMessages([...messages, message]);
+  //   setMessage("");
+  // };
 
   const onDragEnd = (result, lists) => {
     if (!result.destination) {
@@ -59,6 +59,11 @@ const Board = () => {
     dispatch(fetchData({ id }));
   }, [dispatch, id]);
 
+  // This function will be passed through props to all functions using CRUD.
+  const handleFetchData = () => {
+    dispatch(fetchData({ id }));
+  };
+
   const board = useSelector((state) => state.data.board);
   console.log(board, "state board board.js");
 
@@ -70,6 +75,15 @@ const Board = () => {
     <div className="board-container">
       <Navbar />
       <div>
+        <button
+          onClick={() => {
+            handleFetchData();
+          }}
+        >
+          refresh list
+        </button>
+      </div>
+      {/* <div>
         <input
           value={message}
           placeholder="Message..."
@@ -78,7 +92,7 @@ const Board = () => {
           }}
         ></input>
         <button onClick={sendMessage}>Send</button>
-      </div>
+      </div> */}
       <h3>{board.title}</h3>
 
       <DragDropContext onDragEnd={(result) => onDragEnd(result, board.lists)}>
@@ -91,6 +105,7 @@ const Board = () => {
                 cards={list.cards}
                 id={list._id}
                 listId={list._id}
+                handleFetchData={handleFetchData}
               />
             ))}
         </div>

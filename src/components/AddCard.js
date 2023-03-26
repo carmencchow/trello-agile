@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { GrClose } from 'react-icons/gr'
+// import { GrClose } from "react-icons/gr";
 import "./AddCard.css";
 import SaveCardBtn from "./SaveCardBtn";
 
-const AddCard = ({ open, listId, id, onClose }) => {
+const AddCard = ({ open, close, listId, id, onClose, handleFetchData }) => {
+
   const [input, setInput] = useState("");
 
   if (!open) return null;
@@ -27,16 +28,14 @@ const AddCard = ({ open, listId, id, onClose }) => {
         />
       </div>
 
-      <div className="btn-row">
-        <SaveCardBtn
-          input={input}
-          listId={listId}
-          onCardSaved={handleCardSaved}
-          id={id}
-        />
-        <button className="cancel" onChange={onClose}><GrClose/></button>
-      </div>
-    
+      <SaveCardBtn
+        input={input}
+        listId={listId}
+        onCardSaved={handleCardSaved}
+        id={id}
+        handleFetchData={handleFetchData}
+      />
+      {/* <button className="cancel" onClick={onClose}><GrClose/></button> */}
     </div>
   );
 };
