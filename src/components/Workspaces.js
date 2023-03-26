@@ -52,7 +52,6 @@ const Workspaces = () => {
     <div>
       <Navbar />
       <div>
-        {/* <div className="user-panel"> */}
         {userInfo ? (
           <div>
             <div className="logout-btn">

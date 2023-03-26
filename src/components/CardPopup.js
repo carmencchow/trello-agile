@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { GrFormClose } from "react-icons/gr";
+import io from "socket.io-client";
 import "./CardPopup.css";
 import axios from "axios";
 
 import DeleteCard from "./DeleteCard";
 import EditCard from "./EditCard";
+
+const socket = io.connect("http://localhost:5000");
 
 const CardPopup = ({ open, onClose, id, handleFetchData }) => {
   const [color, setColor] = useState("green");
