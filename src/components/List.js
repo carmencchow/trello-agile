@@ -3,7 +3,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { GrEdit } from "react-icons/gr";
 import AddCard from "../components/AddCard";
 import CardPopup from "./CardPopup";
-import CancelCard from "./CancelCard";
+// import CancelCard from "./CancelCard";
 import "./List.css";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
@@ -96,9 +96,7 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
           </button>
         ) : (
           <div className="card-btns">
-
             {/* <CancelCard onClick={() => onClose}/> */}
-
           </div>
         )}
       </div>

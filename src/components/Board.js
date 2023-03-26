@@ -74,15 +74,7 @@ const Board = () => {
   return (
     <div className="board-container">
       <Navbar />
-      <div>
-        <button
-          onClick={() => {
-            handleFetchData();
-          }}
-        >
-          refresh list
-        </button>
-      </div>
+      <div></div>
       {/* <div>
         <input
           value={message}
