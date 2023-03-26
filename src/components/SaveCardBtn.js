@@ -5,7 +5,7 @@ import React from "react";
 import "./SaveCardBtn.css";
 import axios from "axios";
 
-const SaveCardBtn = ({ listId, input, onCardSaved, id }) => {
+const SaveCardBtn = ({ listId, input, onCardSaved, id, handleFetchData }) => {
   // const [value, setValue] = useState(input);
   // const dispatch = useDispatch();
   // const fetchCards = async () => {
@@ -20,8 +20,9 @@ const SaveCardBtn = ({ listId, input, onCardSaved, id }) => {
   //     console.log(error);
   //   }
   // };
-  const handleSave = async (e) => {
+  const handleSave = async (e, id) => {
     console.log("saving card", e.target.value);
+
     // setInput(e.target.value);
 
     try {
@@ -45,6 +46,7 @@ const SaveCardBtn = ({ listId, input, onCardSaved, id }) => {
       console.log(data);
       // dispatch(fetchData({ id: id }));
       onCardSaved();
+      handleFetchData();
     } catch (err) {
       console.log(err);
     }

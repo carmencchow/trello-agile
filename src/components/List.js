@@ -3,11 +3,10 @@ import { BsThreeDots } from "react-icons/bs";
 import { GrFormEdit } from "react-icons/gr";
 import AddCard from "../components/AddCard";
 import CardPopup from "./CardPopup";
-import CancelCard from "./CancelCard";
 import "./List.css";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
-const List = ({ name, cards, id, listId, onClose }) => {
+const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
   const [openNewCard, setOpenNewCard] = useState(false);
   const [cardId, setCardId] = useState(null);
 
@@ -36,15 +35,14 @@ const List = ({ name, cards, id, listId, onClose }) => {
     <div className="list">
       <span className="list-header">
         <p className="list-name">{name}</p>
-          <BsThreeDots />
-        </span>
+        <BsThreeDots />
+      </span>
 
       <Droppable droppableId={id}>
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
             {cards.map((card, index) => (
               <Draggable key={card._id} draggableId={card._id} index={index}>
-
                 {(provided) => (
                   <div
                     ref={provided.innerRef}
@@ -53,9 +51,9 @@ const List = ({ name, cards, id, listId, onClose }) => {
                     key={card._id}
                     className="cards"
                     onClick={() => {
-                      setCardId(card._id)
+                      setCardId(card._id);
                     }}
-                 >
+                  >
                     {card.title}
                     
                    <span className="icon">{<GrFormEdit/>}</span>
@@ -68,16 +66,23 @@ const List = ({ name, cards, id, listId, onClose }) => {
         )}
       </Droppable>
 
-    {/* Display modal */}
-      {cardId !==null && 
-        <CardPopup 
+      {/* Display modal */}
+      {cardId !== null && (
+        <CardPopup
           open={cardId !== null}
           onClose={() => setCardId(null)}
-          _id={cardId}
-        />}
+          id={cardId}
+          handleFetchData={handleFetchData}
+        />
+      )}
 
-    <div className="input-field">
-        <AddCard open={openNewCard} listId={listId} id={id} />
+      <div className="input-field">
+        <AddCard
+          open={openNewCard}
+          listId={listId}
+          id={id}
+          handleFetchData={handleFetchData}
+        />
 
         {!openNewCard ? (
           <button
@@ -90,8 +95,6 @@ const List = ({ name, cards, id, listId, onClose }) => {
           </button>
         ) : (
           <div className="card-btns">
-            {/* <CancelCard onClick={() => onClose}/> */}
-
           </div>
         )}
       </div>
@@ -99,6 +102,4 @@ const List = ({ name, cards, id, listId, onClose }) => {
   );
 };
 
-
 export default List;
-
