@@ -22,3 +22,8 @@ input{
   color: white;
   background-color: darkgray;
 }
+.btn-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

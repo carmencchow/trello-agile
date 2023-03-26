@@ -90,7 +90,7 @@ const List = ({ name, cards, id, listId, onClose }) => {
           </button>
         ) : (
           <div className="card-btns">
-            <CancelCard onClick={() =>onClose}/>
+            {/* <CancelCard onClick={() => onClose}/> */}
 
           </div>
         )}
