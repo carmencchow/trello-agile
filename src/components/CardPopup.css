@@ -1,6 +1,6 @@
 .card-background{
   width: 100%;
-  background-color: rgba(0,0,0,0.7); 
+  background-color: rgba(0,0,0,0.25); 
   position: fixed;
   height: 100%;
   top: 0;
@@ -53,4 +53,45 @@
 }
 p{
   font-weight: bolder;
+}
+span{ 
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+.color-row{
+  display: flex;
+  justify-content: end;
+  justify-content: space-between;
+  width: 30%;
+}
+.color-container{
+  height: 20px;
+}
+.red{
+  background-color: red;
+}
+.orange{
+  background-color: orange;
+}
+.yellow{
+  background-color: rgb(218, 218, 7);
+}
+.green{
+  background-color: lightgreen;
+}
+.blue{
+  background-color: lightskyblue;
+}
+.purple{
+  background-color: plum;
+}
+.pink{
+  background-color: pink;
+}
+.brown{
+  background-color: tan;
+}
+h2{
+  padding-left: 30px;
 }
