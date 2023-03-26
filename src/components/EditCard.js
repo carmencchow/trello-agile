@@ -17,11 +17,6 @@ const EditCard = ({ open, onClose, onCardSaved, id, handleFetchData, listId }) =
 
   return (
     <div className="row">  
-      {/* <h4 onClick={() => {
-        console.log('editing card');e
-        handleEdit();
-      }}> Edit this card </h4> */}
-
       <div className="edit-input">
         <div onClick={onClose} className="">
           <input
@@ -29,8 +24,7 @@ const EditCard = ({ open, onClose, onCardSaved, id, handleFetchData, listId }) =
             className="name"
             value={name}
             placeholder="Enter new card name"
-            onChange={handleInput}
-          />
+            onChange={handleInput}/>
         </div>
 
       <UpdateCardBtn
@@ -39,8 +33,7 @@ const EditCard = ({ open, onClose, onCardSaved, id, handleFetchData, listId }) =
         id={id}
         handleFetchData={handleFetchData}
         listId={listId}
-        onClose={onClose} 
-      />
+        onClose={onClose}/>
 
       </div>
     </div>

@@ -4,7 +4,7 @@ import './UpdateCardBtn.css';
 
 const UpdateCardBtn = ({ listId, input, onClose, onCardSaved, id, handleFetchData }) => {
 
-  const handleUpdate = async (e, input, id, listId) => {
+  const handleUpdate = async (e, listId) => {
     console.log("new card title", input);
 
   try {
@@ -14,7 +14,8 @@ const UpdateCardBtn = ({ listId, input, onClose, onCardSaved, id, handleFetchDat
     }
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     const res = await axios.put(
-      `http://localhost:5000/api/card/?listId=${listId}`,
+      `http://localhost:5000/api/card/${id}`,
+
       { title: `${input}` },
 
       {

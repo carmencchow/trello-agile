@@ -10,7 +10,6 @@ import ArchiveCard from './ArchiveCard';
 const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
   const [color, setColor] = useState("green");
   const [cardData, setCardData] = useState(null);
-  // const [removedCard, setRemovedCard] = useState(null);
   const [openInput, setOpenInput] = useState(false);
 
   const colorArr = [
@@ -33,13 +32,6 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
   useEffect(() => {
     getCard(id);
   }, [id]);
-
-  // Archive list, get list from db and remove from view
-  const handleArchive = async (id) => {
-    const card = await axios.get(`http://localhost:5000/api/card/${id}`);
-    // setRemovedCard(card.data);
-    console.log("Archiving card");
-  };
 
 
   if (!open || cardData === null) return null;

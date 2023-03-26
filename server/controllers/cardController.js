@@ -30,10 +30,15 @@ const getCard = async (req, res) => {
 };
 
 // GET unarchived list of cards
-const getFilteredCards = async (req, res) => {
+const getUnarchived = async (req, res) => {
   try {
-    const archived = await Card.findOne({_id: req.params.id});
-    console.log('archived card is', archived)
+    // const archived = await Card.findOne({_id: req.params.id});
+    // console.log('archived card is', archived)
+    // const listId = req.query.listId;
+// push card to Archive
+    // Archive.push(archived);
+    // await Archive.save();
+
     const filteredCards = await Card.find({_id: { $nin: req.params.id}})
     return res.status(200).send({ message: 'Returning filtered cards', filteredCards });
   } catch (err) {
@@ -111,30 +116,19 @@ const createCard = async (req, res) => {
     console.log("Card created");
     return res.status(201).send({ message: result });
   } catch (err) {
-    // return res
-    //   .status(500)
-    //   .send({ message: "Card already exists. Try a different name." });
     console.log(err);
     return res.status(500).send({ message: err.message });
   }
 };
 
-// UPDATE card details (working)
+// UPDATE card details 
 const updateCardName = async (req, res) => {
-  const title = req.body.title;
-  const listId = req.query.listId;
-
   try {
-    const parentList = await List.findById(listId);
-    const card = await Card.findById({ _id: req.params.id, parentList: parentList._id });
-    if (!card) {
-      res.status(404).send("Card not found");
-    }
-    card.title = title;
+    const title = req.body.title;
+    const card = await Card.findById({ _id: req.params.id });
+     card.title = title;
     await card.save();
-    parentList.cards.push(card._id);
-    await parentList.save();
-    // console.log(card._id, card.name);
+    console.log(card._id, card.name, title);
     return res.status(200).send({ message: "Card name updated", card: card.title });
   } catch (err) {
     console.log(err);
@@ -145,7 +139,7 @@ const updateCardName = async (req, res) => {
 module.exports = {
   getCard,
   getCards,
-  getFilteredCards,
+  getUnarchived,
   deleteCard,
   createCard,
   updateCardName,
