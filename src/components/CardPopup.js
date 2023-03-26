@@ -32,14 +32,6 @@ const CardPopup = ({ open, onClose, id, handleFetchData }) => {
     getCard(id);
   }, [id]);
 
-  // const handleDelete = async () => {
-  //   await axios.delete(`http://localhost:5000/api/card/${id}`).then((res) => {
-  //     console.log(`Card deleted`);
-  //     onClose();
-  //   });
-  //   handleFetchData();
-  // };
-
   // Archive list, get list from db and remove from view
   const handleArchive = async (id) => {
     const card = await axios.get(`http://localhost:5000/api/card/${id}`);
@@ -47,8 +39,8 @@ const CardPopup = ({ open, onClose, id, handleFetchData }) => {
     console.log("Archiving card");
 
     // Close modal
-
     // Get request to server, return all cards except archived one
+
   };
 
   // Edit
@@ -64,10 +56,7 @@ const CardPopup = ({ open, onClose, id, handleFetchData }) => {
     <div className="card-background">
       <div className="card-popup">
         <div>
-          <div
-            className="card-popup-heading"
-            style={{ backgroundColor: color }}
-          >
+          <div className="card-popup-heading" style={{ backgroundColor: color }}>
             <h2>{cardData.card.title} </h2>
             <div className="right-side">
               <GrFormClose className="close" onClick={onClose} />
@@ -75,8 +64,9 @@ const CardPopup = ({ open, onClose, id, handleFetchData }) => {
           </div>
 
           <div className="card-content">
-            <p>Click to change your color</p>
-            <div className="color-row">
+          <p>Click a square to change the background color</p>
+
+            <div className="color-row"> 
               {colorArr.map((color) => {
                 return (
                   <span

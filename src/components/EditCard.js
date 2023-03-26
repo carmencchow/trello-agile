@@ -8,6 +8,7 @@ const EditCard = ({ onCardSaved, onClose, id }) => {
 
   const handleEdit = async (e) => {
     console.log('editing card name', e.target.value);
+    setInput(e.target.value)
 
     try {
       const token = localStorage.getItem("token");
@@ -49,7 +50,7 @@ const EditCard = ({ onCardSaved, onClose, id }) => {
           className="name"
           value={input}
           placeholder="Enter a title for this card..."
-          onChange={handleInput}
+          onChange={handleEdit}
         />
       </div>
 

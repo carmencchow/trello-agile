@@ -104,22 +104,6 @@ h2 {
   color: blue;
   cursor: pointer;
 }
-
-.archive-text,
-.edit-text,
-.delete-text{
-  visibility: hidden;
-}
-
-.archive:hover .archive-text{
-  visibility: visible;
-}
-.delete:hover .delete-text{
-  visibility: visible;
-}
-.edit:hover .edit-text{
-  visibility: visible;
-}
 .row{
   display: flex;
   flex-direction: row;
@@ -131,4 +115,3 @@ h4{
 span{
   font-size: 30px;
 }
-
