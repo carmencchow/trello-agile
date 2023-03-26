@@ -28,6 +28,7 @@ code {
 
 .navbar-layout {
   display: flex;
+  /* justify-content: center; */
   background-color: #026aa7;
   padding: none;
   line-height: 1px;
@@ -36,9 +37,10 @@ code {
 
 .navbar-options-style {
   display: flex;
+  align-items: center;
   justify-content: center;
   width: 100%;
-  border: 1px red solid;
+  /* border: 1px red solid; */
 }
 
 .trello-home {
@@ -63,8 +65,7 @@ code {
 
 .navbutton-style {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
   color: white;
   font-style: bold;
   text-decoration: none;
@@ -73,10 +74,9 @@ code {
 }
 
 .option-placement {
-  /* border: 1px black solid; */
   display: flex;
-  position: relative;
   justify-content: flex-start;
+  align-items: center;
   margin-left: 12em;
   padding: none;
   width: 100%;
@@ -84,7 +84,6 @@ code {
 
 .link-style {
   text-decoration: none;
-  /* border: 1px red solid; */
   margin-right: 1.3em;
   padding: 0.1em;
   border-radius: 2px;
@@ -96,7 +95,7 @@ code {
 
 .user-panel {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin-right: 4em;
   padding: 1em;
 }
