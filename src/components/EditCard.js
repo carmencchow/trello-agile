@@ -1,59 +1,48 @@
 import React, { useState } from 'react'
 import './CardPopup.css'
-import axios from 'axios'
-import { FiEdit2 } from 'react-icons/fi'
+import UpdateCardBtn from './UpdateCardBtn'
 
-const EditCard = ({ onCardSaved, onClose, id }) => {
-  const [input, setInput] = useState('');
+const EditCard = ({ open, onClose, onCardSaved, id, handleFetchData, listId }) => {
+  const [name, setName] = useState('');
+  if (!open) return null;
 
-  const handleEdit = async (e) => {
-    console.log('editing card name', e.target.value);
-    setInput(e.target.value)
-
-    try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        throw new Error("No token found in localStorage");
-      }
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const res = await axios.put(
-        `http://localhost:5000/api/card/${id}`,
-        { title: `${input}`},
-
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = res.data;
-      console.log(data);
-      onCardSaved();
-    } catch (err) {
-      console.log(err);
-    }
+  const handleInput = (e) => {
+    setName(e.target.value);
+    console.log(e.target.value);
   };
 
-  const handleInput = () => {}
+  const handleUpdateName = () => {
+    setName('');
+  };  
 
   return (
-    <div>
-      <div className="row">
-        <h4>Edit this card</h4>
-        <span><FiEdit2 onClick={handleEdit}/></span>
-      </div>
+    <div className="row">  
+      {/* <h4 onClick={() => {
+        console.log('editing card');e
+        handleEdit();
+      }}> Edit this card </h4> */}
 
-      <div onClick={onClose} className="">
-        <input
-          type="text"
-          className="name"
-          value={input}
-          placeholder="Enter a title for this card..."
-          onChange={handleEdit}
-        />
-      </div>
+      <div className="edit-input">
+        <div onClick={onClose} className="">
+          <input
+            type="text"
+            className="name"
+            value={name}
+            placeholder="Enter new card name"
+            onChange={handleInput}
+          />
+        </div>
 
+      <UpdateCardBtn
+        input={name}
+        onCardSaved={handleUpdateName}
+        id={id}
+        handleFetchData={handleFetchData}
+        listId={listId}
+        onClose={onClose} 
+      />
+
+      </div>
     </div>
   );
 };

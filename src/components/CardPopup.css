@@ -104,14 +104,19 @@ h2 {
   color: blue;
   cursor: pointer;
 }
-.row{
+
+.input-field{
   display: flex;
   flex-direction: row;
-  vertical-align: center;  
+  justify-content: left;
+  margin-left: 0;
 }
 h4{
   padding-right: 20px;
 }
 span{
   font-size: 30px;
+}
+.edit-card{
+  cursor: pointer;
 }

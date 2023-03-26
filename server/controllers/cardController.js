@@ -28,6 +28,20 @@ const getCard = async (req, res) => {
   }
 };
 
+// GET filtered list of cards
+const getFilteredCards = async (req, res) => {
+  try {
+    const remove = await Card.findOne({_id: req.params.id});
+    console.log('archived card is', remove)
+    const filteredCards = await Card.find({_id: { $nin: req.params.id}})
+    // const filteredCards = await Card.find({_id: { $ne: req.params.id}})
+    return res.status(200).send({ message: 'Returning filtered cards', filteredCards });
+  } catch (err) {
+    return res.status(500).send({ message: err.message })
+  }
+}
+
+
 // GET ONLY members from a card (working)
 const getMembersFromCard = async (req, res) => {
   try {
@@ -108,27 +122,31 @@ const createCard = async (req, res) => {
 
 // UPDATE card details (working)
 const updateCardName = async (req, res) => {
-  const { title } = req.body;
+  const title = req.body.title;
+  const listId = req.query.listId;
+
   try {
-    const card = await Card.findById({ _id: req.params.id });
+    const parentList = await List.findById(listId);
+    const card = await Card.findById({ _id: req.params.id, parentList: parentList._id });
     if (!card) {
       res.status(404).send("Card not found");
     }
     card.title = title;
     await card.save();
+    parentList.cards.push(card._id);
+    await parentList.save();
     // console.log(card._id, card.name);
-    res.status(200).send({ message: "Card name updated", card });
+    return res.status(200).send({ message: "Card name updated", card: card.title });
   } catch (err) {
     console.log(err);
-    res
-      .status(500)
-      .send({ message: "Error occurred while trying to update the card" });
+    res.status(500).send({ message: "Error occurred while trying to update the card" });
   }
 };
 
 module.exports = {
   getCard,
   getCards,
+  getFilteredCards,
   deleteCard,
   createCard,
   updateCardName,

@@ -23,8 +23,6 @@ const SaveCardBtn = ({ listId, input, onCardSaved, id, handleFetchData }) => {
   const handleSave = async (e, id) => {
     console.log("saving card", e.target.value);
 
-    // setInput(e.target.value);
-
     try {
       const token = localStorage.getItem("token");
       if (!token) {
