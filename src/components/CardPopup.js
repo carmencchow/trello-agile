@@ -5,7 +5,7 @@ import axios from "axios";
 import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const CardPopup = ({ open, onClose, _id }) => {
+const CardPopup = ({ open, onClose, id, handleFetchData }) => {
   const [color, setColor] = useState("green");
   const [cardData, setCardData] = useState(null);
 
@@ -15,13 +15,23 @@ const CardPopup = ({ open, onClose, _id }) => {
     setCardData(res.data);
   };
 
-  const handleDelete = () => {
-    alert("This card will be deleted!");
+  const handleDelete = async () => {
+    // const token = localStorage.getItem("token");
+    // if (!token) {
+    //   throw new Error("No token found in localStorage");
+    // }
+    // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+    await axios.delete(`http://localhost:5000/api/card/${id}`).then((res) => {
+      console.log(`Card deleted`);
+      onClose();
+    });
+    handleFetchData();
   };
 
   useEffect(() => {
-    fetchCardInfo(_id);
-  }, [_id]);
+    fetchCardInfo(id);
+  }, [id]);
 
   if (!open || cardData === null) return null;
 
@@ -70,7 +80,9 @@ const CardPopup = ({ open, onClose, _id }) => {
               <Button
                 variant="outlined"
                 startIcon={<DeleteIcon />}
-                onClick={handleDelete}
+                onClick={() => {
+                  handleDelete();
+                }}
               >
                 Delete
               </Button>
