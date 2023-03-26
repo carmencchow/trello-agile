@@ -77,7 +77,9 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
               <EditCard
                 open={openInput}
                 listId={listId}
+                id={id}
                 handleFetchData={handleFetchData}
+                onClose={onClose}
               />
 
                 {!openInput ? (
