@@ -1,6 +1,7 @@
 const Card = require("../models/cardModel");
 const User = require("../models/userModel");
 const List = require("../models/listModel");
+const Archive = require("../models/archiveModel");
 
 // GET all cards (working)
 const getCards = async (req, res) => {
@@ -28,19 +29,17 @@ const getCard = async (req, res) => {
   }
 };
 
-// GET filtered list of cards
+// GET unarchived list of cards
 const getFilteredCards = async (req, res) => {
   try {
-    const remove = await Card.findOne({_id: req.params.id});
-    console.log('archived card is', remove)
+    const archived = await Card.findOne({_id: req.params.id});
+    console.log('archived card is', archived)
     const filteredCards = await Card.find({_id: { $nin: req.params.id}})
-    // const filteredCards = await Card.find({_id: { $ne: req.params.id}})
     return res.status(200).send({ message: 'Returning filtered cards', filteredCards });
   } catch (err) {
     return res.status(500).send({ message: err.message })
   }
 }
-
 
 // GET ONLY members from a card (working)
 const getMembersFromCard = async (req, res) => {

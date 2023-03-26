@@ -5,7 +5,7 @@ import "./CardPopup.css";
 
 // TEST CARD: 641b2a96949aa1ed20103ad5 (Calculus) 
 
-const ArchiveCard = ({ id, onClose }) => { 
+const ArchiveCard = ({ id, onClose, onCardSaved, handleFetchData, listId }) => { 
 
   const handleArchive = async () => {
     try {
@@ -13,6 +13,8 @@ const ArchiveCard = ({ id, onClose }) => {
       const res = await axios.get(`http://localhost:5000/api/card/filter/${id}`)
       console.log('returning filtered list', res.data)
       onClose();
+      // onCardSaved();
+      handleFetchData();
     } catch (error) {
       console.log(error)
     }
