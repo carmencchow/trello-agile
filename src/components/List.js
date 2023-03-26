@@ -44,7 +44,7 @@ const List = ({ name, cards, _id }) => {
         </span>
       </span>
 
-      <Droppable droppableId={_id}>
+      <Droppable droppableId={`${name}`}>
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
             {cards.map((card, index) => (

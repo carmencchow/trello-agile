@@ -35,16 +35,17 @@ const Board = () => {
     }
 
     const { source, destination } = result;
-    const sourceList = lists.find(list => list.id === source.droppableId);
-    const destinationList = lists.find(list => list.id === destination.droppableId);
+    const sourceList = lists.find(list => list.name === source.droppableId);
+    console.log(sourceList, 'source list');
+    const destinationList = lists.find(list => list.name === destination.droppableId);
     const item = sourceList.items.splice(source.index, 1)[0];
     destinationList.items.splice(destination.index, 0, item);
 
-    axios.put(`/api/board/${id}/lists`, { lists })
-      .then(res => {
-        //dispatch here to update list
-      })
-      .catch(err => console.log(err));
+    // axios.put(`/api/board/${id}/lists`, { lists })
+    //   .then(res => {
+    //     //dispatch here to update list
+    //   })
+    //   .catch(err => console.log(err));
   };
 
   useEffect(() => {
