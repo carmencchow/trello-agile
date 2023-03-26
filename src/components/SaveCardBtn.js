@@ -4,8 +4,10 @@ import React from "react";
 // import { fetchData } from "../store";
 import "./SaveCardBtn.css";
 import axios from "axios";
+import { useState } from "react";
 
 const SaveCardBtn = ({ listId, input, onCardSaved, id }) => {
+  const [card, setCard] = useState(input);
   // const [value, setValue] = useState(input);
   // const dispatch = useDispatch();
   // const fetchCards = async () => {
@@ -44,7 +46,7 @@ const SaveCardBtn = ({ listId, input, onCardSaved, id }) => {
       const data = res.data;
       console.log(data);
       // dispatch(fetchData({ id: id }));
-      onCardSaved();
+      onCardSaved(setCard());
     } catch (err) {
       console.log(err);
     }
