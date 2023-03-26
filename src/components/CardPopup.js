@@ -9,10 +9,10 @@ const CardPopup = ({ open, onClose, _id }) => {
   const [color, setColor] = useState("green")
   const [cardData, setCardData] = useState(null)
   const [removedCard, setRemovedCard] = useState(null)
+  const [editName, setEditName] = useState('')
 
   const colorArr = ["red", "orange", "yellow", "green", "blue", "purple", "pink", "brown"]
 
-  // (1) GET card by id 
   const getCard = async (id) => {
     const res = await axios.get(`http://localhost:5000/api/card/${id}`)    
     console.log('Card Info: ', res.data)
@@ -21,17 +21,6 @@ const CardPopup = ({ open, onClose, _id }) => {
   useEffect(() =>{
     getCard(_id)
   }, [])
-
-
-  // (2) DELETE card by id
-  // const handleDelete = async (id) => {
-  //   const res = await axios.delete(`http://localhost:5000/api/card/${id}`)    
-  //   console.log('Deleting card', res.data)
-  //   setCardData(res.data)
-  // }
-  // useEffect(() => {
-  //   handleDelete(_id)
-  // }, [])
   
   // Archive list, get list from db and remove from view
   const handleArchive = async (id) => {
@@ -40,14 +29,20 @@ const CardPopup = ({ open, onClose, _id }) => {
     console.log('Archiving card')
 
     // Close modal
-
     // Get request to server, return all cards except archived one
-
-
   }
 
-  // Edit
-  const handleEdit = async (id) => {
+  const handleEdit = (e) => {
+    setEditName(e.target.value)
+  }
+
+  const handleKeyDown = (e) => {
+    if(e.key === 'Enter'){
+      setEditName(e.target.value);
+    }
+  }
+
+  const handleSaveEdit = async (id) => {
     const res = await axios.put(`http://localhost:5000/api/card/${id}`)    
     console.log('Editing', res.data)
     setCardData(res.data)
@@ -61,13 +56,23 @@ const CardPopup = ({ open, onClose, _id }) => {
         <div>   
           <div className="card-popup-heading" style={{ backgroundColor: color}}>
             <h2>{cardData.card.title} </h2>  
+
+            <input 
+              type="text" 
+              value={editName} 
+              onChange={handleEdit} 
+              placeholder={cardData.card.title} 
+              style={{ backgroundColor: 'rgba(0,0,0,0)' }}
+              onKeyDown={handleKeyDown}
+            />
+
             <div className="right-side">      
               <GrFormClose className="close" onClick={onClose}/>
             </div>
           </div>
 
           <div className="card-content">
-          <p>Click to change  your color</p>
+          <p>Click a square to change the background color</p>
 
             <div className="color-row"> 
               {colorArr.map((color) => {

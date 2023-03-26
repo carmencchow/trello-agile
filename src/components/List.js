@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
-import { GrEdit } from "react-icons/gr";
+import { GrFormEdit } from "react-icons/gr";
 import AddCard from "../components/AddCard";
 import CardPopup from "./CardPopup";
 import CancelCard from "./CancelCard";
@@ -58,7 +58,7 @@ const List = ({ name, cards, id, listId, onClose }) => {
                  >
                     {card.title}
                     
-                   <span className="icon">{<GrEdit/>}</span>
+                   <span className="icon">{<GrFormEdit/>}</span>
                   </div>
                 )}
               </Draggable>
