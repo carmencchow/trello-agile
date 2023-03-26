@@ -25,7 +25,6 @@ const router = express.Router();
 
 router.get("/", getCards);
 router.get("/:id", getCard);
-router.get('/unarchived/:id', getUnarchived);
 router.post("/", createCard);
 router.delete("/:id", deleteCard);
 router.put("/:id", updateCardName);

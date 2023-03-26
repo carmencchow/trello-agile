@@ -8,17 +8,18 @@ const EditCard = ({ open, onClose, onCardSaved, id, handleFetchData, listId }) =
 
   const handleInput = (e) => {
     setName(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleUpdateName = () => {
+    console.log(name);
     setName('');
+
   };  
 
   return (
     <div className="row">  
       <div className="edit-input">
-        <div onClick={onClose} className="">
+        <div className="">
           <input
             type="text"
             className="name"
