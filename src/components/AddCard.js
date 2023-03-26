@@ -4,6 +4,7 @@ import "./AddCard.css";
 import SaveCardBtn from "./SaveCardBtn";
 
 const AddCard = ({ open, close, listId, id, onClose, handleFetchData }) => {
+
   const [input, setInput] = useState("");
 
   if (!open) return null;
@@ -11,14 +12,13 @@ const AddCard = ({ open, close, listId, id, onClose, handleFetchData }) => {
   const handleInput = (e) => {
     setInput(e.target.value);
   };
-
   const handleCardSaved = () => {
     setInput("");
   };
 
   return (
     <div className="input-container">
-      <div onClick={close} className="new-card">
+      <div onClick={onClose} className="">
         <input
           type="text"
           className="card"
@@ -27,6 +27,7 @@ const AddCard = ({ open, close, listId, id, onClose, handleFetchData }) => {
           onChange={handleInput}
         />
       </div>
+
       <SaveCardBtn
         input={input}
         listId={listId}
