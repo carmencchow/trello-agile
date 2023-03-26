@@ -90,12 +90,41 @@ span{
   background-color: pink;
 }
 .brown{
-  background-color: tan;
+  background-color: #964B00;
 }
 h2{
   padding-left: 30px;
 }
-.archive:hover{
+.archive:hover,
+.delete:hover,
+.edit:hover{
   color: blue;
   cursor: pointer;
+}
+
+.archive-text,
+.edit-text,
+.delete-text{
+  visibility: hidden;
+}
+
+.archive:hover .archive-text{
+  visibility: visible;
+}
+.delete:hover .delete-text{
+  visibility: visible;
+}
+.edit:hover .edit-text{
+  visibility: visible;
+}
+.row{
+  display: flex;
+  flex-direction: row;
+  vertical-align: center;  
+}
+h4{
+  padding-right: 20px;
+}
+span{
+  font-size: 30px;
 }
