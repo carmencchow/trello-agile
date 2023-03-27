@@ -17,6 +17,7 @@ button{
 .boards-container{
   display: flex;
   flex-direction: row;
+  width: 80%;
 }
 .welcome{
   display: flex;
