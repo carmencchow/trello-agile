@@ -54,7 +54,7 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
                       setCardId(card._id);
                     }}
                   >
-                    <div className="label-color"></div>
+                    {/* <div className="label-color"></div> */}
                     {card.title}
 
                   </div>
