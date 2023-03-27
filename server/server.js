@@ -1,7 +1,8 @@
 require("dotenv").config();
+const http = require("http");
+const { Server } = require("socket.io");
 const express = require("express");
 const bodyParser = require("body-parser");
-const { Server } = require("socket.io");
 const mongoose = require("mongoose");
 const boardRoute = require("./routes/boardRoute");
 const listRoute = require("./routes/listRoute");
@@ -14,12 +15,16 @@ const List = require("./models/listModel");
 const Card = require("./models/cardModel");
 // Express app
 const app = express();
+const server = http.createServer(app);
+// const io = require("socket.io")(server);
 
-// const io = new Server(app, {
-//   cors: {
-//     origin: "http://localhost:3000",
-//   },
-// });
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000",
+  },
+});
+
+app.set("io", io);
 
 // Middleware
 app.use(bodyParser.json());
@@ -27,30 +32,39 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
+io.on("connection", (socket) => {
+  console.log(`Client connected: ${socket.id}`);
+
+  socket.on("send_message", (data) => {
+    console.log("message arrived at server");
+    socket.broadcast.emit("receive_message", data);
+  });
+});
+
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   res.header("Access-Control-Allow-Origin", "*");
   next();
 });
 
-const server = require("http").Server(app);
+// const server = require("http").Server(app);
 
-const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-  },
-});
+// const io = new Server(server, {
+//   cors: {
+//     origin: "http://localhost:3000",
+//     methods: ["GET", "POST"],
+//   },
+// });
 
-io.on("connection", (socket) => {
-  console.log(`user connected: ${socket.id}`);
+// app.set("io", io);
 
-  socket.on("send_update", (data) => {
-    socket.broadcast.emit("receive_update", data);
-  });
-});
+// io.on("connection", (socket) => {
+//   console.log(`user connected: ${socket.id}`);
 
-server.listen(3001, () => console.log("server is running"));
+//   socket.on("send_update", (data) => {
+//     socket.broadcast.emit("receive_update", data);
+//   });
+// });
 
 // Routes
 app.use("/api/board", boardRoute);
@@ -112,10 +126,12 @@ app.get("/loaddata", async (req, res) => {
   }
 });
 
+// server.listen(3001, () => console.log("server is running"));
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
       console.log(`connected to db and listening on port ${PORT}`);
     });
   })
