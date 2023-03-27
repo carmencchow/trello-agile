@@ -4,7 +4,7 @@ const auth = require("../middleware/auth");
 const {
   getCard,
   getCards,
-  getUnarchived,
+  // getUnarchived,
   createCard,
   updateMembers,
   updateCardName,

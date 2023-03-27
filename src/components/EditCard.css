@@ -1,5 +1,6 @@
-.edit-input, input{
+.edit-input,
+input {
   display: flex;
   flex-direction: row;
-  justify-content: left;
+  justify-content: flex-start;
 }

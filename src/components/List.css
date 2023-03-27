@@ -1,32 +1,42 @@
-.card-btns{
+.card-btns {
   display: flex;
   justify-content: center;
   flex-direction: row;
 }
-.input-field{
+.input-field {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-bottom: 5px;
   align-items: center;
 }
-.add-card:hover{
+.add-card:hover {
   color: white;
   background-color: rgb(211, 210, 210);
   display: block;
 }
-.icon{
+.icon {
   margin-left: 15px;
   display: none;
   align-items: end;
 }
-.cards{
+.cards {
   display: flex;
   align-items: center;
 }
-.cards:hover{
+.cards:hover {
   background-color: lightgreen;
 }
-.cards:hover .icon{
+.cards:hover .icon {
   display: block;
+}
+.list {
+  height: auto;
+}
+.list-name {
+  white-space: nowrap;
+}
+.list-header {
+  display: flex;
+  margin-bottom: 0.5em;
 }
