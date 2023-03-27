@@ -30,6 +30,7 @@
 .cards:hover .icon {
   display: block;
 }
+
 .list {
   height: auto;
 }
@@ -40,3 +41,12 @@
   display: flex;
   margin-bottom: 0.5em;
 }
+
+.label-color{
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  outline: 1px solid black;
+  margin-right: 10px;
+}
+

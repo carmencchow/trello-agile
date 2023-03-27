@@ -12,7 +12,9 @@ const cardSchema = new Schema({
   comment: {
     type: String,
   },
-
+  isArchived: {
+    type: Boolean,
+  },
   parentList: [
     {
       type: mongoose.Schema.Types.ObjectId,

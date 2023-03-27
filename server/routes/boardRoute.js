@@ -19,5 +19,7 @@ router.post("/", auth, createBoard);
 router.delete("/:id", auth, deleteBoard);
 router.put("/:id", auth, updateBoardName);
 
+// router.get('/active?=true', getFiltered)
+
 // GET by :id
 module.exports = router;

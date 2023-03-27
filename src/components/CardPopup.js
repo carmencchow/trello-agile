@@ -115,14 +115,14 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
                 />
               </p>
 
-              <div className="input-field">
-                <EditCard
-                  open={openInput}
-                  listId={listId}
-                  id={id}
-                  handleFetchData={handleFetchData}
-                  onClose={onClose}
-                />
+            <div className="edit">
+              <EditCard
+                open={openInput}
+                listId={listId}
+                id={id}
+                handleFetchData={handleFetchData}
+                onClose={onClose}
+              />
 
                 {!openInput ? (
                   <h4

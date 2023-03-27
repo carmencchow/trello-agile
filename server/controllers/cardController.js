@@ -1,14 +1,13 @@
 const Card = require("../models/cardModel");
 const User = require("../models/userModel");
 const List = require("../models/listModel");
-const Archive = require("../models/archiveModel");
 
-// GET all cards (working)
+// GET all cards 
 const getCards = async (req, res) => {
   try {
     const cards = await Card.find();
     if (!cards) {
-      return res.status(404).send({ message: "No cardss" });
+      return res.status(404).send({ message: "No cards" });
     }
     return res.status(200).send({ message: "Returning all cards", cards });
   } catch (err) {
@@ -16,7 +15,7 @@ const getCards = async (req, res) => {
   }
 };
 
-// GET a card (working)
+// GET a card
 const getCard = async (req, res) => {
   try {
     const card = await Card.findOne({ _id: req.params.id });
@@ -30,38 +29,20 @@ const getCard = async (req, res) => {
 };
 
 // GET unarchived list of cards
-const getUnarchived = async (req, res) => {
-  try {
-    // const archived = await Card.findOne({_id: req.params.id});
-    // console.log('archived card is', archived)
-    // const listId = req.query.listId;
-// push card to Archive
-    // Archive.push(archived);
-    // await Archive.save();
-
-    const filteredCards = await Card.find({_id: { $nin: req.params.id}})
-    return res.status(200).send({ message: 'Returning filtered cards', filteredCards });
+//http://localhost:5000/api/card/isArchived=true
+const archiveCard = async (req, res) => {
+  // onClick - findByIdAndUpdate change 'isArchived' field to 'true' in cardSchema
+  try{
+    let card = await Card.findById({ _id: req.params.id });
+    const filter = { _id: req.params.id };
+    const update = { isArchived: true };
+    let doc = await Card.findOneAndUpdate(filter, update);
+    doc = await Card.findOne(filter);
+    console.log(doc.isArchived);
   } catch (err) {
     return res.status(500).send({ message: err.message })
   }
 }
-
-// GET ONLY members from a card (working)
-const getMembersFromCard = async (req, res) => {
-  try {
-    const users = await User.find({ cards: req.params.id });
-    console.log(users);
-    res.status(200).send({
-      message: "The members",
-      users: users.map((user) => {
-        return { name: user.name, email: user.email };
-      }),
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).send({ message: "Cannot find members" });
-  }
-};
 
 // TODO: UPDATE members of a card
 const deleteMembers = async (req, res) => {
@@ -107,7 +88,7 @@ const createCard = async (req, res) => {
   const listId = req.query.listId;
   try {
     const parentList = await List.findById(listId);
-    const result = await Card.create({ title, parentList: parentList._id });
+    const result = await Card.create({ title, parentList: parentList._id, isArchived: false });
     console.log(result);
 
     await result.save();
@@ -139,11 +120,11 @@ const updateCardName = async (req, res) => {
 module.exports = {
   getCard,
   getCards,
-  getUnarchived,
+  archiveCard,
   deleteCard,
   createCard,
   updateCardName,
-  getMembersFromCard,
+  // getMembersFromCard,
   updateMembers,
   deleteMembers,
   addMembers,
