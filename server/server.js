@@ -24,6 +24,8 @@ const io = new Server(server, {
   },
 });
 
+app.set("io", io);
+
 // Middleware
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
@@ -32,6 +34,11 @@ app.use(cors());
 
 io.on("connection", (socket) => {
   console.log(`Client connected: ${socket.id}`);
+
+  socket.on("send_message", (data) => {
+    console.log("message arrived at server");
+    socket.broadcast.emit("receive_message", data);
+  });
 });
 
 app.use((req, res, next) => {

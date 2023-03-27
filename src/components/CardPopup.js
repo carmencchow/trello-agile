@@ -13,6 +13,7 @@ const CardPopup = ({ open, onClose, id, handleFetchData }) => {
   const [color, setColor] = useState("green");
   const [cardData, setCardData] = useState(null);
   const [removedCard, setRemovedCard] = useState(null);
+  const [messageReceived, setMessageReceived] = useState("");
 
   const colorArr = [
     "red",
@@ -25,6 +26,18 @@ const CardPopup = ({ open, onClose, id, handleFetchData }) => {
     "brown",
   ];
 
+  const sendMessage = () => {
+    socket.emit("send_message", { message: "hello" });
+  };
+
+  useEffect(() => {
+    const socket = io.connect("http://localhost:5000");
+    socket.on("receive_message", (data) => {
+      console.log(data.message);
+      setMessageReceived(data.message);
+    });
+  }, []);
+
   // (1) GET card by id
   const getCard = async (id) => {
     const res = await axios.get(`http://localhost:5000/api/card/${id}`);
@@ -35,6 +48,11 @@ const CardPopup = ({ open, onClose, id, handleFetchData }) => {
     getCard(id);
   }, [id]);
 
+  // useEffect(() => {
+  //   socket.on("receive_message", (data) => {
+  //     console.log(data);
+  //   });
+  // }, [socket]);
   // const handleDelete = async () => {
   //   await axios.delete(`http://localhost:5000/api/card/${id}`).then((res) => {
   //     console.log(`Card deleted`);
@@ -93,6 +111,9 @@ const CardPopup = ({ open, onClose, id, handleFetchData }) => {
             <div className="options">
               <p>Label: {cardData.card.labels}</p>
               <p>Activity: </p>
+              <p>{messageReceived}</p>
+              <input placeholder="send message"></input>
+              <button onClick={sendMessage}>send message</button>
               <p className="archive" onClick={handleArchive}>
                 Archive this card
               </p>
