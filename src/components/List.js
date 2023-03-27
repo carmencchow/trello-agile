@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
-import { GrFormEdit } from "react-icons/gr";
 import AddCard from "../components/AddCard";
 import CardPopup from "./CardPopup";
 import "./List.css";
@@ -42,6 +41,7 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
             {cards.map((card, index) => (
+
               <Draggable key={card._id} draggableId={card._id} index={index}>
                 {(provided) => (
                   <div
@@ -54,9 +54,9 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
                       setCardId(card._id);
                     }}
                   >
+                    {/* <div className="label-color"></div> */}
                     {card.title}
-                    
-                   <span className="icon">{<GrFormEdit/>}</span>
+
                   </div>
                 )}
               </Draggable>
