@@ -105,25 +105,11 @@ h2 {
   cursor: pointer;
 }
 
-.archive-text,
-.edit-text,
-.delete-text{
-  visibility: hidden;
-}
-
-.archive:hover .archive-text{
-  visibility: visible;
-}
-.delete:hover .delete-text{
-  visibility: visible;
-}
-.edit:hover .edit-text{
-  visibility: visible;
-}
-.row{
+.input-field{
   display: flex;
   flex-direction: row;
-  vertical-align: center;  
+  justify-content: left;
+  margin-left: 0;
 }
 h4{
   padding-right: 20px;
@@ -131,4 +117,6 @@ h4{
 span{
   font-size: 30px;
 }
-
+.edit-card{
+  cursor: pointer;
+}

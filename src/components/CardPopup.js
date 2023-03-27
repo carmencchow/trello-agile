@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { GrFormClose } from "react-icons/gr";
 import io from "socket.io-client";
+import { FiEdit2 } from 'react-icons/fi'
 import "./CardPopup.css";
-import axios from "axios";
-
 import DeleteCard from "./DeleteCard";
 import EditCard from "./EditCard";
+import ArchiveCard from './ArchiveCard';
+
 
 const socket = io.connect("http://localhost:5000");
 
-const CardPopup = ({ open, onClose, id, handleFetchData }) => {
+  
+
+const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
   const [color, setColor] = useState("green");
   const [cardData, setCardData] = useState(null);
-  const [removedCard, setRemovedCard] = useState(null);
   const [messageReceived, setMessageReceived] = useState("");
+  const [openInput, setOpenInput] = useState(false);
 
   const colorArr = [
     "red",
@@ -25,6 +29,7 @@ const CardPopup = ({ open, onClose, id, handleFetchData }) => {
     "pink",
     "brown",
   ];
+
 
   const sendMessage = () => {
     socket.emit("send_message", { message: "hello" });
@@ -39,6 +44,9 @@ const CardPopup = ({ open, onClose, id, handleFetchData }) => {
   }, []);
 
   // (1) GET card by id
+
+  // Display card modal info
+
   const getCard = async (id) => {
     const res = await axios.get(`http://localhost:5000/api/card/${id}`);
     console.log("Card Info: ", res.data);
@@ -47,6 +55,7 @@ const CardPopup = ({ open, onClose, id, handleFetchData }) => {
   useEffect(() => {
     getCard(id);
   }, [id]);
+
 
   // useEffect(() => {
   //   socket.on("receive_message", (data) => {
@@ -59,25 +68,7 @@ const CardPopup = ({ open, onClose, id, handleFetchData }) => {
   //     onClose();
   //   });
   //   handleFetchData();
-  // };
 
-  // Archive list, get list from db and remove from view
-  const handleArchive = async (id) => {
-    const card = await axios.get(`http://localhost:5000/api/card/${id}`);
-    setRemovedCard(card.data);
-    console.log("Archiving card");
-
-    // Close modal
-
-    // Get request to server, return all cards except archived one
-  };
-
-  // Edit
-  const handleEdit = async (id) => {
-    const res = await axios.put(`http://localhost:5000/api/card/${id}`);
-    console.log("Editing", res.data);
-    setCardData(res.data);
-  };
 
   if (!open || cardData === null) return null;
 
@@ -85,10 +76,7 @@ const CardPopup = ({ open, onClose, id, handleFetchData }) => {
     <div className="card-background">
       <div className="card-popup">
         <div>
-          <div
-            className="card-popup-heading"
-            style={{ backgroundColor: color }}
-          >
+          <div className="card-popup-heading" style={{ backgroundColor: color }}>
             <h2>{cardData.card.title} </h2>
             <div className="right-side">
               <GrFormClose className="close" onClick={onClose} />
@@ -96,8 +84,9 @@ const CardPopup = ({ open, onClose, id, handleFetchData }) => {
           </div>
 
           <div className="card-content">
-            <p>Click to change your color</p>
-            <div className="color-row">
+          <p>Click a square to change the background color</p>
+
+            <div className="color-row"> 
               {colorArr.map((color) => {
                 return (
                   <span
@@ -111,6 +100,7 @@ const CardPopup = ({ open, onClose, id, handleFetchData }) => {
             <div className="options">
               <p>Label: {cardData.card.labels}</p>
               <p>Activity: </p>
+
               <p>{messageReceived}</p>
               <input placeholder="send message"></input>
               <button onClick={sendMessage}>send message</button>
@@ -119,7 +109,36 @@ const CardPopup = ({ open, onClose, id, handleFetchData }) => {
               </p>
               <p className="edit">
                 <EditCard />
+
+
+              <p className="archive">
+                <ArchiveCard
+                  handleFetchData={handleFetchData}
+                  id={id}
+                  onClose={onClose}
+                />
+
               </p>
+
+            <div className="input-field">
+              <EditCard
+                open={openInput}
+                listId={listId}
+                id={id}
+                handleFetchData={handleFetchData}
+                onClose={onClose}
+              />
+
+                {!openInput ? (
+                  <h4 className="edit-card" onClick={() => {
+                      setOpenInput(true);
+                    }}> Edit this card <FiEdit2/></h4>
+                  ) : (
+                    <div></div>
+                  )}
+              </div>
+            </div>
+
               <p className="delete">
                 <DeleteCard
                   handleFetchData={handleFetchData}
@@ -127,22 +146,15 @@ const CardPopup = ({ open, onClose, id, handleFetchData }) => {
                   onClose={onClose}
                 />
               </p>
+
               <p>View members{cardData.card.members}</p>
-              {/* <div>
-                <RiDeleteBin6Line
-                  variant="outlined"
-                  onClick={() => {
-                    handleDelete();
-                  }}
-                >
-                  Delete
-                </RiDeleteBin6Line>
-              </div> */}
+  
             </div>
           </div>
-        </div>
+     
       </div>
     </div>
+
   );
 };
 
