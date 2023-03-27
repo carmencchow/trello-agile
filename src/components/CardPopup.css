@@ -104,6 +104,10 @@ h2 {
   color: blue;
   cursor: pointer;
 }
+.row{
+  display: flex;
+  flex-direction: row;
+}
 
 .input-field{
   display: flex;

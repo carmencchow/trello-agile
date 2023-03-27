@@ -30,3 +30,10 @@
 .cards:hover .icon{
   display: block;
 }
+.label-color{
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  outline: 1px solid black;
+  margin-right: 10px;
+}

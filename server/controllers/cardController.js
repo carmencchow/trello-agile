@@ -33,7 +33,7 @@ const getCard = async (req, res) => {
 const archiveCard = async (req, res) => {
   // onClick - findByIdAndUpdate change 'isArchived' field to 'true' in cardSchema
   try{
-    const card = await Card.findById({ _id: req.params.id });
+    let card = await Card.findById({ _id: req.params.id });
     const filter = { _id: req.params.id };
     const update = { isArchived: true };
     let doc = await Card.findOneAndUpdate(filter, update);
@@ -43,17 +43,6 @@ const archiveCard = async (req, res) => {
     return res.status(500).send({ message: err.message })
   }
 }
-
-  // try {
-  //   // This returns all 'isArchived: false' cards
-  //   const card = await Card.findById({ _id: req.params.id });
-  //   const update = { isArchived: true };
-  //   let doc = await Card.findOneAndUpdate({ filter, update }) 
-  //   doc = await Card.findOne(filter);
-  //   console.log(doc.isArchived);
-    // const card = await Card.find({_id: { $nin: req.params.id}})
-    // return res.status(200).send({ message: 'Returning filtered cards', card });
-
 
 // TODO: UPDATE members of a card
 const deleteMembers = async (req, res) => {

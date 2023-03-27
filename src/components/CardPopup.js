@@ -73,7 +73,7 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
                 />
               </p>
 
-            <div className="input-field">
+            <div className="edit">
               <EditCard
                 open={openInput}
                 listId={listId}
