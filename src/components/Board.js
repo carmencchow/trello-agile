@@ -4,7 +4,6 @@ import { DragDropContext } from "react-beautiful-dnd";
 import axios from "axios";
 import Navbar from "./Navbar";
 import List from "../components/List";
-import Archived from './Archived'
 // import io from "socket.io-client";
 // import { store } from "../store";
 import { useDispatch } from "react-redux";
@@ -91,8 +90,6 @@ const Board = () => {
         <button onClick={sendMessage}>Send</button>
       </div> */}
       <h3>{board.title}</h3>
-
-      <Archived/>
 
       <DragDropContext onDragEnd={(result) => onDragEnd(result, board.lists)}>
         <div className="container">
