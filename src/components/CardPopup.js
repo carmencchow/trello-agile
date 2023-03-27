@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { GrFormClose } from "react-icons/gr";
+import io from "socket.io-client";
 import { FiEdit2 } from 'react-icons/fi'
 import "./CardPopup.css";
 import DeleteCard from "./DeleteCard";
 import EditCard from "./EditCard";
 import ArchiveCard from './ArchiveCard';
 
+
+const socket = io.connect("http://localhost:5000");
+
+  
+
 const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
   const [color, setColor] = useState("green");
   const [cardData, setCardData] = useState(null);
+  const [messageReceived, setMessageReceived] = useState("");
   const [openInput, setOpenInput] = useState(false);
 
   const colorArr = [
@@ -23,7 +30,23 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
     "brown",
   ];
 
+
+  const sendMessage = () => {
+    socket.emit("send_message", { message: "hello" });
+  };
+
+  useEffect(() => {
+    const socket = io.connect("http://localhost:5000");
+    socket.on("receive_message", (data) => {
+      console.log(data.message);
+      setMessageReceived(data.message);
+    });
+  }, []);
+
+  // (1) GET card by id
+
   // Display card modal info
+
   const getCard = async (id) => {
     const res = await axios.get(`http://localhost:5000/api/card/${id}`);
     console.log("Card Info: ", res.data);
@@ -32,6 +55,19 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
   useEffect(() => {
     getCard(id);
   }, [id]);
+
+
+  // useEffect(() => {
+  //   socket.on("receive_message", (data) => {
+  //     console.log(data);
+  //   });
+  // }, [socket]);
+  // const handleDelete = async () => {
+  //   await axios.delete(`http://localhost:5000/api/card/${id}`).then((res) => {
+  //     console.log(`Card deleted`);
+  //     onClose();
+  //   });
+  //   handleFetchData();
 
 
   if (!open || cardData === null) return null;
@@ -65,12 +101,23 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
               <p>Label: {cardData.card.labels}</p>
               <p>Activity: </p>
 
+              <p>{messageReceived}</p>
+              <input placeholder="send message"></input>
+              <button onClick={sendMessage}>send message</button>
+              <p className="archive" onClick={handleArchive}>
+                Archive this card
+              </p>
+              <p className="edit">
+                <EditCard />
+
+
               <p className="archive">
                 <ArchiveCard
                   handleFetchData={handleFetchData}
                   id={id}
                   onClose={onClose}
                 />
+
               </p>
 
             <div className="input-field">

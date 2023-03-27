@@ -4,14 +4,14 @@ import { DragDropContext } from "react-beautiful-dnd";
 import axios from "axios";
 import Navbar from "./Navbar";
 import List from "../components/List";
-// import io from "socket.io-client";
+
 // import { store } from "../store";
 import { useDispatch } from "react-redux";
 import "./Board.css";
 import { fetchData } from "../store/thunks/fetchList";
 import { useSelector } from "react-redux";
 
-// const socket = io.connect("http://localhost:3001");
+// const socket = io.connect("http://localhost:5000");
 
 const Board = () => {
   const dispatch = useDispatch();
@@ -27,6 +27,10 @@ const Board = () => {
   //   setMessages([...messages, message]);
   //   setMessage("");
   // };
+
+  // const sendMessage = () => {
+  //   socket.emit('H')
+  // }
 
   const onDragEnd = (result, lists) => {
     if (!result.destination) {
