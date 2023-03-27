@@ -5,10 +5,10 @@ import { Navbutton } from "./NavButton";
 const Navbar = () => {
   const selectOptions = [
     { name: "Workspaces", query: "workspaces" },
-    { name: "Recent", query: "recent" },
-    { name: "Starred", query: "starred" },
-    { name: "Templates", query: "templates" },
-    { name: "Create", query: "create" },
+    { name: "Recent", query: "workspaces" },
+    { name: "Starred", query: "workspaces" },
+    { name: "Templates", query: "workspaces" },
+    { name: "Create", query: "workspaces" },
   ];
 
   return (

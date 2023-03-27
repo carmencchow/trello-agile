@@ -57,6 +57,9 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
                     {/* <div className="label-color"></div> */}
                     {card.title}
 
+
+                    // <span className="icon">{<GrFormEdit />}</span>
+
                   </div>
                 )}
               </Draggable>
@@ -94,8 +97,7 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
             Add a card
           </button>
         ) : (
-          <div className="card-btns">
-          </div>
+          <div className="card-btns"></div>
         )}
       </div>
     </div>
