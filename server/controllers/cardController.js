@@ -126,6 +126,26 @@ const updateCardName = async (req, res) => {
   }
 };
 
+const updateCardPosition = async (req, res) => {
+  const { position } = req.body;
+  try {
+    const card = await Card.findByIdAndUpdate(
+      { _id: req.params.id },
+      { position: position },
+      { new: true }
+    );
+    if (!card) {
+      res.status(404).send("Card not found");
+    }
+    res.status(200).send({ message: "Card position updated", card });
+  } catch (err) {
+    console.log(err);
+    res
+      .status(500)
+      .send({ message: "Error occurred while trying to update the card position" });
+  }
+};
+
 module.exports = {
   getCard,
   getCards,
@@ -136,4 +156,5 @@ module.exports = {
   updateMembers,
   deleteMembers,
   addMembers,
+  updateCardPosition,
 };

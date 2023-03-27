@@ -10,6 +10,7 @@ const {
   getMembersFromCard,
   deleteCard,
   deleteMembers,
+  updateCardPosition,
 } = require("../controllers/cardController");
 
 const router = express.Router();
@@ -21,6 +22,7 @@ router.get("/:id", auth, getCard);
 router.post("/", auth, createCard);
 router.delete("/:id", auth, deleteCard);
 router.put("/:id", auth, updateCardName);
+router.put("/position/:id", auth, updateCardPosition);
 
 // Are we going to use these endpoints for the MVP?
 router.get("/members/:id", auth, getMembersFromCard);

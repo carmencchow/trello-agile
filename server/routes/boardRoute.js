@@ -8,6 +8,7 @@ const {
   createBoard,
   deleteBoard,
   updateBoardName,
+  updateCards,
 } = require("../controllers/boardController");
 
 const router = express.Router();
@@ -18,6 +19,7 @@ router.get("/:id", auth, getBoard);
 router.post("/", auth, createBoard);
 router.delete("/:id", auth, deleteBoard);
 router.put("/:id", auth, updateBoardName);
+router.put("/:id/lists/:listId/cards", auth, updateCards);
 
 // GET by :id
 module.exports = router;

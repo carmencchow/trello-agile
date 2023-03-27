@@ -127,10 +127,26 @@ const updateBoardName = async (req, res) => {
   }
 };
 
+const updateCards = async (req, res) => {
+  const boardId = req.params.id;
+  const listId = req.params.listId;
+  const newCards = req.body.cards;
+  try {
+    const board = await Board.findByIdAndUpdate(boardId, {
+      $set: { [`lists.${listId}.cards`]: newCards },
+    });
+    res.json(board);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+}
+
+
 module.exports = {
   getBoard,
   updateBoardName,
   getBoards,
   createBoard,
   deleteBoard,
+  updateCards,
 };
