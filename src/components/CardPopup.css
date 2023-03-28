@@ -1,6 +1,6 @@
 .card-background {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.6);
   position: fixed;
   height: 100%;
   top: 0;
@@ -9,7 +9,7 @@
   bottom: 0;
 }
 .card-popup {
-  height: 600px;
+  height: 750px;
   width: 700px;
   position: absolute;
   background-color: #f4f5f7;
@@ -20,7 +20,7 @@
 .card-popup-heading {
   display: flex;
   justify-content: space-between;
-  height: 100px;
+  height: 70px;
   background-color: #7bc86c;
 }
 .card-popup-heading p {
@@ -47,6 +47,13 @@
   cursor: pointer;
   margin-right: 5px;
 }
+.color-row {
+  display: flex;
+  justify-content: right;
+  justify-content: space-between;
+  width: 30%;
+  margin-bottom: 30px;
+}
 .right-side {
   display: flex;
   flex-direction: column;
@@ -58,12 +65,6 @@ span {
   height: 20px;
   width: 20px;
   cursor: pointer;
-}
-.color-row {
-  display: flex;
-  justify-content: flex-end;
-  justify-content: space-between;
-  width: 30%;
 }
 .color-container {
   height: 20px;
@@ -89,15 +90,12 @@ span {
 .pink {
   background-color: pink;
 }
-
 .brown{
   background-color: #964B00;
-
 }
 h2 {
   padding-left: 30px;
 }
-
 .archive:hover,
 .delete:hover,
 .edit:hover{
@@ -108,13 +106,6 @@ h2 {
   display: flex;
   flex-direction: row;
 }
-
-.input-field{
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  margin-left: 0;
-}
 h4{
   padding-right: 20px;
 }
@@ -124,6 +115,34 @@ span{
 .edit-card{
   cursor: pointer;
 }
+.edit-row{
+  display: flex;
+  justify-content: right;
+  height: 10px;
+}
+.activity{
+  display: flex;
+  flex-direction: row;
+  width: 700px;
+}
 input{
+  display: flex;
+  width: 500px;
+}
+.save-comment-btn{
+  display: flex;
+  justify-content: right;
+  font-size: 14px;
+  font-weight: lighter;
+  margin-left: 20px;
+}
+.activity-label{
+  display: flex;
+}
+.comments{
+  background-color: #ffffff;
+  height: 40px;
   width: 600px;
+  margin-top: 20px;
+  text-decoration: none;
 }

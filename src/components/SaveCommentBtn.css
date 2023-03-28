@@ -1,0 +1,14 @@
+.show-comments{
+  background-color: #ffffff;
+  height: 40px;
+  width: 600px;
+  margin-top: 20px;
+}
+.comment{
+  text-decoration: none;
+}
+.save-row .save{
+  font-size: 14px;
+  font-weight: lighter;
+  background-color: none;
+}

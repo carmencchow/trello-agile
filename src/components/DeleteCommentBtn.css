@@ -1,0 +1,8 @@
+.delete{
+  font-size: 14px;
+  font-weight: lighter;
+}
+.delete:hover{
+  color: blue;
+  text-decoration: underline;
+}

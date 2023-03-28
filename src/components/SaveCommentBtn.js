@@ -1,10 +1,14 @@
-import React from "react";
-import "./SaveCommentBtn.css";
+import React, { useState } from "react";
 import axios from "axios";
+import "./SaveCommentBtn.css";
 
-const SaveCommentBtn = ({ listId, input, onCardSaved, id, handleFetchData }) => {
-  const handleSave = async (e, id) => {
-    console.log("saving card", e.target.value);
+const SaveCommentBtn = ({ listId, input, onCommentSaved, id, handleFetchData }) => {
+
+  const [saved, setSaved] = useState('');
+
+  const handleSaveComment = async (e) => {
+    console.log("saving comments:", input);
+    setSaved(input);
 
     try {
       const token = localStorage.getItem("token");
@@ -13,9 +17,10 @@ const SaveCommentBtn = ({ listId, input, onCardSaved, id, handleFetchData }) => 
       }
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       const res = await axios.post(
-        `http://localhost:5000/api/card/?listId=${listId}`,
-        { text: `${input}` },
-
+        `http://localhost:5000/api/card/${id}/add-comment`,
+        { 
+          comments: `${input}` 
+        },
         {
           method: "POST",
           headers: {
@@ -25,7 +30,7 @@ const SaveCommentBtn = ({ listId, input, onCardSaved, id, handleFetchData }) => 
       );
       const data = res.data;
       console.log(data);
-      onCardSaved();
+      onCommentSaved();
       handleFetchData();
     } catch (err) {
       console.log(err);
@@ -33,10 +38,10 @@ const SaveCommentBtn = ({ listId, input, onCardSaved, id, handleFetchData }) => 
   };
 
   return (
-    <div>
-      <button className="save" onClick={handleSave}>
+    <div className="save-row"> 
+      <h4 className="save" onClick={handleSaveComment}>
         Save
-      </button>
+      </h4>
     </div>
   );
 };

@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { GrFormClose } from "react-icons/gr";
+import { GoThreeBars } from "react-icons/go";
+import {  } from "react-icons/gr";
 // import io from "socket.io-client";
 import { FiEdit2 } from "react-icons/fi";
 import "./CardPopup.css";
 import DeleteCard from "./DeleteCard";
 import EditCard from "./EditCard";
 import ArchiveCard from "./ArchiveCard";
-
+import SaveCommentBtn from "./SaveCommentBtn";
+import EditCommentBtn from "./EditCommentBtn";
+import DeleteCommentBtn from "./DeleteCommentBtn";
 // const socket = io.connect("http://localhost:5000");
-import SaveCommentBtn from "./SaveCardBtn";
 
-const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
+const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
   const [comment, setComment] = useState('')
   const [color, setColor] = useState("green");
   const [cardData, setCardData] = useState(null);
@@ -29,15 +32,13 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
     "brown",
   ];
 
-  const handleInput = (e) => {
+  const handleCommentInput = (e) => {
     setComment(e.target.value);
   };
   
-  const handleCardSaved = () => {
-    setComment("");
+  const handleComment = (e) => {
+    setComment(e.target.value);;
   };
-
-
 
   // const sendMessage = () => {
   //   socket.emit("send_message", { message: "hello" });
@@ -51,10 +52,7 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
   //   });
   // }, []);
 
-  // (1) GET card by id
-
-  // Display card modal info
-
+  // (1) GET card by ID and display info in modal
   const getCard = async (id) => {
     const res = await axios.get(`http://localhost:5000/api/card/${id}`);
     console.log("Card Info: ", res.data);
@@ -81,21 +79,18 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
   return (
     <div className="card-background">
       <div className="card-popup">
-        <div>
-          <div
-            className="card-popup-heading"
-            style={{ backgroundColor: color }}
-          >
-            <h2>{cardData.card.title} </h2>
-            <div className="right-side">
-              <GrFormClose className="close" onClick={onClose} />
-            </div>
+        <div className="card-popup-heading" 
+          style={{ backgroundColor: color }}>
+          <h2>{cardData.card.title}</h2>
+          <div className="right-side">
+            <GrFormClose className="close" onClick={onClose} />
           </div>
+        </div>
 
-          <div className="card-content">
-            <p>Click a square to change the background color</p>
-
-            <div className="color-row">
+        <div className="card-content">
+          <div className="card-right">
+            <p className="color-text">Change label color</p>
+            <p className="color-row">
               {colorArr.map((color) => {
                 return (
                   <span
@@ -104,91 +99,103 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
                   ></span>
                 );
               })}
-            </div>
-
-            <div className="options">
-              <p>Label: {cardData.card.labels}</p>
-              <p>Activity: </p>
-
-              <div className="activity">
-                <div className="comment-container">
-                  <div className="initials">{cardData.card.members}</div>
-                  <input 
-                    type="text" 
-                    value={comment}
-                    className="comments-input"
-                    placeholder="Write a comment"
-                    onChange={handleInput}
-                  />
-                  <SaveCommentBtn
-                    input={comment}
-                    listId={listId}
-                    onCardSaved={handleCardSaved}
-                    id={id}
-                    handleFetchData={handleFetchData}
-                  />
-                </div>
-
-
-
-              </div>
-
-              {/* <p>{messageReceived}</p>
-              <input placeholder="send message"></input>
-              <button onClick={sendMessage}>send message</button> */}
-              {/* <p className="archive" onClick={handleArchive}>
-                Archive this card
-              </p> */}
-              <p className="edit">
-                <EditCard />
-              </p>
-              <p className="archive">
-                <ArchiveCard
-                  handleFetchData={handleFetchData}
-                  id={id}
-                  onClose={onClose}
-                />
-              </p>
-
-            <div className="edit">
-              <EditCard
-                open={openInput}
-                listId={listId}
-                id={id}
-                handleFetchData={handleFetchData}
-                onClose={onClose}
-              />
-
-                {!openInput ? (
-                  <h4
-                    className="edit-card"
-                    onClick={() => {
-                      setOpenInput(true);
-                    }}
-                  >
-                    {" "}
-                    Edit this card <FiEdit2 />
-                  </h4>
-                ) : (
-                  <div></div>
-                )}
-              </div>
-            </div>
-
-            <p className="delete">
-              <DeleteCard
-                handleFetchData={handleFetchData}
-                id={id}
-                onClose={onClose}
-              />
             </p>
+          </div>
 
-            <p>View members{cardData.card.members}</p>
+          <div className="options">
+            <p className="activity-label"><GoThreeBars/>Activity: </p>
+            <div className="activity">
+              <input 
+                type="text" 
+                value={comment}
+                className="comments-input"
+                placeholder="Write a comment"
+                onChange={handleCommentInput}
+              />
+              <div className="save-comment-btn">
+                <SaveCommentBtn
+                  input={comment}
+                  listId={listId}
+                  onCommentSaved={handleComment}
+                  id={id}
+                  handleFetchData={handleFetchData}
+                />
+              </div>
+            </div>
+
+            <div className="comment-container">
+              <h5>Comments:</h5>
+              {cardData.card.comments.map((comment) => {
+                console.log(comment)
+                return (
+                  <div className="comments">
+                    <p>{comment}</p>
+                    <div className="edit-row">
+                      <EditCommentBtn
+                        input={comment}
+                        listId={listId}
+                        onCommentSaved={handleComment}
+                        id={id}
+                        handleFetchData={handleFetchData}
+                      />
+                      <DeleteCommentBtn
+                        input={comment}
+                        listId={listId}
+                        onCommentSaved={handleComment}
+                        id={id}
+                        handleFetchData={handleFetchData}
+                      />
+                    </div>
+                  </div>
+                  )
+                })}
+            </div>
+          </div>
+
+          <p className="archive">
+            <ArchiveCard
+              handleFetchData={handleFetchData}
+              id={id}
+              onClose={onClose}
+            />
+          </p>
+
+          <div className="edit">
+            <EditCard
+              open={openInput}
+              listId={listId}
+              id={id}
+              handleFetchData={handleFetchData}
+              onClose={onClose}
+            />
+
+            {!openInput ? (
+              <h4
+                className="edit-card"
+                onClick={() => {
+                  setOpenInput(true);
+                }}
+              >
+                {" "}
+                Edit this card <FiEdit2 />
+              </h4>
+            ) : (
+              <div></div>
+            )}
           </div>
         </div>
+
+        <p className="delete">
+          <DeleteCard
+            handleFetchData={handleFetchData}
+            id={id}
+            onClose={onClose}
+          />
+        </p>
+
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
 export default CardPopup;

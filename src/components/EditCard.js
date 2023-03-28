@@ -22,7 +22,7 @@ const EditCard = ({ open, onClose, onCardSaved, id, handleFetchData, listId }) =
         <div className="">
           <input
             type="text"
-            className="name"
+            className="name"c
             value={name}
             placeholder="Enter new card name"
             onChange={handleInput}/>

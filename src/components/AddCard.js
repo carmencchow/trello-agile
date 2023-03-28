@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./AddCard.css";
 import SaveCardBtn from "./SaveCardBtn";
 
-const AddCard = ({ open, listId, id, handleFetchData }) => {
+const AddCard = ({ open, listId, id, onCardSaved, handleFetchData }) => {
 
   const [input, setInput] = useState("");
 
