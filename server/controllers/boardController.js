@@ -3,7 +3,7 @@ const User = require("../models/userModel");
 const List = require("../models/listModel");
 const Card = require("../models/cardModel");
 
-// GET a board by id 
+// GET a board by id
 // Since every user created at this point is a part of the Parsity organization, then we don't need to pull the user.boards to populate on the workspace screen? Technically every board should show up since they're all a part of parsity's organization.
 const getBoard = async (req, res) => {
   try {
@@ -49,6 +49,7 @@ const getBoards = async (req, res) => {
 const createBoard = async (req, res) => {
   const title = req.body.title;
   try {
+    await List.collection.dropIndex("name_1");
     const user = await User.findById({ _id: req.user.id });
 
     const newBoard = await Board.create({

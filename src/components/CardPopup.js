@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { GrFormClose } from "react-icons/gr";
-import { FiEdit2 } from 'react-icons/fi'
+// import io from "socket.io-client";
+import { FiEdit2 } from "react-icons/fi";
 import "./CardPopup.css";
 import DeleteCard from "./DeleteCard";
 import EditCard from "./EditCard";
-import ArchiveCard from './ArchiveCard';
+import ArchiveCard from "./ArchiveCard";
+
+// const socket = io.connect("http://localhost:5000");
 import SaveCommentBtn from "./SaveCardBtn";
 
 const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
   const [comment, setComment] = useState('')
   const [color, setColor] = useState("green");
   const [cardData, setCardData] = useState(null);
+  // const [messageReceived, setMessageReceived] = useState("");
   const [openInput, setOpenInput] = useState(false);
   
   const colorArr = [
@@ -35,7 +39,22 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
 
 
 
+  // const sendMessage = () => {
+  //   socket.emit("send_message", { message: "hello" });
+  // };
+
+  // useEffect(() => {
+  //   const socket = io.connect("http://localhost:5000");
+  //   socket.on("receive_message", (data) => {
+  //     console.log(data.message);
+  //     setMessageReceived(data.message);
+  //   });
+  // }, []);
+
+  // (1) GET card by id
+
   // Display card modal info
+
   const getCard = async (id) => {
     const res = await axios.get(`http://localhost:5000/api/card/${id}`);
     console.log("Card Info: ", res.data);
@@ -45,6 +64,17 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
     getCard(id);
   }, [id]);
 
+  // useEffect(() => {
+  //   socket.on("receive_message", (data) => {
+  //     console.log(data);
+  //   });
+  // }, [socket]);
+  // const handleDelete = async () => {
+  //   await axios.delete(`http://localhost:5000/api/card/${id}`).then((res) => {
+  //     console.log(`Card deleted`);
+  //     onClose();
+  //   });
+  //   handleFetchData();
 
   if (!open || cardData === null) return null;
 
@@ -52,7 +82,10 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
     <div className="card-background">
       <div className="card-popup">
         <div>
-          <div className="card-popup-heading" style={{ backgroundColor: color }}>
+          <div
+            className="card-popup-heading"
+            style={{ backgroundColor: color }}
+          >
             <h2>{cardData.card.title} </h2>
             <div className="right-side">
               <GrFormClose className="close" onClick={onClose} />
@@ -60,9 +93,9 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
           </div>
 
           <div className="card-content">
-          <p>Click a square to change the background color</p>
+            <p>Click a square to change the background color</p>
 
-            <div className="color-row"> 
+            <div className="color-row">
               {colorArr.map((color) => {
                 return (
                   <span
@@ -100,6 +133,15 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
 
               </div>
 
+              {/* <p>{messageReceived}</p>
+              <input placeholder="send message"></input>
+              <button onClick={sendMessage}>send message</button> */}
+              {/* <p className="archive" onClick={handleArchive}>
+                Archive this card
+              </p> */}
+              <p className="edit">
+                <EditCard />
+              </p>
               <p className="archive">
                 <ArchiveCard
                   handleFetchData={handleFetchData}
@@ -118,31 +160,34 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
               />
 
                 {!openInput ? (
-                  <h4 className="edit-card" onClick={() => {
+                  <h4
+                    className="edit-card"
+                    onClick={() => {
                       setOpenInput(true);
-                    }}> Edit this card <FiEdit2/></h4>
-                  ) : (
-                    <div></div>
-                  )}
+                    }}
+                  >
+                    {" "}
+                    Edit this card <FiEdit2 />
+                  </h4>
+                ) : (
+                  <div></div>
+                )}
               </div>
             </div>
 
-              <p className="delete">
-                <DeleteCard
-                  handleFetchData={handleFetchData}
-                  id={id}
-                  onClose={onClose}
-                />
-              </p>
+            <p className="delete">
+              <DeleteCard
+                handleFetchData={handleFetchData}
+                id={id}
+                onClose={onClose}
+              />
+            </p>
 
-              <p>View members{cardData.card.members}</p>
-  
-            </div>
+            <p>View members{cardData.card.members}</p>
           </div>
-     
+        </div>
       </div>
     </div>
-
   );
 };
 
