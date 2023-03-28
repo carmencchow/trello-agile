@@ -9,8 +9,8 @@ const cardSchema = new Schema({
   description: {
     type: String,
   },
-  comment: {
-    type: String,
+  comments: {
+    type: Array,
   },
   isArchived: {
     type: Boolean,
