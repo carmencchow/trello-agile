@@ -44,6 +44,11 @@ const archiveCard = async (req, res) => {
   }
 }
 
+
+const getArchived = async (req, res) => {
+  
+}
+
 // TODO: UPDATE members of a card
 const deleteMembers = async (req, res) => {
   try {

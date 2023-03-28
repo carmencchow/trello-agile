@@ -1,9 +1,16 @@
-import React, { useState } from 'react'
-import './CardPopup.css'
-import UpdateCardBtn from './UpdateCardBtn'
+import React, { useState } from "react";
+import "./CardPopup.css";
+import UpdateCardBtn from "./UpdateCardBtn";
 
-const EditCard = ({ open, onClose, onCardSaved, id, handleFetchData, listId }) => {
-  const [name, setName] = useState('');
+const EditCard = ({
+  open,
+  onClose,
+  onCardSaved,
+  id,
+  handleFetchData,
+  listId,
+}) => {
+  const [name, setName] = useState("");
   if (!open) return null;
 
   const handleInput = (e) => {
@@ -12,12 +19,11 @@ const EditCard = ({ open, onClose, onCardSaved, id, handleFetchData, listId }) =
 
   const handleUpdateName = () => {
     console.log(name);
-    setName('');
-
-  };  
+    setName("");
+  };
 
   return (
-    <div className="row">  
+    <div className="row">
       <div className="edit-input">
         <div className="">
           <input
@@ -25,20 +31,20 @@ const EditCard = ({ open, onClose, onCardSaved, id, handleFetchData, listId }) =
             className="name"c
             value={name}
             placeholder="Enter new card name"
-            onChange={handleInput}/>
+            onChange={handleInput}
+          />
         </div>
-
-      <UpdateCardBtn
-        input={name}
-        onCardSaved={handleUpdateName}
-        id={id}
-        handleFetchData={handleFetchData}
-        listId={listId}
-        onClose={onClose}/>
-
+        <UpdateCardBtn
+          input={name}
+          onCardSaved={handleUpdateName}
+          id={id}
+          handleFetchData={handleFetchData}
+          listId={listId}
+          onClose={onClose}
+        />
       </div>
     </div>
   );
 };
 
-export default EditCard
+export default EditCard;

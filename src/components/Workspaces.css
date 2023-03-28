@@ -1,4 +1,4 @@
-.boards{
+.boards {
   background-color: darkcyan;
   height: 200px;
   width: 300px;
@@ -9,20 +9,22 @@
   color: white;
   cursor: pointer;
 }
-button{
+button {
   width: 100px;
   height: 20px;
   cursor: pointer;
 }
-.boards-container{
+.boards-container {
   display: flex;
   flex-direction: row;
+  width: 80%;
 }
-.welcome{
+.welcome {
   display: flex;
 }
-.title{
-  background-color: rgba(0,0,0,0.1);
+.title {
+  background-color: rgba(0, 0, 0, 0.1);
+
   width: 60%;
   padding: 5px;
   border-radius: 5px;

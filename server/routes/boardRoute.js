@@ -19,7 +19,8 @@ router.post("/", auth, createBoard);
 router.delete("/:id", auth, deleteBoard);
 router.put("/:id", auth, updateBoardName);
 
-// router.get('/active?=true', getFiltered)
+// router.get('/?active=true', getArchive)
+// http://localhost:5000/api/board/active=true
 
 // GET by :id
 module.exports = router;

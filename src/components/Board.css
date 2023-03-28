@@ -25,9 +25,6 @@ h3{
   justify-content: center;
 } 
 .dots:hover{
-  /* background-color: rgb(207, 205, 205); */
-  /* height: 30px;
-  width: 30px; */
   cursor: pointer;
 }
 .add-card{
@@ -56,6 +53,7 @@ h3{
 .list-name{
   margin-top: 2px;
   font-weight: bolder;
+  font-size: 20px;
 }
 .show-archived{
   cursor: pointer;

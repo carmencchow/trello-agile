@@ -5,7 +5,7 @@ const {
   addComment,
   getCard,
   getCards,
-  archiveCard,
+  // archiveCard,
   createCard,
   updateMembers,
   updateCardName,
@@ -20,8 +20,7 @@ const router = express.Router();
 router.get("/", auth, getCards);
 router.get("/:id", auth, getCard);
 router.post("/", auth, createCard);
-router.post("/:id/add-comment", addComment);
-// router.post("/:id/add-comment", auth, addComment);
+router.post("/:id/add-comment", auth, addComment);
 router.delete("/:id", auth, deleteCard);
 router.put("/:id", auth, updateCardName);
 router.get('/archive/:id', auth, archiveCard);
