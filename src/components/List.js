@@ -72,7 +72,9 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
           open={cardId !== null}
           onClose={() => setCardId(null)}
           id={cardId}
+          listId={listId}
           handleFetchData={handleFetchData}
+          cards={cards}
         />
       )}
 

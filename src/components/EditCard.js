@@ -28,7 +28,7 @@ const EditCard = ({
         <div className="">
           <input
             type="text"
-            className="name"
+            className="name"c
             value={name}
             placeholder="Enter new card name"
             onChange={handleInput}

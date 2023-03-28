@@ -28,17 +28,17 @@ const getCard = async (req, res) => {
   }
 };
 
-// GET unarchived list of cards
-//http://localhost:5000/api/card/isArchived=true
+// UPDATE archive status
 const archiveCard = async (req, res) => {
-  // onClick - findByIdAndUpdate change 'isArchived' field to 'true' in cardSchema
   try{
     let card = await Card.findById({ _id: req.params.id });
     const filter = { _id: req.params.id };
     const update = { isArchived: true };
     let doc = await Card.findOneAndUpdate(filter, update);
     doc = await Card.findOne(filter);
-    console.log(doc.isArchived);
+    await doc.save();
+    console.log('isArchived:', doc.isArchived);
+    return res.status(200).send({ card: doc})
   } catch (err) {
     return res.status(500).send({ message: err.message })
   }
@@ -93,7 +93,7 @@ const createCard = async (req, res) => {
   const listId = req.query.listId;
   try {
     const parentList = await List.findById(listId);
-    const result = await Card.create({ title, parentList: parentList._id, isArchived: false });
+    const result = await Card.create({ title, parentList: parentList._id, isArchived: false, comments: [] });
     console.log(result);
 
     await result.save();
@@ -111,8 +111,9 @@ const createCard = async (req, res) => {
 const updateCardName = async (req, res) => {
   try {
     const title = req.body.title;
+    const id = req.query.id;
     const card = await Card.findById({ _id: req.params.id });
-     card.title = title;
+    card.title = title;
     await card.save();
     console.log(card._id, card.name, title);
     return res.status(200).send({ message: "Card name updated", card: card.title });
@@ -122,7 +123,31 @@ const updateCardName = async (req, res) => {
   }
 };
 
+// ADD COMMENT
+const addComment = async (req, res) => {
+  try{
+    const newComment = req.body.comments;
+    const card = await Card.findOne({ _id: req.params.id });
+    // const filter = {_id: req.params.id};
+    // const update = { comments: comments}
+    // let doc = await Card.findOneAndUpdate(filter, update);
+    // await doc.save();
+    // comments.push(comments);
+    // await doc.save();
+    // console.log('Comments added: ', doc.comments)
+    // return res.status(200).send({ results: doc, message: doc.comments });
+    card.comments.push(newComment);
+    await card.save();
+    console.log('Comments added: ', card.comments)
+    return res.status(200).send({ results: card, message: card.comments });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send({ message: err.message });
+  }
+};
+
 module.exports = {
+  addComment,
   getCard,
   getCards,
   archiveCard,
