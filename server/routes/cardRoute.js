@@ -2,6 +2,7 @@ const express = require("express");
 const auth = require("../middleware/auth");
 
 const {
+  addComment,
   getCard,
   getCards,
   archiveCard,
@@ -18,6 +19,7 @@ const router = express.Router();
 //localhost:5000/api/card
 // router.get("/", auth, getCards);
 // router.get("/:id", auth, getCard);
+// router.get("/:id", auth, addComment);
 // router.post("/", auth, createCard);
 // router.delete("/:id", auth, deleteCard);
 // router.put("/:id", auth, updateCardName);
@@ -26,6 +28,7 @@ const router = express.Router();
 router.get("/", getCards);
 router.get("/:id", getCard);
 router.post("/", createCard);
+router.post("/:id/add-comment", addComment);
 router.delete("/:id", deleteCard);
 router.put("/:id", updateCardName);
 router.get('/archive/:id', archiveCard);

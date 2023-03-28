@@ -6,12 +6,14 @@ import "./CardPopup.css";
 import DeleteCard from "./DeleteCard";
 import EditCard from "./EditCard";
 import ArchiveCard from './ArchiveCard';
+import SaveCommentBtn from "./SaveCardBtn";
 
 const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
+  const [comment, setComment] = useState('')
   const [color, setColor] = useState("green");
   const [cardData, setCardData] = useState(null);
   const [openInput, setOpenInput] = useState(false);
-
+  
   const colorArr = [
     "red",
     "orange",
@@ -22,6 +24,16 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
     "pink",
     "brown",
   ];
+
+  const handleInput = (e) => {
+    setComment(e.target.value);
+  };
+  
+  const handleCardSaved = () => {
+    setComment("");
+  };
+
+
 
   // Display card modal info
   const getCard = async (id) => {
@@ -64,6 +76,29 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
             <div className="options">
               <p>Label: {cardData.card.labels}</p>
               <p>Activity: </p>
+
+              <div className="activity">
+                <div className="comment-container">
+                  <div className="initials">{cardData.card.members}</div>
+                  <input 
+                    type="text" 
+                    value={comment}
+                    className="comments-input"
+                    placeholder="Write a comment"
+                    onChange={handleInput}
+                  />
+                  <SaveCommentBtn
+                    input={comment}
+                    listId={listId}
+                    onCardSaved={handleCardSaved}
+                    id={id}
+                    handleFetchData={handleFetchData}
+                  />
+                </div>
+
+
+
+              </div>
 
               <p className="archive">
                 <ArchiveCard

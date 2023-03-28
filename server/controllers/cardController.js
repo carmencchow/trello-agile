@@ -106,6 +106,7 @@ const createCard = async (req, res) => {
 const updateCardName = async (req, res) => {
   try {
     const title = req.body.title;
+    const id = req.query.id;
     const card = await Card.findById({ _id: req.params.id });
      card.title = title;
     await card.save();
@@ -117,7 +118,23 @@ const updateCardName = async (req, res) => {
   }
 };
 
+// ADD COMMENT
+const addComment = async (req, res) => {
+  // const user = req.user
+  const text = req.body.text;
+  const listId = req.query.listId;
+  try{
+    const card = await Card.findOne({ _id: req.params.id });
+    card.push(text)
+      return res.status(201).send({ message: text });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send({ message: err.message });
+  }
+};
+
 module.exports = {
+  addComment,
   getCard,
   getCards,
   archiveCard,
