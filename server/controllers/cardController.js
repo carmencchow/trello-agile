@@ -124,6 +124,21 @@ const updateCardName = async (req, res) => {
   }
 };
 
+// UPDATE COLOR
+const updateColor = async (req, res) => {
+  try {
+    const color = req.body.color;
+    const id = req.query.id;
+    const card = await Card.findById({ _id: req.params.id });
+    card.labels.color = color;
+    await card.save();
+    console.log(card.color);
+    return res.status(200).send({ message: "Card color updated", color: card.color });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 // ADD COMMENT
 const addComment = async (req, res) => {
   try{
@@ -151,12 +166,11 @@ const addComment = async (req, res) => {
 const deleteComment = async (req, res) => {
   try{
     const card = await Card.findById({ _id: req.params.id });
-
+    res.send(200).send(card);
   } catch (err) {
-
+    res.status(500).send({ message: err.message });
   }
 }
-
 
 //     const list = await List.findById(card.parentList);
 //     list.cards = list.cards.filter(
@@ -169,17 +183,8 @@ const deleteComment = async (req, res) => {
 //   }
 // };
 
-
 // EDIT COMMENT
-const editComment = async (req, res) => {
-
-}
-
-// UPDATE COLOR
-const updateColor = async (req, res) => {
-
-}
-
+const editComment = async (req, res) => {}
 
 module.exports = {
   addComment,

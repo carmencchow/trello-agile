@@ -110,7 +110,10 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
               <span 
                 className="save-color" 
                 onClick={handleColorChange}>
-                <SaveCommentBtn/>
+                <SaveColorBtn
+                  id={id}
+                  // onColorChange={onColorSave}
+                  color={color}/>
               </span>
             </p>
           </div>

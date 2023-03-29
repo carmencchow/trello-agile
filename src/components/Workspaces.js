@@ -67,6 +67,7 @@ const Workspaces = () => {
             <div>
               Hi, <strong>{userInfo.username}!</strong>
               <p>Your boards:</p>
+              <div className="boards-container">
               {userInfo.boards.length > 0 ? (
                 userInfo.boards.map((board, index) => {
                   return (
@@ -83,6 +84,7 @@ const Workspaces = () => {
               ) : (
                 <p>You don't have any boards, yet.</p>
               )}
+            </div>
             </div>
           </div>
         ) : (
