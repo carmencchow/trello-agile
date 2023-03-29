@@ -52,8 +52,9 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
                       setCardId(card._id);
                     }}
                   >
-                    {/* <div className="label-color"></div> */}
-                    {card.title}
+
+                    <div className="label-color"></div>
+                    <p className="card-title">{card.title}</p>
 
                     {/* <span className="icon">{<GrFormEdit />}</span> */}
                   </div>
@@ -86,14 +87,14 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
         />
 
         {!openNewCard ? (
-          <button
+          <span
             className="add-card"
             onClick={() => {
               setOpenNewCard(true);
             }}
           >
-            Add a card
-          </button>
+            + Add a card
+          </span>
         ) : (
           <div className="card-btns"></div>
         )}

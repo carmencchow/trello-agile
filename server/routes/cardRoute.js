@@ -11,6 +11,7 @@ const {
   deleteComment,
   updateMembers,
   updateCardName,
+  updateColor,
   getMembersFromCard,
   deleteCard,
   deleteMembers,
@@ -22,12 +23,16 @@ const router = express.Router();
 router.get("/", auth, getCards);
 router.get("/:id", auth, getCard);
 router.post("/", auth, createCard);
-router.post("/:id/add-comment", auth, addComment);
-router.put("/:id/edit-comment", auth, editComment);
-router.delete("/:id/delete-comment", auth, deleteComment);
+// router.post("/:id/add-comment", auth, addComment);
+// router.put("/:id/edit-comment", auth, editComment);
+// router.delete("/:id/delete-comment", auth, deleteComment);
 router.delete("/:id", auth, deleteCard);
 router.put("/:id", auth, updateCardName);
 router.get('/archive/:id', auth, archiveCard);
+router.post("/:id/add-comment", addComment);
+router.put("/:id/edit-comment", editComment);
+router.delete("/:id/delete-comment", deleteComment);
+router.put("/:id/color", updateColor);
 
 // Are we going to use these endpoints for the MVP?
 router.get("/members/:id", auth, getMembersFromCard);

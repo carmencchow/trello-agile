@@ -42,6 +42,8 @@ const SaveCommentBtn = ({ listId, input, onCommentSaved, id, handleFetchData }) 
       <h4 className="save" onClick={handleSaveComment}>
         Save
       </h4>
+
+      <p>{saved}</p>
     </div>
   );
 };

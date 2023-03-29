@@ -21,7 +21,7 @@
   display: flex;
   justify-content: space-between;
   height: 70px;
-  background-color: #7bc86c;
+  /* background-color: #7bc86c; */
 }
 .card-popup-heading p {
   margin-left: 25px;
@@ -54,6 +54,9 @@
   width: 30%;
   margin-bottom: 30px;
 }
+.color-row span{
+  width: 30px;
+}
 .right-side {
   display: flex;
   flex-direction: column;
@@ -69,8 +72,8 @@ span {
 .color-container {
   height: 20px;
 }
-.red {
-  background-color: red;
+.orangered {
+  background-color: orangered;
 }
 .orange {
   background-color: orange;
@@ -78,20 +81,24 @@ span {
 .yellow {
   background-color: rgb(218, 218, 7);
 }
-.green {
+.lightgreen {
   background-color: lightgreen;
 }
-.blue {
+.lightskyblue {
   background-color: lightskyblue;
 }
-.purple {
+.plum {
   background-color: plum;
 }
 .pink {
   background-color: pink;
 }
-.brown{
-  background-color: #964B00;
+.burlywood{
+  background-color: burlywood;
+}
+.white{
+  background-color: white;
+  border: 1px solid gainsboro;
 }
 h2 {
   padding-left: 30px;

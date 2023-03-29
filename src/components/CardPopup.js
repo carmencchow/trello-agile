@@ -9,6 +9,7 @@ import "./CardPopup.css";
 import DeleteCard from "./DeleteCard";
 import EditCard from "./EditCard";
 import ArchiveCard from "./ArchiveCard";
+import SaveColorBtn from "./SaveColorBtn";
 import SaveCommentBtn from "./SaveCommentBtn";
 import EditCommentBtn from "./EditCommentBtn";
 import DeleteCommentBtn from "./DeleteCommentBtn";
@@ -16,20 +17,22 @@ import DeleteCommentBtn from "./DeleteCommentBtn";
 
 const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
   const [comment, setComment] = useState('')
-  const [color, setColor] = useState("green");
+  const [color, setColor] = useState("lightgreen");
   const [cardData, setCardData] = useState(null);
+  const [saveColor, setSaveColor] = useState('');
   // const [messageReceived, setMessageReceived] = useState("");
   const [openInput, setOpenInput] = useState(false);
   
   const colorArr = [
-    "red",
+    "orangered",
     "orange",
     "yellow",
-    "green",
-    "blue",
-    "purple",
+    "lightgreen",
+    "lightskyblue",
+    "plum",
     "pink",
-    "brown",
+    "burlywood",
+    "white",
   ];
 
   const handleCommentInput = (e) => {
@@ -40,6 +43,11 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
     setComment(e.target.value);;
   };
 
+  const handleColorChange = (e) => {
+    console.log('Saving color', color, e.target.value);
+    setSaveColor(color)
+  }
+  
   // const sendMessage = () => {
   //   socket.emit("send_message", { message: "hello" });
   // };
@@ -93,12 +101,17 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
             <p className="color-row">
               {colorArr.map((color) => {
                 return (
-                  <span
+                  <span id="color-box"
                     className={`${color}`}
                     onClick={() => setColor(`${color}`)}
                   ></span>
                 );
               })}
+              <span 
+                className="save-color" 
+                onClick={handleColorChange}>
+                <SaveCommentBtn/>
+              </span>
             </p>
           </div>
 
@@ -132,6 +145,7 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
                 return (
                   <div className="comments">
                     <p>{comment}</p>
+
                     <div className="edit-row">
                       <EditCommentBtn
                         input={comment}
@@ -141,7 +155,7 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
                         handleFetchData={handleFetchData}
                       />
                       <DeleteCommentBtn
-                        input={comment}
+                        // input={comment}
                         listId={listId}
                         onCommentSaved={handleComment}
                         id={id}
@@ -154,8 +168,7 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
             </div>
           </div>
 
-       
-<br></br>
+        <br></br>
           <div className="edit">
             <EditCard
               open={openInput}

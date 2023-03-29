@@ -175,6 +175,12 @@ const editComment = async (req, res) => {
 
 }
 
+// UPDATE COLOR
+const updateColor = async (req, res) => {
+
+}
+
+
 module.exports = {
   addComment,
   getCard,
@@ -189,4 +195,5 @@ module.exports = {
   updateMembers,
   deleteMembers,
   addMembers,
+  updateColor
 };

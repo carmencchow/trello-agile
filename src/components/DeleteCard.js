@@ -14,10 +14,9 @@ const DeleteCard = ({ id, handleFetchData, onClose }) => {
 
   return (
     <div className="row">
-      <div className="delete-card">
-        <span><RiDeleteBin6Line onClick={() => {
+      <div className="delete-card" onClick={() => {
           handleDelete();
-        }}/></span>
+        }}><span><RiDeleteBin6Line /></span>
         <p>Delete this card</p>
       </div>
     </div>

@@ -1,6 +1,6 @@
 .card-btns {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   flex-direction: row;
 }
 .input-field {
@@ -10,9 +10,18 @@
   margin-bottom: 5px;
   align-items: center;
 }
+.card-title{
+  font-size: 16px;
+  text-align: left;
+  font-weight: lighter;
+}
+.add-card{
+  background-color: rgb(235,236,240);
+  height: 50px;
+}
 .add-card:hover {
-  color: white;
-  background-color: rgb(211, 210, 210);
+  color: darkolivegreen;
+  background-color: rgb(226, 224, 224);
   display: block;
 }
 .icon {
@@ -22,7 +31,7 @@
 }
 .cards {
   display: flex;
-  align-items: center;
+  align-items: left;
 }
 .cards:hover {
   background-color: lightgreen;
@@ -43,10 +52,11 @@
   justify-content: space-between;
 }
 .label-color{
-  width: 8px;
-  height: 8px;
+  width: 20px;
+  height: 6px;
   border-radius: 5px;
   outline: 1px solid black;
   margin-right: 10px;
+  top: 0px;
 }
 

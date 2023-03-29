@@ -17,7 +17,6 @@ const ArchiveCard = ({ id, onClose, onCardSaved, handleFetchData, listId }) => {
       console.log(`Archiving card, ${id}`)
       const res = await axios.get(`http://localhost:5000/api/card/archive/${id}`)
       console.log('archiving this card', res.data)
-      onClose();
       // onCardSaved();
       handleFetchData();
     } catch (error) {
@@ -27,10 +26,9 @@ const ArchiveCard = ({ id, onClose, onCardSaved, handleFetchData, listId }) => {
 
   return (
     <div className="row">
-      <div className="archive-card">
-        <span><BiArchive onClick={() => {
+      <div className="archive-card" onClick={() => {
           handleArchive();
-        }}/></span>
+        }}><span><BiArchive /></span>
         <p>Archive this card</p>
       </div>
     </div>

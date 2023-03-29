@@ -5,6 +5,7 @@ const auth = require("../middleware/auth");
 const {
   getBoard,
   getBoards,
+  getUnArchived,
   createBoard,
   deleteBoard,
   updateBoardName,
@@ -13,14 +14,15 @@ const {
 const router = express.Router();
 
 // ROUTES '/api/board/'
-router.get("/", auth, getBoards);
+router.get("/", getBoards);
+// router.get("/", auth, getBoards);
 router.get("/:id", auth, getBoard);
 router.post("/", auth, createBoard);
 router.delete("/:id", auth, deleteBoard);
 router.put("/:id", auth, updateBoardName);
 
-// router.get('/?active=true', getArchive)
-// http://localhost:5000/api/board/active=true
+router.get('/?isArchived=false', getUnArchived);
+
 
 // GET by :id
 module.exports = router;
