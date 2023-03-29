@@ -66,6 +66,7 @@ const deleteMembers = async (req, res) => {
 
 const updateMembers = async (req, res) => {};
 const addMembers = async (req, res) => {};
+const getMembersFromCard = async (req, res) => {};
 
 // DELETE a card (working)
 const deleteCard = async (req, res) => {
@@ -146,15 +147,45 @@ const addComment = async (req, res) => {
   }
 };
 
+// DELETE COMMENT
+const deleteComment = async (req, res) => {
+  try{
+    const card = await Card.findById({ _id: req.params.id });
+
+  } catch (err) {
+
+  }
+}
+
+
+//     const list = await List.findById(card.parentList);
+//     list.cards = list.cards.filter(
+//       (cardId) => cardId.toString() !== card._id.toString()
+//     );
+//     await list.save();
+//     return res.send("Card deleted");
+//   } catch (err) {
+//     return res.status(500).send({ message: "Error deleting card" });
+//   }
+// };
+
+
+// EDIT COMMENT
+const editComment = async (req, res) => {
+
+}
+
 module.exports = {
   addComment,
   getCard,
   getCards,
+  deleteComment,
+  editComment,
   archiveCard,
   deleteCard,
   createCard,
   updateCardName,
-  // getMembersFromCard,
+  getMembersFromCard,
   updateMembers,
   deleteMembers,
   addMembers,

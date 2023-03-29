@@ -113,18 +113,20 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
                 onChange={handleCommentInput}
               />
               <div className="save-comment-btn">
-                <SaveCommentBtn
-                  input={comment}
-                  listId={listId}
-                  onCommentSaved={handleComment}
-                  id={id}
-                  handleFetchData={handleFetchData}
-                />
+                <div className="save">
+                  <SaveCommentBtn
+                    input={comment}
+                    listId={listId}
+                    onCommentSaved={handleComment}
+                    id={id}
+                    handleFetchData={handleFetchData}
+                  />
+                </div>
               </div>
             </div>
 
             <div className="comment-container">
-              <h5>Comments:</h5>
+            {comment ? <h5>Comments:</h5> : null}
               {cardData.card.comments.map((comment) => {
                 console.log(comment)
                 return (
@@ -152,14 +154,8 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
             </div>
           </div>
 
-          <p className="archive">
-            <ArchiveCard
-              handleFetchData={handleFetchData}
-              id={id}
-              onClose={onClose}
-            />
-          </p>
-
+       
+<br></br>
           <div className="edit">
             <EditCard
               open={openInput}
@@ -177,7 +173,7 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
                 }}
               >
                 {" "}
-                Edit this card <FiEdit2 />
+                <span className="edit-icon"><FiEdit2 /></span> Edit this card 
               </h4>
             ) : (
               <div></div>
@@ -185,7 +181,15 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
           </div>
         </div>
 
-        <p className="delete">
+        <p className="archive-card">
+          <ArchiveCard
+            handleFetchData={handleFetchData}
+            id={id}
+            onClose={onClose}
+          />
+        </p>
+
+        <p className="delete-card">
           <DeleteCard
             handleFetchData={handleFetchData}
             id={id}

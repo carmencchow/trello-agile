@@ -33,8 +33,7 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
   return (
     <div className="list">
       <span className="list-header">
-        <p className="list-name">{name}</p>
-        <BsThreeDots />
+        <p className="list-name">{name}</p>    
       </span>
 
       <Droppable droppableId={id}>

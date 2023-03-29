@@ -27,20 +27,12 @@ const ArchiveCard = ({ id, onClose, onCardSaved, handleFetchData, listId }) => {
 
   return (
     <div className="row">
-      <h4
-        onClick={() => {
+      <div className="archive-card">
+        <span><BiArchive onClick={() => {
           handleArchive();
-        }}
-      >
-        Archive this card
-      </h4>
-      <span>
-        <BiArchive
-          onClick={() => {
-            handleArchive();
-          }}
-        />
-      </span>
+        }}/></span>
+        <p>Archive this card</p>
+      </div>
     </div>
   );
 };

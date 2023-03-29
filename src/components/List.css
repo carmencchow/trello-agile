@@ -30,18 +30,18 @@
 .cards:hover .icon {
   display: block;
 }
-
 .list {
   height: auto;
 }
 .list-name {
-  white-space: nowrap;
+  justify-content: space-between;
+  display: flex;
 }
 .list-header {
   display: flex;
   margin-bottom: 0.5em;
+  justify-content: space-between;
 }
-
 .label-color{
   width: 8px;
   height: 8px;
