@@ -8,6 +8,7 @@ import { Droppable, Draggable } from "react-beautiful-dnd";
 const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
   const [openNewCard, setOpenNewCard] = useState(false);
   const [cardId, setCardId] = useState(null);
+  const [labelColor, setLabelColor] = useState('');
 
   // const onDragEnd = (result) => {
   //   const { destination, source, draggableId } = result;
@@ -42,7 +43,7 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
             {cards.map((card, index) => (
               <Draggable key={card._id} draggableId={card._id} index={index}>
                 {(provided) => (
-                  <div
+                   <div
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
@@ -53,7 +54,7 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
                     }}
                   >
 
-                    <div className="label-color"></div>
+                    <div className={`${card.color}`}></div>
                     <p className="card-title">{card.title}</p>
 
                     {/* <span className="icon">{<GrFormEdit />}</span> */}

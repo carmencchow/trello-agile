@@ -51,12 +51,54 @@
   margin-bottom: 0.5em;
   justify-content: space-between;
 }
-.label-color{
+.orangered {
+  background-color: orangered;
   width: 20px;
   height: 6px;
   border-radius: 5px;
-  outline: 1px solid black;
-  margin-right: 10px;
-  top: 0px;
+  display: flex;
+  justify-content: left;
+}
+.orange {
+  background-color: orange;
+  width: 20px;
+  height: 6px;
+  border-radius: 5px;
+}
+.yellow {
+  background-color: rgb(218, 218, 7);
+  width: 20px;
+  height: 6px;
+  border-radius: 5px;
+}
+.lightgreen {
+  background-color: lightgreen;
+  width: 20px;
+  height: 6px;
+  border-radius: 5px;
+}
+.lightskyblue {
+  background-color: lightskyblue;
+  width: 20px;
+  height: 6px;
+  border-radius: 5px;
+}
+.plum {
+  background-color: plum;
+  width: 20px;
+  height: 6px;
+  border-radius: 5px;
+}
+.pink {
+  background-color: pink;
+  width: 20px;
+  height: 6px;
+  border-radius: 5px;
+}
+.burlywood{
+  background-color: burlywood;
+  width: 20px;
+  height: 6px;
+  border-radius: 5px;
 }
 

@@ -130,7 +130,7 @@ const updateColor = async (req, res) => {
     const color = req.body.color;
     const id = req.query.id;
     const card = await Card.findById({ _id: req.params.id });
-    card.labels.color = color;
+    card.color = color;
     await card.save();
     console.log(card.color);
     return res.status(200).send({ message: "Card color updated", card });

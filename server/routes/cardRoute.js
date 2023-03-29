@@ -21,7 +21,8 @@ const router = express.Router();
 
 //localhost:5000/api/card
 router.get("/", auth, getCards);
-router.get("/:id", auth, getCard);
+router.get("/:id", getCard);
+// router.get("/:id", auth, getCard);
 router.post("/", auth, createCard);
 // router.post("/:id/add-comment", auth, addComment);
 // router.put("/:id/edit-comment/:id", auth, editComment);

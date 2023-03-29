@@ -1,8 +1,13 @@
+body{
+  /* background: rgb(238,174,202);
+background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(85,118,156,1) 100%); */
+}
+
 .list {
   width: 245px;
   height: 500px;
   margin: 20px;
-  border-radius: 3px;
+  border-radius: 10px;
   background-color: #ebecf0
 }
 h3{

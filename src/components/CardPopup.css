@@ -161,14 +161,15 @@ input{
 .archive-card{
   margin-right: 20px;
 }
-/* span{
+span{
   font-size: 18px;
   margin-top: 13px;
   margin-right: 10px;
-} */
+}
 .edit-icon{
   margin-top: 5px;
   margin-left: 40px;
+  margin-right: 10px;
 }
 .edit-card{
   width: 200px;

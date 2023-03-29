@@ -17,7 +17,7 @@ import DeleteCommentBtn from "./DeleteCommentBtn";
 
 const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
   const [comment, setComment] = useState('')
-  const [color, setColor] = useState("lightgreen");
+  const [color, setColor] = useState('');
   const [cardData, setCardData] = useState(null);
   const [saveColor, setSaveColor] = useState('');
   // const [messageReceived, setMessageReceived] = useState("");
