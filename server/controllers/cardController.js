@@ -133,7 +133,7 @@ const updateColor = async (req, res) => {
     card.labels.color = color;
     await card.save();
     console.log(card.color);
-    return res.status(200).send({ message: "Card color updated", color: card.color });
+    return res.status(200).send({ message: "Card color updated", card });
   } catch (err) {
     console.log(err);
   }
@@ -144,14 +144,6 @@ const addComment = async (req, res) => {
   try{
     const newComment = req.body.comments;
     const card = await Card.findOne({ _id: req.params.id });
-    // const filter = {_id: req.params.id};
-    // const update = { comments: comments}
-    // let doc = await Card.findOneAndUpdate(filter, update);
-    // await doc.save();
-    // comments.push(comments);
-    // await doc.save();
-    // console.log('Comments added: ', doc.comments)
-    // return res.status(200).send({ results: doc, message: doc.comments });
     card.comments.push(newComment);
     await card.save();
     console.log('Comments added: ', card.comments)

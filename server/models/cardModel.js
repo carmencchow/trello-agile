@@ -21,25 +21,9 @@ const cardSchema = new Schema({
       ref: "list",
     },
   ],
-
-  // Optional: labels, members, dates ...
-  labels: [
-    {
-      text: {
-        type: String,
-      },
-      color: {
-        type: String,
-      },
-      background: {
-        type: String,
-      },
-      selected: {
-        type: Boolean,
-      },
-    },
-  ],
-
+  color: {
+    type: String,
+  },
   members: [
     {
       user: {

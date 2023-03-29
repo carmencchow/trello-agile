@@ -12,3 +12,7 @@
   font-weight: lighter;
   background-color: none;
 }
+.left{
+  display: flex;
+  justify-content: left;
+}

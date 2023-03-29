@@ -45,7 +45,7 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
 
   const handleColorChange = (e) => {
     console.log('Saving color', color, e.target.value);
-    setSaveColor(color)
+    setColor(e.target.value);
   }
   
   // const sendMessage = () => {
@@ -91,7 +91,7 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
           style={{ backgroundColor: color }}>
           <h2>{cardData.card.title}</h2>
           <div className="right-side">
-            <GrFormClose className="close" onClick={onClose} />
+            <GrFormClose className="close-btn" onClick={onClose} />
           </div>
         </div>
 
@@ -108,7 +108,7 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
                 );
               })}
               <span 
-                className="save-color" 
+                className="colors" 
                 onClick={handleColorChange}>
                 <SaveColorBtn
                   id={id}
@@ -133,9 +133,10 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
                   <SaveCommentBtn
                     input={comment}
                     listId={listId}
-                    onCommentSaved={handleComment}
+                    addComment={handleComment}
                     id={id}
-                    handleFetchData={handleFetchData}
+                    // handleFetchData={handleFetchData}
+                    getCard={getCard}
                   />
                 </div>
               </div>
@@ -179,6 +180,7 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
               id={id}
               handleFetchData={handleFetchData}
               onClose={onClose}
+              setOpenInput={setOpenInput} 
             />
 
             {!openInput ? (
@@ -197,6 +199,7 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
           </div>
         </div>
 
+        <div className="bottom-buttons">
         <p className="archive-card">
           <ArchiveCard
             handleFetchData={handleFetchData}
@@ -212,7 +215,7 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
             onClose={onClose}
           />
         </p>
-
+        </div>
         </div>
       </div>
     );
