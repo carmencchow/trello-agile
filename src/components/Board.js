@@ -8,9 +8,9 @@ import Archived from './Archived'
 // import io from "socket.io-client";
 // import { store } from "../store";
 import { useDispatch } from "react-redux";
-import "./Board.css";
 import { fetchData } from "../store/thunks/fetchList";
 import { useSelector } from "react-redux";
+import "./Board.css";
 
 // const socket = io.connect("http://localhost:5000");
 
@@ -46,8 +46,6 @@ const Board = () => {
     const item = sourceList.items.splice(source.index, 1)[0];
     destinationList.items.splice(destination.index, 0, item);
 
-
-    // Only return cards with 'isArchive' set to 'false'
     axios
       .put(`/api/board/${id}/lists`, { lists })
       .then((res) => {
@@ -93,8 +91,11 @@ const Board = () => {
         <button onClick={sendMessage}>Send</button>
       </div> */}
       <h3>{board.title}</h3>
-      <Archived/>
-
+      
+      <Archived
+        id={id}
+      />
+      
       <DragDropContext onDragEnd={(result) => onDragEnd(result, board.lists)}>
         <div className="container">
           {board.lists &&

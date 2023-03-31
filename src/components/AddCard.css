@@ -9,6 +9,9 @@ input{
   color: white;
   background-color: darkgray;
 }
+.card{
+  width: 228px;
+}
 .cancel{
   width: 40px;
   height: 36px;

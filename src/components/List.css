@@ -6,41 +6,44 @@
 .input-field {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: left;
   margin-bottom: 5px;
-  align-items: center;
+  align-items: left;
 }
 .card-title{
   font-size: 16px;
-  text-align: left;
+  /* text-align: left; */
   font-weight: lighter;
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
 }
 .add-card{
-  background-color: rgb(235,236,240);
+  background-color: none;
+  /* background-color: rgb(235,236,240); */
   height: 50px;
 }
 .add-card:hover {
   color: darkolivegreen;
-  background-color: rgb(226, 224, 224);
+  /* background-color: rgb(226, 224, 224); */
   display: block;
-}
-.icon {
-  margin-left: 15px;
-  display: none;
-  align-items: end;
 }
 .cards {
   display: flex;
-  align-items: left;
+  text-align: left;
+  justify-content: left;
 }
 .cards:hover {
-  background-color: lightgreen;
+  background-color: #ebecf0;
+  border: 1px solid white;
 }
 .cards:hover .icon {
   display: block;
 }
 .list {
   height: auto;
+  justify-content: left;
+  text-align: left;
 }
 .list-name {
   justify-content: space-between;

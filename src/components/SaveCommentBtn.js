@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./SaveCommentBtn.css";
 
-const SaveCommentBtn = ({ listId, input, addComment, id, handleFetchData, getCard }) => {
+const SaveCommentBtn = ({ listId, input, clearComment, id, handleFetchData, getCard }) => {
 
-  const [comment, setComment] = useState('');
+  // const [comment, setComment] = useState('');
 
   const handleSaveComment = async (e) => {
     console.log("saving comments:", input);
-    setComment(input);
+    // setComment(input);
 
     try {
       const token = localStorage.getItem("token");
@@ -30,9 +30,8 @@ const SaveCommentBtn = ({ listId, input, addComment, id, handleFetchData, getCar
       );
       const data = res.data;
       console.log(data);
-      // onCommentSaved();
-      addComment();
-      getCard();
+      clearComment();
+      await getCard(id);
       // handleFetchData();
       } catch (err) {
         console.log(err);

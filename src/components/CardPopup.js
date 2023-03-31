@@ -37,10 +37,11 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
 
   const handleCommentInput = (e) => {
     setComment(e.target.value);
+
   };
   
-  const handleComment = (e) => {
-    setComment(e.target.value);;
+  const clearComment = () => {
+    setComment('');
   };
 
   const handleColorChange = (e) => {
@@ -133,7 +134,7 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
                   <SaveCommentBtn
                     input={comment}
                     listId={listId}
-                    addComment={handleComment}
+                    clearComment={clearComment}
                     id={id}
                     // handleFetchData={handleFetchData}
                     getCard={getCard}
@@ -154,14 +155,14 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
                       <EditCommentBtn
                         input={comment}
                         listId={listId}
-                        onCommentSaved={handleComment}
+                        // onCommentSaved={handleComment}
                         id={id}
                         handleFetchData={handleFetchData}
                       />
                       <DeleteCommentBtn
                         // input={comment}
                         listId={listId}
-                        onCommentSaved={handleComment}
+                        // onCommentSaved={handleComment}
                         id={id}
                         handleFetchData={handleFetchData}
                       />

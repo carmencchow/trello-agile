@@ -1,6 +1,7 @@
 const Card = require("../models/cardModel");
 const User = require("../models/userModel");
 const List = require("../models/listModel");
+const { v4: uuidv4 } = require('uuid');
 
 // GET all cards 
 const getCards = async (req, res) => {
@@ -42,11 +43,6 @@ const archiveCard = async (req, res) => {
   } catch (err) {
     return res.status(500).send({ message: err.message })
   }
-}
-
-
-const getArchived = async (req, res) => {
-  
 }
 
 // TODO: UPDATE members of a card
@@ -142,9 +138,11 @@ const updateColor = async (req, res) => {
 // ADD COMMENT
 const addComment = async (req, res) => {
   try{
+    // const newComment = req.body.testcomments;
     const newComment = req.body.comments;
     const card = await Card.findOne({ _id: req.params.id });
-    card.comments.push(newComment);
+    // card.testcomments.push({ commentID: uuidv4(), text: newComment });
+    card.comments.push(newComment);  
     await card.save();
     console.log('Comments added: ', card.comments)
     return res.status(200).send({ results: card, message: card.comments });

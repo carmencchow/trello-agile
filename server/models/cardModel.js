@@ -12,6 +12,23 @@ const cardSchema = new Schema({
   comments: {
     type: Array,
   },
+  // testComments: {
+  //   _id: {
+  //     type: Object,
+  //     text: String,
+  //     id: Number
+  //   }
+  // },
+  testComments: [
+    {
+      commendId: {
+        type: Number
+      },
+      text: { 
+        type: String 
+      }
+    },
+  ],
   isArchived: {
     type: Boolean,
   },

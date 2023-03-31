@@ -8,7 +8,9 @@ background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(85,118,156,1) 1
   height: 500px;
   margin: 20px;
   border-radius: 10px;
-  background-color: #ebecf0
+  /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  background-color: #f6f7f9
 }
 h3{
   padding-left: 25px;
@@ -60,8 +62,9 @@ h3{
   font-weight: bolder;
   font-size: 20px;
 }
-.show-archived{
+.archived{
   cursor: pointer;
-  width: 200px;
-  padding: 20px;
+  width: 160px;
+  margin-left: 30px;
+  vertical-align: center;
 }

@@ -88,14 +88,14 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
         />
 
         {!openNewCard ? (
-          <span
+          <div
             className="add-card"
             onClick={() => {
               setOpenNewCard(true);
             }}
           >
             + Add a card
-          </span>
+          </div>
         ) : (
           <div className="card-btns"></div>
         )}
