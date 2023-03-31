@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import axios from "axios";
 import { GrFormClose } from "react-icons/gr";
 import { GoThreeBars } from "react-icons/go";
@@ -6,6 +6,7 @@ import {  } from "react-icons/gr";
 // import io from "socket.io-client";
 import { FiEdit2 } from "react-icons/fi";
 import "./CardPopup.css";
+import { ColorContext } from '../context/ColorContext'
 import DeleteCard from "./DeleteCard";
 import EditCard from "./EditCard";
 import ArchiveCard from "./ArchiveCard";
@@ -17,9 +18,12 @@ import DeleteCommentBtn from "./DeleteCommentBtn";
 
 const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
   const [comment, setComment] = useState('')
-  const [color, setColor] = useState('');
+  // const [color, setColor] = useState('');
   const [cardData, setCardData] = useState(null);
   const [saveColor, setSaveColor] = useState('');
+  const [headerColor, setHeaderColor] = useState('');
+  const { color, setColor } = useContext(ColorContext)
+
   // const [messageReceived, setMessageReceived] = useState("");
   const [openInput, setOpenInput] = useState(false);
   
@@ -37,7 +41,6 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
 
   const handleCommentInput = (e) => {
     setComment(e.target.value);
-
   };
   
   const clearComment = () => {
@@ -45,8 +48,10 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
   };
 
   const handleColorChange = (e) => {
+    e.preventDefault();
     console.log('Saving color', color, e.target.value);
     setColor(e.target.value);
+    // setHeaderColor(e.target.value);
   }
   
   // const sendMessage = () => {
@@ -90,6 +95,7 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
       <div className="card-popup">
         <div className="card-popup-heading" 
           style={{ backgroundColor: color }}>
+            {/* {headerColor} */}
           <h2>{cardData.card.title}</h2>
           <div className="right-side">
             <GrFormClose className="close-btn" onClick={onClose} />
@@ -114,7 +120,9 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
                 <SaveColorBtn
                   id={id}
                   // onColorChange={onColorSave}
-                  color={color}/>
+                  color={color}
+                  getCard={getCard}
+                />
               </span>
             </p>
           </div>

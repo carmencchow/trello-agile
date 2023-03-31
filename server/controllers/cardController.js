@@ -1,7 +1,8 @@
 const Card = require("../models/cardModel");
 const User = require("../models/userModel");
 const List = require("../models/listModel");
-const { v4: uuidv4 } = require('uuid');
+const Comment = require("../models/commentModel");
+// const { v4: uuidv4 } = require('uuid');
 
 // GET all cards 
 const getCards = async (req, res) => {
@@ -19,7 +20,7 @@ const getCards = async (req, res) => {
 // GET a card
 const getCard = async (req, res) => {
   try {
-    const card = await Card.findOne({ _id: req.params.id });
+    const card = await Card.findOne({ _id: req.params.id }).sort({ comments: 1})
     if (!card) {
       return res.status(404).send({ message: "Card not found" });
     }
@@ -90,7 +91,7 @@ const createCard = async (req, res) => {
   const listId = req.query.listId;
   try {
     const parentList = await List.findById(listId);
-    const result = await Card.create({ title, parentList: parentList._id, isArchived: false, comments: [] });
+    const result = await Card.create({ title, parentList: parentList._id, isArchived: false, comments: [], timestamps: true });
     console.log(result);
 
     await result.save();
@@ -138,11 +139,9 @@ const updateColor = async (req, res) => {
 // ADD COMMENT
 const addComment = async (req, res) => {
   try{
-    // const newComment = req.body.testcomments;
     const newComment = req.body.comments;
     const card = await Card.findOne({ _id: req.params.id });
-    // card.testcomments.push({ commentID: uuidv4(), text: newComment });
-    card.comments.push(newComment);  
+    card.comments.push(newComment)
     await card.save();
     console.log('Comments added: ', card.comments)
     return res.status(200).send({ results: card, message: card.comments });

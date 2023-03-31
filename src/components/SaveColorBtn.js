@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const SaveColorBtn = ({ color, id, onColorSave, handleFetchData }) => {
+const SaveColorBtn = ({ color, id, getCard,  onColorSave, handleFetchData }) => {
 
   const handleColorChange = async (e) => {
     console.log("change color to:", color);
@@ -26,8 +26,9 @@ const SaveColorBtn = ({ color, id, onColorSave, handleFetchData }) => {
       );
       const data = res.data;
       console.log(data);
-      onColorSave();
-      handleFetchData();
+      // onColorSave();
+      await getCard(id);
+      // handleFetchData();
     } catch (err) {
       console.log(err);
     }

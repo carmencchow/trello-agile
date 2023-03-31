@@ -4,11 +4,8 @@ import "./SaveCommentBtn.css";
 
 const SaveCommentBtn = ({ listId, input, clearComment, id, handleFetchData, getCard }) => {
 
-  // const [comment, setComment] = useState('');
-
   const handleSaveComment = async (e) => {
     console.log("saving comments:", input);
-    // setComment(input);
 
     try {
       const token = localStorage.getItem("token");

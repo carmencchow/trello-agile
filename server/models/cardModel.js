@@ -11,6 +11,8 @@ const cardSchema = new Schema({
   },
   comments: {
     type: Array,
+    timestamps: true, 
+    required: true,
   },
   // testComments: {
   //   _id: {

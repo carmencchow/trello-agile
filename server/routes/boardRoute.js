@@ -22,9 +22,7 @@ router.get("/:id", getBoard);
 router.post("/", auth, createBoard);
 router.delete("/:id", auth, deleteBoard);
 router.put("/:id", auth, updateBoardName);
-
-router.get("/archived/:id", getArchived);
-router.get("/unarchived/:id", getUnArchived);
+router.get("/archived/:id", getArchived); //When button is clicked ('isArchived=true&false')
 
 
 // GET by :id
