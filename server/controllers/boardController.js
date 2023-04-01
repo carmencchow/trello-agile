@@ -41,7 +41,7 @@ const getArchived = async (req, res) => {
   }
 };
 
-// GET ALL boards (working)
+// GET ALL boards
 const getBoards = async (req, res) => {
   try {
     const boards = await Board.find({})

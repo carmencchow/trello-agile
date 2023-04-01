@@ -3,22 +3,33 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema(
   {
-    text: {
+    content: {
       type: String,
       required: true,
     },
-    // board: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "board",
-    // },
-    parentList: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "card",
-      },
-    ],
+    author: {
+      // type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
+        ref: "user",
+        required: true,
+    },
+    card: {
+      type: Schema.Types.ObjectId,
+      // type: mongoose.Schema.Types.ObjectId,
+      ref: "card",
+      required: true,
+    },
   },
-  { timestamps: true }
+  {
+    update_on: {
+      type: Date,
+      default: Date.now(),
+    }
+  },
+  {
+    timestamps: true,
+  }
 );
 
 module.exports = mongoose.model("comment", commentSchema);
+

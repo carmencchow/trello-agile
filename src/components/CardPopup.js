@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { GrFormClose } from "react-icons/gr";
 import { GoThreeBars } from "react-icons/go";
@@ -6,7 +6,6 @@ import {  } from "react-icons/gr";
 // import io from "socket.io-client";
 import { FiEdit2 } from "react-icons/fi";
 import "./CardPopup.css";
-import { ColorContext } from '../context/ColorContext'
 import DeleteCard from "./DeleteCard";
 import EditCard from "./EditCard";
 import ArchiveCard from "./ArchiveCard";
@@ -18,11 +17,9 @@ import DeleteCommentBtn from "./DeleteCommentBtn";
 
 const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
   const [comment, setComment] = useState('')
-  // const [color, setColor] = useState('');
+  const [color, setColor] = useState();
   const [cardData, setCardData] = useState(null);
   const [saveColor, setSaveColor] = useState('');
-  const [headerColor, setHeaderColor] = useState('');
-  const { color, setColor } = useContext(ColorContext)
 
   // const [messageReceived, setMessageReceived] = useState("");
   const [openInput, setOpenInput] = useState(false);
@@ -89,7 +86,6 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
   //   handleFetchData();
 
   if (!open || cardData === null) return null;
-
   return (
     <div className="card-background">
       <div className="card-popup">
