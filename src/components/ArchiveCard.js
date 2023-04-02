@@ -17,7 +17,7 @@ const ArchiveCard = ({ id, onClose, onCardSaved, handleFetchData, listId }) => {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       console.log(`Archiving card, ${id}`)
       const res = await axios.get(`http://localhost:5000/api/card/archive/${id}/`)
-      console.log('status:', res.data.card.status)
+      console.log(res.data.card.title, res.data.card.status)
       setStatus(res.data.card.status)
       handleFetchData();
       onClose();

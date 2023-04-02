@@ -13,7 +13,8 @@ const getBoard = async (req, res) => {
       path: "lists",
       populate: ({
         path: "cards",
-      }),
+        match: { isArchived: false },
+      })
     });
     if (!board) {
       return res.status(404).send({ message: "Board not found" });
