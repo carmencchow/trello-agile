@@ -2,16 +2,14 @@ const express = require("express");
 const auth = require("../middleware/auth");
 
 const {
-  addComment,
   getCard,
   getCards,
-  // archiveCard,
+  archiveCard,
   createCard,
-  updateMembers,
+  addComment,
   updateCardName,
-  // getMembersFromCard,
+  updateColor,
   deleteCard,
-  deleteMembers,
 } = require("../controllers/cardController");
 
 const router = express.Router();
@@ -21,13 +19,9 @@ router.get("/", auth, getCards);
 router.get("/:id", auth, getCard);
 router.post("/", auth, createCard);
 router.post("/:id/add-comment", auth, addComment);
-router.delete("/:id", auth, deleteCard);
+router.put("/:id/color", auth, updateColor);
 router.put("/:id", auth, updateCardName);
+router.delete("/:id", auth, deleteCard);
 router.get('/archive/:id', auth, archiveCard);
-
-// Are we going to use these endpoints for the MVP?
-// router.get("/members/:id", auth, getMembersFromCard);
-router.delete("/members/:id", auth, deleteMembers);
-router.put("/members/:id", auth, updateMembers);
 
 module.exports = router;

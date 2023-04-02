@@ -6,14 +6,22 @@ const cardSchema = new Schema({
     type: String,
     required: true,
   },
-  description: {
-    type: String,
-  },
   comments: {
     type: Array,
+    timestamps: true, 
+    required: true,
   },
+  // comments: [
+  //   {
+  //     type: mongoose.SchemaType.Types.ObjectId,
+  //     ref: "comment"
+  //   }
+  // ],
   isArchived: {
     type: Boolean,
+  },
+  status: {
+    type: String,
   },
   parentList: [
     {
@@ -21,25 +29,9 @@ const cardSchema = new Schema({
       ref: "list",
     },
   ],
-
-  // Optional: labels, members, dates ...
-  labels: [
-    {
-      text: {
-        type: String,
-      },
-      color: {
-        type: String,
-      },
-      background: {
-        type: String,
-      },
-      selected: {
-        type: Boolean,
-      },
-    },
-  ],
-
+  color: {
+    type: String,
+  },
   members: [
     {
       user: {
@@ -48,15 +40,6 @@ const cardSchema = new Schema({
       },
     },
   ],
-
-  dates: {
-    startDate: {
-      type: Date,
-    },
-    dueDate: {
-      type: Date,
-    },
-  },
 });
 
 module.exports = mongoose.model("card", cardSchema);

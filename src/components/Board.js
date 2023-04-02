@@ -4,12 +4,13 @@ import { DragDropContext } from "react-beautiful-dnd";
 import axios from "axios";
 import Navbar from "./Navbar";
 import List from "../components/List";
+import Archived from './Archived'
 // import io from "socket.io-client";
 // import { store } from "../store";
 import { useDispatch } from "react-redux";
-import "./Board.css";
 import { fetchData } from "../store/thunks/fetchList";
 import { useSelector } from "react-redux";
+import "./Board.css";
 
 // const socket = io.connect("http://localhost:5000");
 
@@ -46,7 +47,7 @@ const Board = () => {
     destinationList.items.splice(destination.index, 0, item);
 
     axios
-      .put(`/api/board/${id}/lists`, { lists })
+    .get(`/api/board/${id}/lists`, { lists })
       .then((res) => {
         //dispatch here to update list
       })
@@ -90,14 +91,18 @@ const Board = () => {
         <button onClick={sendMessage}>Send</button>
       </div> */}
       <h3>{board.title}</h3>
-
+      
+      <Archived
+        id={id}
+      />
+      
       <DragDropContext onDragEnd={(result) => onDragEnd(result, board.lists)}>
         <div className="container">
           {board.lists &&
             board.lists.map((list) => (
               <List
                 key={list._id}
-                name={list.name}
+                name={list.name}z
                 cards={list.cards}
                 id={list._id}
                 listId={list._id}

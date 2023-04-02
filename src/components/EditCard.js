@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./CardPopup.css";
 import UpdateCardBtn from "./UpdateCardBtn";
+import './EditCard.css';
 
 const EditCard = ({
   open,
@@ -28,20 +29,22 @@ const EditCard = ({
         <div className="">
           <input
             type="text"
-            className="name"c
+            className="name"
             value={name}
             placeholder="Enter new card name"
             onChange={handleInput}
           />
         </div>
-        <UpdateCardBtn
-          input={name}
-          onCardSaved={handleUpdateName}
-          id={id}
-          handleFetchData={handleFetchData}
-          listId={listId}
-          onClose={onClose}
-        />
+        <div className="update">
+          <UpdateCardBtn
+            input={name}
+            onCardSaved={handleUpdateName}
+            id={id}
+            handleFetchData={handleFetchData}
+            listId={listId}
+            onClose={onClose}
+          />
+        </div>
       </div>
     </div>
   );

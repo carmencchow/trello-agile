@@ -4,6 +4,10 @@ import './UpdateCardBtn.css';
 
 const UpdateCardBtn = ({ listId, input, onClose, onCardSaved, id, handleFetchData }) => {
 
+  const handleClose = () => {
+    onClose();
+  }
+
   const handleUpdate = async (e, listId) => {
     console.log("new card title", input);
 
@@ -36,10 +40,9 @@ const UpdateCardBtn = ({ listId, input, onClose, onCardSaved, id, handleFetchDat
 };
 
 return (
-  <div>
-    <button className="update" onClick={handleUpdate}>
-      Update
-    </button>
+  <div className="update-close">
+    <button className="update" onClick={handleUpdate}>Update</button>
+    <button className="close" onClick={handleClose}>Close</button>
   </div>
 );
 };

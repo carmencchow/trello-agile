@@ -1,8 +1,9 @@
+
 import React, { useState } from "react";
 import "./AddCard.css";
 import SaveCardBtn from "./SaveCardBtn";
 
-const AddCard = ({ open, listId, id, onCardSaved, handleFetchData }) => {
+const AddCard = ({ open, listId, id, onCardSaved, handleFetchData, onClose }) => {
 
   const [input, setInput] = useState("");
 
@@ -18,7 +19,7 @@ const AddCard = ({ open, listId, id, onCardSaved, handleFetchData }) => {
 
   return (
     <div className="input-container">
-      <div>
+      <div className={onClose}>
         <input
           type="text"
           className="card"
@@ -34,7 +35,10 @@ const AddCard = ({ open, listId, id, onCardSaved, handleFetchData }) => {
         onCardSaved={handleCardSaved}
         id={id}
         handleFetchData={handleFetchData}
+        onClose={onClose}
       />
+
+
     </div>
   );
 };

@@ -4,3 +4,13 @@ input {
   flex-direction: row;
   justify-content: flex-start;
 }
+.update{
+  font-size: 14px;
+  font-weight: lighter;
+  line-height: 40px;
+  border: none;
+}
+.update:hover{
+  color: blue;
+}
+

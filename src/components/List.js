@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import AddCard from "../components/AddCard";
 import CardPopup from "./CardPopup";
 import "./List.css";
+import { AppContext } from '../context/AppContext'
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
@@ -33,8 +34,7 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
   return (
     <div className="list">
       <span className="list-header">
-        <p className="list-name">{name}</p>
-        <BsThreeDots />
+        <p className="list-name">{name}</p>    
       </span>
 
       <Droppable droppableId={id}>
@@ -43,7 +43,7 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
             {cards.map((card, index) => (
               <Draggable key={card._id} draggableId={card._id} index={index}>
                 {(provided) => (
-                  <div
+                   <div
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
@@ -53,11 +53,10 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
                       setCardId(card._id);
                     }}
                   >
-                    {/* <div className="label-color"></div> */}
-                    {card.title}
 
-                    {/* <span className="icon">{<GrFormEdit />}</span> */}
-                  </div>
+                    <div className={`${card.color}`}></div>
+                    <p className="card-title">{card.title}</p>
+                   </div>
                 )}
               </Draggable>
             ))}
@@ -87,14 +86,14 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
         />
 
         {!openNewCard ? (
-          <button
+          <div
             className="add-card"
             onClick={() => {
               setOpenNewCard(true);
             }}
           >
-            Add a card
-          </button>
+            + Add a card
+          </div>
         ) : (
           <div className="card-btns"></div>
         )}

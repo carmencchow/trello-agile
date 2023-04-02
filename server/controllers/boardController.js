@@ -5,17 +5,16 @@ const Card = require("../models/cardModel");
 
 // GET a board by id
 // Since every user created at this point is a part of the Parsity organization, then we don't need to pull the user.boards to populate on the workspace screen? Technically every board should show up since they're all a part of parsity's organization.
+
+// When page loads GET ALL CARDS
 const getBoard = async (req, res) => {
   try {
     const board = await Board.findOne({ _id: req.params.id }).populate({
       path: "lists",
       populate: ({
         path: "cards",
-      }),
-      // populate: ({
-      //   path: "cards",
-      //   match: {"isActive": false}
-      // }),
+        match: { isArchived: false },
+      })
     });
     if (!board) {
       return res.status(404).send({ message: "Board not found" });
@@ -26,7 +25,24 @@ const getBoard = async (req, res) => {
   }
 };
 
-// GET ALL boards (working)
+// When button is clicked: return Archived cards
+const getArchived = async (req, res) => {
+  try {
+    const board = await Board.findOne({ _id: req.params.id })
+    .populate({
+      path: "lists",
+      populate: ({
+        match: { isArchived: true },
+        path: "cards",
+      }),
+    });
+    return res.status(200).send({ message: "Returning board", board });
+  } catch (err) {
+    return res.status(500).send(err);
+  }
+};
+
+// GET ALL boards
 const getBoards = async (req, res) => {
   try {
     const boards = await Board.find({})
@@ -129,10 +145,11 @@ const updateBoardName = async (req, res) => {
     res
       .status(500)
       .send({ message: "Error occurred while trying to update the name" });
-  }
-};
+    }
+  };
 
 module.exports = {
+  getArchived, 
   getBoard,
   updateBoardName,
   getBoards,

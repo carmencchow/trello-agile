@@ -18,7 +18,7 @@ const getCards = async (req, res) => {
 // GET a card
 const getCard = async (req, res) => {
   try {
-    const card = await Card.findOne({ _id: req.params.id });
+    const card = await Card.findOne({ _id: req.params.id }).sort({ comments: 1})
     if (!card) {
       return res.status(404).send({ message: "Card not found" });
     }
@@ -33,7 +33,7 @@ const archiveCard = async (req, res) => {
   try{
     let card = await Card.findById({ _id: req.params.id });
     const filter = { _id: req.params.id };
-    const update = { isArchived: true };
+    const update = { isArchived: true,  status: "archived" };
     let doc = await Card.findOneAndUpdate(filter, update);
     doc = await Card.findOne(filter);
     await doc.save();
@@ -42,11 +42,6 @@ const archiveCard = async (req, res) => {
   } catch (err) {
     return res.status(500).send({ message: err.message })
   }
-}
-
-
-const getArchived = async (req, res) => {
-  
 }
 
 // TODO: UPDATE members of a card
@@ -63,9 +58,6 @@ const deleteMembers = async (req, res) => {
     return res.status(500).send("error");
   }
 };
-
-const updateMembers = async (req, res) => {};
-const addMembers = async (req, res) => {};
 
 // DELETE a card (working)
 const deleteCard = async (req, res) => {
@@ -93,7 +85,7 @@ const createCard = async (req, res) => {
   const listId = req.query.listId;
   try {
     const parentList = await List.findById(listId);
-    const result = await Card.create({ title, parentList: parentList._id, isArchived: false, comments: [] });
+    const result = await Card.create({ title, parentList: parentList._id, isArchived: false, comments: [], timestamps: true });
     console.log(result);
 
     await result.save();
@@ -123,20 +115,27 @@ const updateCardName = async (req, res) => {
   }
 };
 
+// UPDATE COLOR
+const updateColor = async (req, res) => {
+  try {
+    const color = req.body.color;
+    const id = req.query.id;
+    const card = await Card.findById({ _id: req.params.id });
+    card.color = color;
+    await card.save();
+    console.log(card.color);
+    return res.status(200).send({ message: "Card color updated", card });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 // ADD COMMENT
 const addComment = async (req, res) => {
   try{
     const newComment = req.body.comments;
     const card = await Card.findOne({ _id: req.params.id });
-    // const filter = {_id: req.params.id};
-    // const update = { comments: comments}
-    // let doc = await Card.findOneAndUpdate(filter, update);
-    // await doc.save();
-    // comments.push(comments);
-    // await doc.save();
-    // console.log('Comments added: ', doc.comments)
-    // return res.status(200).send({ results: doc, message: doc.comments });
-    card.comments.push(newComment);
+    card.comments.push(newComment)
     await card.save();
     console.log('Comments added: ', card.comments)
     return res.status(200).send({ results: card, message: card.comments });
@@ -146,16 +145,39 @@ const addComment = async (req, res) => {
   }
 };
 
+// DELETE COMMENT
+const deleteComment = async (req, res) => {
+  try{
+    const card = await Card.findById({ _id: req.params.id });
+    res.send(200).send(card);
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+}
+
+//     const list = await List.findById(card.parentList);
+//     list.cards = list.cards.filter(
+//       (cardId) => cardId.toString() !== card._id.toString()
+//     );
+//     await list.save();
+//     return res.send("Card deleted");
+//   } catch (err) {
+//     return res.status(500).send({ message: "Error deleting card" });
+//   }
+// };
+
+// EDIT COMMENT
+const editComment = async (req, res) => {}
+
 module.exports = {
   addComment,
   getCard,
   getCards,
+  deleteComment,
+  editComment,
   archiveCard,
   deleteCard,
   createCard,
   updateCardName,
-  // getMembersFromCard,
-  updateMembers,
-  deleteMembers,
-  addMembers,
+  updateColor
 };

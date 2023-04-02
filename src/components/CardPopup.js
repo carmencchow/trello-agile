@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { GrFormClose } from "react-icons/gr";
 import { GoThreeBars } from "react-icons/go";
-import {  } from "react-icons/gr";
 // import io from "socket.io-client";
-import { FiEdit2 } from "react-icons/fi";
+import { FiEdit2 } from "react-icons/fi"; 
+import { BsFolder2 } from "react-icons/bs";
 import "./CardPopup.css";
 import DeleteCard from "./DeleteCard";
 import EditCard from "./EditCard";
 import ArchiveCard from "./ArchiveCard";
+import SaveColorBtn from "./SaveColorBtn";
 import SaveCommentBtn from "./SaveCommentBtn";
 import EditCommentBtn from "./EditCommentBtn";
 import DeleteCommentBtn from "./DeleteCommentBtn";
@@ -16,30 +17,38 @@ import DeleteCommentBtn from "./DeleteCommentBtn";
 
 const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
   const [comment, setComment] = useState('')
-  const [color, setColor] = useState("green");
+  const [color, setColor] = useState();
   const [cardData, setCardData] = useState(null);
   // const [messageReceived, setMessageReceived] = useState("");
   const [openInput, setOpenInput] = useState(false);
   
   const colorArr = [
-    "red",
+    "orangered",
     "orange",
     "yellow",
-    "green",
-    "blue",
-    "purple",
+    "lightgreen",
+    "lightskyblue",
+    "plum",
     "pink",
-    "brown",
+    "burlywood",
+    "white",
   ];
 
   const handleCommentInput = (e) => {
     setComment(e.target.value);
   };
   
-  const handleComment = (e) => {
-    setComment(e.target.value);;
+  const clearComment = () => {
+    setComment('');
   };
 
+  const handleColorChange = (e) => {
+    e.preventDefault();
+    console.log('Saving color', color, e.target.value);
+    setColor(e.target.value);
+    // setHeaderColor(e.target.value);
+  }
+  
   // const sendMessage = () => {
   //   socket.emit("send_message", { message: "hello" });
   // };
@@ -75,7 +84,6 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
   //   handleFetchData();
 
   if (!open || cardData === null) return null;
-
   return (
     <div className="card-background">
       <div className="card-popup">
@@ -83,27 +91,38 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
           style={{ backgroundColor: color }}>
           <h2>{cardData.card.title}</h2>
           <div className="right-side">
-            <GrFormClose className="close" onClick={onClose} />
+            <GrFormClose className="close-btn" onClick={onClose} />
           </div>
         </div>
 
         <div className="card-content">
           <div className="card-right">
-            <p className="color-text">Change label color</p>
+            <p className="color-text">
+            <BsFolder2 className="card-icon"/>
+            Change label color</p>
             <p className="color-row">
               {colorArr.map((color) => {
                 return (
-                  <span
+                  <span id="color-box"
                     className={`${color}`}
                     onClick={() => setColor(`${color}`)}
                   ></span>
                 );
               })}
+              <span 
+                className="colors" 
+                onClick={handleColorChange}>
+                <SaveColorBtn
+                  id={id}
+                  color={color}
+                  getCard={getCard}
+                />
+              </span>
             </p>
           </div>
 
           <div className="options">
-            <p className="activity-label"><GoThreeBars/>Activity: </p>
+            <p className="activity-label"><GoThreeBars className="activity-icon"/>Activity: </p>
             <div className="activity">
               <input 
                 type="text" 
@@ -113,53 +132,49 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
                 onChange={handleCommentInput}
               />
               <div className="save-comment-btn">
-                <SaveCommentBtn
-                  input={comment}
-                  listId={listId}
-                  onCommentSaved={handleComment}
-                  id={id}
-                  handleFetchData={handleFetchData}
-                />
+                <div className="save">
+                  <SaveCommentBtn
+                    input={comment}
+                    listId={listId}
+                    clearComment={clearComment}
+                    id={id}
+                    getCard={getCard}
+                  />
+                </div>
               </div>
             </div>
 
             <div className="comment-container">
-              <h5>Comments:</h5>
+            {comment ? <h5>Comments:</h5> : null}
               {cardData.card.comments.map((comment) => {
                 console.log(comment)
                 return (
                   <div className="comments">
-                    <p>{comment}</p>
-                    <div className="edit-row">
+                    <p className="displayed-comments">{comment}</p>
+
+                    {/* <div className="edit-row">
                       <EditCommentBtn
                         input={comment}
                         listId={listId}
-                        onCommentSaved={handleComment}
+                        // onCommentSaved={handleComment}
                         id={id}
                         handleFetchData={handleFetchData}
                       />
                       <DeleteCommentBtn
-                        input={comment}
+                        // input={comment}
                         listId={listId}
-                        onCommentSaved={handleComment}
+                        // onCommentSaved={handleComment}
                         id={id}
                         handleFetchData={handleFetchData}
                       />
-                    </div>
+                    </div> */}
                   </div>
                   )
                 })}
             </div>
           </div>
 
-          <p className="archive">
-            <ArchiveCard
-              handleFetchData={handleFetchData}
-              id={id}
-              onClose={onClose}
-            />
-          </p>
-
+        <br></br>
           <div className="edit">
             <EditCard
               open={openInput}
@@ -167,6 +182,7 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
               id={id}
               handleFetchData={handleFetchData}
               onClose={onClose}
+              setOpenInput={setOpenInput} 
             />
 
             {!openInput ? (
@@ -177,7 +193,7 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
                 }}
               >
                 {" "}
-                Edit this card <FiEdit2 />
+                <span className="edit-icon"><FiEdit2 /></span> Edit this card 
               </h4>
             ) : (
               <div></div>
@@ -185,14 +201,23 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
           </div>
         </div>
 
-        <p className="delete">
-          <DeleteCard
+        <div className="bottom-buttons">
+        <p className="archive-card">
+          <ArchiveCard
             handleFetchData={handleFetchData}
             id={id}
             onClose={onClose}
           />
         </p>
 
+        <p className="delete-card">
+          <DeleteCard
+            handleFetchData={handleFetchData}
+            id={id}
+            onClose={onClose}
+          />
+        </p>
+        </div>
         </div>
       </div>
     );

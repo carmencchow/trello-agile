@@ -1,7 +1,6 @@
 import React from 'react'
 import './DeleteCommentBtn.css'
 
-
 const DeleteCommentBtn = () => {
   return (
     <div>

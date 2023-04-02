@@ -8,7 +8,6 @@ function Header() {
     <div>
       <Navbar/>
       <div className="header">
-        Trello header wide that spread the top of the whole screen!
       </div>
       <div className="login-btn-layout">
         <Button component={Link} to="/login" variant="contained">

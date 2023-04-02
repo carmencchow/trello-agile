@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./SaveCommentBtn.css";
 
-const SaveCommentBtn = ({ listId, input, onCommentSaved, id, handleFetchData }) => {
-
-  const [saved, setSaved] = useState('');
+const SaveCommentBtn = ({ listId, input, clearComment, id, handleFetchData, getCard }) => {
 
   const handleSaveComment = async (e) => {
     console.log("saving comments:", input);
-    setSaved(input);
 
     try {
       const token = localStorage.getItem("token");
@@ -30,20 +27,19 @@ const SaveCommentBtn = ({ listId, input, onCommentSaved, id, handleFetchData }) 
       );
       const data = res.data;
       console.log(data);
-      onCommentSaved();
-      handleFetchData();
-    } catch (err) {
-      console.log(err);
-    }
-  };
+      clearComment();
+      await getCard(id);
+      // handleFetchData();
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
-  return (
-    <div className="save-row"> 
-      <h4 className="save" onClick={handleSaveComment}>
-        Save
-      </h4>
-    </div>
-  );
-};
+    return (
+      <div className="save-row"> 
+        <h4 className="save" onClick={handleSaveComment}>Save</h4>
+      </div>
+    );
+  };
 
 export default SaveCommentBtn;
