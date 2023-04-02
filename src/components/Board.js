@@ -48,7 +48,6 @@ const Board = () => {
 
     axios
     .get(`/api/board/${id}/lists`, { lists })
-    // .get(`/api/board/${id}/lists/unarchived`, { lists })
       .then((res) => {
         //dispatch here to update list
       })

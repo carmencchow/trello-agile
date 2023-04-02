@@ -6,14 +6,13 @@ const Card = require("../models/cardModel");
 // GET a board by id
 // Since every user created at this point is a part of the Parsity organization, then we don't need to pull the user.boards to populate on the workspace screen? Technically every board should show up since they're all a part of parsity's organization.
 
-// When page loads return UNARCHIVED cards 'isArchived: false'
+// When page loads GET ALL CARDS
 const getBoard = async (req, res) => {
   try {
     const board = await Board.findOne({ _id: req.params.id }).populate({
       path: "lists",
       populate: ({
         path: "cards",
-        match: { isArchived: false },
       }),
     });
     if (!board) {

@@ -6,7 +6,6 @@ const {
   getBoard,
   getBoards,
   getArchived,
-  getUnArchived,
   createBoard,
   deleteBoard,
   updateBoardName,
@@ -19,12 +18,10 @@ const router = express.Router();
 // router.get("/", auth, getBoards);
 router.get("/:id", getBoard);
 // router.get("/:id", auth, getBoard);
-// router.get("/:id/lists/unarchived", getBoard);
 router.post("/", auth, createBoard);
 router.delete("/:id", auth, deleteBoard);
 router.put("/:id", auth, updateBoardName);
-router.get("/archived/:id", getArchived); //When button is clicked ('isArchived=true&false')
-
+router.get("/:id/archived", getArchived); 
 
 // GET by :id
 module.exports = router;
