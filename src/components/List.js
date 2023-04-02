@@ -9,8 +9,6 @@ import { Droppable, Draggable } from "react-beautiful-dnd";
 const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
   const [openNewCard, setOpenNewCard] = useState(false);
   const [cardId, setCardId] = useState(null);
-  const [labelColor, setLabelColor] = useState('');
-  const { status, deleted } = useContext(AppContext)
 
   // const onDragEnd = (result) => {
   //   const { destination, source, draggableId } = result;

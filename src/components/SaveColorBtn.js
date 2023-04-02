@@ -26,7 +26,7 @@ const SaveColorBtn = ({ color, id, getCard,  onColorSave, handleFetchData }) => 
       );
       const data = res.data;
       console.log(data);
-      // onColorSave();
+      onColorSave();
       await getCard(id);
       // handleFetchData();
     } catch (err) {

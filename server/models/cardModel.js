@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const { ObjectId } = mongoose.Schema.Types
 
 const cardSchema = new Schema({
   title: {
@@ -14,13 +13,9 @@ const cardSchema = new Schema({
   },
   // comments: [
   //   {
-  //     text: String,
-  //     postedBy: {
-  //       type: ObjectId,
-  //       ref: "user",
-  //       timestamps: true,
-  //     },
-  //   },
+  //     type: mongoose.SchemaType.Types.ObjectId,
+  //     ref: "comment"
+  //   }
   // ],
   isArchived: {
     type: Boolean,
@@ -37,10 +32,14 @@ const cardSchema = new Schema({
   color: {
     type: String,
   },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
-  },
+  members: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
+      },
+    },
+  ],
 });
 
 module.exports = mongoose.model("card", cardSchema);

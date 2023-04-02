@@ -32,11 +32,10 @@ const ArchiveCard = ({ id, onClose, onCardSaved, handleFetchData, listId }) => {
     <div className="row">
       <Toaster position="top-center" toastOption={{ duration: 3000 }}/>
       <div className="archive-card" onClick={() => {
-          handleArchive();
-          toast.success(`Card is now archived`)
+        handleArchive();
+        toast.success(`Card is now archived`)
         }}><span><BiArchive /></span>
         <p>Archive this card</p>
-        <p>{status}</p>
       </div>
     </div>
   );

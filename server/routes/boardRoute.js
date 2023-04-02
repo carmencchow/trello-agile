@@ -15,10 +15,11 @@ const {
 const router = express.Router();
 
 // ROUTES '/api/board/'
-router.get("/", getBoards);
+// router.get("/", getBoards);
 // router.get("/", auth, getBoards);
 router.get("/:id", getBoard);
 // router.get("/:id", auth, getBoard);
+// router.get("/:id/lists/unarchived", getBoard);
 router.post("/", auth, createBoard);
 router.delete("/:id", auth, deleteBoard);
 router.put("/:id", auth, updateBoardName);

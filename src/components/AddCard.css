@@ -22,8 +22,7 @@ input{
   margin-top: 10px;
 }
 .cancel:hover{
-  color: white;
-  background-color: darkgray;
+  color: darkgray;
 }
 .btn-row{
   display: flex;

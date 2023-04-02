@@ -134,13 +134,23 @@ input{
   text-decoration: none;
   font-size: 14px;
   font-weight: lighter;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   padding-left: 10px;
   display: flex;
   justify-content: space-between;
+  border-radius: 3px;
 }
 .comments-input{
   margin-bottom: 20px;
+}
+.activity-icon,
+.card-icon{
+  margin-right: 7px;
+  margin-top: 5px;
+}
+.displayed-comments{
+  margin-bottom: 10px;
+  font-size: 12px;
 }
 .delete-card,
 .edit-card,

@@ -12,7 +12,6 @@
 }
 .card-title{
   font-size: 16px;
-  /* text-align: left; */
   font-weight: lighter;
   display: flex;
   justify-content: left;
@@ -20,12 +19,11 @@
 }
 .add-card{
   background-color: none;
-  /* background-color: rgb(235,236,240); */
   height: 50px;
+  justify-content: left;
+
 }
 .add-card:hover {
-  color: darkolivegreen;
-  /* background-color: rgb(226, 224, 224); */
   display: block;
 }
 .cards {
@@ -37,13 +35,11 @@
   background-color: #ebecf0;
   border: 1px solid white;
 }
-.cards:hover .icon {
-  display: block;
-}
 .list {
   height: auto;
   justify-content: left;
   text-align: left;
+  width: 272px;
 }
 .list-name {
   justify-content: space-between;
@@ -61,6 +57,7 @@
   border-radius: 5px;
   display: flex;
   justify-content: left;
+  margin-left: 0px;
 }
 .orange {
   background-color: orange;

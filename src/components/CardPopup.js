@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { GrFormClose } from "react-icons/gr";
 import { GoThreeBars } from "react-icons/go";
-import {  } from "react-icons/gr";
 // import io from "socket.io-client";
-import { FiEdit2 } from "react-icons/fi";
+import { FiEdit2 } from "react-icons/fi"; 
+import { BsFolder2 } from "react-icons/bs";
 import "./CardPopup.css";
 import DeleteCard from "./DeleteCard";
 import EditCard from "./EditCard";
@@ -19,8 +19,6 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
   const [comment, setComment] = useState('')
   const [color, setColor] = useState();
   const [cardData, setCardData] = useState(null);
-  const [saveColor, setSaveColor] = useState('');
-
   // const [messageReceived, setMessageReceived] = useState("");
   const [openInput, setOpenInput] = useState(false);
   
@@ -91,7 +89,6 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
       <div className="card-popup">
         <div className="card-popup-heading" 
           style={{ backgroundColor: color }}>
-            {/* {headerColor} */}
           <h2>{cardData.card.title}</h2>
           <div className="right-side">
             <GrFormClose className="close-btn" onClick={onClose} />
@@ -100,7 +97,9 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
 
         <div className="card-content">
           <div className="card-right">
-            <p className="color-text">Change label color</p>
+            <p className="color-text">
+            <BsFolder2 className="card-icon"/>
+            Change label color</p>
             <p className="color-row">
               {colorArr.map((color) => {
                 return (
@@ -115,7 +114,6 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
                 onClick={handleColorChange}>
                 <SaveColorBtn
                   id={id}
-                  // onColorChange={onColorSave}
                   color={color}
                   getCard={getCard}
                 />
@@ -124,7 +122,7 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
           </div>
 
           <div className="options">
-            <p className="activity-label"><GoThreeBars/>Activity: </p>
+            <p className="activity-label"><GoThreeBars className="activity-icon"/>Activity: </p>
             <div className="activity">
               <input 
                 type="text" 
@@ -140,7 +138,6 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
                     listId={listId}
                     clearComment={clearComment}
                     id={id}
-                    // handleFetchData={handleFetchData}
                     getCard={getCard}
                   />
                 </div>
@@ -153,9 +150,9 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
                 console.log(comment)
                 return (
                   <div className="comments">
-                    <p>{comment}</p>
+                    <p className="displayed-comments">{comment}</p>
 
-                    <div className="edit-row">
+                    {/* <div className="edit-row">
                       <EditCommentBtn
                         input={comment}
                         listId={listId}
@@ -170,7 +167,7 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
                         id={id}
                         handleFetchData={handleFetchData}
                       />
-                    </div>
+                    </div> */}
                   </div>
                   )
                 })}

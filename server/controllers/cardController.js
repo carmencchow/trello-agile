@@ -1,10 +1,6 @@
 const Card = require("../models/cardModel");
 const User = require("../models/userModel");
 const List = require("../models/listModel");
-const Comment = require("../models/commentModel");
-const { v4: uuidv4 } = require('uuid');
-uuidv4(); // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab
-
 
 // GET all cards 
 const getCards = async (req, res) => {
@@ -91,6 +87,7 @@ const createCard = async (req, res) => {
     const parentList = await List.findById(listId);
     const result = await Card.create({ title, parentList: parentList._id, isArchived: false, comments: [], timestamps: true });
     console.log(result);
+
     await result.save();
     parentList.cards.push(result._id);
     await parentList.save();
@@ -137,11 +134,9 @@ const updateColor = async (req, res) => {
 const addComment = async (req, res) => {
   try{
     const newComment = req.body.comments;
-    // Change 'comments' to an object and push 'newComment' and 'uuid'
     const card = await Card.findOne({ _id: req.params.id });
     card.comments.push(newComment)
     await card.save();
-    // await new Card({ uuid }).save
     console.log('Comments added: ', card.comments)
     return res.status(200).send({ results: card, message: card.comments });
   } catch (err) {
@@ -184,6 +179,5 @@ module.exports = {
   deleteCard,
   createCard,
   updateCardName,
-  deleteMembers,
   updateColor
 };

@@ -47,7 +47,8 @@ const Board = () => {
     destinationList.items.splice(destination.index, 0, item);
 
     axios
-      .put(`/api/board/${id}/lists`, { lists })
+    .get(`/api/board/${id}/lists`, { lists })
+    // .get(`/api/board/${id}/lists/unarchived`, { lists })
       .then((res) => {
         //dispatch here to update list
       })
@@ -102,7 +103,7 @@ const Board = () => {
             board.lists.map((list) => (
               <List
                 key={list._id}
-                name={list.name}
+                name={list.name}z
                 cards={list.cards}
                 id={list._id}
                 listId={list._id}
