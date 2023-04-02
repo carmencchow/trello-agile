@@ -15,13 +15,13 @@ import EditCommentBtn from "./EditCommentBtn";
 import DeleteCommentBtn from "./DeleteCommentBtn";
 // const socket = io.connect("http://localhost:5000");
 
-const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
+const CardPopup = ({ open, onClose, id, handleFetchData, listId, newColor }) => {
   const [comment, setComment] = useState('')
-  const [color, setColor] = useState();
+  const [color, setColor] = useState(newColor);
   const [cardData, setCardData] = useState(null);
   // const [messageReceived, setMessageReceived] = useState("");
   const [openInput, setOpenInput] = useState(false);
-  
+
   const colorArr = [
     "orangered",
     "orange",
@@ -46,7 +46,6 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
     e.preventDefault();
     console.log('Saving color', color, e.target.value);
     setColor(e.target.value);
-    // setHeaderColor(e.target.value);
   }
   
   // const sendMessage = () => {
@@ -62,11 +61,13 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
   // }, []);
 
   // (1) GET card by ID and display info in modal
+  
   const getCard = async (id) => {
     const res = await axios.get(`http://localhost:5000/api/card/${id}`);
     console.log("Card Info: ", res.data);
     setCardData(res.data);
   };
+
   useEffect(() => {
     getCard(id);
   }, [id]);
@@ -109,6 +110,9 @@ const CardPopup = ({ open, cards, onClose, id, handleFetchData, listId }) => {
                   ></span>
                 );
               })}
+              <button onClick={handleColorChange}>
+                Change color
+              </button>
               <span 
                 className="colors" 
                 onClick={handleColorChange}>

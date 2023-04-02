@@ -13,7 +13,7 @@ const getBoard = async (req, res) => {
       path: "lists",
       populate: ({
         path: "cards",
-        match: { isArchived: false },
+        // match: { isArchived: false },
       })
     });
     if (!board) {

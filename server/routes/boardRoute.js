@@ -14,7 +14,6 @@ const {
 const router = express.Router();
 
 // ROUTES '/api/board/'
-// router.get("/", getBoards);
 // router.get("/", auth, getBoards);
 router.get("/:id", getBoard);
 // router.get("/:id", auth, getBoard);

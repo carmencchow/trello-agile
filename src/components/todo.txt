@@ -1,7 +1,7 @@
 **** Trello Clone ***
 
 1. Drag and Drop (HOW THE #$@#)*$#@
-2. Filtering archived cards
+2. ✅ Filtering archived cards
 3. Showing most recent comment right after 'Save' clicked
 4. Create a new board
 5. Change background
@@ -11,5 +11,5 @@
 9. Increase modal size with more comments
 10. Delete comments - add uuid
 11. Edit comments - add uuid
-12. CSS - move colored labels to the side
+12. ✅ CSS - move colored labels to the side
 13. Move everything to Context API
