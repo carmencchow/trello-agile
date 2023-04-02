@@ -211,3 +211,14 @@ span{
   display: flex;
   margin-left: 5px;
 }
+.change-color{
+  border: none;
+  width: 130px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 15px;
+}
+.change-color:hover{
+
+}

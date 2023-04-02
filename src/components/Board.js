@@ -1,25 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { DragDropContext } from "react-beautiful-dnd";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchData } from "../store/thunks/fetchList";
 import axios from "axios";
 import Navbar from "./Navbar";
 import List from "../components/List";
+import "./Board.css";
 // import io from "socket.io-client";
 // import { store } from "../store";
-import { useDispatch } from "react-redux";
-import { fetchData } from "../store/thunks/fetchList";
-import { useSelector } from "react-redux";
-import "./Board.css";
 // const socket = io.connect("http://localhost:5000");
 
 const Board = () => {
   const dispatch = useDispatch();
+  const { id } = useParams();
   const [showArchived, setShowArchived] = useState(false);
   // const [message, setMessage] = useState("");
   // const [messages, setMessages] = useState([]);
   // const [setMessageReceived] = useState("");
-
-  const { id } = useParams();
 
   // const sendMessage = () => {
   //   socket.emit("send_update", { message });
@@ -52,7 +50,6 @@ const Board = () => {
       })
       .catch((err) => console.log(err));
   };
-
 
   const showCards = (list) => {
     return list.cards.filter((card) => (showArchived ? card.isArchived : !card.isArchived))

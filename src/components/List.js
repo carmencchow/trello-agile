@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { BsThreeDots } from "react-icons/bs";
 import AddCard from "../components/AddCard";
 import CardPopup from "./CardPopup";
 import "./List.css";

@@ -6,7 +6,7 @@
 4. Create a new board
 5. Change background
 6. Add users to comments
-7. Save button to save color on modalCard - only updating when page refreshes - do I need to add a useEffect here? 
+7. ✅ Save button to save color on modalCard - only updating when page refreshes
 8. Order comments from recent to oldest
 9. Increase modal size with more comments
 10. Delete comments - add uuid

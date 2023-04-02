@@ -2,25 +2,24 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { GrFormClose } from "react-icons/gr";
 import { GoThreeBars } from "react-icons/go";
-// import io from "socket.io-client";
 import { FiEdit2 } from "react-icons/fi"; 
 import { BsFolder2 } from "react-icons/bs";
-import "./CardPopup.css";
 import DeleteCard from "./DeleteCard";
 import EditCard from "./EditCard";
 import ArchiveCard from "./ArchiveCard";
-import SaveColorBtn from "./SaveColorBtn";
 import SaveCommentBtn from "./SaveCommentBtn";
 import EditCommentBtn from "./EditCommentBtn";
 import DeleteCommentBtn from "./DeleteCommentBtn";
+import "./CardPopup.css";
 // const socket = io.connect("http://localhost:5000");
+// import io from "socket.io-client";
 
-const CardPopup = ({ open, onClose, id, handleFetchData, listId, newColor }) => {
+const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
   const [comment, setComment] = useState('')
-  const [color, setColor] = useState(newColor);
+  const [color, setColor] = useState('');
   const [cardData, setCardData] = useState(null);
-  // const [messageReceived, setMessageReceived] = useState("");
   const [openInput, setOpenInput] = useState(false);
+  // const [messageReceived, setMessageReceived] = useState("");
 
   const colorArr = [
     "orangered",
@@ -42,10 +41,34 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId, newColor }) => 
     setComment('');
   };
 
-  const handleColorChange = (e) => {
+  const handleColorChange = async (e) => {
     e.preventDefault();
-    console.log('Saving color', color, e.target.value);
-    setColor(e.target.value);
+    console.log('New color:', color);
+    setColor(color);
+    handleFetchData();
+
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found in localStorage");
+      }
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      const res = await axios.put(
+        `http://localhost:5000/api/card/${id}/color`,
+        { 
+          color: `${color}` 
+        },
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = res.data;
+    } catch (err) {
+      console.log(err);
+    }
   }
   
   // const sendMessage = () => {
@@ -64,13 +87,16 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId, newColor }) => 
   
   const getCard = async (id) => {
     const res = await axios.get(`http://localhost:5000/api/card/${id}`);
-    console.log("Card Info: ", res.data);
     setCardData(res.data);
   };
 
   useEffect(() => {
     getCard(id);
   }, [id]);
+
+  useEffect(() => {
+    getCard(id);
+  }, [color]);
 
   // useEffect(() => {
   //   socket.on("receive_message", (data) => {
@@ -110,18 +136,9 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId, newColor }) => 
                   ></span>
                 );
               })}
-              <button onClick={handleColorChange}>
-                Change color
+              <button className="change-color" onClick={handleColorChange}>
+                Save color
               </button>
-              <span 
-                className="colors" 
-                onClick={handleColorChange}>
-                <SaveColorBtn
-                  id={id}
-                  color={color}
-                  getCard={getCard}
-                />
-              </span>
             </p>
           </div>
 
