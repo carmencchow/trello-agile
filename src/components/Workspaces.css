@@ -16,7 +16,6 @@
   margin: 10px;
   border-radius: 5px;
   padding-left: 30px;
-  color: white;
   cursor: pointer;
   color: rgb(132, 131, 131);
   font-size: 16px;
@@ -26,11 +25,11 @@
   margin-top: 30px;
   font-size: 16px;
 }
-button {
+/* button {
   width: 100px;
   height: 20px;
   cursor: pointer;
-}
+} */
 .user-panel{
   margin-left: 20px;
 }
@@ -73,3 +72,11 @@ button {
   border: none;
   border-radius: 5px;
 }
+.card{
+  width: 140px;
+  margin-left: -30px;
+  background-color: rgb(243, 242, 242);
+}
+input {
+  outline:none;
+ }

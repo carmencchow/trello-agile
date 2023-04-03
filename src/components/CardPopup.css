@@ -121,7 +121,6 @@ input{
   font-weight: lighter;
   height: 50px;
   margin-left: 20px;
-  border: 1px solid lightgray;
   border-radius: 3px;
 }
 .activity-label{
@@ -217,15 +216,8 @@ span{
   color: black;
 }
 .save{
-  background-color: 
-  #f4f5f7;
-  font-weight: bold;
-  height: 30px;
-  border: 1px solid grey;
-  width: 60px;
-  border-radius: 3px;
-  margin-left: 20px;
-  margin-top: 20px;
+  /* border: none; */
+  outline: none;
 }
 .save:hover{
   height: 30px;

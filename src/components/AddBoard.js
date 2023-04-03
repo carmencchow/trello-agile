@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./AddCard.css";
-import SaveCardBtn from "./SaveCardBtn";
+import CreateCardBtn from "./CreateCardBtn";
 
-const NewBoard = ({ open, listId, id, handleFetchData, onClose }) => {
+const AddBoard = ({ open, listId, id, handleFetchData, onClose }) => {
 
   const [input, setInput] = useState("");
 
@@ -38,19 +38,17 @@ const NewBoard = ({ open, listId, id, handleFetchData, onClose }) => {
         />
       </div>
 
-      {/* <Create
+      <CreateCardBtn
         input={input}
         listId={listId}
         onCardSaved={handleCardSaved}
         id={id}
         handleFetchData={handleFetchData}
         onClose={onClose}
-      /> */}
-
-      <button className="create-btn" onClick={createBoard}>Create</button>
+      />
 
     </div>
   );
 };
 
-export default NewBoard;
+export default AddBoard;

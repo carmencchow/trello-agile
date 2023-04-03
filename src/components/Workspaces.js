@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
-import NewBoard from './NewBoard';
+import AddBoard from './AddBoard';
 import axios from "axios";
 import "./Workspaces.css";
 
@@ -130,17 +130,18 @@ const Workspaces = ({ listId, id, handleFetchData, onClose }) => {
 
       <div className="container">    
 
-        <div className="newboard" onClick={handleInput}><p>Add new board</p>
+        <div className="newboard" onClick={handleInput}>
+          <p>Add new board</p>
+          <AddBoard
+            open={openNewCard}
+            listId={listId}
+            id={id}
+            handleFetchData={handleFetchData}
+          />
           <button className="createBtn" onClick={createBoard}>Create</button>
         </div>
         
       <div className="input-field"></div>
-        <NewBoard
-          open={openNewCard}
-          listId={listId}
-          id={id}
-          handleFetchData={handleFetchData}
-        />
 
         {!openNewCard ? (
           <div 
@@ -149,10 +150,9 @@ const Workspaces = ({ listId, id, handleFetchData, onClose }) => {
               setOpenNewCard(true);
             }}
           >
-         </div>
+       </div>
         ) : (
           <div></div>
-         
         )}
         </div>
       </div>
