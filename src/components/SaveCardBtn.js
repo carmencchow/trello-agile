@@ -1,5 +1,4 @@
 import React from "react";
-import "./SaveCardBtn.css";
 import axios from "axios";
 
 const SaveCardBtn = ({ listId, input, onCardSaved, id, handleFetchData, onClose }) => {

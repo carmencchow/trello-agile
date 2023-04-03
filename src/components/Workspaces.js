@@ -5,8 +5,11 @@ import Navbar from "./Navbar";
 import axios from "axios";
 import "./Workspaces.css";
 
-const Workspaces = () => {
+const Workspaces = ({ listId, id, handleFetchData }) => {
   const [userInfo, setUserInfo] = useState("");
+  const [openNewCard, setOpenNewCard] = useState(false);
+  const [input, setInput] = useState("");
+
   const navigate = useNavigate();
 
   const getUserProfile = async () => {
@@ -29,6 +32,37 @@ const Workspaces = () => {
       throw error;
     }
   };
+
+  const handleInput = (e) => {
+    setInput(e.target.value);
+  };
+
+  const handleNewBoard = () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found in localStorage");
+      }
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      const res = axios.post('http://localhost:5000/api/board/',
+
+        { title: `${input}` },
+
+        { method: "POST", headers: { "Content-Type": "application/json",}, }
+      
+      );
+      
+      const data = res.data;
+      console.log('New board', data);
+      handleFetchData();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const createBoard = () => {
+    console.log('Creating your board');
+  }
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -62,7 +96,7 @@ const Workspaces = () => {
             </div>
             <div>
               Hi, <strong>{userInfo.username}!</strong>
-              <p>Your boards:</p>
+              <p>Example boards:</p>
               <div className="boards-container">
               {userInfo.boards.length > 0 ? (
                 userInfo.boards.map((board, index) => {
@@ -89,8 +123,35 @@ const Workspaces = () => {
             <Button component={Link} to="/login" variant="contained">
               Log In
             </Button>
+            
           </div>
         )}
+
+      <div className="container">    
+        <div className="newboard" onClick={handleInput}><p>Add new board</p>
+          <button className="createBtn" onClick={createBoard}>Create</button>
+        </div>
+
+        <div className="newboard" onClick={handleInput}><p>Add new board</p>
+          <button className="createBtn" onClick={createBoard}>Create</button>
+        </div>
+
+        <div className="newboard" onClick={handleInput}><p>Add new board</p>
+          <button className="createBtn" onClick={createBoard}>Create</button>
+        </div>
+        
+      <div className="input-field" open={openNewCard}/>
+        {!openNewCard ? (
+          // <div className="add-board" onClick={() => {
+          //   setOpenNewCard(true);
+          // }}
+
+          <div className="add-board" onClick={handleNewBoard}>
+         + Add a board </div>
+        ) : (
+          <div className="card-btns"></div>
+        )}
+        </div>
       </div>
     </div>
   );
