@@ -14,13 +14,12 @@ const {
 const router = express.Router();
 
 // ROUTES '/api/board/'
-// router.get("/", auth, getBoards);
-router.get("/:id", getBoard);
-// router.get("/:id", auth, getBoard);
+router.get("/", auth, getBoards);
+router.get("/:id", auth, getBoard);
 router.post("/", auth, createBoard);
 router.delete("/:id", auth, deleteBoard);
 router.put("/:id", auth, updateBoardName);
-router.get("/:id/archived", getArchived); 
+router.get("/:id/archived", auth, getArchived); 
 
 // GET by :id
 module.exports = router;
