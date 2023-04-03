@@ -1,20 +1,18 @@
-.save{
-  width: 60px;
-  height: 20px;
-  text-align: center;
-  font-size: 14px;
-  margin-top: 10px;
+.save-card-btn{
+  outline: none;
+  background-color: #34aef5;
   border: none;
-}
-.save:hover{
   color: white;
-  background-color: darkgray;
+  height: 30px;
+  border-radius: 3px;
+  font-size: 14px;
+  padding: 6px 12px;
+  margin-left: 10px;
+  margin-top: 10px;
 }
-.cancel{
-  border: none;
-  background-color: none;
-  margin-left: 0px;
-}
-.cancel:hover{
-  background-color: none;
+.save-card-btn:hover{
+  background-color: #0478ba;
+  color: white;
+  height: 30px;
+  cursor: pointer;
 }

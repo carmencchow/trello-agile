@@ -2,16 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import AddBoard from './AddBoard';
 import axios from "axios";
 import "./Workspaces.css";
 
-const Workspaces = () => {
+const Workspaces = ({ listId, id, handleFetchData }) => {
   const [userInfo, setUserInfo] = useState("");
   const navigate = useNavigate();
-
-  // const sendMessage = () => {
-  //   socket.emit();
-  // };
 
   const getUserProfile = async () => {
     const token = localStorage.getItem("token");
@@ -34,11 +31,6 @@ const Workspaces = () => {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.reload();
-  };
-
   useEffect(() => {
     getUserProfile();
   }, []);
@@ -54,19 +46,8 @@ const Workspaces = () => {
       <div>
         {userInfo ? (
           <div>
-            <div className="logout-btn">
-              <Button
-                variant="contained"
-                onClick={() => {
-                  handleLogout();
-                }}
-              >
-                Logout
-              </Button>
-            </div>
             <div>
               Hi, <strong>{userInfo.username}!</strong>
-              <p>Your boards:</p>
               <div className="boards-container">
               {userInfo.boards.length > 0 ? (
                 userInfo.boards.map((board, index) => {
@@ -95,6 +76,18 @@ const Workspaces = () => {
             </Button>
           </div>
         )}
+
+        <h3 className="heading"> Create a board:</h3>    
+      
+        <div className="container">
+          <div className="newboard" >
+            <AddBoard
+              listId={listId}
+              id={id}
+              handleFetchData={handleFetchData}/>
+          </div>
+        </div>
+
       </div>
     </div>
   );

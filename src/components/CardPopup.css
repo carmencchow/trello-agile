@@ -121,7 +121,6 @@ input{
   font-weight: lighter;
   height: 50px;
   margin-left: 20px;
-  border: 1px solid lightgray;
   border-radius: 3px;
 }
 .activity-label{
@@ -130,7 +129,7 @@ input{
 .comments{
   background-color: #ffffff;
   height: 30px;
-  width: 600px;
+  width: 540px;
   text-decoration: none;
   font-size: 14px;
   font-weight: lighter;
@@ -142,6 +141,7 @@ input{
 }
 .comments-input{
   margin-bottom: 20px;
+  width: 540px;
 }
 .activity-icon,
 .card-icon{
@@ -153,8 +153,7 @@ input{
   font-size: 12px;
 }
 .delete-card,
-.edit-card,
-.archive-card{
+.edit-card{
   background-color: 
   #eaecf0;
   color: 
@@ -171,6 +170,25 @@ input{
   height: 50px;
   cursor: pointer; 
 }
+.archive-card{
+  background-color: 
+  #eaecf0;
+  color: 
+  #777d88;
+  font-size: 14px;
+  font-weight: lighter;
+  border-radius: 5px;
+  margin-left: 40px;
+  padding-right: 10px;
+  display: flex;
+  vertical-align: center;
+  text-align: center;
+  width: 170px;
+  height: 30px;
+  cursor: pointer; 
+  padding-left: 20px;
+  padding-top: 20px;
+}
 .delete-card:hover,
 .edit-card:hover,
 .archive-card:hover{
@@ -178,6 +196,10 @@ input{
 }
 .archive-card{
   margin-right: 20px;
+}
+.archive-icon{
+  padding-right: 10px;
+  margin-left: 15px;
 }
 span{
   font-size: 18px;
@@ -194,20 +216,15 @@ span{
   margin-left: 7px;
   color: black;
 }
-.save{
-  background-color: 
-  #f4f5f7;
-  font-weight: bold;
-  height: 40px;
-}
-.save:hover{
-  height: 40px;
-  color: blue;
-  background-color: 
-  #f4f5f7;
-  cursor: pointer;
-}
 .bottom-buttons{
   display: flex;
   margin-left: 5px;
+}
+.change-color{
+  border: none;
+  width: 130px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 15px;
 }

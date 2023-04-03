@@ -29,15 +29,14 @@ const SaveCommentBtn = ({ listId, input, clearComment, id, handleFetchData, getC
       console.log(data);
       clearComment();
       await getCard(id);
-      // handleFetchData();
       } catch (err) {
         console.log(err);
       }
     };
 
     return (
-      <div className="save-row"> 
-        <h4 className="save" onClick={handleSaveComment}>Save</h4>
+      <div className="comment-row"> 
+        <h4 className="save-comment-btn" onClick={handleSaveComment}>Save</h4>
       </div>
     );
   };

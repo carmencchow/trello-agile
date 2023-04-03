@@ -9,10 +9,21 @@
   color: white;
   cursor: pointer;
 }
-button {
-  width: 100px;
-  height: 20px;
+.newboard{
+  background-color: rgb(243, 242, 242);
+  height: 170px;
+  width: 200px;
+  margin: 10px;
+  border-radius: 5px;
+  padding-left: 30px;
   cursor: pointer;
+  color: rgb(132, 131, 131);
+  font-size: 16px;
+}
+.newboard p{
+  margin-left: 20px;
+  margin-top: 30px;
+  font-size: 16px;
 }
 .user-panel{
   margin-left: 20px;
@@ -23,6 +34,14 @@ button {
   width: 70%;
   justify-content: flex-start;
   margin: 0px auto;
+  margin-top: 30px;
+}
+.container, .heading{
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 30px auto;
 }
 .welcome {
   display: flex;
@@ -32,4 +51,33 @@ button {
   width: 60%;
   padding: 5px;
   border-radius: 5px;
+}
+.createBtn{
+  margin-top: 40px;
+  margin-left: 30px;
+  width: 100px;
+  height: 36px;
+  font-size: 14px;
+  font-weight: bolder;
+  background-color: rgb(233, 231, 231);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.createBtn:hover{
+  background-color: rgb(234, 231, 231);
+  border: none;
+  border-radius: 5px;
+}
+.newboard-input{
+  width: 140px;
+  background-color: rgb(243, 242, 242);
+}
+input {
+  outline:none;
+}
+.newboard-input{
+  font-size: 16px;
+  margin-top: 16px;
+  text-align: center;
 }

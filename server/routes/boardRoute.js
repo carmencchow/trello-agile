@@ -14,14 +14,18 @@ const {
 const router = express.Router();
 
 // ROUTES '/api/board/'
-// router.get("/", getBoards);
-// router.get("/", auth, getBoards);
+router.get("/", getBoards);
 router.get("/:id", getBoard);
-// router.get("/:id", auth, getBoard);
-router.post("/", auth, createBoard);
-router.delete("/:id", auth, deleteBoard);
-router.put("/:id", auth, updateBoardName);
+router.post("/", createBoard);
+router.delete("/:id", deleteBoard);
+router.put("/:id", updateBoardName);
 router.get("/:id/archived", getArchived); 
 
-// GET by :id
+// router.get("/", auth, getBoards);
+// router.get("/:id", auth, getBoard);
+// router.post("/", auth, createBoard);
+// router.delete("/:id", auth, deleteBoard);
+// router.put("/:id", auth, updateBoardName);
+// router.get("/:id/archived", auth, getArchived); 
+
 module.exports = router;
