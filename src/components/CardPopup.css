@@ -153,8 +153,7 @@ input{
   font-size: 12px;
 }
 .delete-card,
-.edit-card,
-.archive-card{
+.edit-card{
   background-color: 
   #eaecf0;
   color: 
@@ -171,6 +170,25 @@ input{
   height: 50px;
   cursor: pointer; 
 }
+.archive-card{
+  background-color: 
+  #eaecf0;
+  color: 
+  #777d88;
+  font-size: 14px;
+  font-weight: lighter;
+  border-radius: 5px;
+  margin-left: 40px;
+  padding-right: 10px;
+  display: flex;
+  vertical-align: center;
+  text-align: center;
+  width: 170px;
+  height: 30px;
+  cursor: pointer; 
+  padding-left: 20px;
+  padding-top: 20px;
+}
 .delete-card:hover,
 .edit-card:hover,
 .archive-card:hover{
@@ -178,6 +196,10 @@ input{
 }
 .archive-card{
   margin-right: 20px;
+}
+.archive-icon{
+  padding-right: 10px;
+  margin-left: 15px;
 }
 span{
   font-size: 18px;

@@ -9,10 +9,6 @@ const Workspaces = () => {
   const [userInfo, setUserInfo] = useState("");
   const navigate = useNavigate();
 
-  // const sendMessage = () => {
-  //   socket.emit();
-  // };
-
   const getUserProfile = async () => {
     const token = localStorage.getItem("token");
     if (!token) {

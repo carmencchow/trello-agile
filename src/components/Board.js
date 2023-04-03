@@ -7,28 +7,11 @@ import axios from "axios";
 import Navbar from "./Navbar";
 import List from "../components/List";
 import "./Board.css";
-// import io from "socket.io-client";
-// import { store } from "../store";
-// const socket = io.connect("http://localhost:5000");
 
 const Board = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [showArchived, setShowArchived] = useState(false);
-  // const [message, setMessage] = useState("");
-  // const [messages, setMessages] = useState([]);
-  // const [setMessageReceived] = useState("");
-
-  // const sendMessage = () => {
-  //   socket.emit("send_update", { message });
-  //   setMessageReceived(message);
-  //   setMessages([...messages, message]);
-  //   setMessage("");
-  // };
-
-  // const sendMessage = () => {
-  //   socket.emit('H')
-  // }
 
   const onDragEnd = (result, lists) => {
     if (!result.destination) {
@@ -46,7 +29,6 @@ const Board = () => {
     axios
     .get(`/api/board/${id}/lists`, { lists })
       .then((res) => {
-        //dispatch here to update list
       })
       .catch((err) => console.log(err));
   };
@@ -59,17 +41,10 @@ const Board = () => {
     setShowArchived(!showArchived)
   }
 
-  // useEffect(() => {
-  //   socket.on("receive_update", (data) => {
-  //     setMessageReceived(data.message);
-  //   });
-  // }, [socket]);
-
   useEffect(() => {
     dispatch(fetchData({ id }));
   }, [dispatch, id]);
 
-  // This function will be passed through props to all functions using CRUD.
   const handleFetchData = () => {
     dispatch(fetchData({ id }));
   };
@@ -85,22 +60,11 @@ const Board = () => {
   return (
     <div className="board-container">
       <Navbar />
-      <div></div>
-      {/* <div>
-        <input
-          value={message}
-          placeholder="Message..."
-          onChange={(event) => {
-            setMessage(event.target.value);
-          }}
-        ></input>
-        <button onClick={sendMessage}>Send</button>
-      </div> */}
       <h3>{board.title}</h3>
       
-    <button className="toggle" onClick={toggleCards}>
-      {showArchived ? "Hide Archived Cards" : "Show Unarchived Cards"} 
-    </button>
+      <button className="toggle" onClick={toggleCards}>
+        {showArchived ? "Showing Archived Cards:" : "Showing Unarchived Cards:"} 
+      </button>
       
       <DragDropContext onDragEnd={(result) => onDragEnd(result, board.lists)}>
         <div className="container">

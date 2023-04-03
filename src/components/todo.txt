@@ -13,3 +13,5 @@
 11. Edit comments - add uuid
 12. ✅ CSS - move colored labels to the side
 13. Move everything to Context API
+14. Toggle state - archive back to unarchive button
+15. Cancel add new input

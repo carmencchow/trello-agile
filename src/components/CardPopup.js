@@ -1,25 +1,24 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import toast, { Toaster } from 'react-hot-toast'
+import { BiArchive } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
 import { GoThreeBars } from "react-icons/go";
 import { FiEdit2 } from "react-icons/fi"; 
 import { BsFolder2 } from "react-icons/bs";
 import DeleteCard from "./DeleteCard";
 import EditCard from "./EditCard";
-import ArchiveCard from "./ArchiveCard";
 import SaveCommentBtn from "./SaveCommentBtn";
 import EditCommentBtn from "./EditCommentBtn";
 import DeleteCommentBtn from "./DeleteCommentBtn";
 import "./CardPopup.css";
-// const socket = io.connect("http://localhost:5000");
-// import io from "socket.io-client";
 
 const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
   const [comment, setComment] = useState('')
   const [color, setColor] = useState('');
   const [cardData, setCardData] = useState(null);
   const [openInput, setOpenInput] = useState(false);
-  // const [messageReceived, setMessageReceived] = useState("");
+  const [archiveBtn, setArchiveBtn] = useState(true);
 
   const colorArr = [
     "orangered",
@@ -32,6 +31,39 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
     "burlywood",
     "white",
   ];
+
+   const getCard = async (id) => {
+    const res = await axios.get(`http://localhost:5000/api/card/${id}`);
+    setCardData(res.data);
+  };
+
+  useEffect(() => {
+    getCard(id);
+  }, [id]);
+  
+  const toggleArchive = async () => {
+    try {
+      console.log('Toggling archive')
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found in localStorage");
+      }
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      console.log(`Archiving card, ${id}`)
+      const res = await axios.get(`http://localhost:5000/api/card/archive/${id}/`)
+      console.log(res.data.card.title, res.data.card.status)
+      toast.success(`Card is now archived`)
+      setArchiveBtn(!archiveBtn)
+
+      handleFetchData();
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  const handleUnarchive = () => {
+    console.log('Unarchiving card')
+  }
 
   const handleCommentInput = (e) => {
     setComment(e.target.value);
@@ -71,45 +103,6 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
     }
   }
   
-  // const sendMessage = () => {
-  //   socket.emit("send_message", { message: "hello" });
-  // };
-
-  // useEffect(() => {
-  //   const socket = io.connect("http://localhost:5000");
-  //   socket.on("receive_message", (data) => {
-  //     console.log(data.message);
-  //     setMessageReceived(data.message);
-  //   });
-  // }, []);
-
-  // (1) GET card by ID and display info in modal
-  
-  const getCard = async (id) => {
-    const res = await axios.get(`http://localhost:5000/api/card/${id}`);
-    setCardData(res.data);
-  };
-
-  useEffect(() => {
-    getCard(id);
-  }, [id]);
-
-  useEffect(() => {
-    getCard(id);
-  }, [color]);
-
-  // useEffect(() => {
-  //   socket.on("receive_message", (data) => {
-  //     console.log(data);
-  //   });
-  // }, [socket]);
-  // const handleDelete = async () => {
-  //   await axios.delete(`http://localhost:5000/api/card/${id}`).then((res) => {
-  //     console.log(`Card deleted`);
-  //     onClose();
-  //   });
-  //   handleFetchData();
-
   if (!open || cardData === null) return null;
   return (
     <div className="card-background">
@@ -126,7 +119,7 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
           <div className="card-right">
             <p className="color-text">
             <BsFolder2 className="card-icon"/>
-            Change label color</p>
+            Label color</p>
             <p className="color-row">
               {colorArr.map((color) => {
                 return (
@@ -207,14 +200,10 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
             />
 
             {!openInput ? (
-              <h4
-                className="edit-card"
-                onClick={() => {
+              <h4 className="edit-card" onClick={() => {
                   setOpenInput(true);
                 }}
-              >
-                {" "}
-                <span className="edit-icon"><FiEdit2 /></span> Edit this card 
+              > {" "} <span className="edit-icon"><FiEdit2 /></span> Edit this card 
               </h4>
             ) : (
               <div></div>
@@ -223,21 +212,18 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
         </div>
 
         <div className="bottom-buttons">
-        <p className="archive-card">
-          <ArchiveCard
-            handleFetchData={handleFetchData}
-            id={id}
-            onClose={onClose}
-          />
-        </p>
+          <Toaster position="top-center" toastOption={{ duration: 3000 }}/>
+          <span onClick={toggleArchive} className="archive-card"><BiArchive className="archive-icon"/> 
+            {archiveBtn ? "Archive card" : "Unarchive card" }
+          </span>
 
-        <p className="delete-card">
-          <DeleteCard
-            handleFetchData={handleFetchData}
-            id={id}
-            onClose={onClose}
-          />
-        </p>
+          <p className="delete-card">
+            <DeleteCard
+              handleFetchData={handleFetchData}
+              id={id}
+              onClose={onClose}
+            />
+          </p>
         </div>
         </div>
       </div>

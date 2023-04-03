@@ -37,8 +37,7 @@ const AddCard = ({ open, listId, id, onCardSaved, handleFetchData, onClose }) =>
         handleFetchData={handleFetchData}
         onClose={onClose}
       />
-
-
+      
     </div>
   );
 };
