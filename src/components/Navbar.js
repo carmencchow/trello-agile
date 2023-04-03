@@ -7,8 +7,14 @@ const Navbar = () => {
     { name: "Workspaces", query: "workspaces" },
     { name: "Recent", query: "workspaces" },
     { name: "Starred", query: "workspaces" },
-    { name: "Templates", query: "workspaces" }
+    { name: "Templates", query: "workspaces" },
+    { name: "Logout", query: "logout" }
   ];
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
 
   return (
     <div className="navbar-layout">

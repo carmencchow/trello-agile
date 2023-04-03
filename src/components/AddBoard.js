@@ -1,54 +1,54 @@
-import React, { useState } from "react";
-import "./AddCard.css";
-import CreateCardBtn from "./CreateCardBtn";
+import React, { useState } from 'react'
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "./Workspaces.css";
 
-const AddBoard = ({ open, listId, id, handleFetchData, onClose }) => {
-
-  const [input, setInput] = useState("");
-
-  if (!open) return null;
+const AddBoard = ({ handleFetchData }) => {
+  const [input, setInput] = useState('');
+  const navigate = useNavigate();
 
   const handleInput = (e) => {
     setInput(e.target.value);
-  };
-
-  const createBoard = () => {
-    
   }
-  
-  const handleCardSaved = () => {
-    setInput("");
-  };
 
-  const handleClose = () => {
-    console.log('Close input')
-    onClose();
+  const createBoard = (id) => {
+    console.log('Creating board')
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found in localStorage");
+      }
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      const res = axios.post('http://localhost:5000/api/board/',
+
+        { title: `${input}` },
+        { method: "POST", headers: { "Content-Type": "application/json",}, }
+      
+      );
+
+      // GET new id from MongoDB
+      // const id = res.data.id; 
+      navigate(`/board/${id}`);
+      const data = res.data;
+      console.log('New board', data);
+      handleFetchData();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
-    <div className="input-container">
-      <div onClick={onClose}>
-        <input
-          type="text"
-          className="card"
-          value={input}
-          placeholder="Enter a board name"
-          onChange={handleInput}
-          onClose={onClose}
-        />
-      </div>
-
-      <CreateCardBtn
-        input={input}
-        listId={listId}
-        onCardSaved={handleCardSaved}
-        id={id}
-        handleFetchData={handleFetchData}
-        onClose={onClose}
+    <div className="board-name">
+      <input 
+        type="text" 
+        value={input}
+        className="newboard-input"
+        placeholder="New board title"
+        onChange={handleInput}
       />
-
+      <button className="createBtn" onClick={createBoard}>Create</button>
     </div>
-  );
-};
+  )
+}
 
-export default AddBoard;
+export default AddBoard

@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import './SaveCardBtn.css'
 
 const SaveCardBtn = ({ listId, input, onCardSaved, id, handleFetchData, onClose }) => {
 
@@ -25,7 +26,6 @@ const SaveCardBtn = ({ listId, input, onCardSaved, id, handleFetchData, onClose 
       );
       const data = res.data;
       console.log(data);
-      // dispatch(fetchData({ id: id }));
       onCardSaved();
       handleFetchData();
     } catch (err) {
@@ -35,7 +35,7 @@ const SaveCardBtn = ({ listId, input, onCardSaved, id, handleFetchData, onClose 
 
   return (
     <div>
-      <button className="save" onClick={handleSave}>
+      <button className="save-card-btn" onClick={handleSave}>
         Save
       </button>
     </div>

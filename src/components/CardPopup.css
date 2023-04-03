@@ -129,7 +129,7 @@ input{
 .comments{
   background-color: #ffffff;
   height: 30px;
-  width: 600px;
+  width: 540px;
   text-decoration: none;
   font-size: 14px;
   font-weight: lighter;
@@ -141,6 +141,7 @@ input{
 }
 .comments-input{
   margin-bottom: 20px;
+  width: 540px;
 }
 .activity-icon,
 .card-icon{
@@ -214,24 +215,6 @@ span{
   width: 200px;
   margin-left: 7px;
   color: black;
-}
-.save{
-  outline: none;
-  background-color: #34aef5;
-  border: none;
-  color: white;
-  height: 30px;
-  border-radius: 3px;
-  font-size: 14px;
-  padding: 6px 12px;
-  margin-left: 10px;
-  margin-top: 10px;
-}
-.save:hover{
-  background-color: #0478ba;
-  color: white;
-  height: 30px;
-  cursor: pointer;
 }
 .bottom-buttons{
   display: flex;

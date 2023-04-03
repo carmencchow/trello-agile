@@ -41,7 +41,7 @@ const getArchived = async (req, res) => {
 // GET ALL boards
 const getBoards = async (req, res) => {
   try {
-    const boards = await Board.find({})
+    const boards = await Board.find({}).count()
       .sort({ name: 1 })
       .populate({
         path: "lists",
@@ -64,8 +64,9 @@ const getBoards = async (req, res) => {
 // CREATE board 
 const createBoard = async (req, res) => {
   const title = req.body.title;
+
   try {
-    await List.collection.dropIndex("name_1");
+    // await List.collection.dropIndex("name_1");
     const user = await User.findById({ _id: req.user.id });
 
     const newBoard = await Board.create({
@@ -84,7 +85,7 @@ const createBoard = async (req, res) => {
     });
 
     const doneList = await List.create({
-      name: "Done🎉",
+      name: "Done 🎉",
       board: newBoard._id,
     });
 

@@ -6,11 +6,8 @@ import AddBoard from './AddBoard';
 import axios from "axios";
 import "./Workspaces.css";
 
-const Workspaces = ({ listId, id, handleFetchData, onClose }) => {
+const Workspaces = ({ listId, id, handleFetchData }) => {
   const [userInfo, setUserInfo] = useState("");
-  const [openNewCard, setOpenNewCard] = useState(false);
-  const [input, setInput] = useState("");
-
   const navigate = useNavigate();
 
   const getUserProfile = async () => {
@@ -34,42 +31,6 @@ const Workspaces = ({ listId, id, handleFetchData, onClose }) => {
     }
   };
 
-  const handleInput = (e) => {
-    setInput(e.target.value);
-  };
-
-  const handleNewBoard = () => {
-    try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        throw new Error("No token found in localStorage");
-      }
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const res = axios.post('http://localhost:5000/api/board/',
-
-        { title: `${input}` },
-
-        { method: "POST", headers: { "Content-Type": "application/json",}, }
-      
-      );
-      
-      const data = res.data;
-      console.log('New board', data);
-      handleFetchData();
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  const createBoard = () => {
-    console.log('Creating your board');
-  }
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.reload();
-  };
-
   useEffect(() => {
     getUserProfile();
   }, []);
@@ -85,19 +46,8 @@ const Workspaces = ({ listId, id, handleFetchData, onClose }) => {
       <div>
         {userInfo ? (
           <div>
-            <div className="logout-btn">
-              <Button
-                variant="contained"
-                onClick={() => {
-                  handleLogout();
-                }}
-              >
-                Logout
-              </Button>
-            </div>
             <div>
               Hi, <strong>{userInfo.username}!</strong>
-              <p>Example boards:</p>
               <div className="boards-container">
               {userInfo.boards.length > 0 ? (
                 userInfo.boards.map((board, index) => {
@@ -124,37 +74,20 @@ const Workspaces = ({ listId, id, handleFetchData, onClose }) => {
             <Button component={Link} to="/login" variant="contained">
               Log In
             </Button>
-            
           </div>
         )}
 
-      <div className="container">    
-
-        <div className="newboard" onClick={handleInput}>
-          <p>Add new board</p>
-          <AddBoard
-            open={openNewCard}
-            listId={listId}
-            id={id}
-            handleFetchData={handleFetchData}
-          />
-          <button className="createBtn" onClick={createBoard}>Create</button>
+        <h3 className="heading"> Create a board:</h3>    
+      
+        <div className="container">
+          <div className="newboard" >
+            <AddBoard
+              listId={listId}
+              id={id}
+              handleFetchData={handleFetchData}/>
+          </div>
         </div>
-        
-      <div className="input-field"></div>
 
-        {!openNewCard ? (
-          <div 
-            className="add-board" 
-            onClick={() => {
-              setOpenNewCard(true);
-            }}
-          >
-       </div>
-        ) : (
-          <div></div>
-        )}
-        </div>
       </div>
     </div>
   );

@@ -42,7 +42,6 @@ const UpdateCardBtn = ({ listId, input, onClose, onCardSaved, id, handleFetchDat
 return (
   <div className="update-close">
     <button className="update" onClick={handleUpdate}>Update</button>
-    <button className="close" onClick={handleClose}>Close</button>
   </div>
 );
 };

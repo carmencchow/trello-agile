@@ -7,10 +7,22 @@
 .comment{
   text-decoration: none;
 }
-.save-row .save{
-  font-size: 14px;
-  font-weight: lighter;
-  background-color: none;
+.comment-row{
+  background-color: #f6f7f9;
+}
+.save-row{
+  width: 130px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 15px;
+}
+.save-row{
+  margin-bottom: 20px;
+}
+.save-row:hover, .save:hover, .save-comment-btn:hover{
+  background-color: #f6f7f9;
+  color: darkgray;
 }
 .left{
   display: flex;
