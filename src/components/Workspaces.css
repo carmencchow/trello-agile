@@ -64,7 +64,7 @@ button {
   height: 36px;
   font-size: 14px;
   font-weight: bolder;
-  background-color: white;
+  background-color: rgb(233, 231, 231);
   border: none;
   border-radius: 5px;
 }

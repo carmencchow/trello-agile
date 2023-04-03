@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import NewBoard from './NewBoard';
 import axios from "axios";
 import "./Workspaces.css";
 
-const Workspaces = ({ listId, id, handleFetchData }) => {
+const Workspaces = ({ listId, id, handleFetchData, onClose }) => {
   const [userInfo, setUserInfo] = useState("");
   const [openNewCard, setOpenNewCard] = useState(false);
   const [input, setInput] = useState("");
@@ -128,28 +129,30 @@ const Workspaces = ({ listId, id, handleFetchData }) => {
         )}
 
       <div className="container">    
-        <div className="newboard" onClick={handleInput}><p>Add new board</p>
-          <button className="createBtn" onClick={createBoard}>Create</button>
-        </div>
-
-        <div className="newboard" onClick={handleInput}><p>Add new board</p>
-          <button className="createBtn" onClick={createBoard}>Create</button>
-        </div>
 
         <div className="newboard" onClick={handleInput}><p>Add new board</p>
           <button className="createBtn" onClick={createBoard}>Create</button>
         </div>
         
-      <div className="input-field" open={openNewCard}/>
-        {!openNewCard ? (
-          // <div className="add-board" onClick={() => {
-          //   setOpenNewCard(true);
-          // }}
+      <div className="input-field"></div>
+        <NewBoard
+          open={openNewCard}
+          listId={listId}
+          id={id}
+          handleFetchData={handleFetchData}
+        />
 
-          <div className="add-board" onClick={handleNewBoard}>
-         + Add a board </div>
+        {!openNewCard ? (
+          <div 
+            className="add-board" 
+            onClick={() => {
+              setOpenNewCard(true);
+            }}
+          >
+         </div>
         ) : (
-          <div className="card-btns"></div>
+          <div></div>
+         
         )}
         </div>
       </div>
