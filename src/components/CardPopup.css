@@ -216,14 +216,21 @@ span{
   color: black;
 }
 .save{
-  /* border: none; */
   outline: none;
+  background-color: #34aef5;
+  border: none;
+  color: white;
+  height: 30px;
+  border-radius: 3px;
+  font-size: 14px;
+  padding: 6px 12px;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 .save:hover{
+  background-color: #0478ba;
+  color: white;
   height: 30px;
-  color: rgb(98, 97, 97);
-  background-color: 
-  #f4f5f7;
   cursor: pointer;
 }
 .bottom-buttons{
@@ -237,15 +244,4 @@ span{
   border-radius: 5px;
   margin-top: 5px;
   margin-left: 15px;
-}
-.change-color:hover{
-
-}
-.cancel{
-  border: none;
-  background-color: none;
-  margin-left: 0px;
-}
-.cancel:hover{
-  background-color: none;
 }

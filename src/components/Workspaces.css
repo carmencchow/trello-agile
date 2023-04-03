@@ -25,11 +25,6 @@
   margin-top: 30px;
   font-size: 16px;
 }
-/* button {
-  width: 100px;
-  height: 20px;
-  cursor: pointer;
-} */
 .user-panel{
   margin-left: 20px;
 }
@@ -72,9 +67,8 @@
   border: none;
   border-radius: 5px;
 }
-.card{
+.newboard-input{
   width: 140px;
-  margin-left: -30px;
   background-color: rgb(243, 242, 242);
 }
 input {

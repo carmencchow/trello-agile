@@ -35,17 +35,19 @@ const AddCard = ({ open, listId, id, handleFetchData, onClose }) => {
         />
       </div>
 
-      <SaveCardBtn
-        input={input}
-        listId={listId}
-        onCardSaved={handleCardSaved}
-        id={id}
-        handleFetchData={handleFetchData}
-        onClose={onClose}
-      />
+      <div className="save-cancel-btns">
+        <SaveCardBtn
+          input={input}
+          listId={listId}
+          onCardSaved={handleCardSaved}
+          id={id}
+          handleFetchData={handleFetchData}
+          onClose={onClose}
+        />
 
-      <button className="cancel-btn" onClick={onClose}>X</button>
-
+        <button className="cancel-btn" onClick={onClose}>X</button>
+      
+      </div>
     </div>
   );
 };

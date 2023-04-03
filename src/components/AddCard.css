@@ -12,20 +12,26 @@ input{
 .card{
   width: 228px;
 }
-.cancel{
-  width: 40px;
-  height: 36px;
-  text-align: center;
-  font-size: 14px;
-  border-radius: 3px;
-  margin-left: 15px;
-  margin-top: 10px;
-}
-.cancel:hover{
-  color: darkgray;
-}
 .btn-row{
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+.save-cancel-btns{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+.cancel-btn{
+  border: none;
+  font-size: 16px;
+  height: 32px;
+  width: 32px;
+  background-color: #f6f7f9;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+.cancel-btn:hover{
+  cursor: pointer;
+  color: lightgray;
 }
