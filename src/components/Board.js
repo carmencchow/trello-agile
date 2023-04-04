@@ -13,30 +13,76 @@ const Board = () => {
   const { id } = useParams();
   const [showArchived, setShowArchived] = useState(false);
 
+  const [tBoard, setTBoard] = useState(null);
+
+  const rearangeArr = (arr, sourceIndex, destIndex) => {
+    const arrCopy = [...arr];
+    const [removed] = arrCopy.splice(sourceIndex, 1);
+    arrCopy.splice(destIndex, 0, removed);
+
+    return arrCopy;
+  };
+
   const onDragEnd = (result, lists) => {
+
     if (!result.destination) {
       return;
     }
 
     const { source, destination } = result;
-    const sourceList = lists.find((list) => list.id === source.droppableId);
-    const destinationList = lists.find(
-      (list) => list.id === destination.droppableId
-    );
-    const item = sourceList.items.splice(source.index, 1)[0];
-    destinationList.items.splice(destination.index, 0, item);
+    
+    // Find the source and destination lists
+    const sourceListIndex = lists.findIndex(list => list._id === source.droppableId);
+    const destinationListIndex = lists.findIndex(list => list._id === destination.droppableId);
+    if (source.droppableId !== destination.droppableId) {
 
+
+    // Make copies of the source and destination lists
+    let sourceList = { ...lists[sourceListIndex] };
+    let destinationList = { ...lists[destinationListIndex] };
+
+    // Remove the item from the source list and insert it into the destination list
+    let removedItem;
+    if (sourceList?.cards && source.index >= 0 && source.index < sourceList.cards.length) {
+      removedItem = sourceList.cards[source.index];
+      sourceList.cards = [...sourceList.cards.slice(0, source.index), ...sourceList.cards.slice(source.index + 1),];
+    }
+
+    if (destinationList?.cards && destination.index >= 0 && destination.index <= destinationList.cards.length) {
+      destinationList.cards = [...destinationList.cards.slice(0, destination.index), removedItem, ...destinationList.cards.slice(destination.index),];
+    }
+
+   // Update the lists array with the modified lists
+   const newLists = [...lists];
+   newLists[sourceListIndex] = sourceList;
+   newLists[destinationListIndex] = destinationList;
+
+   setTBoard({ ...tBoard, lists: newLists })
     axios
-    .get(`/api/board/${id}/lists`, { lists })
+      .put(`http://localhost:5000/api/board/${id}`, { lists: 
+      newLists })
       .then((res) => {
       })
       .catch((err) => console.log(err));
+    } else {
+      setTBoard({
+        ...tBoard, lists: tBoard.lists.map((li, i) => {
+          if (sourceListIndex === i) {
+            return { ...li, cards: rearangeArr(tBoard.lists[i].cards, source.index, destination.index) }
+          } else {
+            return li
+          }
+        })
+      });
+    }
   };
 
   const showCards = (list) => {
+    if (!list) {
+      return [];
+    }
     return list.cards.filter((card) => (showArchived ? card.isArchived : !card.isArchived))
   }
-
   const toggleCards = () => {
     setShowArchived(!showArchived)
   }
@@ -51,7 +97,12 @@ const Board = () => {
 
   const board = useSelector((state) => state.data.board);
   console.log(board, "state board board.js");
-  console.log(board.lists[0]);
+  
+  useEffect(() => {
+    if (board) {
+      setTBoard(board)
+    }
+  }, [board])
 
   if (!board) {
     return <div>Loading...</div>;
@@ -66,10 +117,10 @@ const Board = () => {
         {showArchived ? "Showing Archived Cards:" : "Showing Unarchived Cards:"} 
       </button>
       
-      <DragDropContext onDragEnd={(result) => onDragEnd(result, board.lists)}>
+      <DragDropContext onDragEnd={(result) => onDragEnd(result, tBoard.lists)}>
         <div className="container">
-          {board.lists &&
-            board.lists.map((list) => (
+          {tBoard && tBoard.lists &&
+            tBoard.lists.map((list) => (
               <List
                 key={list._id}
                 name={list.name}

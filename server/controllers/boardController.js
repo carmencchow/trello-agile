@@ -41,7 +41,7 @@ const getArchived = async (req, res) => {
 // GET ALL boards
 const getBoards = async (req, res) => {
   try {
-    const boards = await Board.find({}).count()
+    const boards = await Board.find({})
       .sort({ name: 1 })
       .populate({
         path: "lists",
@@ -54,7 +54,7 @@ const getBoards = async (req, res) => {
     }
     return res
       .status(200)
-      .json({ message: "Showing all boards in the workspace", boards });
+      .json(boards);
   } catch (err) {
     console.log(err);
     res.status(500).send("Server Error");
@@ -66,7 +66,7 @@ const createBoard = async (req, res) => {
   const title = req.body.title;
 
   try {
-    // await List.collection.dropIndex("name_1");
+    await List.collection.dropIndex("name_1");
     const user = await User.findById({ _id: req.user.id });
 
     const newBoard = await Board.create({
