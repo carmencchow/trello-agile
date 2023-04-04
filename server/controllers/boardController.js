@@ -42,7 +42,7 @@ const getArchived = async (req, res) => {
 const getBoards = async (req, res) => {
   try {
     const boards = await Board.find({}).count()
-      .sort({ name: 1 })
+      .sort({ name: -1 })
       .populate({
         path: "lists",
         populate: {
