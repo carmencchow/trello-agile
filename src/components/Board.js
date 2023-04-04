@@ -30,40 +30,39 @@ const Board = () => {
     }
 
     const { source, destination } = result;
-    
+
     // Find the source and destination lists
     const sourceListIndex = lists.findIndex(list => list._id === source.droppableId);
     const destinationListIndex = lists.findIndex(list => list._id === destination.droppableId);
     if (source.droppableId !== destination.droppableId) {
 
 
-    // Make copies of the source and destination lists
-    let sourceList = { ...lists[sourceListIndex] };
-    let destinationList = { ...lists[destinationListIndex] };
+      // Make copies of the source and destination lists
+      let sourceList = { ...lists[sourceListIndex] };
+      let destinationList = { ...lists[destinationListIndex] };
 
-    // Remove the item from the source list and insert it into the destination list
-    let removedItem;
-    if (sourceList?.cards && source.index >= 0 && source.index < sourceList.cards.length) {
-      removedItem = sourceList.cards[source.index];
-      sourceList.cards = [...sourceList.cards.slice(0, source.index), ...sourceList.cards.slice(source.index + 1),];
-    }
+      // Remove the item from the source list and insert it into the destination list
+      let removedItem;
+      if (sourceList?.cards && source.index >= 0 && source.index < sourceList.cards.length) {
+        removedItem = sourceList.cards[source.index];
+        sourceList.cards = [...sourceList.cards.slice(0, source.index), ...sourceList.cards.slice(source.index + 1),];
+      }
 
-    if (destinationList?.cards && destination.index >= 0 && destination.index <= destinationList.cards.length) {
-      destinationList.cards = [...destinationList.cards.slice(0, destination.index), removedItem, ...destinationList.cards.slice(destination.index),];
-    }
+      if (destinationList?.cards && destination.index >= 0 && destination.index <= destinationList.cards.length) {
+        destinationList.cards = [...destinationList.cards.slice(0, destination.index), removedItem, ...destinationList.cards.slice(destination.index),];
+      }
 
-   // Update the lists array with the modified lists
-   const newLists = [...lists];
-   newLists[sourceListIndex] = sourceList;
-   newLists[destinationListIndex] = destinationList;
+      // Update the lists array with the modified lists
+      const newLists = [...lists];
+      newLists[sourceListIndex] = sourceList;
+      newLists[destinationListIndex] = destinationList;
 
-   setTBoard({ ...tBoard, lists: newLists })
-    axios
-      .put(`http://localhost:5000/api/board/${id}`, { lists: 
-      newLists })
-      .then((res) => {
-      })
-      .catch((err) => console.log(err));
+      setTBoard({ ...tBoard, lists: newLists })
+      axios
+        .put(`http://localhost:5000/api/board/${id}`, { lists: newLists })
+        .then((res) => {
+        })
+        .catch((err) => console.log(err));
     } else {
       setTBoard({
         ...tBoard, lists: tBoard.lists.map((li, i) => {
@@ -76,7 +75,7 @@ const Board = () => {
       });
     }
   };
-
+  
   const showCards = (list) => {
     if (!list) {
       return [];
@@ -124,6 +123,7 @@ const Board = () => {
               <List
                 key={list._id}
                 name={list.name}
+                // cards={list.cards}
                 cards={showCards(list, true)}
                 id={list._id}
                 listId={list._id}

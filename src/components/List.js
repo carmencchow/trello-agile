@@ -10,27 +10,6 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
   const [openNewCard, setOpenNewCard] = useState(false);
   const [cardId, setCardId] = useState(null);
 
-  // const onDragEnd = (result) => {
-  //   const { destination, source, draggableId } = result;
-
-  //   if (!destination) {
-  //     return;
-  //   }
-
-  //   if (
-  //     destination.droppableId === source.droppableId &&
-  //     destination.index === source.index
-  //   ) {
-  //     return;
-  //   }
-
-  //   console.log(
-  //     `Moving card ${draggableId} from ${source.droppableId} to ${destination.droppableId}`
-  //   );
-
-  //   //update the state to move card
-  // };
-
   return (
     <div className="list">
       <span className="list-header">
