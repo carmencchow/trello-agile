@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./CardPopup.css";
 import UpdateCardBtn from "./UpdateCardBtn";
+import { DataContext } from '../context/DataContext'
 import './EditCard.css';
 
-const EditCard = ({
-  open,
-  onClose,
-  onCardSaved,
-  id,
-  handleFetchData,
-  listId,
-}) => {
+const EditCard = ({ open, onClose, onCardSaved, id, handleFetchData, listId }) => {
   const [name, setName] = useState("");
   if (!open) return null;
+
+// const EditCard = ({ handleFetchData }) => {
+//   const { open, onClose, onCardSaved, id, name, setName, listId } = useContext(DataContext);
+//   if (!open) return null;  
 
   const handleInput = (e) => {
     setName(e.target.value);

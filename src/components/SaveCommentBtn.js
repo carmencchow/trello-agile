@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import "./SaveCommentBtn.css";
+import DataContext from "../context/DataContext";
+
 
 const SaveCommentBtn = ({ listId, input, clearComment, id, handleFetchData, getCard }) => {
+
+// const SaveCommentBtn = ({ handleFetchData }) => {
+//   const { listId, input, clearComment, id, getCard } = useContext(DataContext);
+
 
   const handleSaveComment = async (e) => {
     console.log("saving comments:", input);
@@ -14,7 +20,7 @@ const SaveCommentBtn = ({ listId, input, clearComment, id, handleFetchData, getC
       }
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       const res = await axios.post(
-        `http://localhost:5000/api/card/${id}/add-comment`,
+        `http://localhost:5000/api/card/${id}/comment`,
         { 
           comments: `${input}` 
         },

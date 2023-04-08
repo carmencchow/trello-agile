@@ -1,15 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { DataContext } from '../context/DataContext'
 import "./Workspaces.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchData } from "../store/thunks/fetchList";
 
-const AddBoard = ({ handleFetchData }) => {
-  const [input, setInput] = useState('');
+// const AddBoard = ({ handleFetchData }) => {
+//   const [input, setInput] = useState('');
+
+const AddBoard = () => {
+  const { input, setInput, id } = useContext(DataContext);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleInput = (e) => {
     setInput(e.target.value);
   }
+
+  const handleFetchData = () => {
+    dispatch(fetchData({ id }));
+  };
 
   const createBoard = (id) => {
     console.log('Creating board')

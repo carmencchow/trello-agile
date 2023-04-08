@@ -6,7 +6,7 @@ import AddBoard from './AddBoard';
 import axios from "axios";
 import "./Workspaces.css";
 
-const Workspaces = ({ listId, id, handleFetchData }) => {
+const Workspaces = () => {
   const [userInfo, setUserInfo] = useState("");
   const navigate = useNavigate();
 
@@ -81,10 +81,7 @@ const Workspaces = ({ listId, id, handleFetchData }) => {
       
         <div className="container">
           <div className="newboard" >
-            <AddBoard
-              listId={listId}
-              id={id}
-              handleFetchData={handleFetchData}/>
+            <AddBoard/>
           </div>
         </div>
 

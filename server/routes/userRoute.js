@@ -1,7 +1,5 @@
 const express = require("express");
 const User = require("../models/userModel");
-// const { login, logout, register } = require("../controllers/userController");
-// const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
@@ -116,10 +114,5 @@ router.get("/me", auth, async (req, res) => {
     res.send({ message: "Error in Fetching user" });
   }
 });
-
-// ROUTES '/api/user'
-// router.post("/register", register);
-// router.post("/login", login);
-// router.post("/logout", logout);
 
 module.exports = router;

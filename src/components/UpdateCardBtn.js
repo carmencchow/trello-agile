@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import axios from 'axios'
 import './UpdateCardBtn.css';
+import { DataContext } from '../context/DataContext'
+import { useDispatch } from "react-redux";
+import { fetchData } from "../store/thunks/fetchList";
 
-const UpdateCardBtn = ({ listId, input, onClose, onCardSaved, id, handleFetchData }) => {
+// const UpdateCardBtn = ({ listId, input, onClose, onCardSaved, id, handleFetchData }) => {
+
+const UpdateCardBtn = ({ onClose, onCardSaved, listId}) => {
+  const { input, id } = useContext(DataContext)
+  
+  const dispatch = useDispatch();
+
+
+  const handleFetchData = () => {
+    dispatch(fetchData({ id }));
+  };
 
   const handleClose = () => {
     onClose();

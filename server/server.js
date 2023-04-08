@@ -13,10 +13,8 @@ const cors = require("cors");
 const Board = require("./models/boardModel.js");
 const List = require("./models/listModel");
 const Card = require("./models/cardModel");
-// Express app
 const app = express();
 const server = http.createServer(app);
-// const io = require("socket.io")(server);
 
 const io = new Server(server, {
   cors: {
@@ -47,24 +45,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// const server = require("http").Server(app);
-
-// const io = new Server(server, {
-//   cors: {
-//     origin: "http://localhost:3000",
-//     methods: ["GET", "POST"],
-//   },
-// });
-
-// app.set("io", io);
-
-// io.on("connection", (socket) => {
-//   console.log(`user connected: ${socket.id}`);
-
-//   socket.on("send_update", (data) => {
-//     socket.broadcast.emit("receive_update", data);
-//   });
-// });
 
 // Routes
 app.use("/api/board", boardRoute);
@@ -125,8 +105,6 @@ app.get("/loaddata", async (req, res) => {
     res.status(500).send("Error loading data");
   }
 });
-
-// server.listen(3001, () => console.log("server is running"));
 
 mongoose
   .connect(process.env.MONGO_URI)

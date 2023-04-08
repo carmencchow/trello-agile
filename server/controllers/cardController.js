@@ -18,7 +18,7 @@ const getCards = async (req, res) => {
 // GET a card
 const getCard = async (req, res) => {
   try {
-    const card = await Card.findOne({ _id: req.params.id }).sort({ comments: 1})
+    const card = await Card.findOne({ _id: req.params.id }).sort({ comments: -1})
     if (!card) {
       return res.status(404).send({ message: "Card not found" });
     }
@@ -134,6 +134,7 @@ const updateColor = async (req, res) => {
 const addComment = async (req, res) => {
   try{
     const newComment = req.body.comments;
+    const postedBy = req.body.userId;
     const card = await Card.findOne({ _id: req.params.id });
     card.comments.push(newComment)
     await card.save();
@@ -144,6 +145,51 @@ const addComment = async (req, res) => {
     return res.status(500).send({ message: err.message });
   }
 };
+
+// const addComment = async (req, res) => {
+//   let comment = req.body.comment
+//   comment.postedBy = req.body.userId
+
+//   await Card.findByIdAndUpdate(
+//     req.body.postId,
+//     { $push: { comments: comment }},
+//     { new: true } 
+//   )
+//   .populate('comments.postedBy', '_id name')
+//   .populate('postedBy', '_id name')
+//   .exec((err, result) => {
+//     if(err){
+//       return res.status(400).json({
+//         error: err
+//       });
+//     } else {
+//       res.json(result);
+//     }
+//   });
+// }
+
+
+const unComment = async (req, res) => {
+  let comment = req.body.comment
+
+  await Card.findByIdAndUpdate(
+    req.body.postId,
+    { $pull: { comments: {_id: comment._id} }},
+    { new: true } 
+  )
+  .populate('comments.postedBy', '_id name')
+  .populate('postedBy', '_id name')
+  .exec((err, result) => {
+    if(err){
+      return res.status(400).json({
+        error: err
+      });
+    } else {
+      res.json(result);
+    }
+  });
+}
+
 
 // DELETE COMMENT
 const deleteComment = async (req, res) => {
@@ -175,6 +221,7 @@ module.exports = {
   getCards,
   deleteComment,
   editComment,
+  unComment,
   archiveCard,
   deleteCard,
   createCard,

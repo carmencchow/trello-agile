@@ -1,12 +1,15 @@
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./AddCard.css";
 import SaveCardBtn from "./SaveCardBtn";
+import { DataContext } from '../context/DataContext'
 
-const AddCard = ({ open, listId, id, handleFetchData, onClose }) => {
+// const AddCard = ({ handleFetchData }) => {
+//   const { input, setInput, open, listId, id, onClose } = useContext(DataContext);
 
+const AddCard = ({ open, listId, id,  onClose }) => {
   const [input, setInput] = useState("");
-
+  
   if (!open) return null;
 
   const handleInput = (e) => {
@@ -15,6 +18,8 @@ const AddCard = ({ open, listId, id, handleFetchData, onClose }) => {
   
   const handleCardSaved = () => {
     setInput("");
+    handleFetchData();
+        
   };
 
   const handleClose = () => {
@@ -39,9 +44,9 @@ const AddCard = ({ open, listId, id, handleFetchData, onClose }) => {
         <SaveCardBtn
           input={input}
           listId={listId}
+          // onChange={handleInput}
           onCardSaved={handleCardSaved}
-          id={id}
-          handleFetchData={handleFetchData}
+          id={id}          
           onClose={onClose}
         />
 

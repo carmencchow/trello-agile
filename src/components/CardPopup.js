@@ -9,16 +9,21 @@ import { BsFolder2 } from "react-icons/bs";
 import DeleteCard from "./DeleteCard";
 import EditCard from "./EditCard";
 import SaveCommentBtn from "./SaveCommentBtn";
-import EditCommentBtn from "./EditCommentBtn";
-import DeleteCommentBtn from "./DeleteCommentBtn";
 import "./CardPopup.css";
+import { DataContext } from '../context/DataContext'
 
-const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
-  const [comment, setComment] = useState('')
-  const [color, setColor] = useState('');
-  const [cardData, setCardData] = useState(null);
-  const [openInput, setOpenInput] = useState(false);
-  const [archiveBtn, setArchiveBtn] = useState(true);
+ 
+// const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
+//   const [comment, setComment] = useState('')
+//   const [color, setColor] = useState('');
+//   const [cardData, setCardData] = useState(null);
+//   const [openInput, setOpenInput] = useState(false);
+//   const [archiveBtn, setArchiveBtn] = useState(true);
+
+const CardPopup = ({ open, onClose }) => {
+  const { 
+    getCard, listId, handleFetchData, openInput, setOpenInput, cardId: id, cardData, comment, setComment, color, setColor, archiveBtn, setArchiveBtn 
+  } = useContext(DataContext)
 
   const colorArr = [
     "orangered",
@@ -32,15 +37,7 @@ const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
     "white",
   ];
 
-   const getCard = async (id) => {
-    const res = await axios.get(`http://localhost:5000/api/card/${id}`);
-    setCardData(res.data);
-  };
 
-  useEffect(() => {
-    getCard(id);
-  }, [id]);
-  
   const toggleArchive = async () => {
     try {
       console.log('Toggling archive')

@@ -3,12 +3,13 @@ import { BsThreeDots } from "react-icons/bs";
 import AddCard from "../components/AddCard";
 import CardPopup from "./CardPopup";
 import "./List.css";
-import { AppContext } from '../context/AppContext'
 import { Droppable, Draggable } from "react-beautiful-dnd";
+import { DataContext } from '../context/DataContext'
 
-const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
+const List = ({ cards, listId }) => {
   const [openNewCard, setOpenNewCard] = useState(false);
-  const [cardId, setCardId] = useState(null);
+
+  const { cardId, setCardId, name } = useContext(DataContext)
 
   return (
     <div className="list">
@@ -17,7 +18,7 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
         <p className="dots"><BsThreeDots/></p>    
       </span>
 
-      <Droppable droppableId={id}>
+      <Droppable droppableId={cardId}>
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
             {cards.map((card, index) => (
@@ -30,6 +31,7 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
                     key={card._id}
                     className="cards"
                     onClick={() => {
+                      console.log(card._id)
                       setCardId(card._id);
                     }}
                   >
@@ -44,16 +46,11 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
           </div>
         )}
       </Droppable>
-
-      {/* Display modal */}
-      {cardId !== null && (
+     
+      {cardId !== null && ( 
         <CardPopup
-          open={cardId !== null}
+          open={cardId !==null}
           onClose={() => setCardId(null)}
-          id={cardId}
-          listId={listId}
-          handleFetchData={handleFetchData}
-          cards={cards}
         />
       )}
 
@@ -61,8 +58,7 @@ const List = ({ name, cards, id, listId, onClose, handleFetchData }) => {
         <AddCard
           open={openNewCard}
           listId={listId}
-          id={id}
-          handleFetchData={handleFetchData}
+          id={cardId}
         />
 
         {!openNewCard ? (

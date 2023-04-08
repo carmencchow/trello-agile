@@ -12,7 +12,6 @@ const Board = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [showArchived, setShowArchived] = useState(false);
-
   const [tBoard, setTBoard] = useState(null);
 
   const rearangeArr = (arr, sourceIndex, destIndex) => {
@@ -122,8 +121,6 @@ const Board = () => {
             tBoard.lists.map((list) => (
               <List
                 key={list._id}
-                name={list.name}
-                // cards={list.cards}
                 cards={showCards(list, true)}
                 id={list._id}
                 listId={list._id}

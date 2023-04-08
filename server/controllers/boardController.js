@@ -41,13 +41,8 @@ const getArchived = async (req, res) => {
 // GET ALL boards
 const getBoards = async (req, res) => {
   try {
-<<<<<<< HEAD
     const boards = await Board.find({})
       .sort({ name: 1 })
-=======
-    const boards = await Board.find({}).count()
-      .sort({ name: -1 })
->>>>>>> 47866fb315f14ea4878705a438e3682e48686fa3
       .populate({
         path: "lists",
         populate: {
