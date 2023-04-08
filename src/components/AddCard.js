@@ -1,41 +1,32 @@
-
-import React, { useState, useContext } from "react";
-import "./AddCard.css";
-import SaveCardBtn from "./SaveCardBtn";
-import { fetchData } from "../store/thunks/fetchList";
+import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
+import { fetchData } from "../store/thunks/fetchList";
 import { DataContext } from '../context/DataContext'
+import SaveCardBtn from "./SaveCardBtn";
+import "./AddCard.css";
 
-// const AddCard = ({ handleFetchData }) => {
-//   const { input, setInput, open, listId, id, onClose } = useContext(DataContext);
+const AddCard = () => {
+  const { input, setInput, open, listId, id, onClose } = useContext(DataContext);
 
-const AddCard = ({ open, listId, id,  onClose }) => {
-  const [input, setInput] = useState("");
+// const AddCard = ({ open, listId, id,  onClose }) => {
+//   const [input, setInput] = useState("");
+
   const dispatch = useDispatch();
 
-  
   if (!open) return null;
 
   const handleInput = (e) => {
     setInput(e.target.value);
   };
-  
 
   const handleFetchData = () => {
     dispatch(fetchData({ id }));
   };
 
-
   const handleCardSaved = () => {
     setInput("");
     handleFetchData();
-        
   };
-
-  const handleClose = () => {
-    console.log('Close input')
-    onClose();
-  }
 
   return (
     <div className="input-container">
@@ -54,7 +45,6 @@ const AddCard = ({ open, listId, id,  onClose }) => {
         <SaveCardBtn
           input={input}
           listId={listId}
-          // onChange={handleInput}
           onCardSaved={handleCardSaved}
           id={id}          
           onClose={onClose}
