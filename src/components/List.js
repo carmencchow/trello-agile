@@ -1,14 +1,13 @@
 import React, { useState, useContext } from "react";
+import { Droppable, Draggable } from "react-beautiful-dnd";
+import { DataContext } from '../context/DataContext'
 import { BsThreeDots } from "react-icons/bs";
 import AddCard from "../components/AddCard";
 import CardPopup from "./CardPopup";
 import "./List.css";
-import { Droppable, Draggable } from "react-beautiful-dnd";
-import { DataContext } from '../context/DataContext'
 
 const List = ({ cards, listId }) => {
-  const [openNewCard, setOpenNewCard] = useState(false);
-
+  const [ openNewCard, setOpenNewCard ] = useState(false);
   const { cardId, setCardId, name } = useContext(DataContext)
 
   return (
@@ -18,7 +17,7 @@ const List = ({ cards, listId }) => {
         <p className="dots"><BsThreeDots/></p>    
       </span>
 
-      <Droppable droppableId={cardId}>
+      <Droppable droppableId={listId}>
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
             {cards.map((card, index) => (

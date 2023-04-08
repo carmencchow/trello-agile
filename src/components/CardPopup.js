@@ -22,7 +22,8 @@ import { DataContext } from '../context/DataContext'
 
 const CardPopup = ({ open, onClose }) => {
   const { 
-    getCard, listId, handleFetchData, openInput, setOpenInput, cardId: id, cardData, comment, setComment, color, setColor, archiveBtn, setArchiveBtn 
+    // getCard, listId, handleFetchData, openInput, setOpenInput, cardId: id, cardData, comment, setComment, color, setColor, archiveBtn, setArchiveBtn 
+    getCard, listId, handleFetchData, openInput, setOpenInput, cardId, cardData, comment, setComment, color, setColor, archiveBtn, setArchiveBtn 
   } = useContext(DataContext)
 
   const colorArr = [
@@ -46,8 +47,8 @@ const CardPopup = ({ open, onClose }) => {
         throw new Error("No token found in localStorage");
       }
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      console.log(`Archiving card, ${id}`)
-      const res = await axios.get(`http://localhost:5000/api/card/archive/${id}/`)
+      console.log(`Archiving card, ${cardId}`)
+      const res = await axios.get(`http://localhost:5000/api/card/archive/${cardId}/`)
       console.log(res.data.card.title, res.data.card.status)
       toast.success(`Card is now archived`)
       setArchiveBtn(!archiveBtn)
@@ -83,7 +84,7 @@ const CardPopup = ({ open, onClose }) => {
       }
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       const res = await axios.put(
-        `http://localhost:5000/api/card/${id}/color`,
+        `http://localhost:5000/api/card/${cardId}/color`,
         { 
           color: `${color}` 
         },
@@ -148,7 +149,7 @@ const CardPopup = ({ open, onClose }) => {
                     input={comment}
                     listId={listId}
                     clearComment={clearComment}
-                    id={id}
+                    id={cardId}
                     getCard={getCard}
                   />
                 </div>
@@ -190,7 +191,7 @@ const CardPopup = ({ open, onClose }) => {
             <EditCard
               open={openInput}
               listId={listId}
-              id={id}
+              id={cardId}
               handleFetchData={handleFetchData}
               onClose={onClose}
               setOpenInput={setOpenInput} 
@@ -217,7 +218,7 @@ const CardPopup = ({ open, onClose }) => {
           <p className="delete-card">
             <DeleteCard
               handleFetchData={handleFetchData}
-              id={id}
+              id={cardId}
               onClose={onClose}
             />
           </p>

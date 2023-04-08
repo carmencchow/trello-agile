@@ -2,6 +2,8 @@
 import React, { useState, useContext } from "react";
 import "./AddCard.css";
 import SaveCardBtn from "./SaveCardBtn";
+import { fetchData } from "../store/thunks/fetchList";
+import { useDispatch } from "react-redux";
 import { DataContext } from '../context/DataContext'
 
 // const AddCard = ({ handleFetchData }) => {
@@ -9,6 +11,8 @@ import { DataContext } from '../context/DataContext'
 
 const AddCard = ({ open, listId, id,  onClose }) => {
   const [input, setInput] = useState("");
+  const dispatch = useDispatch();
+
   
   if (!open) return null;
 
@@ -16,6 +20,12 @@ const AddCard = ({ open, listId, id,  onClose }) => {
     setInput(e.target.value);
   };
   
+
+  const handleFetchData = () => {
+    dispatch(fetchData({ id }));
+  };
+
+
   const handleCardSaved = () => {
     setInput("");
     handleFetchData();
