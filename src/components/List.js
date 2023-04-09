@@ -1,15 +1,23 @@
 import React, { useState, useContext } from "react";
+import { Droppable, Draggable } from "react-beautiful-dnd";
+import { DataContext } from '../context/DataContext'
+import { useDispatch } from "react-redux";
+import { fetchData } from "../store/thunks/fetchList";
 import { BsThreeDots } from "react-icons/bs";
 import AddCard from "../components/AddCard";
 import CardPopup from "./CardPopup";
 import "./List.css";
-import { Droppable, Draggable } from "react-beautiful-dnd";
-import { DataContext } from '../context/DataContext'
 
 const List = ({ cards, listId }) => {
-  const [openNewCard, setOpenNewCard] = useState(false);
+  const dispatch = useDispatch();
+  const [ openNewCard, setOpenNewCard ] = useState(false);
+  const { cardId, setCardId, name, boardId } = useContext(DataContext)
 
-  const { cardId, setCardId, name } = useContext(DataContext)
+  const handleFetchData = () => {
+    console.log(boardId)
+    dispatch(fetchData({ id : boardId }));
+    // dispatch(fetchData({ listId }));
+  };
 
   return (
     <div className="list">
@@ -18,7 +26,7 @@ const List = ({ cards, listId }) => {
         <p className="dots"><BsThreeDots/></p>    
       </span>
 
-      <Droppable droppableId={cardId}>
+      <Droppable droppableId={listId}>
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
             {cards.map((card, index) => (
@@ -50,7 +58,10 @@ const List = ({ cards, listId }) => {
       {cardId !== null && ( 
         <CardPopup
           open={cardId !==null}
-          onClose={() => setCardId(null)}
+          onClose={() => {setCardId(null)
+          handleFetchData()}
+        }
+          
         />
       )}
 

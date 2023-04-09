@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from "../store/thunks/fetchList";
 import axios from "axios";
+import { fetchData } from "../store/thunks/fetchList";
+import DataContext from '../context/DataContext'
 import Navbar from "./Navbar";
 import List from "../components/List";
 import "./Board.css";
@@ -11,6 +12,7 @@ import "./Board.css";
 const Board = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const { setBoardId } = useContext(DataContext);
   const [showArchived, setShowArchived] = useState(false);
   const [tBoard, setTBoard] = useState(null);
 
@@ -18,7 +20,6 @@ const Board = () => {
     const arrCopy = [...arr];
     const [removed] = arrCopy.splice(sourceIndex, 1);
     arrCopy.splice(destIndex, 0, removed);
-
     return arrCopy;
   };
 
@@ -40,7 +41,6 @@ const Board = () => {
       let sourceList = { ...lists[sourceListIndex] };
       let destinationList = { ...lists[destinationListIndex] };
 
-      // Remove the item from the source list and insert it into the destination list
       let removedItem;
       if (sourceList?.cards && source.index >= 0 && source.index < sourceList.cards.length) {
         removedItem = sourceList.cards[source.index];
@@ -101,6 +101,13 @@ const Board = () => {
       setTBoard(board)
     }
   }, [board])
+
+  useEffect(() => {
+    if (id){
+      setBoardId(id)
+    }
+  }, [])
+
 
   if (!board) {
     return <div>Loading...</div>;

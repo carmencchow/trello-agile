@@ -4,6 +4,7 @@ import axios from 'axios'
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
+  const [boardId, setBoardId] = useState(null);
   const [openInput, setOpenInput] = useState(false);
   const [cardId, setCardId] = useState(null);
   const [name, setName] = useState('');
@@ -14,12 +15,18 @@ export const DataProvider = ({ children }) => {
   const [archiveBtn, setArchiveBtn] = useState(true);
 
   const getCard = async (id) => {
-    const res = await axios.get(`http://localhost:5000/api/card/${id}`);
-    setCardData(res.data);
+    try {
+      const res = await axios.get(`http://localhost:5000/api/card/${id}`);
+      setCardData(res.data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {
+    if(cardId){
     getCard(cardId);
+    }
   }, [cardId]);
   
   return (
@@ -33,6 +40,7 @@ export const DataProvider = ({ children }) => {
       comment, setComment, 
       color, setColor, 
       archiveBtn, setArchiveBtn,
+      boardId, setBoardId
     }}>
       {children}
     </DataContext.Provider>
