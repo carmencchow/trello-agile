@@ -10,13 +10,11 @@ import "./CardPopup.css";
 //   const [name, setName] = useState("");
 //   if (!open) return null;
 
-const EditCard = ({id}) => {
-  const { open, onClose, onCardSaved, cardId, name, setName, listId } = useContext(DataContext);
+const EditCard = ({ id }) => {
+  const { open, onClose, cardId, name, setName, listId } = useContext(DataContext);
   const dispatch = useDispatch();
 
-
   if (!open) return null;  
-
 
   const handleInput = (e) => {
     setName(e.target.value);

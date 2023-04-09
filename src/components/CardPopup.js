@@ -25,7 +25,7 @@ const CardPopup = ({ open, onClose }) => {
   const { 
     // getCard, listId, handleFetchData, openInput, setOpenInput, cardId: id, cardData, comment, setComment, color, setColor, archiveBtn, setArchiveBtn 
     getCard, listId, openInput, setOpenInput, 
-    cardId, cardData, comment, setComment, color, setColor, archiveBtn, setArchiveBtn 
+    cardId, cardData, comment, setComment, color, setColor, archiveBtn, setArchiveBtn, boardId
   } = useContext(DataContext)
 
   const dispatch = useDispatch();
@@ -43,7 +43,8 @@ const CardPopup = ({ open, onClose }) => {
   ];
 
   const handleFetchData = () => {
-    dispatch(fetchData({ cardId }));
+    console.log(boardId)
+    dispatch(fetchData({ id : boardId }));
     // dispatch(fetchData({ listId }));
   };
 
@@ -79,7 +80,6 @@ const CardPopup = ({ open, onClose }) => {
     e.preventDefault();
     console.log('New color:', color);
     setColor(color);
-    handleFetchData();
 
     try {
       const token = localStorage.getItem("token");
@@ -92,12 +92,12 @@ const CardPopup = ({ open, onClose }) => {
         { 
           color: `${color}` 
         },
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        // {
+        //   method: "PT",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        // }
       );
     } catch (err) {
       console.log(err);
@@ -174,12 +174,12 @@ const CardPopup = ({ open, onClose }) => {
 
           <div className="edit">
             <EditCard
-              // open={openInput}
-              // listId={listId}
-              // id={cardId}
-              // handleFetchData={handleFetchData}
-              // onClose={onClose}
-              // setOpenInput={setOpenInput} 
+              open={openInput}
+              listId={listId}
+              id={cardId}
+              handleFetchData={handleFetchData}
+              onClose={onClose}
+              setOpenInput={setOpenInput} 
             />
 
             {!openInput ? (
