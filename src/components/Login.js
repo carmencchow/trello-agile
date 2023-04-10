@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./Login.css"; 
 import Navbar from "./Navbar";
+import "./Login.css"; 
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -39,6 +39,7 @@ const Login = () => {
     try {
       const res = await axios.get("http://localhost:5000/api/user/me");
       setUserInfo(res.data);
+      console.log(res.data);
     } catch (error) {
       throw error;
     }

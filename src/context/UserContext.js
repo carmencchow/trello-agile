@@ -15,10 +15,9 @@ export const UserProvider = ({children}) => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     try {
       const res = await axios.get("http://localhost:5000/api/user/me");
-
       setUserInfo(res.data);
       console.log(
-        "Displaying user boards:",
+        "Displaying user boards:", userInfo,
         res.data.boards.map((board) => {
           return board._id;
         })

@@ -16,7 +16,7 @@ export const dataSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchData.fulfilled, (state, action) => {
-        console.log(action.payload,'action payload');
+        // console.log(action.payload,'action payload');
         state.board = action.payload;
       });
   },

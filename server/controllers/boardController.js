@@ -66,12 +66,12 @@ const createBoard = async (req, res) => {
   const title = req.body.title;
 
   try {
-    const hasTitle = await Board.collection.findOne({ title : title});
+    const hasTitle = await Board.collection.findOne({ title : title });
     if(hasTitle){
-      console.log('board exists')
-      return res.sendStatus(200)
+      console.log('board already exists')
+      return res.sendStatus(200) //Stop here, new board not created
     }
-    
+  
     const user = await User.findById({ _id: req.user.id });
 
     const newBoard = await Board.create({

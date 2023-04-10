@@ -38,7 +38,6 @@ const AddCard = ({ handleFetchData, open, listId, id,  onClose }) => {
         <SaveCardBtn
           input={input}
           listId={listId}
-          // onChange={handleInput}
           onCardSaved={handleCardSaved}
           id={id}          
           onClose={onClose}

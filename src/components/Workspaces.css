@@ -5,9 +5,20 @@
   margin: 10px;
   border-radius: 5px;
   font-size: 20px;
-  padding-left: 30px;
   color: white;
+}
+.delete{
+  font-size: 12px;
   cursor: pointer;
+  color: rgb(174, 169, 169);
+  font-weight: lighter;
+  margin-right: 8px;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.delete:hover{
+  color: white;
 }
 .newboard{
   background-color: rgb(243, 242, 242);
@@ -47,10 +58,12 @@
   display: flex;
 }
 .title {
-  background-color: rgba(0, 0, 0, 0.1);
+  /* background-color: rgba(0, 0, 0, 0.1); */
   width: 60%;
   padding: 5px;
   border-radius: 5px;
+  margin-left: 20px;
+  cursor: pointer;
 }
 .createBtn{
   margin-top: 40px;

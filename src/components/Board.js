@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { AiOutlineClose, AiOutlineDelete } from 'react-icons/ai';
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -12,9 +13,11 @@ import "./Board.css";
 const Board = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { setBoardId } = useContext(DataContext);
+  const { boardId, setBoardId } = useContext(DataContext);
   const [showArchived, setShowArchived] = useState(false);
   const [tBoard, setTBoard] = useState(null);
+  const [userInfo, setUserInfo] = useState("");
+  const navigate = useNavigate();
 
   const rearangeArr = (arr, sourceIndex, destIndex) => {
     const arrCopy = [...arr];
@@ -24,7 +27,6 @@ const Board = () => {
   };
 
   const onDragEnd = (result, lists) => {
-
     if (!result.destination) {
       return;
     }
@@ -81,9 +83,29 @@ const Board = () => {
     }
     return list.cards.filter((card) => (showArchived ? card.isArchived : !card.isArchived))
   }
+
   const toggleCards = () => {
     setShowArchived(!showArchived)
   }
+
+
+  // Delete the board
+  const handleDelete = async (boardId) => {
+    console.log('Deleting board:', id);
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error("No token found in localStorage");
+    }
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    try {
+      const res = await axios.delete(`http://localhost:5000/api/board/${id}`);
+      setUserInfo(res.data);
+      console.log('Deleting board')
+      navigate("/workspaces");
+    } catch (error) {
+      throw error;
+    }
+  };
 
   useEffect(() => {
     dispatch(fetchData({ id }));
@@ -118,10 +140,15 @@ const Board = () => {
       <Navbar />
       <h3>{board.title}</h3>
       
-      <button className="toggle" onClick={toggleCards}>
-        {showArchived ? "Showing Archived Cards:" : "Showing Unarchived Cards:"} 
-      </button>
-      
+      <div className="buttons">
+        <button className="toggle" onClick={toggleCards}>
+          {showArchived ? "Showing Archived Cards:" : "Showing Unarchived Cards:"} 
+        </button>
+
+        {/* Delete the board */}
+        <p className="delete-icon" onClick={handleDelete}><AiOutlineDelete/><span>Delete board</span></p>
+      </div>
+
       <DragDropContext onDragEnd={(result) => onDragEnd(result, tBoard.lists)}>
         <div className="container">
           {tBoard && tBoard.lists &&
@@ -131,6 +158,7 @@ const Board = () => {
                 cards={showCards(list, true)}
                 id={list._id}
                 listId={list._id}
+                name={list.name}
                 handleFetchData={handleFetchData}
               />
             ))}
