@@ -30,6 +30,7 @@ const AddBoard = () => {
       // GET new id from MongoDB
       const data = res.data;
       console.log('New board', data);
+      setInput('');
       navigate(`/board/${data.newBoard._id}`);
       // Clear board
 

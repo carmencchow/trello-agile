@@ -127,7 +127,6 @@ const Board = () => {
               <List
                 key={list._id}
                 cards={showCards(list)}
-                // cards={showCards(list, true)}
                 id={list._id}
                 name={list.name}
                 listId={list._id}
