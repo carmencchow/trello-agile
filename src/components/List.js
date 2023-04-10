@@ -12,7 +12,6 @@ const List = ({ cards, listId, name }) => {
   const dispatch = useDispatch();
   const [ openNewCard, setOpenNewCard ] = useState(false);
   const { cardId, setCardId, boardId } = useContext(DataContext)
-  // const { cardId, setCardId, name, boardId } = useContext(DataContext)
 
   const handleFetchData = () => {
     console.log('Board id', boardId)

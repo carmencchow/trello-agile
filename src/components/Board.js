@@ -88,7 +88,6 @@ const Board = () => {
     setShowArchived(!showArchived)
   }
 
-
   // Delete the board
   const handleDelete = async (boardId) => {
     console.log('Deleting board:', id);
@@ -144,8 +143,6 @@ const Board = () => {
         <button className="toggle" onClick={toggleCards}>
           {showArchived ? "Showing Archived Cards:" : "Showing Unarchived Cards:"} 
         </button>
-
-        {/* Delete the board */}
         <p className="delete-icon" onClick={handleDelete}><AiOutlineDelete/><span>Delete board</span></p>
       </div>
 
@@ -155,7 +152,7 @@ const Board = () => {
             tBoard.lists.map((list) => (
               <List
                 key={list._id}
-                cards={showCards(list, true)}
+                cards={showCards(list)}
                 id={list._id}
                 listId={list._id}
                 name={list.name}

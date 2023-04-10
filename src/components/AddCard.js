@@ -1,4 +1,3 @@
-
 import React, { useState, useContext } from "react";
 import "./AddCard.css";
 import SaveCardBtn from "./SaveCardBtn";
@@ -16,7 +15,7 @@ const AddCard = ({ handleFetchData, open, listId, id,  onClose }) => {
     setInput(e.target.value);
   };
   
-  const handleCardSaved = () => {
+  const handleCardSaved = (e) => {
     setInput("");
     handleFetchData();
   };

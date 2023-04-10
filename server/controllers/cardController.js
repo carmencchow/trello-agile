@@ -87,12 +87,11 @@ const createCard = async (req, res) => {
     const parentList = await List.findById(listId);
     const result = await Card.create({ title, parentList: parentList._id, isArchived: false, comments: [], timestamps: true });
     console.log(result);
-
     await result.save();
     parentList.cards.push(result._id);
     await parentList.save();
     console.log("Card created");
-    return res.status(201).send({ message: result });
+    return res.status(201).send({ message: result, title });
   } catch (err) {
     console.log(err);
     return res.status(500).send({ message: err.message });

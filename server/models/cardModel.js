@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 const cardSchema = new Schema({
   title: {
     type: String,
-    required: true,
   },
   comments: {
     type: Array,

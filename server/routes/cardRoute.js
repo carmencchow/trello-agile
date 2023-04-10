@@ -22,7 +22,7 @@ router.get("/:id", auth, getCard);
 router.post("/", auth, createCard);
 router.post("/:id/comment", auth, addComment);
 router.put("/:id/comment", auth, unComment);
-// router.delete('/:id/comment', auth, deleteComment);
+router.delete('/:id/comment', auth, deleteComment);
 router.put("/:id/color", auth, updateColor);
 router.put("/:id", auth, updateCardName);
 router.delete("/:id", auth, deleteCard);
