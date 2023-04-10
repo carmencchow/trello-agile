@@ -1,7 +1,7 @@
 import React, { useContext} from "react";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import { DataContext } from '../context/DataContext'
-import { useDispatch } from "react-redux";
 import { fetchData } from "../store/thunks/fetchList";
 import toast, { Toaster } from 'react-hot-toast'
 import { BiArchive } from "react-icons/bi";
@@ -43,9 +43,7 @@ const CardPopup = ({ open, onClose }) => {
   ];
 
   const handleFetchData = () => {
-    console.log(boardId)
     dispatch(fetchData({ id : boardId }));
-    // dispatch(fetchData({ listId }));
   };
 
   const toggleArchive = async () => {

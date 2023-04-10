@@ -48,8 +48,7 @@ const AddBoard = () => {
         onChange={handleInput}
       />
       <button className="createBtn" onClick={createBoard}>Create</button>
-      <h6 className="disclaimer">* Do not use a board name that already exists</h6>
-
+    
     </div>
   )
 }

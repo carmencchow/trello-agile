@@ -37,6 +37,7 @@ const Workspaces = () => {
   };
   
   const handleDelete = async (id) => {
+    console.log('Deleting card:', id);
     const token = localStorage.getItem("token");
     if (!token) {
       throw new Error("No token found in localStorage");
@@ -44,7 +45,8 @@ const Workspaces = () => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     try {
       const res = await axios.delete(`http://localhost:5000/api/board/${id}`);
-      console.log(res.data, 'Deleting board')
+      setUserInfo(res.data);
+      console.log('Deleting board')
     } catch (error) {
       throw error;
     }
@@ -69,7 +71,7 @@ const Workspaces = () => {
                     <div key={board._id} className="boards-container">
                       <div className="boards">
                         <p className="delete" onClick={handleDelete}><AiOutlineClose/></p>                        
-                        <h5 className="title" onClick={() => goToBoard(board._id)}>{board.title}</h5>
+                        <h5 onClick={() => goToBoard(board._id)} className="title">{board.title}</h5>
                       </div>
                     </div>
                   );
