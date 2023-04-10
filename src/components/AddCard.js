@@ -7,7 +7,7 @@ import { DataContext } from '../context/DataContext'
 // const AddCard = ({ handleFetchData }) => {
 //   const { input, setInput, open, listId, id, onClose } = useContext(DataContext);
 
-const AddCard = ({ open, listId, id,  onClose }) => {
+const AddCard = ({ handleFetchData, open, listId, id,  onClose }) => {
   const [input, setInput] = useState("");
   
   if (!open) return null;
@@ -19,13 +19,7 @@ const AddCard = ({ open, listId, id,  onClose }) => {
   const handleCardSaved = () => {
     setInput("");
     handleFetchData();
-        
   };
-
-  const handleClose = () => {
-    console.log('Close input')
-    onClose();
-  }
 
   return (
     <div className="input-container">
@@ -44,7 +38,6 @@ const AddCard = ({ open, listId, id,  onClose }) => {
         <SaveCardBtn
           input={input}
           listId={listId}
-          // onChange={handleInput}
           onCardSaved={handleCardSaved}
           id={id}          
           onClose={onClose}

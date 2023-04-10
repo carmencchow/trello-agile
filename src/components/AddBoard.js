@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react'
-import axios from "axios";
+import React, { useContext } from 'react'
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { DataContext } from '../context/DataContext'
-import "./Workspaces.css";
-import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../store/thunks/fetchList";
+import "./Workspaces.css";
 
 // const AddBoard = ({ handleFetchData }) => {
 //   const [input, setInput] = useState('');
@@ -33,12 +33,9 @@ const AddBoard = () => {
       const res = axios.post('http://localhost:5000/api/board/',
 
         { title: `${input}` },
-        { method: "POST", headers: { "Content-Type": "application/json",}, }
+        { method: "POST", headers: { "Content-Type": "application/json",}, }      
       
       );
-
-      // GET new id from MongoDB
-      // const id = res.data.id; 
       navigate(`/board/${id}`);
       const data = res.data;
       console.log('New board', data);

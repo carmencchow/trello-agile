@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import Navbar from "./Navbar";
-import AddBoard from './AddBoard';
 import axios from "axios";
+import { Button } from "@mui/material";
+import AddBoard from './AddBoard';
+import Navbar from "./Navbar";
 import "./Workspaces.css";
 
 const Workspaces = () => {
   const [userInfo, setUserInfo] = useState("");
   const navigate = useNavigate();
+
+  const goToBoard = (id) => {
+    navigate(`/board/${id}`);
+    console.log(id);
+  };
 
   const getUserProfile = async () => {
     const token = localStorage.getItem("token");
@@ -18,7 +23,6 @@ const Workspaces = () => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     try {
       const res = await axios.get("http://localhost:5000/api/user/me");
-
       setUserInfo(res.data);
       console.log(
         "Displaying user boards:",
@@ -34,11 +38,6 @@ const Workspaces = () => {
   useEffect(() => {
     getUserProfile();
   }, []);
-
-  const goToBoard = (id) => {
-    navigate(`/board/${id}`);
-    console.log(id);
-  };
 
   return (
     <div>
