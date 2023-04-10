@@ -68,8 +68,8 @@ const createBoard = async (req, res) => {
   try {
     const hasTitle = await Board.collection.findOne({ title : title});
     if(hasTitle){
-      console.log('board exists')
-      return res.sendStatus(200)
+      console.log('board already exists')
+      return res.sendStatus(200) // stop board from being created
     }
     
     const user = await User.findById({ _id: req.user.id });
@@ -100,6 +100,7 @@ const createBoard = async (req, res) => {
     user.boards.push(newBoard._id);
     user.lists.push(todoList._id, doingList._id, doneList._id);
     await user.save();
+    console.log('New lists', newBoard.lists);
     return res.status(201).send({ message: "Creating board", newBoard });
   } catch (err) {
     console.log(err);

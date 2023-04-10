@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { DragDropContext } from "react-beautiful-dnd";
 import { fetchData } from "../store/thunks/fetchList";
 import DataContext from '../context/DataContext'
-import Navbar from "./Navbar";
 import List from "../components/List";
+import Navbar from "./Navbar";
 import "./Board.css";
 
 const Board = () => {
@@ -31,11 +31,9 @@ const Board = () => {
 
     const { source, destination } = result;
 
-    // Find the source and destination lists
     const sourceListIndex = lists.findIndex(list => list._id === source.droppableId);
     const destinationListIndex = lists.findIndex(list => list._id === destination.droppableId);
     if (source.droppableId !== destination.droppableId) {
-
 
       // Make copies of the source and destination lists
       let sourceList = { ...lists[sourceListIndex] };
@@ -94,7 +92,7 @@ const Board = () => {
   };
 
   const board = useSelector((state) => state.data.board);
-  console.log(board, "state board board.js");
+  // console.log(board, "state board board.js");
   
   useEffect(() => {
     if (board) {
@@ -128,8 +126,10 @@ const Board = () => {
             tBoard.lists.map((list) => (
               <List
                 key={list._id}
-                cards={showCards(list, true)}
+                cards={showCards(list)}
+                // cards={showCards(list, true)}
                 id={list._id}
+                name={list.name}
                 listId={list._id}
                 handleFetchData={handleFetchData}
               />

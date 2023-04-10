@@ -10,11 +10,6 @@ const Workspaces = () => {
   const [userInfo, setUserInfo] = useState("");
   const navigate = useNavigate();
 
-  const goToBoard = (id) => {
-    navigate(`/board/${id}`);
-    console.log(id);
-  };
-
   const getUserProfile = async () => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -33,6 +28,11 @@ const Workspaces = () => {
     } catch (error) {
       throw error;
     }
+  };
+
+  const goToBoard = (id) => {
+    navigate(`/board/${id}`);
+    console.log('Board id:', id);
   };
 
   useEffect(() => {
