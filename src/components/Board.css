@@ -84,3 +84,17 @@ h3{
   margin-left: 30px;
   vertical-align: center;
 }
+.delete-icon{
+  font-size: 20px;
+  cursor: pointer;
+}
+.buttons{
+  display: flex;
+  justify-content: space-between;
+  margin-right: 40px;
+}
+span{
+  font-size: 14px;
+  margin-left: 8px;
+  margin-top: 0px;
+}

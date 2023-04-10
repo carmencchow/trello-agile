@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { AiOutlineClose } from 'react-icons/ai';
+import { AiOutlineClose, AiOutlineDelete } from 'react-icons/ai';
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -140,13 +140,15 @@ const Board = () => {
       <Navbar />
       <h3>{board.title}</h3>
       
-      <button className="toggle" onClick={toggleCards}>
-        {showArchived ? "Showing Archived Cards:" : "Showing Unarchived Cards:"} 
-      </button>
+      <div className="buttons">
+        <button className="toggle" onClick={toggleCards}>
+          {showArchived ? "Showing Archived Cards:" : "Showing Unarchived Cards:"} 
+        </button>
 
-      {/* Delete the board */}
-      <p className="delete" onClick={handleDelete}>DELETE THIS BOARD<AiOutlineClose/></p>
-      
+        {/* Delete the board */}
+        <p className="delete-icon" onClick={handleDelete}><AiOutlineDelete/><span>Delete board</span></p>
+      </div>
+
       <DragDropContext onDragEnd={(result) => onDragEnd(result, tBoard.lists)}>
         <div className="container">
           {tBoard && tBoard.lists &&
