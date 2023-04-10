@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button } from "@mui/material";
+import { AiOutlineClose } from 'react-icons/ai';
 import AddBoard from './AddBoard';
 import Navbar from "./Navbar";
 import "./Workspaces.css";
@@ -34,6 +35,20 @@ const Workspaces = () => {
     navigate(`/board/${id}`);
     console.log('Board id:', id);
   };
+  
+  const handleDelete = async (id) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error("No token found in localStorage");
+    }
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    try {
+      const res = await axios.delete(`http://localhost:5000/api/board/${id}`);
+      console.log(res.data, 'Deleting board')
+    } catch (error) {
+      throw error;
+    }
+  };
 
   useEffect(() => {
     getUserProfile();
@@ -52,11 +67,9 @@ const Workspaces = () => {
                 userInfo.boards.map((board, index) => {
                   return (
                     <div key={board._id} className="boards-container">
-                      <div
-                        className="boards"
-                        onClick={() => goToBoard(board._id)}
-                      >
-                        <h5 className="title">{board.title}</h5>
+                      <div className="boards">
+                        <p className="delete" onClick={handleDelete}><AiOutlineClose/></p>                        
+                        <h5 className="title" onClick={() => goToBoard(board._id)}>{board.title}</h5>
                       </div>
                     </div>
                   );

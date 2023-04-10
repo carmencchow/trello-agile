@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { DataContext } from '../context/DataContext'
@@ -6,6 +6,7 @@ import "./Workspaces.css";
 
 const AddBoard = () => {
   const { input, setInput } = useContext(DataContext);
+  const [error, setError] = useState('Board already exists');
   const navigate = useNavigate();
 
   const handleInput = (e) => {
@@ -32,8 +33,6 @@ const AddBoard = () => {
       console.log('New board', data);
       setInput('');
       navigate(`/board/${data.newBoard._id}`);
-      // Clear board
-
     } catch (err) {
       console.log(err);
     }
@@ -49,6 +48,8 @@ const AddBoard = () => {
         onChange={handleInput}
       />
       <button className="createBtn" onClick={createBoard}>Create</button>
+      <h6 className="disclaimer">* Do not use a board name that already exists</h6>
+
     </div>
   )
 }
