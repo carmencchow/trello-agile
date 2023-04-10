@@ -1,19 +1,28 @@
-import React, { useState, useContext } from "react";
-import "./CardPopup.css";
-import UpdateCardBtn from "./UpdateCardBtn";
+import React, { useContext } from "react";
 import { DataContext } from '../context/DataContext'
+import { useDispatch } from "react-redux";
+import { fetchData } from "../store/thunks/fetchList";
+import UpdateCardBtn from "./UpdateCardBtn";
 import './EditCard.css';
+import "./CardPopup.css";
 
-const EditCard = ({ open, onClose, onCardSaved, id, handleFetchData, listId }) => {
-  const [name, setName] = useState("");
-  if (!open) return null;
+// const EditCard = ({ open, onClose, id, handleFetchData, listId }) => {
+//   const [name, setName] = useState("");
+//   if (!open) return null;
 
-// const EditCard = ({ handleFetchData }) => {
-//   const { open, onClose, onCardSaved, id, name, setName, listId } = useContext(DataContext);
-//   if (!open) return null;  
+const EditCard = ({ id }) => {
+  const { open, onClose, cardId, name, setName, listId } = useContext(DataContext);
+  const dispatch = useDispatch();
+
+  if (!open) return null;  
 
   const handleInput = (e) => {
     setName(e.target.value);
+  };
+
+  const handleFetchData = () => {
+    dispatch(fetchData({ cardId }));
+    // dispatch(fetchData({ listId }));
   };
 
   const handleUpdateName = () => {

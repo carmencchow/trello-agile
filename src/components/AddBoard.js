@@ -1,8 +1,10 @@
 import React, { useContext } from 'react'
-import { useDispatch } from "react-redux";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { DataContext } from '../context/DataContext'
+import "./Workspaces.css";
+import { useDispatch } from "react-redux";
 import { fetchData } from "../store/thunks/fetchList";
 import "./Workspaces.css";
 
@@ -10,7 +12,7 @@ import "./Workspaces.css";
 //   const [input, setInput] = useState('');
 
 const AddBoard = () => {
-  const { input, setInput, id } = useContext(DataContext);
+  const { input, setInput } = useContext(DataContext);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -18,11 +20,11 @@ const AddBoard = () => {
     setInput(e.target.value);
   }
 
-  const handleFetchData = () => {
+  const handleFetchData = (id) => {
     dispatch(fetchData({ id }));
   };
 
-  const createBoard = (id) => {
+  const createBoard = async () => {
     console.log('Creating board')
     try {
       const token = localStorage.getItem("token");
@@ -30,16 +32,18 @@ const AddBoard = () => {
         throw new Error("No token found in localStorage");
       }
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const res = axios.post('http://localhost:5000/api/board/',
+      const res = await axios.post('http://localhost:5000/api/board',
 
         { title: `${input}` },
         { method: "POST", headers: { "Content-Type": "application/json",}, }      
       
       );
-      navigate(`/board/${id}`);
+
+      // GET new id from MongoDB
       const data = res.data;
       console.log('New board', data);
-      handleFetchData();
+      // handleFetchData(data.newBoard._id);
+      navigate(`/board/${data.newBoard._id}`);
     } catch (err) {
       console.log(err);
     }
