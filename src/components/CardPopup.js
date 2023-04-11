@@ -39,12 +39,12 @@ const CardPopup = ({ open, onClose }) => {
         throw new Error("No token found in localStorage");
       }
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      console.log(`Archiving card, ${listId}`)
-      const res = await axios.get(`http://localhost:5000/api/card/archive/${listId}/`)
+      const res = await axios.get(`http://localhost:5000/api/card/archive/${cardId}/`)
       console.log(res.data.card.title, res.data.card.status)
       toast.success(`Card is now archived`)
       setArchiveBtn(!archiveBtn)
       handleFetchData();
+      onClose();
     } catch (error) {
       console.log(error)
     }

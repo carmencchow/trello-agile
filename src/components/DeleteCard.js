@@ -14,15 +14,18 @@ const DeleteCard = ({ id, onClose }) => {
       onClose();
     });
     handleFetchData();
+    onClose();
   };
 
   return (
     <div className="row">
-      <Toaster position="top-center" toastOption={{ duration: 3000 }}/>
+      {/* <Toaster position="top-center" toastOption={{ duration: 5000 }}/> */}
+      
       <div className="delete-card" onClick={() => {
         handleDelete();
         toast.success(`Card deleted`)
-        }}><span className="delete-icon"><RiDeleteBin6Line /></span>
+        }}>
+          <span className="delete-icon"><RiDeleteBin6Line /></span>
         <p>Delete this card</p>
 
       </div>

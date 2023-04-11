@@ -131,7 +131,7 @@ input{
   font-weight: lighter;
   height: 50px;
   margin-top: 0px;
-  margin-left: 20px;
+  margin-right: 0px;
   border-radius: 3px;
   cursor: pointer;
 }
