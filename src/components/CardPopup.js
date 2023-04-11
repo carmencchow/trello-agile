@@ -107,9 +107,9 @@ const CardPopup = ({ open, onClose }) => {
                   ></span>
                 );
               })}
-              <button className="change-color" onClick={handleColorChange}>
-                Save color
-              </button>
+              <div className="change-color" onClick={handleColorChange}><p className="save-commentbtn">
+                Save</p>
+              </div>
             </p>
           </div>
 
@@ -158,7 +158,7 @@ const CardPopup = ({ open, onClose }) => {
               <h4 className="edit-card" onClick={() => {
                   setOpenInput(true);
                 }}>
-                  <span className="edit-icon"><FiEdit2 /></span> Edit this card 
+                  <span className="edit-icon"><FiEdit2 /></span><p> Edit this card </p>
               </h4>
             ) : (
               <div></div>
