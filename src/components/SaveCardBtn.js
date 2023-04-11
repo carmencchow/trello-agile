@@ -4,8 +4,8 @@ import { DataContext } from '../context/DataContext';
 import './SaveCardBtn.css';
 
 const SaveCardBtn = ({ listId, input, onClose }) => {
-  const { handleFetchData, handleCardSaved } = useContext(DataContext)
-
+  const { handleFetchData, clearInput, handleCardSaved } = useContext(DataContext)
+  
   const handleSave = async () => {
   try {
     const token = localStorage.getItem("token");
@@ -31,6 +31,7 @@ const SaveCardBtn = ({ listId, input, onClose }) => {
       handleFetchData();
       onClose();
       handleCardSaved();
+      clearInput();
     } catch (err) {
       console.log(err);
     }

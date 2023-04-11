@@ -128,7 +128,6 @@ const CardPopup = ({ open, onClose }) => {
                   <SaveCommentBtn
                     input={comment}
                     listId={listId}
-                    // clearComment={clearComment}
                     id={cardId}
                   />
                 </div>
@@ -138,7 +137,6 @@ const CardPopup = ({ open, onClose }) => {
             <div className="comment-container">
             {comment ? <h5>Comments:</h5> : null}
               {cardData.card.comments.map((comment) => {
-                console.log(comment)
                 return (
                   <div className="comments">
                     <p className="displayed-comments">{comment}</p>

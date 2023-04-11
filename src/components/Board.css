@@ -19,7 +19,7 @@ h3{
   flex-direction: row;
 }
 .cards{
-  width: 230px;
+  width: 245px;
   height: 50px;
   margin: 5px;
   margin-left: 10px;
@@ -62,9 +62,10 @@ h3{
   color:rgb(110, 110, 110);
 }
 .add-card:hover{
-  width: 210px;
-  margin-left: 5px;
+  width: 227px;
+  margin-left: 10px;
   margin-top: 5px;
+  border-radius: 5px;
   color: rgb(110, 110, 110);
   background-color: #ebecf0;
 }

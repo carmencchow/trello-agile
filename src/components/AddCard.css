@@ -9,9 +9,6 @@ input{
   color: white;
   background-color: darkgray;
 }
-.card{
-  width: 228px;
-}
 .btn-row{
   display: flex;
   flex-direction: row;
