@@ -6,13 +6,13 @@ import SaveCardBtn from "./SaveCardBtn";
 import "./AddCard.css";
 
 const AddCard = ({ open, listId, id,  onClose }) => {
-  const { boardId } = useContext(DataContext)
+  const { boardId, handleFetchData } = useContext(DataContext)
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
 
-  const handleFetchData = () => {
-    dispatch(fetchData({ id : boardId }));
-  };
+  // const handleFetchData = () => {
+  //   dispatch(fetchData({ id : boardId }));
+  // };
 
   const handleInput = (e) => {
     setInput(e.target.value);

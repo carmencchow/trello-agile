@@ -1,27 +1,16 @@
-import React, { useState, useContext } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from "../store/thunks/fetchList";
+import React, { useContext } from "react";
+import { useDispatch } from "react-redux";
 import axios from "axios";
-import "./SaveCommentBtn.css";
 import DataContext from "../context/DataContext";
-
-
-// const SaveCommentBtn = ({ listId, input, clearComment, id, handleFetchData, getCard }) => {
+import { fetchData } from "../store/thunks/fetchList";
+import "./SaveCommentBtn.css";
 
 const SaveCommentBtn = () => {
-  const { input, clearComment, id, 
-    
-    // cardId: id,
-    getCard } = useContext(DataContext);
+  const { input, clearComment, id, getCard, handleFetchData } = useContext(DataContext);
 
   const dispatch = useDispatch();
 
-  const handleFetchData = () => {
-    // dispatch(fetchData({ cardId }));
-    // dispatch(fetchData({ listId }));
-  };
-
-  const handleSaveComment = async (e) => {
+  const handleSaveComment = async () => {
     console.log("saving comments:", input);
 
     try {
@@ -43,6 +32,7 @@ const SaveCommentBtn = () => {
         }
       );
       const data = res.data;
+      handleFetchData();
       console.log(data);
       clearComment();
       await getCard(id);

@@ -1,4 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react'
+import { fetchData } from "../store/thunks/fetchList";
+import { useDispatch } from "react-redux";
 import axios from 'axios'
 
 export const DataContext = createContext();
@@ -11,8 +13,8 @@ export const DataProvider = ({ children }) => {
   const [input, setInput] = useState('');
   const [cardData, setCardData] = useState(null);
   const [comment, setComment] = useState('')
-  const [color, setColor] = useState('');
   const [archiveBtn, setArchiveBtn] = useState(true);
+  const dispatch = useDispatch();
 
   const getCard = async (id) => {
     try {
@@ -22,6 +24,11 @@ export const DataProvider = ({ children }) => {
       console.log(e);
     }
   };
+
+  const handleFetchData = () => {
+    dispatch(fetchData({ id : boardId }));
+  };
+
 
   useEffect(() => {
     if(cardId){
@@ -37,8 +44,8 @@ export const DataProvider = ({ children }) => {
       name, setName,
       cardData, setCardData,
       getCard,
+      handleFetchData,
       comment, setComment, 
-      color, setColor, 
       archiveBtn, setArchiveBtn,
       boardId, setBoardId
     }}>

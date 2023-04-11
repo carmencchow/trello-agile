@@ -5,7 +5,7 @@ import { DataContext } from '../context/DataContext';
 import { fetchData } from "../store/thunks/fetchList";
 import './SaveCardBtn.css';
 
-const SaveCardBtn = ({ listId, onCardSaved, input }) => {
+const SaveCardBtn = ({ listId, onCardSaved, input, onClose }) => {
   const { boardId } = useContext(DataContext)
   const dispatch = useDispatch();
 
@@ -23,7 +23,9 @@ const SaveCardBtn = ({ listId, onCardSaved, input }) => {
     const res = await axios.post(
       `http://localhost:5000/api/card/?listId=${listId}`,
     
-      { title: `${input}` },
+      { 
+        title: `${input}` 
+      },
       {
         method: "POST",
         headers: {
@@ -34,6 +36,7 @@ const SaveCardBtn = ({ listId, onCardSaved, input }) => {
       const data = res.data;
       console.log(data);
       handleFetchData();
+      onClose();
       onCardSaved();
     } catch (err) {
       console.log(err);

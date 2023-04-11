@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { AiOutlineClose, AiOutlineDelete } from 'react-icons/ai';
+import { AiOutlineDelete } from 'react-icons/ai';
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -13,7 +13,7 @@ import "./Board.css";
 const Board = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { boardId, setBoardId } = useContext(DataContext);
+  const { boardId, setBoardId, handleFetchData } = useContext(DataContext);
   const [showArchived, setShowArchived] = useState(false);
   const [tBoard, setTBoard] = useState(null);
   const [userInfo, setUserInfo] = useState("");
@@ -84,6 +84,10 @@ const Board = () => {
     return list.cards.filter((card) => (showArchived ? card.isArchived : !card.isArchived))
   }
 
+  // const handleFetchData = () => {
+  //   dispatch(fetchData({ id }));
+  // };
+
   const toggleCards = () => {
     setShowArchived(!showArchived)
   }
@@ -110,12 +114,8 @@ const Board = () => {
     dispatch(fetchData({ id }));
   }, [dispatch, id]);
 
-  const handleFetchData = () => {
-    dispatch(fetchData({ id }));
-  };
-
   const board = useSelector((state) => state.data.board);
-  console.log(board, "state board board.js");
+  // console.log(board, "state board board.js");
   
   useEffect(() => {
     if (board) {
@@ -156,7 +156,7 @@ const Board = () => {
                 id={list._id}
                 listId={list._id}
                 name={list.name}
-                handleFetchData={handleFetchData}
+                // handleFetchData={handleFetchData}
               />
             ))}
         </div>

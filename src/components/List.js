@@ -38,7 +38,7 @@ const List = ({ cards, listId, name }) => {
                     key={card._id}
                     className="cards"
                     onClick={() => {
-                      console.log(card._id)
+                      console.log('Card id:', card._id)
                       setCardId(card._id);
                     }}
                   >
