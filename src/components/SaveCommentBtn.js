@@ -1,14 +1,10 @@
 import React, { useContext } from "react";
-import { useDispatch } from "react-redux";
 import axios from "axios";
 import DataContext from "../context/DataContext";
-import { fetchData } from "../store/thunks/fetchList";
 import "./SaveCommentBtn.css";
 
 const SaveCommentBtn = () => {
   const { input, clearComment, id, getCard, handleFetchData } = useContext(DataContext);
-
-  const dispatch = useDispatch();
 
   const handleSaveComment = async () => {
     console.log("saving comments:", input);

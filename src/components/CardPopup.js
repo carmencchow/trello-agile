@@ -14,8 +14,9 @@ import "./CardPopup.css";
 
 const CardPopup = ({ open, onClose }) => {
   const [color, setColor] = useState('');
-  const { listId, openInput, setOpenInput, handleFetchData,
-    cardId, cardData, comment, setComment, archiveBtn, setArchiveBtn, 
+  const [openInput, setOpenInput] = useState(false);
+  const { listId, handleFetchData,
+  cardId, cardData, comment, setComment, archiveBtn, setArchiveBtn, 
   } = useContext(DataContext)
 
   const colorArr = [
@@ -153,14 +154,13 @@ const CardPopup = ({ open, onClose }) => {
               listId={listId}
               id={cardId}
               onClose={onClose}
-              // setOpenInput={setOpenInput} 
             />
 
             {!openInput ? (
               <h4 className="edit-card" onClick={() => {
                   setOpenInput(true);
-                }}
-              > {" "} <span className="edit-icon"><FiEdit2 /></span> Edit this card 
+                }}>
+                  <span className="edit-icon"><FiEdit2 /></span> Edit this card 
               </h4>
             ) : (
               <div></div>

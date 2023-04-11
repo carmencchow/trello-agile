@@ -13,7 +13,7 @@ import "./Board.css";
 const Board = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { boardId, setBoardId, handleFetchData } = useContext(DataContext);
+  const { setBoardId } = useContext(DataContext);
   const [showArchived, setShowArchived] = useState(false);
   const [tBoard, setTBoard] = useState(null);
   const [userInfo, setUserInfo] = useState("");
@@ -84,10 +84,6 @@ const Board = () => {
     return list.cards.filter((card) => (showArchived ? card.isArchived : !card.isArchived))
   }
 
-  // const handleFetchData = () => {
-  //   dispatch(fetchData({ id }));
-  // };
-
   const toggleCards = () => {
     setShowArchived(!showArchived)
   }
@@ -115,7 +111,7 @@ const Board = () => {
   }, [dispatch, id]);
 
   const board = useSelector((state) => state.data.board);
-  // console.log(board, "state board board.js");
+  console.log(board, "state board board.js");
   
   useEffect(() => {
     if (board) {
@@ -156,7 +152,6 @@ const Board = () => {
                 id={list._id}
                 listId={list._id}
                 name={list.name}
-                // handleFetchData={handleFetchData}
               />
             ))}
         </div>

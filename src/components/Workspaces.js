@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import DataContext from "../context/DataContext";
 import { Button } from "@mui/material";
 import { AiOutlineClose } from 'react-icons/ai';
 import AddBoard from './AddBoard';
@@ -11,7 +10,6 @@ import "./Workspaces.css";
 const Workspaces = () => {
   const [userInfo, setUserInfo] = useState("");
   const navigate = useNavigate();
-  const { boardId } = useState(DataContext)
 
   const getUserProfile = async () => {
     const token = localStorage.getItem("token");

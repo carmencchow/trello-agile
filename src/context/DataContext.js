@@ -6,15 +6,19 @@ import axios from 'axios'
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
-  const [boardId, setBoardId] = useState(null);
-  const [openInput, setOpenInput] = useState(false);
-  const [cardId, setCardId] = useState(null);
   const [name, setName] = useState('');
   const [input, setInput] = useState('');
-  const [cardData, setCardData] = useState(null);
   const [comment, setComment] = useState('')
+  const [cardId, setCardId] = useState(null);
+  const [boardId, setBoardId] = useState(null);
+  const [cardData, setCardData] = useState(null);
   const [archiveBtn, setArchiveBtn] = useState(true);
   const dispatch = useDispatch();
+
+  const handleCardSaved = (e) => {
+    setInput("");
+    handleFetchData();
+  };
 
   const getCard = async (id) => {
     try {
@@ -29,7 +33,6 @@ export const DataProvider = ({ children }) => {
     dispatch(fetchData({ id : boardId }));
   };
 
-
   useEffect(() => {
     if(cardId){
     getCard(cardId);
@@ -39,12 +42,12 @@ export const DataProvider = ({ children }) => {
   return (
     <DataContext.Provider value={{    
       input, setInput,
-      openInput, setOpenInput,
       cardId, setCardId,
       name, setName,
       cardData, setCardData,
       getCard,
       handleFetchData,
+      handleCardSaved,
       comment, setComment, 
       archiveBtn, setArchiveBtn,
       boardId, setBoardId

@@ -1,23 +1,14 @@
 import React, { useContext } from 'react'
 import axios from 'axios'
 import { DataContext } from '../context/DataContext'
-import { fetchData } from "../store/thunks/fetchList";
-import { useDispatch } from "react-redux";
 import './UpdateCardBtn.css';
 
-// const UpdateCardBtn = ({ listId, input, onClose, onCardSaved, id, handleFetchData }) => {
-
-const UpdateCardBtn = ({ onCardSaved }) => {
-  const { input, id } = useContext(DataContext)
-  const dispatch = useDispatch();
-
-  const handleFetchData = () => {
-    dispatch(fetchData({ id }));
-  };
+const UpdateCardBtn = () => {
+  const { handleFetchData, handleCardSaved, input, id } = useContext(DataContext)
 
   const handleUpdate = async () => {
     try {
-      console.log("new card title", input);
+      console.log("New card title", input);
 
       const token = localStorage.getItem("token");
       if (!token) {
@@ -37,7 +28,7 @@ const UpdateCardBtn = ({ onCardSaved }) => {
       );
       const data = res.data;
       console.log(data);
-      onCardSaved();
+      handleCardSaved();
       handleFetchData();
     } catch (err) {
       console.log(err);
