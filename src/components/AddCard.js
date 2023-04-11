@@ -1,15 +1,18 @@
 import React, { useState, useContext } from "react";
-import "./AddCard.css";
-import SaveCardBtn from "./SaveCardBtn";
+import { useDispatch } from "react-redux";
 import { DataContext } from '../context/DataContext'
+import { fetchData } from "../store/thunks/fetchList";
+import SaveCardBtn from "./SaveCardBtn";
+import "./AddCard.css";
 
-// const AddCard = ({ handleFetchData }) => {
-//   const { input, setInput, open, listId, id, onClose } = useContext(DataContext);
-
-const AddCard = ({ handleFetchData, open, listId, id,  onClose }) => {
+const AddCard = ({ open, listId, id,  onClose }) => {
+  const { boardId } = useContext(DataContext)
   const [input, setInput] = useState("");
-  
-  if (!open) return null;
+  const dispatch = useDispatch();
+
+  const handleFetchData = () => {
+    dispatch(fetchData({ id : boardId }));
+  };
 
   const handleInput = (e) => {
     setInput(e.target.value);
@@ -20,9 +23,10 @@ const AddCard = ({ handleFetchData, open, listId, id,  onClose }) => {
     handleFetchData();
   };
 
+  if (!open) return null;
+
   return (
     <div className="input-container">
-      <div onClick={onClose}>
         <input
           type="text"
           className="card"
@@ -31,7 +35,6 @@ const AddCard = ({ handleFetchData, open, listId, id,  onClose }) => {
           onChange={handleInput}
           onClose={onClose}
         />
-      </div>
 
       <div className="save-cancel-btns">
         <SaveCardBtn

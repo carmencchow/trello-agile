@@ -6,13 +6,10 @@ import { fetchData } from "../store/thunks/fetchList";
 import './SaveCardBtn.css';
 
 const SaveCardBtn = ({ listId, onCardSaved, input }) => {
-
   const { boardId } = useContext(DataContext)
-
   const dispatch = useDispatch();
 
   const handleFetchData = () => {
-    // dispatch(fetchData({ id }));
     dispatch(fetchData({ id : boardId }));
   };
 
@@ -27,7 +24,6 @@ const SaveCardBtn = ({ listId, onCardSaved, input }) => {
       `http://localhost:5000/api/card/?listId=${listId}`,
     
       { title: `${input}` },
-
       {
         method: "POST",
         headers: {

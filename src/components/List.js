@@ -68,6 +68,7 @@ const List = ({ cards, listId, name }) => {
         <AddCard
           open={openNewCard}
           listId={listId}
+          onClose={() => {setOpenNewCard(false)}}
           id={cardId}
         />
 
