@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { AiOutlineClose, AiOutlineDelete } from 'react-icons/ai';
+import { AiOutlineDelete } from 'react-icons/ai';
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -13,7 +13,7 @@ import "./Board.css";
 const Board = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { boardId, setBoardId } = useContext(DataContext);
+  const { setBoardId } = useContext(DataContext);
   const [showArchived, setShowArchived] = useState(false);
   const [tBoard, setTBoard] = useState(null);
   const [userInfo, setUserInfo] = useState("");
@@ -88,7 +88,6 @@ const Board = () => {
     setShowArchived(!showArchived)
   }
 
-
   // Delete the board
   const handleDelete = async (boardId) => {
     console.log('Deleting board:', id);
@@ -110,10 +109,6 @@ const Board = () => {
   useEffect(() => {
     dispatch(fetchData({ id }));
   }, [dispatch, id]);
-
-  const handleFetchData = () => {
-    dispatch(fetchData({ id }));
-  };
 
   const board = useSelector((state) => state.data.board);
   console.log(board, "state board board.js");
@@ -144,8 +139,6 @@ const Board = () => {
         <button className="toggle" onClick={toggleCards}>
           {showArchived ? "Showing Archived Cards:" : "Showing Unarchived Cards:"} 
         </button>
-
-        {/* Delete the board */}
         <p className="delete-icon" onClick={handleDelete}><AiOutlineDelete/><span>Delete board</span></p>
       </div>
 
@@ -155,11 +148,10 @@ const Board = () => {
             tBoard.lists.map((list) => (
               <List
                 key={list._id}
-                cards={showCards(list, true)}
+                cards={showCards(list)}
                 id={list._id}
                 listId={list._id}
                 name={list.name}
-                handleFetchData={handleFetchData}
               />
             ))}
         </div>

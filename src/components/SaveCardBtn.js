@@ -1,24 +1,12 @@
 import React, { useContext } from "react";
 import axios from "axios";
-import './SaveCardBtn.css'
-import { DataContext } from '../context/DataContext'
-import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from "../store/thunks/fetchList";
+import { DataContext } from '../context/DataContext';
+import './SaveCardBtn.css';
 
-// const SaveCardBtn = ({ listId, input, onCardSaved, id, onClose }) => {
+const SaveCardBtn = ({ listId, input, onClose }) => {
+  const { handleFetchData, handleCardSaved } = useContext(DataContext)
 
-const SaveCardBtn = ({ listId, onCardSaved, id }) => {
-  const { input } = useContext(DataContext);
-
-  const dispatch = useDispatch();
-
-  const handleFetchData = () => {
-    dispatch(fetchData({ id }));
-  };
-
-  const handleSave = async (e, id) => {
-  console.log("saving card", e.target.value);
-
+  const handleSave = async () => {
   try {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -27,8 +15,10 @@ const SaveCardBtn = ({ listId, onCardSaved, id }) => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     const res = await axios.post(
       `http://localhost:5000/api/card/?listId=${listId}`,
-      { title: `${input}` },
-
+    
+      { 
+        title: `${input}` 
+      },
       {
         method: "POST",
         headers: {
@@ -38,8 +28,9 @@ const SaveCardBtn = ({ listId, onCardSaved, id }) => {
     );
       const data = res.data;
       console.log(data);
-      onCardSaved();
       handleFetchData();
+      onClose();
+      handleCardSaved();
     } catch (err) {
       console.log(err);
     }

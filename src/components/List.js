@@ -1,23 +1,14 @@
 import React, { useState, useContext } from "react";
-import { useDispatch } from "react-redux";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import { BsThreeDots } from "react-icons/bs";
 import { DataContext } from '../context/DataContext'
-import { fetchData } from "../store/thunks/fetchList";
 import AddCard from "../components/AddCard";
 import CardPopup from "./CardPopup";
 import "./List.css";
 
 const List = ({ cards, listId, name }) => {
-  const dispatch = useDispatch();
   const [ openNewCard, setOpenNewCard ] = useState(false);
-  const { cardId, setCardId, boardId } = useContext(DataContext)
-  // const { cardId, setCardId, name, boardId } = useContext(DataContext)
-
-  const handleFetchData = () => {
-    console.log('Board id', boardId)
-    dispatch(fetchData({ id : boardId }));
-  };
+  const { cardId, setCardId, handleFetchData } = useContext(DataContext)
 
   return (
     <div className="list">
@@ -39,7 +30,7 @@ const List = ({ cards, listId, name }) => {
                     key={card._id}
                     className="cards"
                     onClick={() => {
-                      console.log(card._id)
+                      console.log('Card id:', card._id)
                       setCardId(card._id);
                     }}
                   >
@@ -60,15 +51,14 @@ const List = ({ cards, listId, name }) => {
           open={cardId !==null}
           onClose={() => {setCardId(null)
           handleFetchData()}
-        }
-          
-        />
+        }/>
       )}
 
       <div className="input-field">
         <AddCard
           open={openNewCard}
           listId={listId}
+          onClose={() => {setOpenNewCard(false)}}
           id={cardId}
         />
 

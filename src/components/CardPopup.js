@@ -1,34 +1,23 @@
-import React, { useContext} from "react";
-import { useDispatch } from "react-redux";
+import React, { useContext, useState } from "react";
 import axios from "axios";
-import { DataContext } from '../context/DataContext'
-import { fetchData } from "../store/thunks/fetchList";
 import toast, { Toaster } from 'react-hot-toast'
 import { BiArchive } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
 import { GoThreeBars } from "react-icons/go";
 import { FiEdit2 } from "react-icons/fi"; 
 import { BsFolder2 } from "react-icons/bs";
+import { DataContext } from '../context/DataContext'
 import SaveCommentBtn from "./SaveCommentBtn";
 import DeleteCard from "./DeleteCard";
 import EditCard from "./EditCard";
 import "./CardPopup.css";
 
-// const CardPopup = ({ open, onClose, id, handleFetchData, listId }) => {
-//   const [comment, setComment] = useState('')
-//   const [color, setColor] = useState('');
-//   const [cardData, setCardData] = useState(null);
-//   const [openInput, setOpenInput] = useState(false);
-//   const [archiveBtn, setArchiveBtn] = useState(true);
-
 const CardPopup = ({ open, onClose }) => {
-  const { 
-    // getCard, listId, handleFetchData, openInput, setOpenInput, cardId: id, cardData, comment, setComment, color, setColor, archiveBtn, setArchiveBtn 
-    getCard, listId, openInput, setOpenInput, 
-    cardId, cardData, comment, setComment, color, setColor, archiveBtn, setArchiveBtn, boardId
+  const [color, setColor] = useState('');
+  const [openInput, setOpenInput] = useState(false);
+  const { listId, handleFetchData,
+  cardId, cardData, comment, setComment, archiveBtn, setArchiveBtn, 
   } = useContext(DataContext)
-
-  const dispatch = useDispatch();
 
   const colorArr = [
     "orangered",
@@ -41,10 +30,6 @@ const CardPopup = ({ open, onClose }) => {
     "burlywood",
     "white",
   ];
-
-  const handleFetchData = () => {
-    dispatch(fetchData({ id : boardId }));
-  };
 
   const toggleArchive = async () => {
     try {
@@ -59,7 +44,6 @@ const CardPopup = ({ open, onClose }) => {
       console.log(res.data.card.title, res.data.card.status)
       toast.success(`Card is now archived`)
       setArchiveBtn(!archiveBtn)
-
       handleFetchData();
     } catch (error) {
       console.log(error)
@@ -76,7 +60,7 @@ const CardPopup = ({ open, onClose }) => {
 
   const handleColorChange = async (e) => {
     e.preventDefault();
-    console.log('New color:', color);
+    console.log('Change color:', color);
     setColor(color);
 
     try {
@@ -90,12 +74,6 @@ const CardPopup = ({ open, onClose }) => {
         { 
           color: `${color}` 
         },
-        // {
-        //   method: "PT",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        // }
       );
     } catch (err) {
       console.log(err);
@@ -103,6 +81,7 @@ const CardPopup = ({ open, onClose }) => {
   }
   
   if (!open || cardData === null) return null;
+
   return (
     <div className="card-background">
       <div className="card-popup">
@@ -151,7 +130,6 @@ const CardPopup = ({ open, onClose }) => {
                     listId={listId}
                     clearComment={clearComment}
                     id={cardId}
-                    getCard={getCard}
                   />
                 </div>
               </div>
@@ -175,16 +153,14 @@ const CardPopup = ({ open, onClose }) => {
               open={openInput}
               listId={listId}
               id={cardId}
-              handleFetchData={handleFetchData}
               onClose={onClose}
-              setOpenInput={setOpenInput} 
             />
 
             {!openInput ? (
               <h4 className="edit-card" onClick={() => {
                   setOpenInput(true);
-                }}
-              > {" "} <span className="edit-icon"><FiEdit2 /></span> Edit this card 
+                }}>
+                  <span className="edit-icon"><FiEdit2 /></span> Edit this card 
               </h4>
             ) : (
               <div></div>
@@ -200,9 +176,8 @@ const CardPopup = ({ open, onClose }) => {
 
           <p className="delete-card">
             <DeleteCard
-              // handleFetchData={handleFetchData}
-              // id={cardId}
-              // onClose={onClose}
+              id={cardId}
+              onClose={onClose}
             />
           </p>
         </div>

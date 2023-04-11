@@ -1,34 +1,21 @@
 import React, { useContext } from "react";
 import { DataContext } from '../context/DataContext'
-import { useDispatch } from "react-redux";
-import { fetchData } from "../store/thunks/fetchList";
 import UpdateCardBtn from "./UpdateCardBtn";
 import './EditCard.css';
 import "./CardPopup.css";
 
-// const EditCard = ({ open, onClose, id, handleFetchData, listId }) => {
-//   const [name, setName] = useState("");
-//   if (!open) return null;
-
 const EditCard = ({ id }) => {
-  const { open, onClose, cardId, name, setName, listId } = useContext(DataContext);
-  const dispatch = useDispatch();
-
-  if (!open) return null;  
+  const { open, onClose, name, setName, listId } = useContext(DataContext);
 
   const handleInput = (e) => {
     setName(e.target.value);
   };
 
-  const handleFetchData = () => {
-    dispatch(fetchData({ cardId }));
-    // dispatch(fetchData({ listId }));
-  };
-
   const handleUpdateName = () => {
-    console.log(name);
     setName("");
   };
+
+  if (!open) return null;  
 
   return (
     <div className="row">
@@ -45,9 +32,8 @@ const EditCard = ({ id }) => {
         <div className="update">
           <UpdateCardBtn
             input={name}
-            onCardSaved={handleUpdateName}
+            handleUpdateName={handleUpdateName}
             id={id}
-            handleFetchData={handleFetchData}
             listId={listId}
             onClose={onClose}
           />

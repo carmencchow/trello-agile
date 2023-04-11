@@ -1,14 +1,12 @@
 import React, { useContext } from "react";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { DataContext } from '../context/DataContext'
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast'
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { DataContext } from '../context/DataContext'
 import "./CardPopup.css";
 
-const DeleteCard = ({ id, handleFetchData, onClose }) => {
-
-// const DeleteCard = () => {
-//   const { id, handleFetchData, onClose } = useContext(DataContext)
+const DeleteCard = ({ id, onClose }) => {
+  const { handleFetchData } = useContext(DataContext)
 
   const handleDelete = async () => {
     await axios.delete(`http://localhost:5000/api/card/${id}`).then((res) => {

@@ -1,16 +1,11 @@
-
 import React, { useState, useContext } from "react";
-import "./AddCard.css";
+import { DataContext } from '../context/DataContext';
 import SaveCardBtn from "./SaveCardBtn";
-import { DataContext } from '../context/DataContext'
+import "./AddCard.css";
 
-// const AddCard = ({ handleFetchData }) => {
-//   const { input, setInput, open, listId, id, onClose } = useContext(DataContext);
-
-const AddCard = ({ handleFetchData, open, listId, id,  onClose }) => {
-  const [input, setInput] = useState("");
-  
-  if (!open) return null;
+const AddCard = ({ open, listId, id,  onClose }) => {
+  const [input, setInput] = useState('');
+  // const { handleCardSaved } = useContext(DataContext)
 
   const handleInput = (e) => {
     setInput(e.target.value);
@@ -18,32 +13,31 @@ const AddCard = ({ handleFetchData, open, listId, id,  onClose }) => {
   
   const handleCardSaved = () => {
     setInput("");
-    handleFetchData();
   };
+
+  if (!open) return null;
 
   return (
     <div className="input-container">
-      <div onClick={onClose}>
-        <input
-          type="text"
-          className="card"
-          value={input}
-          placeholder="Enter a title for this card..."
-          onChange={handleInput}
-          onClose={onClose}
-        />
-      </div>
+      <input
+        type="text"
+        className="card"
+        value={input}
+        placeholder="Enter a title for this card..."
+        onChange={handleInput}
+        onClose={onClose}
+      />
 
-      <div className="save-cancel-btns">
-        <SaveCardBtn
-          input={input}
-          listId={listId}
-          onCardSaved={handleCardSaved}
-          id={id}          
-          onClose={onClose}
-        />
+    <div className="save-cancel-btns">
+      <SaveCardBtn
+        input={input}
+        listId={listId}
+        id={id}          
+        onClose={onClose}
+        handleCardSaved={handleCardSaved}
+      />
 
-        <button className="cancel-btn" onClick={onClose}>X</button>
+      <button className="cancel-btn" onClick={onClose}>X</button>
       
       </div>
     </div>
