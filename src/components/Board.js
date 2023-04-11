@@ -111,7 +111,7 @@ const Board = () => {
   }, [dispatch, id]);
 
   const board = useSelector((state) => state.data.board);
-  console.log(board, "state board board.js");
+  // console.log(board, "state board board.js");
   
   useEffect(() => {
     if (board) {

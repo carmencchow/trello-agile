@@ -128,7 +128,7 @@ const CardPopup = ({ open, onClose }) => {
                   <SaveCommentBtn
                     input={comment}
                     listId={listId}
-                    clearComment={clearComment}
+                    // clearComment={clearComment}
                     id={cardId}
                   />
                 </div>
