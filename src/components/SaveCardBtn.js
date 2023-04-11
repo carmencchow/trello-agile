@@ -1,19 +1,19 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { DataContext } from '../context/DataContext';
 import { fetchData } from "../store/thunks/fetchList";
 import './SaveCardBtn.css';
 
-const SaveCardBtn = ({ listId, onCardSaved, id, input }) => {
+const SaveCardBtn = ({ listId, onCardSaved, input }) => {
 
-  // const { boardId } = useContext(DataContext)
+  const { boardId } = useContext(DataContext)
 
   const dispatch = useDispatch();
 
   const handleFetchData = () => {
-    dispatch(fetchData({ id }));
-    // dispatch(fetchData({ id : boardId }));
+    // dispatch(fetchData({ id }));
+    dispatch(fetchData({ id : boardId }));
   };
 
   const handleSave = async () => {
@@ -36,10 +36,9 @@ const SaveCardBtn = ({ listId, onCardSaved, id, input }) => {
       }
     );
       const data = res.data;
-      console.log('List id is:', listId)
       console.log(data);
-      onCardSaved();
       handleFetchData();
+      onCardSaved();
     } catch (err) {
       console.log(err);
     }
