@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { DataContext } from '../context/DataContext'
 import UpdateCardBtn from "./UpdateCardBtn";
 import './EditCard.css';
-import "./CardPopup.css";
 
 const EditCard = ({ id }) => {
   const { open, onClose, name, setName, listId } = useContext(DataContext);

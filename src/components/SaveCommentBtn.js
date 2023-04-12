@@ -3,12 +3,11 @@ import axios from "axios";
 import DataContext from "../context/DataContext";
 import "./SaveCommentBtn.css";
 
-const SaveCommentBtn = () => {
-  const { input, clearComment, id, getCard, handleFetchData } = useContext(DataContext);
+const SaveCommentBtn = ({ input }) => {
+
+  const { clearComment, cardId, getCard, handleFetchData } = useContext(DataContext);
 
   const handleSaveComment = async () => {
-    console.log("saving comments:", input);
-
     try {
       const token = localStorage.getItem("token");
       if (!token) {
@@ -16,7 +15,7 @@ const SaveCommentBtn = () => {
       }
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       const res = await axios.post(
-        `http://localhost:5000/api/card/${id}/comment`,
+        `http://localhost:5000/api/card/${cardId}/comment`,
         { 
           comments: `${input}` 
         },
@@ -28,10 +27,10 @@ const SaveCommentBtn = () => {
         }
       );
       const data = res.data;
-      handleFetchData();
       console.log(data);
+      handleFetchData();
+      getCard(cardId);
       clearComment();
-      await getCard(id);
       } catch (err) {
         console.log(err);
       }

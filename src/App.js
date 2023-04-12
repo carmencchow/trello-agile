@@ -1,14 +1,14 @@
-import Header from "./components/Header";
-import Board from "./components/Board";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./components/Login";
-import Home from "./components/Home";
-import Workspaces from "./components/Workspaces";
 import { DataProvider } from './context/DataContext';
 import { UserProvider } from './context/UserContext';
+import Board from "./components/Board";
+import Header from "./components/Header";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Logout from "./components/Logout";
+import Workspaces from "./components/Workspaces";
 
 function App() {
-
   return (
     <div className="App">
       <BrowserRouter>
@@ -17,9 +17,10 @@ function App() {
             <Routes>
               <Route path="/" element={<Header />} />
               <Route path="/home" element={<Home />} />
-              <Route path="/board/:id" element={<Board />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/board/:id" element={<Board />} />
               <Route path="/workspaces" element={<Workspaces />} />
+              <Route path="/logout" element={<Logout />} />
             </Routes>
           </DataProvider>
         </UserProvider>

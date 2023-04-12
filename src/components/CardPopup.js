@@ -19,17 +19,7 @@ const CardPopup = ({ open, onClose }) => {
   cardId, cardData, comment, setComment, archiveBtn, setArchiveBtn, 
   } = useContext(DataContext)
 
-  const colorArr = [
-    "orangered",
-    "orange",
-    "yellow",
-    "lightgreen",
-    "lightskyblue",
-    "plum",
-    "pink",
-    "burlywood",
-    "white",
-  ];
+  const colorArr = [ "orangered", "orange", "yellow", "lightgreen", "lightskyblue", "plum", "pink", "burlywood", "white" ];
 
   const toggleArchive = async () => {
     try {
@@ -39,12 +29,12 @@ const CardPopup = ({ open, onClose }) => {
         throw new Error("No token found in localStorage");
       }
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      console.log(`Archiving card, ${listId}`)
-      const res = await axios.get(`http://localhost:5000/api/card/archive/${listId}/`)
+      const res = await axios.get(`http://localhost:5000/api/card/archive/${cardId}/`)
       console.log(res.data.card.title, res.data.card.status)
       toast.success(`Card is now archived`)
       setArchiveBtn(!archiveBtn)
       handleFetchData();
+      onClose();
     } catch (error) {
       console.log(error)
     }
@@ -54,10 +44,6 @@ const CardPopup = ({ open, onClose }) => {
     setComment(e.target.value);
   };
   
-  const clearComment = () => {
-    setComment('');
-  };
-
   const handleColorChange = async (e) => {
     e.preventDefault();
     console.log('Change color:', color);
@@ -107,9 +93,9 @@ const CardPopup = ({ open, onClose }) => {
                   ></span>
                 );
               })}
-              <button className="change-color" onClick={handleColorChange}>
-                Save color
-              </button>
+              <div className="change-color" onClick={handleColorChange}><p className="save-commentbtn">
+                Save</p>
+              </div>
             </p>
           </div>
 
@@ -128,7 +114,6 @@ const CardPopup = ({ open, onClose }) => {
                   <SaveCommentBtn
                     input={comment}
                     listId={listId}
-                    clearComment={clearComment}
                     id={cardId}
                   />
                 </div>
@@ -138,7 +123,6 @@ const CardPopup = ({ open, onClose }) => {
             <div className="comment-container">
             {comment ? <h5>Comments:</h5> : null}
               {cardData.card.comments.map((comment) => {
-                console.log(comment)
                 return (
                   <div className="comments">
                     <p className="displayed-comments">{comment}</p>
@@ -154,13 +138,14 @@ const CardPopup = ({ open, onClose }) => {
               listId={listId}
               id={cardId}
               onClose={onClose}
+              setOpenInput={setOpenInput} 
             />
 
             {!openInput ? (
               <h4 className="edit-card" onClick={() => {
                   setOpenInput(true);
                 }}>
-                  <span className="edit-icon"><FiEdit2 /></span> Edit this card 
+                  <span className="edit-icon"><FiEdit2 /></span><p> Edit this card </p>
               </h4>
             ) : (
               <div></div>

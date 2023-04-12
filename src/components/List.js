@@ -68,8 +68,7 @@ const List = ({ cards, listId, name }) => {
             onClick={() => {
               setOpenNewCard(true);
             }}
-          >
-            + Add a card
+          ><p className="add-card-text">+ Add a card</p>
           </div>
         ) : (
           <div className="card-btns"></div>

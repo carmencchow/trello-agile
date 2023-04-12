@@ -45,13 +45,13 @@
   justify-content: right;
   justify-content: space-between;
   width: 60%;
-  margin-bottom: 30px;
   margin-left: 40px;
 }
 .color-row span{
-  width: 30px;
+  width: 100px;
   height: 10px;
   cursor: pointer;
+  margin-top: 10px;
   border-radius: 5px;
 }
 .right-side {
@@ -124,6 +124,17 @@ input{
   border-radius: 3px;
   cursor: pointer;
 }
+.save-commentbtn{
+  display: flex;
+  justify-content: right;
+  font-size: 14px;
+  font-weight: lighter;
+  height: 50px;
+  margin-top: 0px;
+  margin-right: 0px;
+  border-radius: 3px;
+  cursor: pointer;
+}
 .activity-label{
   display: flex;
 }
@@ -142,7 +153,7 @@ input{
 }
 .comments-input{
   margin-bottom: 20px;
-  width: 540px;
+  width: 560px;
 }
 .activity-icon,
 .card-icon{
@@ -195,8 +206,16 @@ input{
 .archive-card:hover{
   color: black;
 }
+span.delete-icon,
+span.edit-icon{
+  font-size: 16px;
+  margin-top: 14px;
+  color:#777d88;
+  font-weight: lighter;
+}
 .archive-card{
   margin-right: 20px;
+  margin-top: 15px;
 }
 .archive-icon{
   padding-right: 10px;
@@ -204,7 +223,7 @@ input{
 }
 span{
   font-size: 18px;
-  margin-top: 13px;
+  margin-top: 20px;
   margin-right: 10px;
 }
 .edit-icon{
@@ -223,10 +242,13 @@ span{
 }
 .change-color{
   border: none;
-  width: 130px;
-  border: 1px solid grey;
+  width: 160px;
   border-radius: 5px;
   margin-top: 5px;
   margin-left: 15px;
   cursor: pointer;
+  font-weight: lighter;
+  font-size: 14px;
+  display: flex;
+  flex-direction: row;
 }

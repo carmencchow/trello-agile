@@ -20,6 +20,14 @@ export const DataProvider = ({ children }) => {
     handleFetchData();
   };
 
+  const clearComment = () => {
+    setComment('');
+  };
+
+  const clearInput = () => {
+    setInput("");
+  }
+
   const getCard = async (id) => {
     try {
       const res = await axios.get(`http://localhost:5000/api/card/${id}`);
@@ -48,6 +56,8 @@ export const DataProvider = ({ children }) => {
       getCard,
       handleFetchData,
       handleCardSaved,
+      clearComment,
+      clearInput,
       comment, setComment, 
       archiveBtn, setArchiveBtn,
       boardId, setBoardId
