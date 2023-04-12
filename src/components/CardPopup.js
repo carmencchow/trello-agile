@@ -19,17 +19,7 @@ const CardPopup = ({ open, onClose }) => {
   cardId, cardData, comment, setComment, archiveBtn, setArchiveBtn, 
   } = useContext(DataContext)
 
-  const colorArr = [
-    "orangered",
-    "orange",
-    "yellow",
-    "lightgreen",
-    "lightskyblue",
-    "plum",
-    "pink",
-    "burlywood",
-    "white",
-  ];
+  const colorArr = [ "orangered", "orange", "yellow", "lightgreen", "lightskyblue", "plum", "pink", "burlywood", "white" ];
 
   const toggleArchive = async () => {
     try {
@@ -54,10 +44,6 @@ const CardPopup = ({ open, onClose }) => {
     setComment(e.target.value);
   };
   
-  const clearComment = () => {
-    setComment('');
-  };
-
   const handleColorChange = async (e) => {
     e.preventDefault();
     console.log('Change color:', color);
@@ -152,6 +138,7 @@ const CardPopup = ({ open, onClose }) => {
               listId={listId}
               id={cardId}
               onClose={onClose}
+              setOpenInput={setOpenInput} 
             />
 
             {!openInput ? (

@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Navbutton } from "./NavButton";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const selectOptions = [
     { name: "Workspaces", query: "workspaces" },
     { name: "Recent", query: "workspaces" },
@@ -14,6 +15,7 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.reload();
+    navigate("/login");
   };
 
   return (
