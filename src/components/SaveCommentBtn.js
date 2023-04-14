@@ -4,7 +4,6 @@ import DataContext from "../context/DataContext";
 import "./SaveCommentBtn.css";
 
 const SaveCommentBtn = ({ input }) => {
-
   const { clearComment, cardId, getCard, handleFetchData } = useContext(DataContext);
 
   const handleSaveComment = async () => {

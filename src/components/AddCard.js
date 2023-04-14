@@ -3,9 +3,9 @@ import axios from 'axios'
 import { DataContext } from '../context/DataContext'
 import "./AddCard.css";
 
-const AddCard = ({ open, listId, onClose }) => {
+const AddCard = ({ openAddCard, listId, onClose }) => {
+  const { handleFetchData } = useContext(DataContext);
   const [input, setInput] = useState('');
-  const { handleFetchData, handleCardSaved, clearInput } = useContext(DataContext);
 
   const handleInput = (e) => {
     setInput(e.target.value);
@@ -33,17 +33,15 @@ const AddCard = ({ open, listId, onClose }) => {
       );
         const data = res.data;
         console.log(data);
+        setInput('');
         handleFetchData();
         onClose();
-        handleCardSaved();
-        clearInput();
       } catch (err) {
         console.log(err);
       }
     };
-  
-  
-  if (!open) return null;
+
+  if (!openAddCard) return null;
 
   return (
     <div className="input-container">

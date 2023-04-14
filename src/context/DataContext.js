@@ -6,8 +6,6 @@ import axios from 'axios'
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
-  const [name, setName] = useState('');
-  const [input, setInput] = useState('');
   const [comment, setComment] = useState('')
   const [cardId, setCardId] = useState(null);
   const [boardId, setBoardId] = useState(null);
@@ -15,18 +13,10 @@ export const DataProvider = ({ children }) => {
   const [archiveBtn, setArchiveBtn] = useState(true);
   const dispatch = useDispatch();
 
-  const handleCardSaved = (e) => {
-    setInput("");
-    handleFetchData();
-  };
-
-  const clearComment = () => {
+  const clearComment = (e) => {
+    console.log('clearComment')
     setComment('');
   };
-
-  const clearInput = () => {
-    setInput("");
-  }
 
   const getCard = async (id) => {
     try {
@@ -52,19 +42,14 @@ export const DataProvider = ({ children }) => {
   
   return (
     <DataContext.Provider value={{    
-      name, setName,
-      input, setInput,
       cardId, setCardId,
       boardId, setBoardId,
       comment, setComment, 
       cardData, setCardData,
       archiveBtn, setArchiveBtn,
       getCard,
-      clearInput,
       clearComment,
       handleFetchData,
-      handleCardSaved,
-
     }}>
       {children}
     </DataContext.Provider>

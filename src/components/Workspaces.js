@@ -8,8 +8,8 @@ import Navbar from "./Navbar";
 import "./Workspaces.css";
 
 const Workspaces = () => {
-  const [userInfo, setUserInfo] = useState("");
   const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useState("");
 
   const getUserProfile = async () => {
     const token = localStorage.getItem("token");

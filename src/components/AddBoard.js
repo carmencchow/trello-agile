@@ -1,13 +1,12 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { DataContext } from '../context/DataContext'
 import "./Workspaces.css";
 
 const AddBoard = () => {
-  const { input, setInput } = useContext(DataContext);
-  const [error, setError] = useState('Board already exists');
   const navigate = useNavigate();
+  const [input, setInput] = useState('');
+  const [error, setError] = useState('Board already exists');
 
   const handleInput = (e) => {
     setInput(e.target.value);
