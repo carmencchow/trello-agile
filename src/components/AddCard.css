@@ -32,3 +32,23 @@ input{
   cursor: pointer;
   color: lightgray;
 }
+
+
+.save-card-btn{
+  outline: none;
+  background-color: #34aef5;
+  border: none;
+  color: white;
+  height: 30px;
+  border-radius: 3px;
+  font-size: 14px;
+  padding: 6px 12px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.save-card-btn:hover{
+  background-color: #0478ba;
+  color: white;
+  height: 30px;
+  cursor: pointer;
+}

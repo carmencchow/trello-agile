@@ -36,7 +36,6 @@ const Workspaces = () => {
     console.log('Board id:', id);
   };
 
-  // Delete the board
   const handleDelete = async (id) => {
     console.log('Deleting board:', id);
     const token = localStorage.getItem("token");
@@ -66,6 +65,7 @@ const Workspaces = () => {
             <div>
               Hi, <strong>{userInfo.username}!</strong>
               <div className="boards-container">
+               <p>Your boards</p>
               {userInfo.boards.length > 0 ? (
                 userInfo.boards.map((board, index) => {
                   return (
@@ -85,7 +85,7 @@ const Workspaces = () => {
           </div>
         ) : (
           <div>
-            <h1>You're not logged in!</h1>
+            <h1>You're not logged in</h1>
             <Button component={Link} to="/login" variant="contained">
               Log In
             </Button>

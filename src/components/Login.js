@@ -74,9 +74,8 @@ const Login = () => {
             <p className="error-message">{serverResponse.message}</p>
           )}
         </form>
-        {/* user profile if user exists */}
+
         <div className="user-panel">
-          {/* This will be used in the workspaces section */}
           {userInfo && (
             <div>
               Hi, {userInfo.username}!<h4>Your boards:</h4>

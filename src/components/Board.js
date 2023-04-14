@@ -111,7 +111,6 @@ const Board = () => {
   }, [dispatch, id]);
 
   const board = useSelector((state) => state.data.board);
-  // console.log(board, "state board board.js");
   
   useEffect(() => {
     if (board) {
@@ -151,7 +150,7 @@ const Board = () => {
                 cards={showCards(list)}
                 id={list._id}
                 listId={list._id}
-                name={list.name}
+                listname={list.name}
               />
             ))}
         </div>

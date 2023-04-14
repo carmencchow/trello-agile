@@ -37,8 +37,11 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-  const handleFetchData = () => {
+  const handleFetchData = async () => {
     dispatch(fetchData({ id : boardId }));
+    if(cardId){
+      await getCard(cardId)
+    }
   };
 
   useEffect(() => {
@@ -49,18 +52,19 @@ export const DataProvider = ({ children }) => {
   
   return (
     <DataContext.Provider value={{    
+      name, setName,
       input, setInput,
       cardId, setCardId,
-      name, setName,
+      boardId, setBoardId,
+      comment, setComment, 
       cardData, setCardData,
+      archiveBtn, setArchiveBtn,
       getCard,
+      clearInput,
+      clearComment,
       handleFetchData,
       handleCardSaved,
-      clearComment,
-      clearInput,
-      comment, setComment, 
-      archiveBtn, setArchiveBtn,
-      boardId, setBoardId
+
     }}>
       {children}
     </DataContext.Provider>

@@ -12,7 +12,7 @@ import DeleteCard from "./DeleteCard";
 import EditCard from "./EditCard";
 import "./CardPopup.css";
 
-const CardPopup = ({ open, onClose }) => {
+const CardPopup = ({ openModal, onCloseModal }) => {
   const [color, setColor] = useState('');
   const [openInput, setOpenInput] = useState(false);
   const { listId, handleFetchData,
@@ -34,7 +34,7 @@ const CardPopup = ({ open, onClose }) => {
       toast.success(`Card is now archived`)
       setArchiveBtn(!archiveBtn)
       handleFetchData();
-      onClose();
+      onCloseModal();
     } catch (error) {
       console.log(error)
     }
@@ -66,7 +66,7 @@ const CardPopup = ({ open, onClose }) => {
     }
   }
   
-  if (!open || cardData === null) return null;
+  if (!openModal || cardData === null) return null;
 
   return (
     <div className="card-background">
@@ -75,7 +75,7 @@ const CardPopup = ({ open, onClose }) => {
           style={{ backgroundColor: color }}>
           <h2>{cardData.card.title}</h2>
           <div className="right-side">
-            <GrFormClose className="close-btn" onClick={onClose} />
+            <GrFormClose className="close-btn" onClick={onCloseModal} />
           </div>
         </div>
 
@@ -134,10 +134,9 @@ const CardPopup = ({ open, onClose }) => {
 
           <div className="edit">
             <EditCard
-              open={openInput}
-              listId={listId}
+              openInput={openInput}
               id={cardId}
-              onClose={onClose}
+              onClose={onCloseModal}
               setOpenInput={setOpenInput} 
             />
 
@@ -162,7 +161,7 @@ const CardPopup = ({ open, onClose }) => {
           <p className="delete-card">
             <DeleteCard
               id={cardId}
-              onClose={onClose}
+              onClose={onCloseModal}
             />
           </p>
         </div>

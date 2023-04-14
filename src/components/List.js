@@ -6,14 +6,14 @@ import AddCard from "../components/AddCard";
 import CardPopup from "./CardPopup";
 import "./List.css";
 
-const List = ({ cards, listId, name }) => {
+const List = ({ cards, listId, listname }) => {
   const [ openNewCard, setOpenNewCard ] = useState(false);
   const { cardId, setCardId, handleFetchData } = useContext(DataContext)
 
   return (
     <div className="list">
       <span className="list-header">
-        <p className="list-name">{name}</p>
+        <p className="list-name">{listname}</p>
         <p className="dots"><BsThreeDots/></p>    
       </span>
 
@@ -48,8 +48,8 @@ const List = ({ cards, listId, name }) => {
      
       {cardId !== null && ( 
         <CardPopup
-          open={cardId !==null}
-          onClose={() => {setCardId(null)
+          openModal={cardId !==null}
+          onCloseModal={() => {setCardId(null)
           handleFetchData()}
         }/>
       )}

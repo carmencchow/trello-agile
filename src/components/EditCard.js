@@ -1,20 +1,46 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import axios from 'axios'
 import { DataContext } from '../context/DataContext'
-import UpdateCardBtn from "./UpdateCardBtn";
 import './EditCard.css';
 
-const EditCard = ({ id }) => {
-  const { open, onClose, name, setName, listId } = useContext(DataContext);
+const EditCard = ({ openInput }) => {
+  const [input, setInput] = useState('');
+  const { cardId, handleFetchData } = useContext(DataContext);
 
   const handleInput = (e) => {
-    setName(e.target.value);
+    setInput(e.target.value);
   };
 
-  const handleUpdateName = () => {
-    setName("");
+  const handleUpdate = async () => {
+    try {
+      console.log("New card title", input);
+
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found in localStorage");
+      }
+      const res = await axios.put(
+        `http://localhost:5000/api/card/${cardId}`,
+
+        { title: `${input}` },
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+        }
+      );
+      const data = res.data;
+      console.log(data);
+      handleFetchData();
+      setInput('')
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  if (!open) return null;  
+  if (!openInput) return null;  
 
   return (
     <div className="row">
@@ -23,19 +49,16 @@ const EditCard = ({ id }) => {
           <input
             type="text"
             className="name"
-            value={name}
+            value={input}
             placeholder="Enter new card name"
             onChange={handleInput}
           />
         </div>
-        <div className="update">
-          <UpdateCardBtn
-            input={name}
-            handleUpdateName={handleUpdateName}
-            id={id}
-            listId={listId}
-            onClose={onClose}
-          />
+        <div className="update">  
+          <div className="update-close">
+            <button className="update-btn" 
+            onClick={handleUpdate}>Update</button>
+          </div>          
         </div>
       </div>
     </div>
