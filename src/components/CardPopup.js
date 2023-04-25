@@ -89,9 +89,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
                   ></span>
                 );
               })}
-              <div className="change-color" onClick={handleColorChange}><p className="">
-                Save</p>
-              </div>
+              <div className="change-color" onClick={handleColorChange}><p className="">Save</p></div>
             </p>
           </div>
 
@@ -105,48 +103,46 @@ const CardPopup = ({ openModal, onCloseModal }) => {
                   </div>
                   )
                 })}
-            </div> 
+              </div> 
+          </div>
+
+          <div className="bottom-buttons">
+            <div className="edit">
+              <AddComment
+                openComment={openComment}
+                id={cardId}
+                setOpenInput={setOpenInput} 
+              />
+
+              {!openInput ? (
+                <h4 className="edit-card" onClick={() => {
+                    setOpenInput(true);
+                  }}>
+                    <span className="edit-icon"><BiCommentDetail /></span><p> Comment </p>
+                </h4>
+              ) : (
+                <div></div>
+              )}
             </div>
 
+            <div className="edit">
+              <EditCard
+                openInput={openInput}
+                id={cardId}
+                setOpenInput={setOpenInput} 
+              />
 
-        <div className="bottom-buttons">
-         <div className="edit">
-            <AddComment
-              openComment={openComment}
-              id={cardId}
-              setOpenInput={setOpenInput} 
-            />
-
-            {!openInput ? (
-              <h4 className="edit-card" onClick={() => {
-                  setOpenInput(true);
-                }}>
-                  <span className="edit-icon"><BiCommentDetail /></span><p> Comment </p>
-              </h4>
-            ) : (
-              <div></div>
-            )}
+              {!openInput ? (
+                <h4 className="edit-card" onClick={() => {
+                    setOpenInput(true);
+                  }}>
+                    <span className="edit-icon"><FiEdit2 /></span><p> Edit name </p>
+                </h4>
+              ) : (
+                <div></div>
+              )}
+            </div>
           </div>
-
-          <div className="edit">
-            <EditCard
-              openInput={openInput}
-              id={cardId}
-              setOpenInput={setOpenInput} 
-            />
-
-            {!openInput ? (
-              <h4 className="edit-card" onClick={() => {
-                  setOpenInput(true);
-                }}>
-                  <span className="edit-icon"><FiEdit2 /></span><p> Edit name </p>
-              </h4>
-            ) : (
-              <div></div>
-            )}
-          </div>
-          </div>
-        </div>
 
         <div className="bottom-buttons">
           {/* <Toaster position="top-center" toastOption={{ duration: 3000 }}/> */}
@@ -157,16 +153,16 @@ const CardPopup = ({ openModal, onCloseModal }) => {
           </div>
 
           <div className="edit">
-            {/* <h4 className="edit-card"> */}
-              <DeleteCard
-                id={cardId}
-                onClose={onCloseModal}
-              />
-            {/* </h4> */}
+            <DeleteCard
+              id={cardId}
+              onClose={onCloseModal}
+            />
           </div>
         </div>
         </div>
       </div>
+    </div>
+
     );
   };
 
