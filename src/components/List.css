@@ -37,6 +37,7 @@
   box-shadow: 0 1px 0 #091e4240;
   background-color: #fff;  
   width: 240px;
+  font-weight: bolder;
 }
 .cards:hover {
   background-color: #ecedf1;

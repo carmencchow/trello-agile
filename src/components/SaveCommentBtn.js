@@ -22,7 +22,7 @@ const SaveCommentBtn = ({ input }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "a": `Bearer ${token}`,
+            "Authorization": `Bearer ${token}`,
           },
         }
       );

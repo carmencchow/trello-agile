@@ -49,7 +49,7 @@ const AddCard = ({ openAddCard, listId, onClose }) => {
         type="text"
         className="cards"
         value={input}
-        placeholder="Enter a title for this card..."
+        placeholder="  Enter a title for this card..."
         onChange={handleInput}
         onClose={onClose}
       />

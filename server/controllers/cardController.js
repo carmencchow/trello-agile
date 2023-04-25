@@ -133,14 +133,11 @@ const updateColor = async (req, res) => {
 // ADD COMMENT
 const addComment = async (req, res) => {
   try{
-    const content = req.body.comments;
-    // const parentList = req.body.parentList
-    const postedBy = req.body.userId;
+    const newComment = req.body.comments;
     const card = await Card.findOne({ _id: req.params.id });
     console.log(card);
-    const newComment = await Comment.create({ content, parentList: req.params.id, timestamps: true });
-
-    await newComment.save();
+    // const newComment = await Comment.create({ content, parentList: req.params.id, timestamps: true });
+    // await newComment.save();
     card.comments.push(newComment)
     await card.save();
     console.log('Comments added: ', card.comments)

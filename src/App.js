@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DataProvider } from './context/DataContext';
 import { UserProvider } from './context/UserContext';
 import Board from "./components/Board";
-import Header from "./components/Header";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
@@ -15,7 +14,7 @@ function App() {
         <UserProvider>
           <DataProvider>
             <Routes>
-              <Route path="/" element={<Header />} />
+              <Route path="/" element={<Login />} />
               <Route path="/home" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/board/:id" element={<Board />} />

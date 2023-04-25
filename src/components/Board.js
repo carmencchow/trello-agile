@@ -33,7 +33,7 @@ const Board = () => {
 
     const { source, destination } = result;
 
-    // Find the source and destination lists
+    // Find source and destination lists
     const sourceListIndex = lists.findIndex(list => list._id === source.droppableId);
     const destinationListIndex = lists.findIndex(list => list._id === destination.droppableId);
     if (source.droppableId !== destination.droppableId) {
@@ -53,7 +53,7 @@ const Board = () => {
         destinationList.cards = [...destinationList.cards.slice(0, destination.index), removedItem, ...destinationList.cards.slice(destination.index),];
       }
 
-      // Update the lists array with the modified lists
+      // Update the lists array 
       const newLists = [...lists];
       newLists[sourceListIndex] = sourceList;
       newLists[destinationListIndex] = destinationList;

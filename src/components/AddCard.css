@@ -5,6 +5,9 @@ input{
   width: 228px;
   background-color: ffffff;
 }
+input::placeholder{
+  font-weight: lighter;
+}
 .add-card:hover{
   color: white;
   background-color: darkgray;
@@ -25,6 +28,8 @@ input{
   height: 32px;
   width: 32px;
   background-color: #f6f7f9;
+  color: darkgrey;
+  border-radius: 2px;
   margin-top: 10px;
   margin-left: 5px;
 }
