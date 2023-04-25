@@ -9,6 +9,15 @@
   color: white;
   cursor: pointer;
 }
+.hi{
+  font-size: 20px;
+  margin-right: 3px;
+}
+.welcome{
+  margin-left: 5%;
+  margin-top: 5%;
+  font-size: 20px;
+}
 .delete{
   font-size: 12px;
   cursor: pointer;

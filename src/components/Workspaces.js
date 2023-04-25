@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button } from "@mui/material";
-import { AiOutlineClose } from 'react-icons/ai';
 import AddBoard from './AddBoard';
 import Navbar from "./Navbar";
 import "./Workspaces.css";
@@ -46,27 +45,29 @@ const Workspaces = () => {
       <div>
         {userInfo ? (
           <div>
-            <div>
-              Hi, <strong>{userInfo.username}!</strong>
-              <h3 className="your-boards">Your boards:</h3>
+            <div className="welcome">
+              <span className="hi">Hi,</span><strong>{ userInfo.username}!</strong>
               <div className="boards-container">
               {userInfo.boards.length > 0 ? (
                 userInfo.boards.map((board, index) => {
                   return (
-                    <div key={board._id} className="boards-container">
-                      <div className="boards" onClick={() => goToBoard(board._id)}>
-                        <h5 className="title">{board.title}</h5>
+                    <div>
+                      <h3 className="your-boards">Your boards:</h3> 
+                      <div key={board._id} className="boards-container">
+                        <div className="boards" onClick={() => goToBoard(board._id)}>
+                          <h5 className="title">{board.title}</h5>
+                        </div>
                       </div>
                     </div>
-                  );
-                })
-              ) : (
-                <p>You don't have any boards, yet.</p>
-              )}
-            </div>
+                    );
+                  })
+                ) : (
+                <p></p>
+                )}
+              </div>
             </div>
           </div>
-        ) : (
+          ) : (
           <div>
             <h1>You're not logged in</h1>
             <Button component={Link} to="/login" variant="contained">
@@ -76,7 +77,7 @@ const Workspaces = () => {
         )}
 
         <h3 className="heading"> Create a board:</h3>    
-      
+ 
         <div className="container">
           <div className="newboard" >
             <AddBoard/>
