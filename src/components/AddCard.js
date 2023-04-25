@@ -33,8 +33,8 @@ const AddCard = ({ openAddCard, listId, onClose }) => {
       );
         const data = res.data;
         console.log(data);
-        setInput('');
         handleFetchData();
+        setInput('');
         onClose();
       } catch (err) {
         console.log(err);
@@ -55,7 +55,6 @@ const AddCard = ({ openAddCard, listId, onClose }) => {
       />
 
       <div className="save-cancel-btns">
-        <button className="cancel-btn" onClick={onClose}>X</button>
         <button className="save-card-btn" onClick={handleSave}>Save
       </button>
       

@@ -16,7 +16,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
   const { handleFetchData, cardId, cardData } = useContext(DataContext)
   const [color, setColor] = useState('');
   const [openInput, setOpenInput] = useState(false);
-  const [openComment, setOpenComment] = useState(false);
+  const [commentInput, setCommentInput] = useState(false);
   const [archiveBtn, setArchiveBtn] = useState(true);
 
   const colorArr = [ "orangered", "orange", "yellow", "lightgreen", "lightskyblue", "plum", "pink", "burlywood", "white" ];
@@ -109,14 +109,14 @@ const CardPopup = ({ openModal, onCloseModal }) => {
           <div className="bottom-buttons">
             <div className="edit">
               <AddComment
-                openComment={openComment}
+                commentInput={commentInput}
                 id={cardId}
-                setOpenInput={setOpenInput} 
+                setCommentInput={setCommentInput} 
               />
 
               {!openInput ? (
                 <h4 className="edit-card" onClick={() => {
-                    setOpenInput(true);
+                    setCommentInput(true);
                   }}>
                     <span className="edit-icon"><BiCommentDetail /></span><p> Comment </p>
                 </h4>
@@ -125,7 +125,40 @@ const CardPopup = ({ openModal, onCloseModal }) => {
               )}
             </div>
 
-            <div className="edit">
+            {/* <div className="edit">
+              <EditCard
+                openInput={openInput}
+                id={cardId}
+                setOpenInput={setOpenInput} 
+              />
+
+              {!openInput ? (
+                <h4 className="edit-card" onClick={() => {
+                    setOpenInput(true);
+                  }}>
+                    <span className="edit-icon"><FiEdit2 /></span><p> Edit name </p>
+                </h4>
+              ) : (
+                <div></div>
+              )}
+            </div> */}
+          </div>
+
+        <div className="bottom-buttons">
+          <div className="edit">
+            <h4 onClick={toggleArchive} className="edit-card"><span className="edit-icon"><BiArchive/></span> <p>
+            {archiveBtn ? "Archive card" : "Unarchive card" }</p>
+            </h4>
+          </div>
+
+          <div className="edit">
+            <DeleteCard
+              id={cardId}
+              onClose={onCloseModal}
+            />
+          </div>
+          
+          <div className="edit">
               <EditCard
                 openInput={openInput}
                 id={cardId}
@@ -142,22 +175,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
                 <div></div>
               )}
             </div>
-          </div>
-
-        <div className="bottom-buttons">
-          {/* <Toaster position="top-center" toastOption={{ duration: 3000 }}/> */}
-          <div className="edit">
-            <h4 onClick={toggleArchive} className="edit-card"><span className="edit-icon"><BiArchive/></span> <p>
-            {archiveBtn ? "Archive card" : "Unarchive card" }</p>
-            </h4>
-          </div>
-
-          <div className="edit">
-            <DeleteCard
-              id={cardId}
-              onClose={onCloseModal}
-            />
-          </div>
+            
         </div>
         </div>
       </div>

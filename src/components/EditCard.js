@@ -50,7 +50,7 @@ const EditCard = ({ openInput, setOpenInput }) => {
         <div className="">
           <input
             type="text"
-            className="name"
+            className="edit-input"
             value={input}
             placeholder="  "
             onChange={handleInput}

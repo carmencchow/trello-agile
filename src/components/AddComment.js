@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import axios from 'axios'
 import { DataContext } from '../context/DataContext'
-import './AddComment.css';
+import './EditCard';
 
-const AddComment = ({ openComment, setOpenComment }) => {
+const AddComment = ({ commentInput, setCommentInput }) => {
   const [comment, setComment] = useState('');
   const { clearComment, getCard, cardId, handleFetchData } = useContext(DataContext);
 
@@ -38,24 +38,24 @@ const AddComment = ({ openComment, setOpenComment }) => {
       handleFetchData();
       getCard(cardId);
       // clearComment();
-      setOpenComment(false);
+      setCommentInput(false);
       // setComment("")
       } catch (err) {
         console.log(err);
       }
     };
 
-  if (!openComment) return null;  
+  if (!commentInput) return null;  
 
   return (
     <div className="row">
-      <div className="comment-input">
+      <div className="edit-input">
         <div className="">
           <input
             type="text"
-            className="comment"
+            className="edit-input"
             value={comment}
-            placeholder="TEST COMMENT  "
+            placeholder=" "
             onChange={handleInput}
           />
         </div>

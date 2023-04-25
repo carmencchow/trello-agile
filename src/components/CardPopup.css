@@ -107,6 +107,9 @@ h4{
   display: flex;
   flex-direction: row;
 }
+.comment-container{
+  border: 1px solid orangered;
+}
 input{
   display: flex;
   width: 550px;

@@ -1,9 +1,10 @@
-.edit-input,
-input {
+.edit-input, .comment-input{
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   height: 50px;
+  width: 300px;
+  margin-bottom: 100px;
 }
 .update-btn{
   font-size: 14px;
