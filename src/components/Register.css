@@ -11,6 +11,24 @@
   align-items: center;
   width: 100%;
   height: 100vh;
+  margin-top: 0px;
+}
+input{
+  height: 70px;
+}
+.login{
+  font-size: 14px;
+  text-align: right;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.have-acct{
+  font-size: 14px;
+  font-weight: lighter;
+}
+.login:hover{
+  color: blue;
+  font-weight: bolder;
 }
 .register-form {
   background-color: #fff;
@@ -22,13 +40,16 @@
   width: 400px;
   max-width: 100%;
 }
-
+.register-row{
+  margin-left: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .register-form > div {
   margin-bottom: 10px;
 }
-input{
-  height: 50px;
-}
+
 .register-form label {
   display: block;
   margin-bottom: 5px;
@@ -60,23 +81,4 @@ input{
   width: 60px;
   border-radius: 5px;
 }
-.login{
-  font-size: 14px;
-  text-align: right;
-  cursor: pointer;
-  margin-top: 20px;
-}
-.have-acct{
-  font-size: 14px;
-  font-weight: lighter;
-}
-.login:hover{
-  color: blue;
-  font-weight: bolder;
-}
-.register-row{
-  margin-left: 40px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+

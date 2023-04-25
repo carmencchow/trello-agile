@@ -31,7 +31,6 @@
 .card-content {
   width: 90%;
   margin: 20px auto;
-  overflow: auto;
 }
 .close-btn {
   cursor: pointer;
@@ -115,19 +114,6 @@ input{
   display: flex;
   width: 550px;
 }
-.save-comment-btn{
-  display: flex;
-  justify-content: right;
-  font-size: 14px;
-  font-weight: lighter;
-  height: 50px;
-  margin-left: 20px;
-  border-radius: 3px;
-  cursor: pointer;
-}
-/* .options{
-  overflow: auto;
-} */
 .save-commentbtn{
   display: flex;
   justify-content: right;

@@ -3,6 +3,7 @@ input {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  height: 50px;
 }
 .update-btn{
   font-size: 14px;

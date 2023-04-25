@@ -85,25 +85,6 @@ const Login = () => {
             <p className="no-acct">Don't have an account? <span className="register" onClick={() => navigate('/register')}>Sign Up</span></p>
           </div>
         </form>
-
-        <div className="user-panel">
-          {userInfo && (
-            <div>
-              Hi, {userInfo.username}!<h4>Your boards:</h4>
-              {userInfo.boards.length > 0 ? (
-                userInfo.boards.map((board, index) => {
-                  return (
-                    <div key={index}>
-                      <h5>{board.title}</h5>
-                    </div>
-                  );
-                })
-              ) : (
-                <p>"You don't have any boards, yet.</p>
-              )}
-            </div>
-          )}
-        </div>
       </div>
     </div>
   );

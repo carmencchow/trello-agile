@@ -106,7 +106,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
                 type="text" 
                 value={comment}
                 className="comments-input"
-                placeholder="  Write a comment"
+                placeholder=""
                 onChange={handleCommentInput}
               />
               <div className="save-comment-btn">
@@ -134,7 +134,6 @@ const CardPopup = ({ openModal, onCloseModal }) => {
             <EditCard
               openInput={openInput}
               id={cardId}
-              onClose={onCloseModal}
               setOpenInput={setOpenInput} 
             />
 

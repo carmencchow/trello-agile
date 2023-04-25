@@ -39,7 +39,7 @@ const SaveCommentBtn = ({ input, setComment }) => {
 
     return (
       <div className="comment-row"> 
-        <h4 className="save-comment-btn" onClick={handleSaveComment}>Save</h4>
+        <button className="save-comment-btn" onClick={handleSaveComment}>Save</button>
       </div>
     );
   };

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { DataContext } from '../context/DataContext'
 import './EditCard.css';
 
-const EditCard = ({ openInput }) => {
+const EditCard = ({ openInput, setOpenInput }) => {
   const [input, setInput] = useState('');
   const { cardId, handleFetchData } = useContext(DataContext);
 
@@ -13,7 +13,7 @@ const EditCard = ({ openInput }) => {
 
   const handleUpdate = async () => {
     try {
-      console.log("New card title", input);
+      console.log("New card title", input)
 
       const token = localStorage.getItem("token");
       if (!token) {
@@ -35,6 +35,8 @@ const EditCard = ({ openInput }) => {
       console.log(data);
       handleFetchData();
       setInput('')
+      setOpenInput(false)
+
     } catch (err) {
       console.log(err);
     }
@@ -50,7 +52,7 @@ const EditCard = ({ openInput }) => {
             type="text"
             className="name"
             value={input}
-            placeholder="  Enter new card name"
+            placeholder="  "
             onChange={handleInput}
           />
         </div>
