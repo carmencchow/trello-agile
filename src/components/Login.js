@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Navbar from "./Navbar";
 import "./Login.css"; 
 
 const Login = () => {
@@ -66,7 +65,7 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div>
+          <div className="password-input">
             <label htmlFor="password">Password:</label>
             <input
               type="password"
@@ -76,9 +75,15 @@ const Login = () => {
             />
           </div>
           <button className="login-button" type="submit">Log in</button>
+
           {serverResponse && (
             <p className="error-message">{serverResponse.message}</p>
           )}
+
+          
+          <div className="register-row">
+            <p className="no-acct">Don't have an account? <span className="register" onClick={() => navigate('/register')}>Sign Up</span></p>
+          </div>
         </form>
 
         <div className="user-panel">
