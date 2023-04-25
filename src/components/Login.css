@@ -15,7 +15,7 @@
 
 .login-form {
   background-color: #fff;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -46,8 +46,17 @@
 .login-form button:hover {
   background-color: #005fa3;
 }
+.login-content{
+ margin: 40px auto;
+}
 
 .error-message {
   color: red;
   font-weight: bold;
+}
+.login-button{
+  border: blue;
+  height: 30px;
+  width: 60px;
+  border-radius: 5px;
 }
