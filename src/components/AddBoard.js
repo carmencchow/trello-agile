@@ -19,11 +19,19 @@ const AddBoard = () => {
       if (!token) {
         throw new Error("No token found in localStorage");
       }
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
       const res = await axios.post('http://localhost:5000/api/board',
 
-        { title: `${input}` },
-        { method: "POST", headers: { "Content-Type": "application/json",}, }      
+        { 
+          title: `${input}` 
+        },
+        { 
+          method: "POST", 
+          headers: { 
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          }, 
+        }      
       
       );
 

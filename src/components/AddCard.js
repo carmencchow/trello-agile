@@ -17,7 +17,6 @@ const AddCard = ({ openAddCard, listId, onClose }) => {
       if (!token) {
         throw new Error("No token found in localStorage");
       }
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       const res = await axios.post(
         `http://localhost:5000/api/card/?listId=${listId}`,
       
@@ -28,6 +27,7 @@ const AddCard = ({ openAddCard, listId, onClose }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
           },
         }
       );

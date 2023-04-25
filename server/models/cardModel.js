@@ -5,17 +5,17 @@ const cardSchema = new Schema({
   title: {
     type: String,
   },
-  comments: {
-    type: Array,
-    timestamps: true, 
-    required: true,
-  },
-  // comments: [
-  //   {
-  //     type: mongoose.SchemaType.Types.ObjectId,
-  //     ref: "comment"
-  //   }
-  // ],
+  // comments: {
+  //   type: Array,
+  //   timestamps: true, 
+  //   required: true,
+  // },
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "comment"
+    }
+  ],
   isArchived: {
     type: Boolean,
   },

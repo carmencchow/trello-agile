@@ -13,12 +13,11 @@ import EditCard from "./EditCard";
 import "./CardPopup.css";
 
 const CardPopup = ({ openModal, onCloseModal }) => { 
-  const { handleFetchData,cardId, cardData } = useContext(DataContext)
+  const { handleFetchData, cardId, cardData } = useContext(DataContext)
   const [color, setColor] = useState('');
   const [openInput, setOpenInput] = useState(false);
   const [comment, setComment] = useState('');
   const [archiveBtn, setArchiveBtn] = useState(true);
-
 
   const colorArr = [ "orangered", "orange", "yellow", "lightgreen", "lightskyblue", "plum", "pink", "burlywood", "white" ];
 

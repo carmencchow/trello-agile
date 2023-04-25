@@ -16,7 +16,6 @@ const Logout = () => {
   return (
     <div>      
       <Navbar/>
-      <button type="submit" onClick={handleLogout}>Log out</button>
     </div>
   );
 };

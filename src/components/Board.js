@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { AiOutlineDelete } from 'react-icons/ai';
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { AiOutlineDelete } from 'react-icons/ai';
 import { fetchData } from "../store/thunks/fetchList";
-import DataContext from '../context/DataContext'
-import Navbar from "./Navbar";
+import { DataContext } from '../context/DataContext'
 import List from "../components/List";
+import Navbar from "./Navbar";
 import "./Board.css";
 
 const Board = () => {
@@ -88,7 +88,6 @@ const Board = () => {
     setShowArchived(!showArchived)
   }
 
-  // Delete the board
   const handleDelete = async (boardId) => {
     console.log('Deleting board:', id);
     const token = localStorage.getItem("token");

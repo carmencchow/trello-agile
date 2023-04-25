@@ -36,22 +36,6 @@ const Workspaces = () => {
     console.log('Board id:', id);
   };
 
-  const handleDelete = async (id) => {
-    console.log('Deleting board:', id);
-    const token = localStorage.getItem("token");
-    if (!token) {
-      throw new Error("No token found in localStorage");
-    }
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    try {
-      const res = await axios.delete(`http://localhost:5000/api/board/${id}`);
-      setUserInfo(res.data);
-      console.log('Deleting board')
-    } catch (error) {
-      throw error;
-    }
-  };
-
   useEffect(() => {
     getUserProfile();
   }, []);
@@ -64,15 +48,14 @@ const Workspaces = () => {
           <div>
             <div>
               Hi, <strong>{userInfo.username}!</strong>
+              <h3 className="your-boards">Your boards:</h3>
               <div className="boards-container">
-               <p>Your boards</p>
               {userInfo.boards.length > 0 ? (
                 userInfo.boards.map((board, index) => {
                   return (
                     <div key={board._id} className="boards-container">
-                      <div className="boards">
-                        <p className="delete" onClick={handleDelete}><AiOutlineClose/></p>                        
-                        <h5 onClick={() => goToBoard(board._id)} className="title">{board.title}</h5>
+                      <div className="boards" onClick={() => goToBoard(board._id)}>
+                        <h5 className="title">{board.title}</h5>
                       </div>
                     </div>
                   );
