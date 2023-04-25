@@ -3,7 +3,7 @@ import axios from "axios";
 import { DataContext } from "../context/DataContext";
 import "./SaveCommentBtn.css";
 
-const SaveCommentBtn = ({ input }) => {
+const SaveCommentBtn = ({ input, setComment }) => {
   const { clearComment, cardId, getCard, handleFetchData } = useContext(DataContext);
 
   const handleSaveComment = async () => {
@@ -31,6 +31,7 @@ const SaveCommentBtn = ({ input }) => {
       handleFetchData();
       getCard(cardId);
       clearComment();
+      setComment("")
       } catch (err) {
         console.log(err);
       }

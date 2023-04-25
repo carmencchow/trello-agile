@@ -18,9 +18,7 @@ const DeleteCard = ({ id, onClose }) => {
   };
 
   return (
-    <div className="row">
-      {/* <Toaster position="top-center" toastOption={{ duration: 5000 }}/> */}
-      
+    <div className="row">      
       <div className="delete-card" onClick={() => {
         handleDelete();
         toast.success(`Card deleted`)

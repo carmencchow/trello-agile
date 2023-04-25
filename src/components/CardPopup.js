@@ -100,26 +100,26 @@ const CardPopup = ({ openModal, onCloseModal }) => {
           </div>
 
           <div className="options">
-            <p className="activity-label"><GoThreeBars className="activity-icon"/>Activity: </p>
+            <p className="activity-label"><GoThreeBars className="activity-icon"/>Comments: </p>
             <div className="activity">
               <input 
                 type="text" 
                 value={comment}
                 className="comments-input"
-                placeholder="Write a comment"
+                placeholder="  Write a comment"
                 onChange={handleCommentInput}
               />
               <div className="save-comment-btn">
                 <div className="save">
                   <SaveCommentBtn
                     input={comment}
+                    setComment={setComment}
                   />
                 </div>
               </div>
             </div>
 
             <div className="comment-container">
-            {comment ? <h5>Comments:</h5> : null}
               {cardData.card.comments.map((comment) => {
                 return (
                   <div className="comments">
@@ -142,7 +142,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
               <h4 className="edit-card" onClick={() => {
                   setOpenInput(true);
                 }}>
-                  <span className="edit-icon"><FiEdit2 /></span><p> Edit this card </p>
+                  <span className="edit-icon"><FiEdit2 /></span><p> Edit name </p>
               </h4>
             ) : (
               <div></div>
