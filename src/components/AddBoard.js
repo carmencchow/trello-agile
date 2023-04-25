@@ -1,13 +1,12 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { DataContext } from '../context/DataContext'
 import "./Workspaces.css";
 
 const AddBoard = () => {
-  const { input, setInput } = useContext(DataContext);
-  const [error, setError] = useState('Board already exists');
   const navigate = useNavigate();
+  const [input, setInput] = useState('');
+  const [error, setError] = useState('Board already exists');
 
   const handleInput = (e) => {
     setInput(e.target.value);
@@ -20,11 +19,19 @@ const AddBoard = () => {
       if (!token) {
         throw new Error("No token found in localStorage");
       }
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
       const res = await axios.post('http://localhost:5000/api/board',
 
-        { title: `${input}` },
-        { method: "POST", headers: { "Content-Type": "application/json",}, }      
+        { 
+          title: `${input}` 
+        },
+        { 
+          method: "POST", 
+          headers: { 
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          }, 
+        }      
       
       );
 

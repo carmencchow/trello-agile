@@ -1,3 +1,10 @@
+.navbar-layout {
+  display: flex;
+  background-color: #026aa7;
+  padding: none;
+  line-height: 1px;
+  height: 41.63px;
+}
 .login-container {
   display: flex;
   justify-content: center;

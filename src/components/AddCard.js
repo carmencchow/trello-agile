@@ -3,9 +3,9 @@ import axios from 'axios'
 import { DataContext } from '../context/DataContext'
 import "./AddCard.css";
 
-const AddCard = ({ open, listId, onClose }) => {
+const AddCard = ({ openAddCard, listId, onClose }) => {
+  const { handleFetchData } = useContext(DataContext);
   const [input, setInput] = useState('');
-  const { handleFetchData, handleCardSaved, clearInput } = useContext(DataContext);
 
   const handleInput = (e) => {
     setInput(e.target.value);
@@ -17,7 +17,6 @@ const AddCard = ({ open, listId, onClose }) => {
       if (!token) {
         throw new Error("No token found in localStorage");
       }
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       const res = await axios.post(
         `http://localhost:5000/api/card/?listId=${listId}`,
       
@@ -28,22 +27,21 @@ const AddCard = ({ open, listId, onClose }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
           },
         }
       );
         const data = res.data;
         console.log(data);
+        setInput('');
         handleFetchData();
         onClose();
-        handleCardSaved();
-        clearInput();
       } catch (err) {
         console.log(err);
       }
     };
-  
-  
-  if (!open) return null;
+
+  if (!openAddCard) return null;
 
   return (
     <div className="input-container">
@@ -51,7 +49,7 @@ const AddCard = ({ open, listId, onClose }) => {
         type="text"
         className="cards"
         value={input}
-        placeholder="Enter a title for this card..."
+        placeholder="  Enter a title for this card..."
         onChange={handleInput}
         onClose={onClose}
       />

@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
 import axios from "axios";
-import DataContext from "../context/DataContext";
+import { DataContext } from "../context/DataContext";
 import "./SaveCommentBtn.css";
 
 const SaveCommentBtn = ({ input }) => {
-
   const { clearComment, cardId, getCard, handleFetchData } = useContext(DataContext);
 
   const handleSaveComment = async () => {
@@ -13,7 +12,7 @@ const SaveCommentBtn = ({ input }) => {
       if (!token) {
         throw new Error("No token found in localStorage");
       }
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
       const res = await axios.post(
         `http://localhost:5000/api/card/${cardId}/comment`,
         { 
@@ -23,6 +22,7 @@ const SaveCommentBtn = ({ input }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
           },
         }
       );

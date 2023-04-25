@@ -8,16 +8,16 @@ const Navbar = () => {
     { name: "Recent", query: "workspaces" },
     { name: "Starred", query: "workspaces" },
     { name: "Templates", query: "workspaces" },
-    { name: "Logout", query: "logout" }
+    { name: "Logout", query: "login" }
   ];
 
   return (
     <div className="navbar-layout">
       <div className="logo-style">
         <h1 className="trello-home">
-          <Link className="no-underline" to="/">
+          {/* <Link className="no-underline" to="/"> */}
             Trello
-          </Link>
+          {/* </Link> */}
         </h1>
       </div>
       <div className="option-placement">

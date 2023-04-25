@@ -12,12 +12,12 @@ import DeleteCard from "./DeleteCard";
 import EditCard from "./EditCard";
 import "./CardPopup.css";
 
-const CardPopup = ({ openModal, onCloseModal }) => {
+const CardPopup = ({ openModal, onCloseModal }) => { 
+  const { handleFetchData, cardId, cardData } = useContext(DataContext)
   const [color, setColor] = useState('');
   const [openInput, setOpenInput] = useState(false);
-  const { listId, handleFetchData,
-  cardId, cardData, comment, setComment, archiveBtn, setArchiveBtn, 
-  } = useContext(DataContext)
+  const [comment, setComment] = useState('');
+  const [archiveBtn, setArchiveBtn] = useState(true);
 
   const colorArr = [ "orangered", "orange", "yellow", "lightgreen", "lightskyblue", "plum", "pink", "burlywood", "white" ];
 
@@ -113,8 +113,6 @@ const CardPopup = ({ openModal, onCloseModal }) => {
                 <div className="save">
                   <SaveCommentBtn
                     input={comment}
-                    listId={listId}
-                    id={cardId}
                   />
                 </div>
               </div>

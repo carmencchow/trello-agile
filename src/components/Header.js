@@ -10,9 +10,9 @@ function Header() {
       <div className="header">
       </div>
       <div className="login-btn-layout">
-        <Button component={Link} to="/login" variant="contained">
+        {/* <Button component={Link} to="/login" variant="contained">
           Log In
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

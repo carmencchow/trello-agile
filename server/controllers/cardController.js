@@ -1,6 +1,7 @@
 const Card = require("../models/cardModel");
 const User = require("../models/userModel");
 const List = require("../models/listModel");
+const Comment = require("../models/commentModel");
 
 // GET all cards 
 const getCards = async (req, res) => {
@@ -133,8 +134,10 @@ const updateColor = async (req, res) => {
 const addComment = async (req, res) => {
   try{
     const newComment = req.body.comments;
-    const postedBy = req.body.userId;
     const card = await Card.findOne({ _id: req.params.id });
+    console.log(card);
+    // const newComment = await Comment.create({ content, parentList: req.params.id, timestamps: true });
+    // await newComment.save();
     card.comments.push(newComment)
     await card.save();
     console.log('Comments added: ', card.comments)
@@ -166,7 +169,6 @@ const addComment = async (req, res) => {
 //     }
 //   });
 // }
-
 
 const unComment = async (req, res) => {
   let comment = req.body.comment

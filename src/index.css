@@ -28,11 +28,9 @@ code {
 
 .navbar-layout {
   display: flex;
-  /* justify-content: center; */
   background-color: #026aa7;
   padding: none;
   line-height: 1px;
-  /* border: 1px red solid; */
 }
 
 .navbar-options-style {

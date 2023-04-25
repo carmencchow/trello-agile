@@ -12,7 +12,7 @@ const cardSchema = new Schema({
   },
   // comments: [
   //   {
-  //     type: mongoose.SchemaType.Types.ObjectId,
+  //     type: mongoose.Schema.Types.ObjectId,
   //     ref: "comment"
   //   }
   // ],

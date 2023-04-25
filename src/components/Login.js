@@ -48,7 +48,13 @@ const Login = () => {
 
   return (
     <div>
-      <Navbar />
+      <div className="navbar-layout">
+        <div className="logo-style">
+          <h1 className="trello-home">
+            Trello
+          </h1>
+        </div>
+      </div>
       <div className="login-container">
         <form className="login-form" onSubmit={handleLogin}>
           <div>

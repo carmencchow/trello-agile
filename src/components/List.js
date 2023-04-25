@@ -7,7 +7,7 @@ import CardPopup from "./CardPopup";
 import "./List.css";
 
 const List = ({ cards, listId, listname }) => {
-  const [ openNewCard, setOpenNewCard ] = useState(false);
+  const [ openAddCard, setOpenAddCard ] = useState(false);
   const { cardId, setCardId, handleFetchData } = useContext(DataContext)
 
   return (
@@ -56,17 +56,16 @@ const List = ({ cards, listId, listname }) => {
 
       <div className="input-field">
         <AddCard
-          open={openNewCard}
+          openAddCard={openAddCard}
           listId={listId}
-          onClose={() => {setOpenNewCard(false)}}
-          id={cardId}
+          onClose={() => {setOpenAddCard(false)}}
         />
 
-        {!openNewCard ? (
+        {!openAddCard ? (
           <div
             className="add-card"
             onClick={() => {
-              setOpenNewCard(true);
+              setOpenAddCard(true);
             }}
           ><p className="add-card-text">+ Add a card</p>
           </div>
