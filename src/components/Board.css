@@ -29,6 +29,9 @@ h3{
   background-color: white;
   font-weight: bolder;
 } 
+input{
+  margin-left: 10px;
+}
 .toggle{
   width: 220px;
   height: 40px;
@@ -45,9 +48,6 @@ h3{
   color: blue;
   border: none;
   border: 4px solid rgb(188, 190, 249);
-}
-.dots:hover{
-  cursor: pointer;
 }
 .add-card{
   width: 230px;

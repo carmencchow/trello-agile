@@ -57,7 +57,7 @@ const Login = () => {
       </div>
       <div className="login-container">
         <form className="login-form" onSubmit={handleLogin}>
-          <div>
+          <div className="login-content">
             <label htmlFor="username">Email:</label>
             <input
               type="text"
@@ -75,7 +75,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <button type="submit">Log in</button>
+          <button className="login-button" type="submit">Log in</button>
           {serverResponse && (
             <p className="error-message">{serverResponse.message}</p>
           )}
