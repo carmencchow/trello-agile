@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast'
-import { BiArchive } from "react-icons/bi";
+import { BiArchive, BiCommentDetail } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
 import { GoThreeBars } from "react-icons/go";
 import { FiEdit2 } from "react-icons/fi"; 
 import { BsFolder2 } from "react-icons/bs";
 import { DataContext } from '../context/DataContext'
-import SaveCommentBtn from "./SaveCommentBtn";
+import AddComment from './AddComment'
 import DeleteCard from "./DeleteCard";
 import EditCard from "./EditCard";
 import "./CardPopup.css";
@@ -16,7 +16,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
   const { handleFetchData, cardId, cardData } = useContext(DataContext)
   const [color, setColor] = useState('');
   const [openInput, setOpenInput] = useState(false);
-  const [comment, setComment] = useState('');
+  const [openComment, setOpenComment] = useState(false);
   const [archiveBtn, setArchiveBtn] = useState(true);
 
   const colorArr = [ "orangered", "orange", "yellow", "lightgreen", "lightskyblue", "plum", "pink", "burlywood", "white" ];
@@ -38,10 +38,6 @@ const CardPopup = ({ openModal, onCloseModal }) => {
     } catch (error) {
       console.log(error)
     }
-  };
-
-  const handleCommentInput = (e) => {
-    setComment(e.target.value);
   };
   
   const handleColorChange = async (e) => {
@@ -93,7 +89,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
                   ></span>
                 );
               })}
-              <div className="change-color" onClick={handleColorChange}><p className="save-commentbtn">
+              <div className="change-color" onClick={handleColorChange}><p className="">
                 Save</p>
               </div>
             </p>
@@ -101,25 +97,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
 
           <div className="options">
             <p className="activity-label"><GoThreeBars className="activity-icon"/>Comments: </p>
-            <div className="activity">
-              <input 
-                type="text" 
-                value={comment}
-                className="comments-input"
-                placeholder=""
-                onChange={handleCommentInput}
-              />
-              <div className="save-comment-btn">
-                <div className="save">
-                  <SaveCommentBtn
-                    input={comment}
-                    setComment={setComment}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="comment-container">
+             <div className="comment-container">
               {cardData.card.comments.map((comment) => {
                 return (
                   <div className="comments">
@@ -127,7 +105,27 @@ const CardPopup = ({ openModal, onCloseModal }) => {
                   </div>
                   )
                 })}
+            </div> 
             </div>
+
+
+        <div className="bottom-buttons">
+         <div className="edit">
+            <AddComment
+              openComment={openComment}
+              id={cardId}
+              setOpenInput={setOpenInput} 
+            />
+
+            {!openInput ? (
+              <h4 className="edit-card" onClick={() => {
+                  setOpenInput(true);
+                }}>
+                  <span className="edit-icon"><BiCommentDetail /></span><p> Comment </p>
+              </h4>
+            ) : (
+              <div></div>
+            )}
           </div>
 
           <div className="edit">
@@ -147,20 +145,25 @@ const CardPopup = ({ openModal, onCloseModal }) => {
               <div></div>
             )}
           </div>
+          </div>
         </div>
 
         <div className="bottom-buttons">
-          <Toaster position="top-center" toastOption={{ duration: 3000 }}/>
-          <span onClick={toggleArchive} className="archive-card"><BiArchive className="archive-icon"/> 
-            {archiveBtn ? "Archive card" : "Unarchive card" }
-          </span>
+          {/* <Toaster position="top-center" toastOption={{ duration: 3000 }}/> */}
+          <div className="edit">
+            <h4 onClick={toggleArchive} className="edit-card"><span className="edit-icon"><BiArchive/></span> <p>
+            {archiveBtn ? "Archive card" : "Unarchive card" }</p>
+            </h4>
+          </div>
 
-          <p className="delete-card">
-            <DeleteCard
-              id={cardId}
-              onClose={onCloseModal}
-            />
-          </p>
+          <div className="edit">
+            {/* <h4 className="edit-card"> */}
+              <DeleteCard
+                id={cardId}
+                onClose={onCloseModal}
+              />
+            {/* </h4> */}
+          </div>
         </div>
         </div>
       </div>

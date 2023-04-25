@@ -20,13 +20,13 @@
   text-align: right;
   cursor: pointer;
   margin-top: 20px;
+  color: blue;
 }
 .no-acct{
   font-size: 14px;
   font-weight: lighter;
 }
 .register:hover{
-  color: blue;
   font-weight: bolder;
 }
 .login-form {

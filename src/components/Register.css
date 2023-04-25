@@ -21,13 +21,13 @@ input{
   text-align: right;
   cursor: pointer;
   margin-top: 20px;
+  color: blue;
 }
 .have-acct{
   font-size: 14px;
   font-weight: lighter;
 }
 .login:hover{
-  color: blue;
   font-weight: bolder;
 }
 .register-form {

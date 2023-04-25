@@ -1,30 +1,32 @@
 import React, { useContext, useState } from "react";
 import axios from 'axios'
 import { DataContext } from '../context/DataContext'
-import './EditCard.css';
+import './AddComment.css';
 
-const EditCard = ({ openInput, setOpenInput }) => {
-  const [input, setInput] = useState('');
-  const { cardId, handleFetchData } = useContext(DataContext);
+const AddComment = ({ openComment, setOpenComment }) => {
+  const [comment, setComment] = useState('');
+  const { clearComment, getCard, cardId, handleFetchData } = useContext(DataContext);
 
   const handleInput = (e) => {
-    setInput(e.target.value);
+    setComment(e.target.value);
   };
 
   const handleUpdate = async () => {
     try {
-      console.log("New card title", input)
+      console.log("New comment", comment)
 
       const token = localStorage.getItem("token");
       if (!token) {
         throw new Error("No token found in localStorage");
       }
-      const res = await axios.put(
-        `http://localhost:5000/api/card/${cardId}`,
+      const res = await axios.post(
+        `http://localhost:5000/api/card/${cardId}/comment`,
 
-        { title: `${input}` },
+        { 
+          comments: `${comment}` 
+        },
         {
-          method: "PUT",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`,
@@ -34,25 +36,26 @@ const EditCard = ({ openInput, setOpenInput }) => {
       const data = res.data;
       console.log(data);
       handleFetchData();
-      // setInput('')
-      setOpenInput(false)
+      getCard(cardId);
+      // clearComment();
+      setOpenComment(false);
+      // setComment("")
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  if (!openInput) return null;  
+  if (!openComment) return null;  
 
   return (
     <div className="row">
-      <div className="edit-input">
+      <div className="comment-input">
         <div className="">
           <input
             type="text"
-            className="name"
-            value={input}
-            placeholder="  "
+            className="comment"
+            value={comment}
+            placeholder="TEST COMMENT  "
             onChange={handleInput}
           />
         </div>
@@ -67,4 +70,4 @@ const EditCard = ({ openInput, setOpenInput }) => {
   );
 };
 
-export default EditCard;
+export default AddComment;
