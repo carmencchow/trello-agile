@@ -64,9 +64,13 @@
   width: 100%;
   height: 50px;
 }
-
+.login-form button {
+  background-color: #4388ba;
+  color: white;
+}
 .login-form button:hover {
   background-color: #005fa3;
+  color: white;
 }
 .login-content{
  margin: 40px auto;

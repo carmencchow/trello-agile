@@ -43,25 +43,33 @@ const Workspaces = () => {
     <div>
       <Navbar />
         {userInfo ? (
-            <div className="greeting">
-              Hi, <strong>{userInfo.username}!</strong>
-              <div className="boards-container">
-              {userInfo.boards.length > 0 ? (
-                userInfo.boards.map((board, index) => {
-                  return (
-                    <div key={board._id} className="boards-container">
-                      <div className="boards" onClick={() => goToBoard(board._id)}>
-                        <h5 className="title">{board.title}</h5>
-                      </div>
+          <div className="greeting">
+            Hi, <strong>{userInfo.username}!</strong>
+            <div className="boards-container">
+            {userInfo.boards.length > 0 ? (
+              userInfo.boards.map((board, index) => {
+                return (
+                  <div key={board._id} className="boards-container">
+                    <div className="boards" onClick={() => goToBoard(board._id)}>
+                      <h5 className="title">{board.title}</h5>
                     </div>
-                  );
-                })
-              ) : (
-                <p></p>
-              )}
-            </div>
-            </div>
-     
+                  </div>
+                );
+              })
+            ) : (
+              <p></p>
+            )}
+          </div>
+
+          <h3 className="heading"> Create a board:</h3>    
+      
+        <div className="container">
+          <div className="newboard" >
+            <AddBoard/>
+          </div>
+        </div>
+
+        </div>
         ) : (
           <div>
             <h1>You're not logged in</h1>
@@ -71,13 +79,13 @@ const Workspaces = () => {
           </div>
         )}
 
-        <h3 className="heading"> Create a board:</h3>    
+        {/* <h3 className="heading"> Create a board:</h3>    
       
         <div className="container">
           <div className="newboard" >
             <AddBoard/>
           </div>
-        </div>
+        </div> */}
 
       </div>
 

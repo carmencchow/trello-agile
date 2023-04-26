@@ -131,15 +131,20 @@ h4{
   height: 50px;
   cursor: pointer; 
 }
-.delete-card:hover,
-.edit-card:hover,
-.archive-card:hover{
-  color: blue;
-}
 span.edit-icon svg{
   font-size: 24px;
   cursor: pointer;
 }
-span.edit-icon svg:hover{
-  color: black;
+.color-btn{
+  font-size: 14px;
+  font-weight: lighter;
+  line-height: 40px;
+  border-radius: 5px;
+  border: none;
+  display: flex;
+  width: 70px;
+  margin-left: 10px;
+  cursor: pointer;
+  height: 40px;
+  text-align: center;
 }

@@ -66,7 +66,13 @@ input{
 }
 .register-form button:hover {
   background-color: #005fa3;
+  color: white;
 }
+.register-form button {
+  background-color: #4388ba;
+  color: white;
+}
+
 .register-content{
  margin: 40px auto;
 }

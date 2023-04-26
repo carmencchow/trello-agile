@@ -11,7 +11,7 @@
   height: 40px;
   width: 400px;
 }
-.update-btn,.comment-btn{
+.update-btn, .comment-btn{
   font-size: 14px;
   font-weight: lighter;
   line-height: 40px;
@@ -24,7 +24,4 @@
 }
 .editname-icon{
   margin-left: 20px;
-}
-.update-btn:hover{
-  background-color: rgb(61, 61, 245)
 }

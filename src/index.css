@@ -32,7 +32,6 @@ code {
   padding: none;
   line-height: 1px;
 }
-
 .navbar-options-style {
   display: flex;
   align-items: center;
@@ -41,7 +40,7 @@ code {
 }
 .logout-home{
   cursor: pointer;
-  padding-right: 20%;
+  margin-right: 20px;
 }
 
 .trello-home {
@@ -76,7 +75,8 @@ code {
 
 .option-placement {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  /* justify-content: flex-start; */
   align-items: center;
   margin-left: 12em;
   padding: none;

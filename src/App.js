@@ -4,7 +4,6 @@ import { UserProvider } from './context/UserContext';
 import Board from "./components/Board";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Logout from "./components/Logout";
 import Workspaces from "./components/Workspaces";
 
 function App() {
@@ -19,7 +18,6 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/board/:id" element={<Board />} />
               <Route path="/workspaces" element={<Workspaces />} />
-              <Route path="/logout" element={<Logout />} />
             </Routes>
           </DataProvider>
         </UserProvider>
