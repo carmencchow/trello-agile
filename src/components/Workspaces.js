@@ -60,7 +60,16 @@ const Workspaces = () => {
               <p></p>
             )}
           </div>
+
+          <h3 className="heading"> Create a board:</h3>    
+      
+        <div className="container">
+          <div className="newboard" >
+            <AddBoard/>
           </div>
+        </div>
+
+        </div>
         ) : (
           <div>
             <h1>You're not logged in</h1>
@@ -70,13 +79,13 @@ const Workspaces = () => {
           </div>
         )}
 
-        <h3 className="heading"> Create a board:</h3>    
+        {/* <h3 className="heading"> Create a board:</h3>    
       
         <div className="container">
           <div className="newboard" >
             <AddBoard/>
           </div>
-        </div>
+        </div> */}
 
       </div>
 
