@@ -8,6 +8,11 @@
   right: 0;
   bottom: 0;
 }
+.card-content{
+  border: 1px solid orange;
+  margin: 20px 30px;
+  height: 90vh;
+}
 .card-popup {
   height: 750px;
   width: 700px;
@@ -17,6 +22,9 @@
   top: 50%;
   transform: translate(-50%, -50%);
 }
+.card-name{
+  margin-left: 30px;
+}
 .card-popup-heading {
   display: flex;
   justify-content: space-between;
@@ -25,16 +33,11 @@
 .card-right{
   display: flex;
 }
-.card-popup-heading p {
-  margin-left: 25px;
-}
-.card-content {
-  width: 90%;
-  margin: 20px auto;
-}
 .close-btn {
   cursor: pointer;
   font-size: 25px;
+  display: flex;
+  flex-direction: column;
   margin: 10px;
   padding: 5px;
   background-color: rgba(0, 0, 0, 0.1);
@@ -53,10 +56,6 @@
   cursor: pointer;
   margin-top: 10px;
   border-radius: 5px;
-}
-.right-side {
-  display: flex;
-  flex-direction: column;
 }
 p {
   font-weight: bolder;
@@ -92,9 +91,6 @@ p {
   background-color: white;
   border: 1px solid gainsboro;
 }
-h2 {
-  padding-left: 30px;
-}
 h4{
   padding-right: 20px;
 }
@@ -108,7 +104,7 @@ h4{
   flex-direction: row;
 }
 .comment-container{
-  border: 1px solid orangered;
+  overflow: auto;
 }
 input{
   display: flex;
@@ -129,16 +125,13 @@ input{
   display: flex;
 }
 .comments{
-  height: 30px;
+  height: 20px;
   width: 540px;
-  text-decoration: none;
   font-size: 14px;
   font-weight: lighter;
   margin-bottom: 10px;
   padding-left: 10px;
   display: flex;
-  justify-content: space-between;
-  border-radius: 3px;
 }
 .comments-input{
   margin-bottom: 20px;
@@ -155,19 +148,14 @@ input{
 }
 .delete-card,
 .edit-card{
-  background-color: 
-  #eaecf0;
   color: 
   #777d88;
   font-size: 14px;
   font-weight: lighter;
-  border-radius: 5px;
-  margin-left: 40px;
-  padding-right: 10px;
   display: flex;
   vertical-align: center;
   text-align: center;
-  width: 160px;
+  width: 60px;
   height: 50px;
   cursor: pointer; 
 }
@@ -190,17 +178,24 @@ input{
   padding-left: 20px;
   padding-top: 20px;
 }
+.edit{
+  width: 60px;
+  height: 30px;
+}
 .delete-card:hover,
 .edit-card:hover,
 .archive-card:hover{
   color: black;
 }
-span.delete-icon,
-span.edit-icon{
-  font-size: 16px;
-  margin-top: 14px;
-  color:#777d88;
-  font-weight: lighter;
+span.edit-icon svg{
+  font-size: 24px;
+  cursor: pointer;
+}
+.editname-icon{
+  margin-left: 100px;
+}
+span.edit-icon svg:hover{
+  color: black;
 }
 .archive-card{
   margin-right: 20px;
@@ -210,19 +205,18 @@ span.edit-icon{
   padding-right: 10px;
   margin-left: 15px;
 }
+.pencil-icon{
+  font-size: 25px;
+  margin-top: 10px;
+}
 span{
   font-size: 18px;
   margin-top: 20px;
   margin-right: 10px;
 }
-.edit-icon{
-  margin-top: 5px;
-  margin-left: 40px;
-  margin-right: 10px;
-}
 .bottom-buttons{
   display: flex;
-  margin-left: 5px;
+  margin-bottom: 0px;
 }
 .change-color{
   border: none;
@@ -233,6 +227,10 @@ span{
   cursor: pointer;
   font-weight: lighter;
   font-size: 14px;
+  display: flex;
+  flex-direction: row;
+}
+.left-side{
   display: flex;
   flex-direction: row;
 }

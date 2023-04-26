@@ -34,8 +34,8 @@ const EditCard = ({ openInput, setOpenInput }) => {
       const data = res.data;
       console.log(data);
       handleFetchData();
-      // setInput('')
       setOpenInput(false)
+      setInput("");
 
     } catch (err) {
       console.log(err);
@@ -45,24 +45,15 @@ const EditCard = ({ openInput, setOpenInput }) => {
   if (!openInput) return null;  
 
   return (
-    <div className="row">
-      <div className="edit-input">
-        <div className="">
-          <input
-            type="text"
-            className="edit-input"
-            value={input}
-            placeholder="  "
-            onChange={handleInput}
-          />
-        </div>
-        <div className="update">  
-          <div className="update-close">
-            <button className="update-btn" 
-            onClick={handleUpdate}>Update</button>
-          </div>          
-        </div>
-      </div>
+    <div className="name-change-input">
+      <input
+        type="text"
+        className="change-input"
+        value={input}
+        placeholder=" "
+        onChange={handleInput}
+      />
+      <button className="update-btn" onClick={handleUpdate}>Update</button>
     </div>
   );
 };

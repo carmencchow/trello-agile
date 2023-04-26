@@ -23,8 +23,8 @@ const DeleteCard = ({ id, onClose }) => {
         handleDelete();
         toast.success(`Card deleted`)
         }}>
-          <span className="edit-icon"><RiDeleteBin6Line /></span><p>
-        Delete card</p>
+          <span className="edit-icon"><RiDeleteBin6Line /></span>
+          {/* <p>Delete</p> */}
       </h4>
     </div>
   );

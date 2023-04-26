@@ -69,7 +69,22 @@ const CardPopup = ({ openModal, onCloseModal }) => {
       <div className="card-popup">
         <div className="card-popup-heading" 
           style={{ backgroundColor: color }}>
-          <h2>{cardData.card.title}</h2>
+          <h2 className="card-name">{cardData.card.title} <FiEdit2  onClick={() => {setOpenInput(true)}} /></h2>
+              <EditCard
+                openInput={openInput}
+                id={cardId}
+                setOpenInput={setOpenInput} 
+              />
+
+              {!openInput ? (
+                <h4 className="editname-card" onClick={() => {
+                    setOpenInput(true);
+                  }}>
+                </h4>
+              ) : (
+                <div></div>
+              )}
+
           <div className="right-side">
             <GrFormClose className="close-btn" onClick={onCloseModal} />
           </div>
@@ -89,7 +104,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
                   ></span>
                 );
               })}
-              <div className="change-color" onClick={handleColorChange}><p className="">Save</p></div>
+              <div className="change-color" onClick={handleColorChange}>Save</div>
             </p>
           </div>
 
@@ -104,83 +119,43 @@ const CardPopup = ({ openModal, onCloseModal }) => {
                   )
                 })}
               </div> 
-          </div>
-
-          <div className="bottom-buttons">
-            <div className="edit">
-              <AddComment
-                commentInput={commentInput}
-                id={cardId}
-                setCommentInput={setCommentInput} 
-              />
-
-              {!openInput ? (
-                <h4 className="edit-card" onClick={() => {
-                    setCommentInput(true);
-                  }}>
-                    <span className="edit-icon"><BiCommentDetail /></span><p> Comment </p>
-                </h4>
-              ) : (
-                <div></div>
-              )}
             </div>
 
-            {/* <div className="edit">
-              <EditCard
-                openInput={openInput}
-                id={cardId}
-                setOpenInput={setOpenInput} 
-              />
-
-              {!openInput ? (
-                <h4 className="edit-card" onClick={() => {
-                    setOpenInput(true);
-                  }}>
-                    <span className="edit-icon"><FiEdit2 /></span><p> Edit name </p>
+            <div className="bottom-buttons">
+              <div className="edit">
+                <h4 onClick={toggleArchive} className="edit-card"><span className="edit-icon"><BiArchive/></span>
+                 <p>{archiveBtn ? "Archive" : "Unarchive card" }</p>
                 </h4>
-              ) : (
-                <div></div>
-              )}
-            </div> */}
-          </div>
+              </div>
 
-        <div className="bottom-buttons">
-          <div className="edit">
-            <h4 onClick={toggleArchive} className="edit-card"><span className="edit-icon"><BiArchive/></span> <p>
-            {archiveBtn ? "Archive card" : "Unarchive card" }</p>
-            </h4>
-          </div>
+              <div className="edit">
+                <DeleteCard
+                  id={cardId}
+                  onClose={onCloseModal}
+                />
+              </div>
 
-          <div className="edit">
-            <DeleteCard
-              id={cardId}
-              onClose={onCloseModal}
-            />
-          </div>
-          
-          <div className="edit">
-              <EditCard
-                openInput={openInput}
-                id={cardId}
-                setOpenInput={setOpenInput} 
-              />
+              <div className="edit">
+                <AddComment
+                  commentInput={commentInput}
+                  id={cardId}
+                  setCommentInput={setCommentInput} 
+                />
 
-              {!openInput ? (
-                <h4 className="edit-card" onClick={() => {
-                    setOpenInput(true);
-                  }}>
-                    <span className="edit-icon"><FiEdit2 /></span><p> Edit name </p>
-                </h4>
-              ) : (
-                <div></div>
-              )}
-            </div>
-            
-        </div>
+                {!openInput ? (
+                  <h4 className="edit-card">
+                  <span className="edit-icon" onClick={() => {
+                  setCommentInput(true)}}><BiCommentDetail /></span>
+                  <p> Comment </p>
+                  </h4>
+                ) : (
+                  <div></div>
+                )}
+              </div>
+            </div>  
+          </div>
         </div>
       </div>
-    </div>
-
     );
   };
 

@@ -5,7 +5,7 @@ import './EditCard';
 
 const AddComment = ({ commentInput, setCommentInput }) => {
   const [comment, setComment] = useState('');
-  const { clearComment, getCard, cardId, handleFetchData } = useContext(DataContext);
+  const { getCard, cardId, handleFetchData } = useContext(DataContext);
 
   const handleInput = (e) => {
     setComment(e.target.value);
@@ -37,9 +37,8 @@ const AddComment = ({ commentInput, setCommentInput }) => {
       console.log(data);
       handleFetchData();
       getCard(cardId);
-      // clearComment();
       setCommentInput(false);
-      // setComment("")
+      setComment("")
       } catch (err) {
         console.log(err);
       }
