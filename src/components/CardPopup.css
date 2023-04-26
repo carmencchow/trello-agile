@@ -131,15 +131,7 @@ h4{
   height: 50px;
   cursor: pointer; 
 }
-.delete-card:hover,
-.edit-card:hover,
-.archive-card:hover{
-  color: blue;
-}
 span.edit-icon svg{
   font-size: 24px;
   cursor: pointer;
-}
-span.edit-icon svg:hover{
-  color: black;
 }
