@@ -1,7 +1,6 @@
 const Card = require("../models/cardModel");
 const User = require("../models/userModel");
 const List = require("../models/listModel");
-const Comment = require("../models/commentModel");
 
 // GET all cards 
 const getCards = async (req, res) => {

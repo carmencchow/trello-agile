@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Navbutton } from "./NavButton";
 
 const Navbar = () => {
@@ -8,8 +8,14 @@ const Navbar = () => {
     { name: "Recent", query: "workspaces" },
     { name: "Starred", query: "workspaces" },
     { name: "Templates", query: "workspaces" },
-    { name: "Logout", query: "login" }
   ];
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    alert("User logged out");
+    navigate("/login");
+  };
 
   return (
     <div className="navbar-layout">
@@ -32,6 +38,9 @@ const Navbar = () => {
             </Link>
           );
         })}
+      </div>
+      <div className="logo-style">
+        <h1 className="logout-home" onClick={handleLogout}>Logout</h1>
       </div>
     </div>
   );

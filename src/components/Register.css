@@ -5,31 +5,32 @@
   line-height: 1px;
   height: 41.63px;
 }
-.login-container {
+.register-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100vh;
+  margin-top: 0px;
 }
-.password-input{
-  margin-bottom: 0px;
+input{
+  height: 70px;
 }
-.register{
+.login{
   font-size: 14px;
   text-align: right;
   cursor: pointer;
   margin-top: 20px;
   color: blue;
 }
-.no-acct{
+.have-acct{
   font-size: 14px;
   font-weight: lighter;
 }
-.register:hover{
+.login:hover{
   font-weight: bolder;
 }
-.login-form {
+.register-form {
   background-color: #fff;
   padding: 20px;
   display: flex;
@@ -45,30 +46,28 @@
   flex-direction: row;
   justify-content: space-between;
 }
-
-.login-form > div {
+.register-form > div {
   margin-bottom: 10px;
 }
 
-.login-form label {
+.register-form label {
   display: block;
   margin-bottom: 5px;
 }
 
-.login-form input {
+.register-form input {
   border: none;
   border-radius: 3px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   margin-bottom: 20px;
   padding: 10px;
   width: 100%;
-  height: 50px;
+  height: 30px;
 }
-
-.login-form button:hover {
+.register-form button:hover {
   background-color: #005fa3;
 }
-.login-content{
+.register-content{
  margin: 40px auto;
 }
 
@@ -76,11 +75,10 @@
   color: red;
   font-weight: bold;
 }
-.login-button{
+.register-button{
   border: blue;
   height: 30px;
   width: 60px;
   border-radius: 5px;
-  justify-content: center;
-  margin-left: 30px;
 }
+

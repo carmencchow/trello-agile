@@ -1,20 +1,29 @@
-.edit-input,
-input {
+.name-change-input, .comment-input{
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  margin-top: 10px;
 }
-.update-btn{
+.change-input{
+  height: 40px;
+  width: 300px;
+}
+.add-input{
+  height: 40px;
+  width: 400px;
+}
+.update-btn,.comment-btn{
   font-size: 14px;
   font-weight: lighter;
   line-height: 40px;
   border-radius: 5px;
   border: none;
   margin-left: 10px;
-  margin-top: 10px;
   cursor: pointer;
   height: 40px;
   text-align: center;
+}
+.editname-icon{
+  margin-left: 20px;
 }
 .update-btn:hover{
   background-color: rgb(61, 61, 245)

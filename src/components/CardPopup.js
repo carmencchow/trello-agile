@@ -1,13 +1,14 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast'
-import { BiArchive } from "react-icons/bi";
+import { BiArchive, BiCommentDetail } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
 import { GoThreeBars } from "react-icons/go";
 import { FiEdit2 } from "react-icons/fi"; 
-import { BsFolder2 } from "react-icons/bs";
+import { BsFolder2, BsChatLeftQuote } from "react-icons/bs";
+import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
 import { DataContext } from '../context/DataContext'
-import SaveCommentBtn from "./SaveCommentBtn";
+import AddComment from './AddComment'
 import DeleteCard from "./DeleteCard";
 import EditCard from "./EditCard";
 import "./CardPopup.css";
@@ -16,7 +17,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
   const { handleFetchData, cardId, cardData } = useContext(DataContext)
   const [color, setColor] = useState('');
   const [openInput, setOpenInput] = useState(false);
-  const [comment, setComment] = useState('');
+  const [commentInput, setCommentInput] = useState(false);
   const [archiveBtn, setArchiveBtn] = useState(true);
 
   const colorArr = [ "orangered", "orange", "yellow", "lightgreen", "lightskyblue", "plum", "pink", "burlywood", "white" ];
@@ -38,10 +39,6 @@ const CardPopup = ({ openModal, onCloseModal }) => {
     } catch (error) {
       console.log(error)
     }
-  };
-
-  const handleCommentInput = (e) => {
-    setComment(e.target.value);
   };
   
   const handleColorChange = async (e) => {
@@ -73,7 +70,22 @@ const CardPopup = ({ openModal, onCloseModal }) => {
       <div className="card-popup">
         <div className="card-popup-heading" 
           style={{ backgroundColor: color }}>
-          <h2>{cardData.card.title}</h2>
+          <h2 className="card-name">{cardData.card.title} <FiEdit2  onClick={() => {setOpenInput(true)}} /></h2>
+              <EditCard
+                openInput={openInput}
+                id={cardId}
+                setOpenInput={setOpenInput} 
+              />
+
+              {!openInput ? (
+                <h4 className="editname-card" onClick={() => {
+                    setOpenInput(true);
+                  }}>
+              </h4>
+              ) : (
+                <div></div>
+              )}
+
           <div className="right-side">
             <GrFormClose className="close-btn" onClick={onCloseModal} />
           </div>
@@ -93,77 +105,52 @@ const CardPopup = ({ openModal, onCloseModal }) => {
                   ></span>
                 );
               })}
-              <div className="change-color" onClick={handleColorChange}><p className="save-commentbtn">
-                Save</p>
-              </div>
+
+              <button className="update-btn" onClick={handleColorChange}>Change</button>
+
             </p>
           </div>
 
           <div className="options">
-            <p className="activity-label"><GoThreeBars className="activity-icon"/>Activity: </p>
-            <div className="activity">
-              <input 
-                type="text" 
-                value={comment}
-                className="comments-input"
-                placeholder="Write a comment"
-                onChange={handleCommentInput}
-              />
-              <div className="save-comment-btn">
-                <div className="save">
-                  <SaveCommentBtn
-                    input={comment}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="comment-container">
-            {comment ? <h5>Comments:</h5> : null}
+            <p className="activity-label"><BsChatLeftQuote className="activity-icon"/>Comments: </p>
+             <div className="comment-container">
               {cardData.card.comments.map((comment) => {
                 return (
                   <div className="comments">
-                    <p className="displayed-comments">{comment}</p>
+                    <p className="displayed-comments"><RiDoubleQuotesL/> {comment} <RiDoubleQuotesR/></p>
                   </div>
                   )
                 })}
+              </div> 
+            </div>
+
+            <div className="button-row">
+              <AddComment
+                commentInput={commentInput}
+                id={cardId}
+                setCommentInput={setCommentInput} 
+              />
+
+              {!commentInput ? (
+                <h4 className="edit-card">
+                <span className="edit-icon" onClick={() => {
+                setCommentInput(true)}}><BiCommentDetail/>Comment</span>
+                </h4>
+              ) : (
+                <div></div>
+              )}
+
+              <h4 onClick={toggleArchive} className="edit-card"><span className="edit-icon"><BiArchive/>{archiveBtn ? "Archive" : "Unarchive card" }</span>
+              </h4>
+
+              <DeleteCard
+                id={cardId}
+                onClose={onCloseModal}
+              />
+            
             </div>
           </div>
-
-          <div className="edit">
-            <EditCard
-              openInput={openInput}
-              id={cardId}
-              onClose={onCloseModal}
-              setOpenInput={setOpenInput} 
-            />
-
-            {!openInput ? (
-              <h4 className="edit-card" onClick={() => {
-                  setOpenInput(true);
-                }}>
-                  <span className="edit-icon"><FiEdit2 /></span><p> Edit this card </p>
-              </h4>
-            ) : (
-              <div></div>
-            )}
-          </div>
-        </div>
-
-        <div className="bottom-buttons">
-          <Toaster position="top-center" toastOption={{ duration: 3000 }}/>
-          <span onClick={toggleArchive} className="archive-card"><BiArchive className="archive-icon"/> 
-            {archiveBtn ? "Archive card" : "Unarchive card" }
-          </span>
-
-          <p className="delete-card">
-            <DeleteCard
-              id={cardId}
-              onClose={onCloseModal}
-            />
-          </p>
-        </div>
-        </div>
+        </div>  
       </div>
     );
   };

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { DataContext } from '../context/DataContext'
 import './EditCard.css';
 
-const EditCard = ({ openInput }) => {
+const EditCard = ({ openInput, setOpenInput }) => {
   const [input, setInput] = useState('');
   const { cardId, handleFetchData } = useContext(DataContext);
 
@@ -13,7 +13,7 @@ const EditCard = ({ openInput }) => {
 
   const handleUpdate = async () => {
     try {
-      console.log("New card title", input);
+      console.log("New card title", input)
 
       const token = localStorage.getItem("token");
       if (!token) {
@@ -34,7 +34,9 @@ const EditCard = ({ openInput }) => {
       const data = res.data;
       console.log(data);
       handleFetchData();
-      setInput('')
+      setOpenInput(false)
+      setInput("");
+
     } catch (err) {
       console.log(err);
     }
@@ -43,24 +45,15 @@ const EditCard = ({ openInput }) => {
   if (!openInput) return null;  
 
   return (
-    <div className="row">
-      <div className="edit-input">
-        <div className="">
-          <input
-            type="text"
-            className="name"
-            value={input}
-            placeholder="  Enter new card name"
-            onChange={handleInput}
-          />
-        </div>
-        <div className="update">  
-          <div className="update-close">
-            <button className="update-btn" 
-            onClick={handleUpdate}>Update</button>
-          </div>          
-        </div>
-      </div>
+    <div className="name-change-input">
+      <input
+        type="text"
+        className="change-input"
+        value={input}
+        placeholder=" "
+        onChange={handleInput}
+      />
+      <button className="update-btn" onClick={handleUpdate}>Update</button>
     </div>
   );
 };

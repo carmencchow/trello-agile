@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button } from "@mui/material";
-import { AiOutlineClose } from 'react-icons/ai';
 import AddBoard from './AddBoard';
 import Navbar from "./Navbar";
 import "./Workspaces.css";
@@ -43,12 +42,9 @@ const Workspaces = () => {
   return (
     <div>
       <Navbar />
-      <div>
         {userInfo ? (
-          <div>
-            <div>
+            <div className="greeting">
               Hi, <strong>{userInfo.username}!</strong>
-              <h3 className="your-boards">Your boards:</h3>
               <div className="boards-container">
               {userInfo.boards.length > 0 ? (
                 userInfo.boards.map((board, index) => {
@@ -61,11 +57,11 @@ const Workspaces = () => {
                   );
                 })
               ) : (
-                <p>You don't have any boards, yet.</p>
+                <p></p>
               )}
             </div>
             </div>
-          </div>
+     
         ) : (
           <div>
             <h1>You're not logged in</h1>
@@ -84,7 +80,7 @@ const Workspaces = () => {
         </div>
 
       </div>
-    </div>
+
   );
 };
 

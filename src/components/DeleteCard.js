@@ -18,17 +18,13 @@ const DeleteCard = ({ id, onClose }) => {
   };
 
   return (
-    <div className="row">
-      {/* <Toaster position="top-center" toastOption={{ duration: 5000 }}/> */}
-      
-      <div className="delete-card" onClick={() => {
+    <div className="">      
+      <h4 className="edit-card" onClick={() => {
         handleDelete();
         toast.success(`Card deleted`)
         }}>
-          <span className="delete-icon"><RiDeleteBin6Line /></span>
-        <p>Delete this card</p>
-
-      </div>
+        <span className="edit-icon"><RiDeleteBin6Line />Delete</span>
+      </h4>
     </div>
   );
 };

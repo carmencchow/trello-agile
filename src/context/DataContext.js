@@ -13,7 +13,7 @@ export const DataProvider = ({ children }) => {
   const [archiveBtn, setArchiveBtn] = useState(true);
   const dispatch = useDispatch();
 
-  const clearComment = (e) => {
+  const clearComment = () => {
     console.log('clearComment')
     setComment('');
   };

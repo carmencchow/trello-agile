@@ -8,6 +8,10 @@
   right: 0;
   bottom: 0;
 }
+.card-content{
+  margin: 20px 50px;
+  height: 90vh;
+}
 .card-popup {
   height: 750px;
   width: 700px;
@@ -17,6 +21,9 @@
   top: 50%;
   transform: translate(-50%, -50%);
 }
+.card-name{
+  margin-left: 50px;
+}
 .card-popup-heading {
   display: flex;
   justify-content: space-between;
@@ -25,16 +32,11 @@
 .card-right{
   display: flex;
 }
-.card-popup-heading p {
-  margin-left: 25px;
-}
-.card-content {
-  width: 90%;
-  margin: 20px auto;
-}
 .close-btn {
   cursor: pointer;
   font-size: 25px;
+  display: flex;
+  flex-direction: column;
   margin: 10px;
   padding: 5px;
   background-color: rgba(0, 0, 0, 0.1);
@@ -53,10 +55,6 @@
   cursor: pointer;
   margin-top: 10px;
   border-radius: 5px;
-}
-.right-side {
-  display: flex;
-  flex-direction: column;
 }
 p {
   font-weight: bolder;
@@ -92,163 +90,56 @@ p {
   background-color: white;
   border: 1px solid gainsboro;
 }
-h2 {
-  padding-left: 30px;
-}
 h4{
   padding-right: 20px;
 }
-.edit-card{
-  cursor: pointer;
-}
-.edit-row{
-  display: flex;
-  justify-content: right;
-  margin-top: 0px;
-}
-.activity{
-  display: flex;
-  flex-direction: row;
-}
-input{
-  display: flex;
-  width: 550px;
-}
-.save-comment-btn{
-  display: flex;
-  justify-content: right;
-  font-size: 14px;
-  font-weight: lighter;
-  height: 50px;
-  margin-left: 20px;
-  border-radius: 3px;
-  cursor: pointer;
-}
-.save-commentbtn{
-  display: flex;
-  justify-content: right;
-  font-size: 14px;
-  font-weight: lighter;
-  height: 50px;
-  margin-top: 0px;
-  margin-right: 0px;
-  border-radius: 3px;
-  cursor: pointer;
+.comment-container{
+  overflow: auto;
 }
 .activity-label{
   display: flex;
 }
 .comments{
-  background-color: #ffffff;
-  height: 30px;
+  height: 20px;
   width: 540px;
-  text-decoration: none;
   font-size: 14px;
   font-weight: lighter;
   margin-bottom: 10px;
   padding-left: 10px;
   display: flex;
-  justify-content: space-between;
-  border-radius: 3px;
-}
-.comments-input{
-  margin-bottom: 20px;
-  width: 560px;
 }
 .activity-icon,
 .card-icon{
   margin-right: 7px;
   margin-top: 5px;
 }
-.displayed-comments{
-  margin-bottom: 10px;
-  font-size: 12px;
+.button-row{
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 10%;
 }
 .delete-card,
-.edit-card{
-  background-color: 
-  #eaecf0;
-  color: 
-  #777d88;
+.edit-card,
+.archive-card{
+  color: black;
   font-size: 14px;
   font-weight: lighter;
-  border-radius: 5px;
-  margin-left: 40px;
-  padding-right: 10px;
   display: flex;
   vertical-align: center;
   text-align: center;
-  width: 160px;
+  width: 60px;
   height: 50px;
   cursor: pointer; 
-}
-.archive-card{
-  background-color: 
-  #eaecf0;
-  color: 
-  #777d88;
-  font-size: 14px;
-  font-weight: lighter;
-  border-radius: 5px;
-  margin-left: 40px;
-  padding-right: 10px;
-  display: flex;
-  vertical-align: center;
-  text-align: center;
-  width: 170px;
-  height: 30px;
-  cursor: pointer; 
-  padding-left: 20px;
-  padding-top: 20px;
 }
 .delete-card:hover,
 .edit-card:hover,
 .archive-card:hover{
-  color: black;
+  color: blue;
 }
-span.delete-icon,
-span.edit-icon{
-  font-size: 16px;
-  margin-top: 14px;
-  color:#777d88;
-  font-weight: lighter;
-}
-.archive-card{
-  margin-right: 20px;
-  margin-top: 15px;
-}
-.archive-icon{
-  padding-right: 10px;
-  margin-left: 15px;
-}
-span{
-  font-size: 18px;
-  margin-top: 20px;
-  margin-right: 10px;
-}
-.edit-icon{
-  margin-top: 5px;
-  margin-left: 40px;
-  margin-right: 10px;
-}
-.edit-card{
-  width: 200px;
-  margin-left: 7px;
-  color: black;
-}
-.bottom-buttons{
-  display: flex;
-  margin-left: 5px;
-}
-.change-color{
-  border: none;
-  width: 160px;
-  border-radius: 5px;
-  margin-top: 5px;
-  margin-left: 15px;
+span.edit-icon svg{
+  font-size: 24px;
   cursor: pointer;
-  font-weight: lighter;
-  font-size: 14px;
-  display: flex;
-  flex-direction: row;
+}
+span.edit-icon svg:hover{
+  color: black;
 }

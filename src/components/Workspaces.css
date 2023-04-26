@@ -9,6 +9,18 @@
   color: white;
   cursor: pointer;
 }
+.hi{
+  font-size: 20px;
+  margin-right: 3px;
+  display: flex;
+  flex-direction: row;
+  /* width: 100%; */
+}
+.greeting{
+  margin-left: 5%;
+  margin-top: 5%;
+  font-size: 20px;
+}
 .delete{
   font-size: 12px;
   cursor: pointer;
@@ -42,13 +54,19 @@
 .user-panel{
   margin-left: 20px;
 }
+.bcontainer{
+  margin-top: 80px;
+  margin-left: 0px;
+  display: flex;
+  flex-direction: row;
+}
 .boards-container {
   display: flex;
   flex-direction: row;
   width: 70%;
   justify-content: flex-start;
   margin: 0px auto;
-  margin-top: 5px;
+  margin-top: 25px;
 }
 .your-boards{
   display: flex;
@@ -67,6 +85,7 @@
 }
 .welcome {
   display: flex;
+  flex-direction: row;
 }
 .heading{
   margin-bottom: 0px;
@@ -79,7 +98,6 @@
   cursor: pointer;
 }
 .createBtn{
-  margin-top: 40px;
   margin-left: 30px;
   width: 100px;
   height: 36px;

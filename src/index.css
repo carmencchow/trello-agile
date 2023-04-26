@@ -38,7 +38,10 @@ code {
   align-items: center;
   justify-content: center;
   width: 100%;
-  /* border: 1px red solid; */
+}
+.logout-home{
+  cursor: pointer;
+  padding-right: 20%;
 }
 
 .trello-home {
