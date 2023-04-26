@@ -5,7 +5,8 @@ import { BiArchive, BiCommentDetail } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
 import { GoThreeBars } from "react-icons/go";
 import { FiEdit2 } from "react-icons/fi"; 
-import { BsFolder2 } from "react-icons/bs";
+import { BsFolder2, BsChatLeftQuote, BsQuote,  } from "react-icons/bs";
+import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
 import { DataContext } from '../context/DataContext'
 import AddComment from './AddComment'
 import DeleteCard from "./DeleteCard";
@@ -109,12 +110,12 @@ const CardPopup = ({ openModal, onCloseModal }) => {
           </div>
 
           <div className="options">
-            <p className="activity-label"><GoThreeBars className="activity-icon"/>Comments: </p>
+            <p className="activity-label"><BsChatLeftQuote className="activity-icon"/>Comments: </p>
              <div className="comment-container">
               {cardData.card.comments.map((comment) => {
                 return (
                   <div className="comments">
-                    <p className="displayed-comments">{comment}</p>
+                    <p className="displayed-comments"><RiDoubleQuotesL/> {comment} <RiDoubleQuotesR/></p>
                   </div>
                   )
                 })}
@@ -123,8 +124,23 @@ const CardPopup = ({ openModal, onCloseModal }) => {
 
             <div className="bottom-buttons">
               <div className="edit">
-                <h4 onClick={toggleArchive} className="edit-card"><span className="edit-icon"><BiArchive/></span>
-                 <p>{archiveBtn ? "Archive" : "Unarchive card" }</p>
+                <AddComment
+                  commentInput={commentInput}
+                  id={cardId}
+                  setCommentInput={setCommentInput} 
+                />
+
+                {!commentInput ? (
+                  <h4 className="edit-card">
+                  <span className="edit-icon" onClick={() => {
+                  setCommentInput(true)}}><BiCommentDetail/>Comment</span>
+                  </h4>
+                ) : (
+                  <div></div>
+                )}
+
+              <div className="edit">
+                <h4 onClick={toggleArchive} className="edit-card"><span className="edit-icon"><BiArchive/>         {archiveBtn ? "Archive" : "Unarchive card" }</span>
                 </h4>
               </div>
 
@@ -134,23 +150,6 @@ const CardPopup = ({ openModal, onCloseModal }) => {
                   onClose={onCloseModal}
                 />
               </div>
-
-              <div className="edit">
-                <AddComment
-                  commentInput={commentInput}
-                  id={cardId}
-                  setCommentInput={setCommentInput} 
-                />
-
-                {!openInput ? (
-                  <h4 className="edit-card">
-                  <span className="edit-icon" onClick={() => {
-                  setCommentInput(true)}}><BiCommentDetail /></span>
-                  <p> Comment </p>
-                  </h4>
-                ) : (
-                  <div></div>
-                )}
               </div>
             </div>  
           </div>

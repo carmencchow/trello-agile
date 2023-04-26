@@ -9,8 +9,7 @@
   bottom: 0;
 }
 .card-content{
-  border: 1px solid orange;
-  margin: 20px 30px;
+  margin: 20px 50px;
   height: 90vh;
 }
 .card-popup {
@@ -23,7 +22,7 @@
   transform: translate(-50%, -50%);
 }
 .card-name{
-  margin-left: 30px;
+  margin-left: 50px;
 }
 .card-popup-heading {
   display: flex;
@@ -144,7 +143,7 @@ input{
 }
 .displayed-comments{
   margin-bottom: 10px;
-  font-size: 12px;
+  font-size: 14px;
 }
 .delete-card,
 .edit-card{
@@ -216,6 +215,7 @@ span{
 }
 .bottom-buttons{
   display: flex;
+  flex-direction: column;
   margin-bottom: 0px;
 }
 .change-color{

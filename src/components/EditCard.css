@@ -1,4 +1,4 @@
-.name-change-input{
+.name-change-input, .comment-input{
   display: flex;
   flex-direction: row;
   margin-top: 10px;
@@ -7,7 +7,11 @@
   height: 40px;
   width: 300px;
 }
-.update-btn{
+.add-input{
+  height: 40px;
+  width: 700px;
+}
+.update-btn,.comment-btn{
   font-size: 14px;
   font-weight: lighter;
   line-height: 40px;

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import axios from 'axios'
 import { DataContext } from '../context/DataContext'
-import './EditCard';
+import './EditCard.css';
 
 const AddComment = ({ commentInput, setCommentInput }) => {
   const [comment, setComment] = useState('');
@@ -47,25 +47,17 @@ const AddComment = ({ commentInput, setCommentInput }) => {
   if (!commentInput) return null;  
 
   return (
-    <div className="row">
-      <div className="edit-input">
-        <div className="">
-          <input
-            type="text"
-            className="edit-input"
-            value={comment}
-            placeholder=" "
-            onChange={handleInput}
-          />
-        </div>
-        <div className="update">  
-          <div className="update-close">
-            <button className="update-btn" 
-            onClick={handleUpdate}>Update</button>
-          </div>          
-        </div>
-      </div>
-    </div>
+    <div className="comment-input">
+      <input
+        type="text"
+        className="add-input"
+        value={comment}
+        placeholder=" "
+        onChange={handleInput}
+      />
+      <button className="comment-btn" 
+        onClick={handleUpdate}>Save</button>
+    </div>          
   );
 };
 
