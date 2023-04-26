@@ -14,7 +14,7 @@ import EditCard from "./EditCard";
 import "./CardPopup.css";
 
 const CardPopup = ({ openModal, onCloseModal }) => { 
-  const { handleFetchData, cardId, cardData } = useContext(DataContext)
+  const { handleFetchData, getCard, cardId, cardData } = useContext(DataContext)
   const [color, setColor] = useState('');
   const [openInput, setOpenInput] = useState(false);
   const [commentInput, setCommentInput] = useState(false);
@@ -43,7 +43,6 @@ const CardPopup = ({ openModal, onCloseModal }) => {
   
   const handleColorChange = async (e) => {
     e.preventDefault();
-    console.log('Change color:', color);
     setColor(color);
 
     try {
@@ -51,17 +50,26 @@ const CardPopup = ({ openModal, onCloseModal }) => {
       if (!token) {
         throw new Error("No token found in localStorage");
       }
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       const res = await axios.put(
         `http://localhost:5000/api/card/${cardId}/color`,
         { 
           color: `${color}` 
         },
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+        }
       );
-    } catch (err) {
-      console.log(err);
-    }
-  }
+      const data = res.data;
+      handleFetchData();
+      getCard(cardId);
+      } catch (err) {
+        console.log(err);
+      }
+    };
   
   if (!openModal || cardData === null) return null;
 
@@ -106,7 +114,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
                 );
               })}
 
-              <button className="update-btn" onClick={handleColorChange}>Change</button>
+              <button className="color-btn" onClick={handleColorChange}>Save</button>
 
             </p>
           </div>
