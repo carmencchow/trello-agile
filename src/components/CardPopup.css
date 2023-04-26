@@ -93,32 +93,8 @@ p {
 h4{
   padding-right: 20px;
 }
-.edit-row{
-  display: flex;
-  justify-content: right;
-  margin-top: 0px;
-}
-.activity{
-  display: flex;
-  flex-direction: row;
-}
 .comment-container{
   overflow: auto;
-}
-input{
-  display: flex;
-  width: 550px;
-}
-.save-commentbtn{
-  display: flex;
-  justify-content: right;
-  font-size: 14px;
-  font-weight: lighter;
-  height: 50px;
-  margin-top: 0px;
-  margin-right: 0px;
-  border-radius: 3px;
-  cursor: pointer;
 }
 .activity-label{
   display: flex;
@@ -132,23 +108,20 @@ input{
   padding-left: 10px;
   display: flex;
 }
-.comments-input{
-  margin-bottom: 20px;
-  width: 560px;
-}
 .activity-icon,
 .card-icon{
   margin-right: 7px;
   margin-top: 5px;
 }
-.displayed-comments{
-  margin-bottom: 10px;
-  font-size: 14px;
+.button-row{
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 10%;
 }
 .delete-card,
-.edit-card{
-  color: 
-  #777d88;
+.edit-card,
+.archive-card{
+  color: black;
   font-size: 14px;
   font-weight: lighter;
   display: flex;
@@ -158,79 +131,15 @@ input{
   height: 50px;
   cursor: pointer; 
 }
-.archive-card{
-  background-color: 
-  #eaecf0;
-  color: 
-  #777d88;
-  font-size: 14px;
-  font-weight: lighter;
-  border-radius: 5px;
-  margin-left: 40px;
-  padding-right: 10px;
-  display: flex;
-  vertical-align: center;
-  text-align: center;
-  width: 170px;
-  height: 30px;
-  cursor: pointer; 
-  padding-left: 20px;
-  padding-top: 20px;
-}
-.edit{
-  width: 60px;
-  height: 30px;
-}
 .delete-card:hover,
 .edit-card:hover,
 .archive-card:hover{
-  color: black;
+  color: blue;
 }
 span.edit-icon svg{
   font-size: 24px;
   cursor: pointer;
 }
-.editname-icon{
-  margin-left: 100px;
-}
 span.edit-icon svg:hover{
   color: black;
-}
-.archive-card{
-  margin-right: 20px;
-  margin-top: 15px;
-}
-.archive-icon{
-  padding-right: 10px;
-  margin-left: 15px;
-}
-.pencil-icon{
-  font-size: 25px;
-  margin-top: 10px;
-}
-span{
-  font-size: 18px;
-  margin-top: 20px;
-  margin-right: 10px;
-}
-.bottom-buttons{
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 0px;
-}
-.change-color{
-  border: none;
-  width: 160px;
-  border-radius: 5px;
-  margin-top: 5px;
-  margin-left: 15px;
-  cursor: pointer;
-  font-weight: lighter;
-  font-size: 14px;
-  display: flex;
-  flex-direction: row;
-}
-.left-side{
-  display: flex;
-  flex-direction: row;
 }
