@@ -1,8 +1,9 @@
 const Card = require("../models/cardModel");
 const User = require("../models/userModel");
 const List = require("../models/listModel");
+const Comment = require("../models/commentModel");
 
-// GET all cards 
+// GET all cards
 const getCards = async (req, res) => {
   try {
     const cards = await Card.find();
@@ -18,7 +19,9 @@ const getCards = async (req, res) => {
 // GET a card
 const getCard = async (req, res) => {
   try {
-    const card = await Card.findOne({ _id: req.params.id }).sort({ comments: -1})
+    const card = await Card.findOne({ _id: req.params.id }).sort({
+      comments: -1,
+    });
     if (!card) {
       return res.status(404).send({ message: "Card not found" });
     }
@@ -30,19 +33,19 @@ const getCard = async (req, res) => {
 
 // UPDATE archive status
 const archiveCard = async (req, res) => {
-  try{
+  try {
     let card = await Card.findById({ _id: req.params.id });
     const filter = { _id: req.params.id };
-    const update = { isArchived: true,  status: "archived" };
+    const update = { isArchived: true, status: "archived" };
     let doc = await Card.findOneAndUpdate(filter, update);
     doc = await Card.findOne(filter);
     await doc.save();
-    console.log('isArchived:', doc.isArchived);
-    return res.status(200).send({ card: doc})
+    console.log("isArchived:", doc.isArchived);
+    return res.status(200).send({ card: doc });
   } catch (err) {
-    return res.status(500).send({ message: err.message })
+    return res.status(500).send({ message: err.message });
   }
-}
+};
 
 // TODO: UPDATE members of a card
 const deleteMembers = async (req, res) => {
@@ -85,8 +88,14 @@ const createCard = async (req, res) => {
   const listId = req.query.listId;
   try {
     const parentList = await List.findById(listId);
-    const result = await Card.create({ title, parentList: parentList._id, isArchived: false, comments: [], timestamps: true });
-    console.log(result);
+    const result = await Card.create({
+      title,
+      parentList: parentList._id,
+      isArchived: false,
+      comments: [],
+      timestamps: true,
+    });
+    console.log("ParentList is: ", parentList, result);
     await result.save();
     parentList.cards.push(result._id);
     await parentList.save();
@@ -98,7 +107,7 @@ const createCard = async (req, res) => {
   }
 };
 
-// UPDATE card details 
+// UPDATE card details
 const updateCardName = async (req, res) => {
   try {
     const title = req.body.title;
@@ -107,10 +116,14 @@ const updateCardName = async (req, res) => {
     card.title = title;
     await card.save();
     console.log(card._id, card.name, title);
-    return res.status(200).send({ message: "Card name updated", card: card.title });
+    return res
+      .status(200)
+      .send({ message: "Card name updated", card: card.title });
   } catch (err) {
     console.log(err);
-    res.status(500).send({ message: "Error occurred while trying to update the card" });
+    res
+      .status(500)
+      .send({ message: "Error occurred while trying to update the card" });
   }
 };
 
@@ -127,19 +140,41 @@ const updateColor = async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-}
+};
 
-// ADD COMMENT
-const addComment = async (req, res) => {
-  try{
-    const newComment = req.body.comments;
+// CREATE a COMMENT
+// const createComment = async (req, res) => {
+//   const comment = req.body.comment;
+//   const cardId = req.query.cardId;
+//   try {
+//     console.log("cardId:", cardId);
+//     const parentList = await Card.findById(cardId);
+//     console.log("parentList:", parentList);
+//     const result = await Comment.create({
+//       comment,
+//       parentList: parentList._id,
+//     });
+//     console.log("ParentList is: ", parentList, result);
+//     await result.save();
+//     parentList.comments.push(result._id);
+//     console.log(parentList.comments);
+//     await parentList.save();
+//     console.log("Comment created");
+//     return res.status(200).send({ message: result, comment });
+//   } catch (err) {
+//     console.log(err);
+//     return res.status(500).send({ message: err.message });
+//   }
+// };
+
+const createComment = async (req, res) => {
+  try {
+    const newComment = req.body.comment;
     const card = await Card.findOne({ _id: req.params.id });
-    console.log(card);
-    // const newComment = await Comment.create({ content, parentList: req.params.id, timestamps: true });
-    // await newComment.save();
-    card.comments.push(newComment)
+    console.log("Card is", card);
+    card.comments.push(newComment);
     await card.save();
-    console.log('Comments added: ', card.comments)
+    console.log("Comments added: ", card.comments);
     return res.status(200).send({ results: card, message: card.comments });
   } catch (err) {
     console.log(err);
@@ -147,84 +182,24 @@ const addComment = async (req, res) => {
   }
 };
 
-// const addComment = async (req, res) => {
-//   let comment = req.body.comment
-//   comment.postedBy = req.body.userId
-
-//   await Card.findByIdAndUpdate(
-//     req.body.postId,
-//     { $push: { comments: comment }},
-//     { new: true } 
-//   )
-//   .populate('comments.postedBy', '_id name')
-//   .populate('postedBy', '_id name')
-//   .exec((err, result) => {
-//     if(err){
-//       return res.status(400).json({
-//         error: err
-//       });
-//     } else {
-//       res.json(result);
-//     }
-//   });
-// }
-
-const unComment = async (req, res) => {
-  let comment = req.body.comment
-
-  await Card.findByIdAndUpdate(
-    req.body.postId,
-    { $pull: { comments: {_id: comment._id} }},
-    { new: true } 
-  )
-  .populate('comments.postedBy', '_id name')
-  .populate('postedBy', '_id name')
-  .exec((err, result) => {
-    if(err){
-      return res.status(400).json({
-        error: err
-      });
-    } else {
-      res.json(result);
-    }
-  });
-}
-
-
 // DELETE COMMENT
 const deleteComment = async (req, res) => {
-  try{
+  try {
     const card = await Card.findById({ _id: req.params.id });
     res.send(200).send(card);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
-}
-
-//     const list = await List.findById(card.parentList);
-//     list.cards = list.cards.filter(
-//       (cardId) => cardId.toString() !== card._id.toString()
-//     );
-//     await list.save();
-//     return res.send("Card deleted");
-//   } catch (err) {
-//     return res.status(500).send({ message: "Error deleting card" });
-//   }
-// };
-
-// EDIT COMMENT
-const editComment = async (req, res) => {}
+};
 
 module.exports = {
-  addComment,
   getCard,
   getCards,
+  createComment,
   deleteComment,
-  editComment,
-  unComment,
   archiveCard,
   deleteCard,
   createCard,
   updateCardName,
-  updateColor
+  updateColor,
 };

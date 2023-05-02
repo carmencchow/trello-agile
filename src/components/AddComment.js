@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import axios from 'axios'
-import { DataContext } from '../context/DataContext'
-import './EditCard.css';
+import axios from "axios";
+import { DataContext } from "../context/DataContext";
+import "./EditCard.css";
 
 const AddComment = ({ commentInput, setCommentInput }) => {
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
   const { getCard, cardId, handleFetchData } = useContext(DataContext);
 
   const handleInput = (e) => {
@@ -13,7 +13,7 @@ const AddComment = ({ commentInput, setCommentInput }) => {
 
   const handleUpdate = async () => {
     try {
-      console.log("New comment", comment)
+      console.log("New comment", comment);
 
       const token = localStorage.getItem("token");
       if (!token) {
@@ -21,15 +21,14 @@ const AddComment = ({ commentInput, setCommentInput }) => {
       }
       const res = await axios.post(
         `http://localhost:5000/api/card/${cardId}/comment`,
-
-        { 
-          comments: `${comment}` 
+        {
+          comment: `${comment}`,
         },
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -38,13 +37,13 @@ const AddComment = ({ commentInput, setCommentInput }) => {
       handleFetchData();
       getCard(cardId);
       setCommentInput(false);
-      setComment("")
-      } catch (err) {
-        console.log(err);
-      }
-    };
+      setComment("");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-  if (!commentInput) return null;  
+  if (!commentInput) return null;
 
   return (
     <div className="comment-input">
@@ -55,9 +54,10 @@ const AddComment = ({ commentInput, setCommentInput }) => {
         placeholder=" "
         onChange={handleInput}
       />
-      <button className="comment-btn" 
-        onClick={handleUpdate}>Save</button>
-    </div>          
+      <button className="comment-btn" onClick={handleUpdate}>
+        Save
+      </button>
+    </div>
   );
 };
 

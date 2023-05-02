@@ -13,7 +13,7 @@ const {
 const router = express.Router();
 
 // ROUTES /api/list
-router.get("/", auth, getLists); 
+router.get("/", auth, getLists);
 router.get("/:id", auth, getList);
 router.post("/", auth, createList);
 router.delete("/:id", auth, deleteList);

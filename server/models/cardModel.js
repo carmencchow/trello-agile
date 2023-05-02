@@ -7,8 +7,6 @@ const cardSchema = new Schema({
   },
   comments: {
     type: Array,
-    timestamps: true, 
-    required: true,
   },
   // comments: [
   //   {
@@ -22,12 +20,10 @@ const cardSchema = new Schema({
   status: {
     type: String,
   },
-  parentList: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "list",
-    },
-  ],
+  parentList: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "list",
+  },
   color: {
     type: String,
   },
