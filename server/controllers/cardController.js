@@ -169,10 +169,11 @@ const updateColor = async (req, res) => {
 
 const createComment = async (req, res) => {
   try {
+    // const cardId = req.body.id;
     const newComment = req.body.comment;
-    const card = await Card.findOne({ _id: req.params.id });
-    console.log("Card is", card);
-    card.comments.push(newComment);
+    const card = await Card.findByIdAndUpdate(req.params.id, {
+      $addToSet: { comments: newComment },
+    });
     await card.save();
     console.log("Comments added: ", card.comments);
     return res.status(200).send({ results: card, message: card.comments });
