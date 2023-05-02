@@ -6,13 +6,13 @@ const boardSchema = new Schema(
     title: {
       type: String,
     },
-
-    visibility: {
-      type: String,
-    },
-
     // Users associated with this board
-    user: [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
+    user: [
+      { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "user" 
+      }
+    ],
 
     // Lists associated with this board
     lists: [

@@ -14,7 +14,6 @@ const getLists = async (req, res) => {
 };
 
 // GET a list (working)
-
 const getList = async (req, res) => {
   try {
     const list = await List.findOne({ _id: req.params.id });

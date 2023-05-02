@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchData = createAsyncThunk(
-  'board/fetchBoard',
+  "board/fetchBoard",
   async ({ id }, { reject }) => {
     try {
       const token = localStorage.getItem("token");
@@ -11,7 +11,6 @@ export const fetchData = createAsyncThunk(
       }
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       const res = await axios.get(`http://localhost:5000/api/board/${id}`);
-      // console.log(res.data.board, 'res.data.board thunk');
       return res.data.board;
     } catch (error) {
       return reject(error.response.data);
