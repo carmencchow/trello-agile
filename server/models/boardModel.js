@@ -6,21 +6,21 @@ const boardSchema = new Schema(
     title: {
       type: String,
     },
-    // Users associated with this board
     user: [
-      { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: "user" 
-      }
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
+      },
     ],
-
-    // Lists associated with this board
     lists: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "list",
       },
     ],
+    background: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

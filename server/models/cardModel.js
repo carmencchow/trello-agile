@@ -5,9 +5,6 @@ const cardSchema = new Schema({
   title: {
     type: String,
   },
-  // comments: {
-  //   type: Array,
-  // },
   comments: [
     {
       type: mongoose.Schema.Types.ObjectId,

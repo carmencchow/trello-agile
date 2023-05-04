@@ -15,7 +15,7 @@ const getCards = async (req, res) => {
   }
 };
 
-// GET a card
+// GET card by ID
 const getCard = async (req, res) => {
   try {
     const card = await Card.findOne({ _id: req.params.id })
@@ -93,7 +93,7 @@ const createCard = async (req, res) => {
   }
 };
 
-// UPDATE card details
+// UPDATE card name
 const updateCardName = async (req, res) => {
   try {
     const title = req.body.title;
@@ -128,7 +128,7 @@ const updateColor = async (req, res) => {
   }
 };
 
-// ADD COMMENT
+// ADD a COMMENT
 const createComment = async (req, res) => {
   const content = req.body.comment;
   const cardId = req.params.id;

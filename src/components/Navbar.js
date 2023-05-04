@@ -7,7 +7,7 @@ const Navbar = () => {
     { name: "Workspaces", query: "workspaces" },
     { name: "Recent", query: "workspaces" },
     { name: "Starred", query: "workspaces" },
-    { name: "Templates", query: "workspaces" },
+    { name: "Templates", query: "templates" },
   ];
   const navigate = useNavigate();
 
