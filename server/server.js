@@ -16,35 +16,17 @@ const Card = require("./models/cardModel");
 const app = express();
 const server = http.createServer(app);
 
-const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:3000",
-  },
-});
-
-app.set("io", io);
-
 // Middleware
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-io.on("connection", (socket) => {
-  console.log(`Client connected: ${socket.id}`);
-
-  socket.on("send_message", (data) => {
-    console.log("message arrived at server");
-    socket.broadcast.emit("receive_message", data);
-  });
-});
-
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   res.header("Access-Control-Allow-Origin", "*");
   next();
 });
-
 
 // Routes
 app.use("/api/board", boardRoute);
@@ -91,7 +73,6 @@ app.get("/loaddata", async (req, res) => {
             members: [],
             dates: { startDate: null, dueDate: null },
           });
-          // card.parentList.push(list._id);
           await card.save();
           list.cards.push(card._id);
         }

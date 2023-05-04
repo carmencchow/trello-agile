@@ -39,8 +39,11 @@ const Navbar = () => {
           );
         })}
       </div>
+
       <div className="logo-style">
-        <h1 className="logout-home" onClick={handleLogout}>Logout</h1>
+        <h1 className="logout-home" onClick={handleLogout}>
+          Logout
+        </h1>
       </div>
     </div>
   );

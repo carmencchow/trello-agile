@@ -52,6 +52,7 @@ const AddComment = ({ commentInput, setCommentInput }) => {
         className="add-input"
         value={comment}
         placeholder=" "
+        c
         onChange={handleInput}
       />
       <button className="comment-btn" onClick={handleUpdate}>

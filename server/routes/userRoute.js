@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 const auth = require("../middleware/auth");
-// Load Users Data. Only hit once or duplicates will ensue. Duplicates...
+
 router.get("/get-users", async (req, res) => {
   try {
     const users = await User.find({});
