@@ -6,6 +6,7 @@ import axios from "axios";
 import { AiOutlineDelete } from "react-icons/ai";
 import { fetchData } from "../store/thunks/fetchList";
 import { DataContext } from "../context/DataContext";
+import background9 from "../assets/background9.jpg";
 import List from "../components/List";
 import Navbar from "./Navbar";
 import "./Board.css";
@@ -154,7 +155,17 @@ const Board = () => {
   }
 
   return (
-    <div className="board-container">
+    <div
+      className="board-container"
+      style={{
+        backgroundImage: `url(${background9})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        width: "100vw",
+        height: "100vh",
+      }}
+    >
       <Navbar />
       <h3>{board.title}</h3>
 
@@ -164,10 +175,9 @@ const Board = () => {
             ? "Showing Archived Cards:"
             : "Showing Unarchived Cards:"}
         </button>
-        <p className="delete-icon" onClick={handleDelete}>
-          <AiOutlineDelete />
+        <button className="delete-board-btn" onClick={handleDelete}>
           <span>Delete board</span>
-        </p>
+        </button>
       </div>
 
       <DragDropContext onDragEnd={(result) => onDragEnd(result, tBoard.lists)}>
