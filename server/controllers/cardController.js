@@ -129,21 +129,6 @@ const updateColor = async (req, res) => {
   }
 };
 
-// const createComment = async (req, res) => {
-//   try {
-//     const newComment = req.body.comment;
-//     const card = await Card.findByIdAndUpdate(req.params.id, {
-//       $addToSet: { comments: newComment },
-//     });
-//     await card.save();
-//     console.log("Comments added: ", card.comments);
-//     return res.status(200).send({ results: card, message: card.comments });
-//   } catch (err) {
-//     console.log(err);
-//     return res.status(500).send({ message: err.message });
-//   }
-// };
-
 const createComment = async (req, res) => {
   const content = req.body.comment;
   const cardId = req.params.id;
