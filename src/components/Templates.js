@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import axios from "axios";
+import { DataContext } from "../context/DataContext";
+import Navbar from "./Navbar";
 import "./Templates.css";
 
 const Templates = () => {
-  const backgrounds = [
+  const [backgroundImage, setBackgroundImage] = useState("");
+  const [userInfo, setUserInfo] = useState("");
+
+  const { handleFetchData, boardId } = useContext(DataContext);
+
+  const images = [
     "background1.jpg",
     "background2.jpg",
     "background3.jpg",
@@ -17,14 +25,71 @@ const Templates = () => {
     "background12.jpg",
   ];
 
+  // const getUserProfile = async () => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token) {
+  //     throw new Error("No token found in localStorage");
+  //   }
+  //   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  //   try {
+  //     const res = await axios.get("http://localhost:5000/api/user/me");
+  //     setUserInfo(res.data);
+  //     console.log(
+  //       "Displaying user boards:",
+  //       res.data.boards.map((board) => {
+  //         return board._id;
+  //       })
+  //     );
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // };
+
+  const onChangeBackground = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found in localStorage");
+      }
+      const res = await axios.put(
+        `http://localhost:5000/api/board/${boardId}/background`,
+        {
+          background: `${backgroundImage}`,
+        },
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(`changing background to ${backgroundImage}`);
+      const data = res.data;
+      console.log(data);
+      handleFetchData();
+      // getUserProfile();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="templates-container">
-      <h1>Templates</h1>
+      <Navbar />
       <h3>Change board template</h3>
       <div className="templates-grid">
-        {backgrounds.map((item, index) => (
-          <div key={backgrounds.index}>
-            <img src={require(`../assets/${item}`)} alt="background" />
+        {images.map((image, index) => (
+          <div key={images.index}>
+            <img
+              src={require(`../assets/${image}`)}
+              alt="background"
+              onClick={() => {
+                console.log(`changing color ${image}`);
+                setBackgroundImage(`${image}`);
+                onChangeBackground();
+              }}
+            />
           </div>
         ))}
       </div>

@@ -8,17 +8,17 @@ const {
   getArchived,
   createBoard,
   deleteBoard,
-  updateBoardName,
+  updateBackground,
 } = require("../controllers/boardController");
 
 const router = express.Router();
 
 // ROUTES '/api/board/'
 router.get("/", auth, getBoards);
-router.get("/:id", auth, getBoard);
 router.post("/", auth, createBoard);
+router.get("/:id", auth, getBoard);
 router.delete("/:id", auth, deleteBoard);
-router.put("/:id", auth, updateBoardName);
+router.put("/:id/background", auth, updateBackground);
 router.get("/:id/archived", auth, getArchived);
 
 module.exports = router;

@@ -54,8 +54,8 @@ const CardPopup = ({ openModal, onCloseModal }) => {
   };
 
   const handleColorChange = async (e) => {
+    setColor(`${color}`);
     e.preventDefault();
-    setColor(color);
 
     try {
       const token = localStorage.getItem("token");
