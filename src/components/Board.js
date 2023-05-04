@@ -158,7 +158,8 @@ const Board = () => {
     <div
       className="board-container"
       style={{
-        backgroundImage: `url(${background9})`,
+        // backgroundImage: `url(${background9})`,
+        backgroundImage: `url(${board.background})`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundSize: "cover",

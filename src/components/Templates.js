@@ -7,8 +7,7 @@ import "./Templates.css";
 const Templates = () => {
   const [backgroundImage, setBackgroundImage] = useState("");
   const [userInfo, setUserInfo] = useState("");
-
-  const { handleFetchData, boardId } = useContext(DataContext);
+  const { boardId, getBoard } = useContext(DataContext);
 
   const images = [
     "background1.jpg",
@@ -22,9 +21,13 @@ const Templates = () => {
     "background9.jpg",
     "background10.jpg",
     "background11.jpg",
-    "background12.jpg",
+    "background13.jpg",
+    "background14.jpg",
+    "background15.jpg",
+    "background16.jpg",
   ];
 
+  // // WRONG - this fetches ALL boards
   // const getUserProfile = async () => {
   //   const token = localStorage.getItem("token");
   //   if (!token) {
@@ -34,12 +37,7 @@ const Templates = () => {
   //   try {
   //     const res = await axios.get("http://localhost:5000/api/user/me");
   //     setUserInfo(res.data);
-  //     console.log(
-  //       "Displaying user boards:",
-  //       res.data.boards.map((board) => {
-  //         return board._id;
-  //       })
-  //     );
+  //     console.log("Data:", res.data.boards[0].background);
   //   } catch (error) {
   //     throw error;
   //   }
@@ -64,10 +62,10 @@ const Templates = () => {
           },
         }
       );
-      console.log(`changing background to ${backgroundImage}`);
+      console.log(`Selected background:',  ${backgroundImage}`);
       const data = res.data;
-      console.log(data);
-      handleFetchData();
+      console.log("Data is:", data);
+      getBoard();
       // getUserProfile();
     } catch (err) {
       console.log(err);

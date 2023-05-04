@@ -9,6 +9,7 @@ import "./Workspaces.css";
 const Workspaces = () => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState("");
+  const [boardData, setBoardData] = useState("");
 
   const getUserProfile = async () => {
     const token = localStorage.getItem("token");
@@ -32,7 +33,7 @@ const Workspaces = () => {
 
   const goToBoard = (id) => {
     navigate(`/board/${id}`);
-    console.log("Board id:", id);
+    console.log("Board:", id);
   };
 
   useEffect(() => {
