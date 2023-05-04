@@ -1,5 +1,4 @@
 const Card = require("../models/cardModel");
-const User = require("../models/userModel");
 const List = require("../models/listModel");
 const Comment = require("../models/commentModel");
 
@@ -49,7 +48,7 @@ const archiveCard = async (req, res) => {
   }
 };
 
-// DELETE a card (working)
+// DELETE a card
 const deleteCard = async (req, res) => {
   try {
     const card = await Card.findByIdAndDelete({ _id: req.params.id });
@@ -129,6 +128,7 @@ const updateColor = async (req, res) => {
   }
 };
 
+// ADD COMMENT
 const createComment = async (req, res) => {
   const content = req.body.comment;
   const cardId = req.params.id;
@@ -151,21 +151,10 @@ const createComment = async (req, res) => {
   }
 };
 
-// DELETE COMMENT
-const deleteComment = async (req, res) => {
-  try {
-    const card = await Card.findById({ _id: req.params.id });
-    res.send(200).send(card);
-  } catch (err) {
-    res.status(500).send({ message: err.message });
-  }
-};
-
 module.exports = {
   getCard,
   getCards,
   createComment,
-  deleteComment,
   archiveCard,
   deleteCard,
   createCard,

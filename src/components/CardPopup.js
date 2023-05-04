@@ -90,7 +90,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
       <div className="card-popup">
         <div className="card-popup-heading" style={{ backgroundColor: color }}>
           <h2 className="card-name">
-            {cardData.card.title}{" "}
+            {cardData.card.title}
             <FiEdit2
               onClick={() => {
                 setOpenInput(true);
