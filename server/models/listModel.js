@@ -13,7 +13,6 @@ const listSchema = new Schema(
         ref: "card",
       },
     ],
-
     board: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "board",

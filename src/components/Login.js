@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./Login.css"; 
+import "./Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -48,10 +48,8 @@ const Login = () => {
   return (
     <div>
       <div className="navbar-layout">
-        <div className="logo-style">
-          <h1 className="trello-home">
-            Trello
-          </h1>
+        <div className="w-style">
+          <h1 className="trello-home">Trello</h1>
         </div>
       </div>
       <div className="login-container">
@@ -74,19 +72,26 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <button className="login-button" type="submit">Log in</button>
+          <button className="login-button" type="submit">
+            Log in
+          </button>
 
           {serverResponse && (
             <p className="error-message">{serverResponse.message}</p>
           )}
 
-          
           <div className="register-row">
-            <p className="no-acct">Don't have an account? <span className="register" onClick={() => navigate('/register')}>Sign Up</span></p>
+            <p className="no-acct">
+              Don't have an account?{" "}
+              <span className="register" onClick={() => navigate("/register")}>
+                Sign Up
+              </span>
+            </p>
           </div>
         </form>
       </div>
     </div>
   );
 };
+
 export default Login;

@@ -3,7 +3,6 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { BiArchive, BiCommentDetail } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
-import { GoThreeBars } from "react-icons/go";
 import { FiEdit2 } from "react-icons/fi";
 import { BsFolder2, BsChatLeftQuote } from "react-icons/bs";
 import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
@@ -55,8 +54,8 @@ const CardPopup = ({ openModal, onCloseModal }) => {
   };
 
   const handleColorChange = async (e) => {
+    setColor(`${color}`);
     e.preventDefault();
-    setColor(color);
 
     try {
       const token = localStorage.getItem("token");
@@ -91,7 +90,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
       <div className="card-popup">
         <div className="card-popup-heading" style={{ backgroundColor: color }}>
           <h2 className="card-name">
-            {cardData.card.title}{" "}
+            {cardData.card.title}
             <FiEdit2
               onClick={() => {
                 setOpenInput(true);
@@ -146,14 +145,14 @@ const CardPopup = ({ openModal, onCloseModal }) => {
           <div className="options">
             <p className="activity-label">
               <BsChatLeftQuote className="activity-icon" />
-              Comments:{" "}
+              Comments:
             </p>
             <div className="comment-container">
               {cardData.card.comments.map((comment) => {
                 return (
                   <div className="comments">
                     <p className="displayed-comments">
-                      <RiDoubleQuotesL /> {comment} <RiDoubleQuotesR />
+                      <RiDoubleQuotesL /> {comment.content} <RiDoubleQuotesR />
                     </p>
                   </div>
                 );

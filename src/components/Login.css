@@ -4,6 +4,8 @@
   padding: none;
   line-height: 1px;
   height: 41.63px;
+  color: white;
+  font-size: small;
 }
 .login-container {
   display: flex;
@@ -12,21 +14,21 @@
   width: 100%;
   height: 100vh;
 }
-.password-input{
+.password-input {
   margin-bottom: 0px;
 }
-.register{
+.register {
   font-size: 14px;
   text-align: right;
   cursor: pointer;
   margin-top: 20px;
   color: blue;
 }
-.no-acct{
+.no-acct {
   font-size: 14px;
   font-weight: lighter;
 }
-.register:hover{
+.register:hover {
   font-weight: bolder;
 }
 .login-form {
@@ -39,7 +41,7 @@
   width: 400px;
   max-width: 100%;
 }
-.register-row{
+.register-row {
   margin-left: 40px;
   display: flex;
   flex-direction: row;
@@ -72,15 +74,15 @@
   background-color: #005fa3;
   color: white;
 }
-.login-content{
- margin: 40px auto;
+.login-content {
+  margin: 40px auto;
 }
 
 .error-message {
   color: red;
   font-weight: bold;
 }
-.login-button{
+.login-button {
   border: blue;
   height: 30px;
   width: 60px;

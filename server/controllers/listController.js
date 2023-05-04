@@ -1,9 +1,8 @@
 const List = require("../models/listModel");
 const User = require("../models/userModel");
 const Board = require("../models/boardModel");
-// const Card = require("../models/cardModel");
 
-// GET all lists (working)
+// GET all lists
 const getLists = async (req, res) => {
   try {
     const lists = await List.find({}).sort({ timestamp: 1 });
@@ -13,7 +12,7 @@ const getLists = async (req, res) => {
   }
 };
 
-// GET a list (working)
+// GET a list
 const getList = async (req, res) => {
   try {
     const list = await List.findOne({ _id: req.params.id });

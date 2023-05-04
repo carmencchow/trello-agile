@@ -1,10 +1,10 @@
-import React, { createContext, useState, useEffect } from 'react'; 
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import React, { createContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const UserContext = createContext();
 
-export const UserProvider = ({children}) => {
+export const UserProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState("");
   const navigate = useNavigate();
 
@@ -18,7 +18,8 @@ export const UserProvider = ({children}) => {
       const res = await axios.get("http://localhost:5000/api/user/me");
       setUserInfo(res.data);
       console.log(
-        "Displaying user boards:", userInfo,
+        "Displaying user boards:",
+        userInfo,
         res.data.boards.map((board) => {
           return board._id;
         })
@@ -37,11 +38,5 @@ export const UserProvider = ({children}) => {
     console.log(id);
   };
 
-  return (
-    <UserContext.Provider value={{    
-    }}>
-      {children}
-    </UserContext.Provider>
-  )
-}
-
+  return <UserContext.Provider value={{}}>{children}</UserContext.Provider>;
+};

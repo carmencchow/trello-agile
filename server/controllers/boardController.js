@@ -8,9 +8,9 @@ const getBoard = async (req, res) => {
   try {
     const board = await Board.findOne({ _id: req.params.id }).populate({
       path: "lists",
-      populate: ({
+      populate: {
         path: "cards",
-      })
+      },
     });
     if (!board) {
       return res.status(404).send({ message: "Board not found" });
@@ -24,13 +24,12 @@ const getBoard = async (req, res) => {
 // When button is clicked: return Archived cards
 const getArchived = async (req, res) => {
   try {
-    const board = await Board.findOne({ _id: req.params.id })
-    .populate({
+    const board = await Board.findOne({ _id: req.params.id }).populate({
       path: "lists",
-      populate: ({
+      populate: {
         match: { isArchived: true },
         path: "cards",
-      }),
+      },
     });
     return res.status(200).send({ message: "Returning board", board });
   } catch (err) {
@@ -52,31 +51,30 @@ const getBoards = async (req, res) => {
     if (!boards) {
       return res.sendStatus(500).json({ message: "No boards to show" });
     }
-    return res
-      .status(200)
-      .json(boards);
+    return res.status(200).json(boards);
   } catch (err) {
     console.log(err);
     res.status(500).send("Server Error");
   }
 };
 
-// CREATE board 
+// CREATE board
 const createBoard = async (req, res) => {
   const title = req.body.title;
 
   try {
-    const hasTitle = await Board.collection.findOne({ title : title });
-    if(hasTitle){
-      console.log('board already exists')
-      return res.sendStatus(200) //Stop here, new board not created
+    const existingBoard = await Board.collection.findOne({ title: title });
+    if (existingBoard) {
+      console.log("board already exists");
+      return res.sendStatus(200); //Stop here, new board not created
     }
-  
+
     const user = await User.findById({ _id: req.user.id });
 
     const newBoard = await Board.create({
       title: title,
       user: [user._id],
+      background: "background13.jpg",
     });
 
     const todoList = await List.create({
@@ -107,7 +105,22 @@ const createBoard = async (req, res) => {
   }
 };
 
-// DELETE A BOARD 
+// CHANGE board background
+const updateBackground = async (req, res) => {
+  console.log("newbackground");
+  const newBackground = req.body.background;
+  try {
+    const board = await Board.findById({ _id: req.params.id });
+    board.background = newBackground;
+    await board.save();
+    console.log(board.background);
+    return res.status(200).send({ message: "Board background updated" });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// DELETE A BOARD
 const deleteBoard = async (req, res) => {
   try {
     const board = await Board.findByIdAndDelete({ _id: req.params.id });
@@ -128,32 +141,10 @@ const deleteBoard = async (req, res) => {
   }
 };
 
-// UPDATE a board's name 
-const updateBoardName = async (req, res) => {
-  try {
-    const { title } = req.body;
-    if (!title) {
-      return res.status(404).send("No title in board");
-    }
-    const board = await Board.findById({ _id: req.params.id });
-    if (!board) {
-      return res.status(404).send("Board not found");
-    }
-    board.title = title;
-    await board.save();
-    res.status(200).send({ message: "Board name updated", board });
-  } catch (err) {
-    console.log(err);
-    res
-      .status(500)
-      .send({ message: "Error occurred while trying to update the name" });
-    }
-  };
-
 module.exports = {
-  getArchived, 
+  getArchived,
   getBoard,
-  updateBoardName,
+  updateBackground,
   getBoards,
   createBoard,
   deleteBoard,

@@ -3,9 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { AiOutlineDelete } from 'react-icons/ai';
+import { AiOutlineDelete } from "react-icons/ai";
 import { fetchData } from "../store/thunks/fetchList";
-import { DataContext } from '../context/DataContext'
+import { DataContext } from "../context/DataContext";
+import background9 from "../assets/background9.jpg";
 import List from "../components/List";
 import Navbar from "./Navbar";
 import "./Board.css";
@@ -34,62 +35,88 @@ const Board = () => {
     const { source, destination } = result;
 
     // Find source and destination lists
-    const sourceListIndex = lists.findIndex(list => list._id === source.droppableId);
-    const destinationListIndex = lists.findIndex(list => list._id === destination.droppableId);
+    const sourceListIndex = lists.findIndex(
+      (list) => list._id === source.droppableId
+    );
+    const destinationListIndex = lists.findIndex(
+      (list) => list._id === destination.droppableId
+    );
     if (source.droppableId !== destination.droppableId) {
-
-
       // Make copies of the source and destination lists
       let sourceList = { ...lists[sourceListIndex] };
       let destinationList = { ...lists[destinationListIndex] };
 
       let removedItem;
-      if (sourceList?.cards && source.index >= 0 && source.index < sourceList.cards.length) {
+      if (
+        sourceList?.cards &&
+        source.index >= 0 &&
+        source.index < sourceList.cards.length
+      ) {
         removedItem = sourceList.cards[source.index];
-        sourceList.cards = [...sourceList.cards.slice(0, source.index), ...sourceList.cards.slice(source.index + 1),];
+        sourceList.cards = [
+          ...sourceList.cards.slice(0, source.index),
+          ...sourceList.cards.slice(source.index + 1),
+        ];
       }
 
-      if (destinationList?.cards && destination.index >= 0 && destination.index <= destinationList.cards.length) {
-        destinationList.cards = [...destinationList.cards.slice(0, destination.index), removedItem, ...destinationList.cards.slice(destination.index),];
+      if (
+        destinationList?.cards &&
+        destination.index >= 0 &&
+        destination.index <= destinationList.cards.length
+      ) {
+        destinationList.cards = [
+          ...destinationList.cards.slice(0, destination.index),
+          removedItem,
+          ...destinationList.cards.slice(destination.index),
+        ];
       }
 
-      // Update the lists array 
+      // Update the lists array
       const newLists = [...lists];
       newLists[sourceListIndex] = sourceList;
       newLists[destinationListIndex] = destinationList;
 
-      setTBoard({ ...tBoard, lists: newLists })
+      setTBoard({ ...tBoard, lists: newLists });
       axios
         .put(`http://localhost:5000/api/board/${id}`, { lists: newLists })
-        .then((res) => {
-        })
+        .then((res) => {})
         .catch((err) => console.log(err));
     } else {
       setTBoard({
-        ...tBoard, lists: tBoard.lists.map((li, i) => {
+        ...tBoard,
+        lists: tBoard.lists.map((li, i) => {
           if (sourceListIndex === i) {
-            return { ...li, cards: rearangeArr(tBoard.lists[i].cards, source.index, destination.index) }
+            return {
+              ...li,
+              cards: rearangeArr(
+                tBoard.lists[i].cards,
+                source.index,
+                destination.index
+              ),
+            };
           } else {
-            return li
+            return li;
           }
-        })
+        }),
       });
     }
   };
-  
+
   const showCards = (list) => {
     if (!list) {
       return [];
     }
-    return list.cards.filter((card) => (showArchived ? card.isArchived : !card.isArchived))
-  }
+    return list.cards.filter((card) =>
+      showArchived ? card.isArchived : !card.isArchived
+    );
+  };
 
   const toggleCards = () => {
-    setShowArchived(!showArchived)
-  }
+    setShowArchived(!showArchived);
+  };
 
   const handleDelete = async (boardId) => {
-    console.log('Deleting board:', id);
+    console.log("Deleting board:", id);
     const token = localStorage.getItem("token");
     if (!token) {
       throw new Error("No token found in localStorage");
@@ -98,7 +125,7 @@ const Board = () => {
     try {
       const res = await axios.delete(`http://localhost:5000/api/board/${id}`);
       setUserInfo(res.data);
-      console.log('Deleting board')
+      console.log("Deleting board");
       navigate("/workspaces");
     } catch (error) {
       throw error;
@@ -110,39 +137,54 @@ const Board = () => {
   }, [dispatch, id]);
 
   const board = useSelector((state) => state.data.board);
-  
+
   useEffect(() => {
     if (board) {
-      setTBoard(board)
+      setTBoard(board);
     }
-  }, [board])
+  }, [board]);
 
   useEffect(() => {
-    if (id){
-      setBoardId(id)
+    if (id) {
+      setBoardId(id);
     }
-  }, [])
-
+  }, []);
 
   if (!board) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="board-container">
+    <div
+      className="board-container"
+      style={{
+        // backgroundImage: `url(${background9})`,
+        backgroundImage: `url(${board.background})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        width: "100vw",
+        height: "100vh",
+      }}
+    >
       <Navbar />
       <h3>{board.title}</h3>
-      
+
       <div className="buttons">
         <button className="toggle" onClick={toggleCards}>
-          {showArchived ? "Showing Archived Cards:" : "Showing Unarchived Cards:"} 
+          {showArchived
+            ? "Showing Archived Cards:"
+            : "Showing Unarchived Cards:"}
         </button>
-        <p className="delete-icon" onClick={handleDelete}><AiOutlineDelete/><span>Delete board</span></p>
+        <button className="delete-board-btn" onClick={handleDelete}>
+          <span>Delete board</span>
+        </button>
       </div>
 
       <DragDropContext onDragEnd={(result) => onDragEnd(result, tBoard.lists)}>
         <div className="container">
-          {tBoard && tBoard.lists &&
+          {tBoard &&
+            tBoard.lists &&
             tBoard.lists.map((list) => (
               <List
                 key={list._id}

@@ -7,7 +7,6 @@ const {
   archiveCard,
   createCard,
   createComment,
-  deleteComment,
   updateCardName,
   updateColor,
   deleteCard,
@@ -20,10 +19,9 @@ router.get("/", auth, getCards);
 router.get("/:id", auth, getCard);
 router.post("/", auth, createCard);
 router.post("/:id/comment", auth, createComment);
-router.delete('/:id/comment', auth, deleteComment);
 router.put("/:id/color", auth, updateColor);
 router.put("/:id", auth, updateCardName);
 router.delete("/:id", auth, deleteCard);
-router.get('/archive/:id', auth, archiveCard);
+router.get("/archive/:id", auth, archiveCard);
 
 module.exports = router;
