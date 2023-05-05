@@ -20,12 +20,10 @@ code {
   border-radius: 0.5em;
   line-height: 1em;
 }
-
 .css-test:hover {
   background-color: white;
   color: black;
 }
-
 .navbar-layout {
   display: flex;
   background-color: #026aa7;
@@ -38,11 +36,17 @@ code {
   justify-content: center;
   width: 100%;
 }
-.logout-home{
+.logout-home {
   cursor: pointer;
   margin-right: 20px;
 }
-
+.templates-li {
+  position: absolute;
+}
+.dropdown {
+  position: relative;
+  margin-top: 100px;
+}
 .trello-home {
   text-decoration: none;
 }
@@ -76,24 +80,25 @@ code {
 .option-placement {
   display: flex;
   justify-content: center;
-  /* justify-content: flex-start; */
   align-items: center;
-  margin-left: 12em;
   padding: none;
   width: 100%;
 }
 
-.link-style {
+.link-style,
+.templates-li {
   text-decoration: none;
   margin-right: 1.3em;
   padding: 0.1em;
   border-radius: 2px;
 }
-
+.templates-li {
+  margin-top: -3px;
+  margin-left: 12px;
+}
 .link-style:hover {
   background-color: rgba(23, 43, 77, 0.8);
 }
-
 .user-panel {
   display: flex;
   justify-content: flex-end;

@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbutton } from "./NavButton";
+import DropDown from "./DropDown";
 
 const Navbar = () => {
+  const [dropdown, setDropdown] = useState(false);
+
   const selectOptions = [
     { name: "Workspaces", query: "workspaces" },
-    { name: "Recent", query: "workspaces" },
-    { name: "Starred", query: "workspaces" },
-    { name: "Templates", query: "templates" },
+    { name: "Recent", query: "board/:id" },
+    { name: "Starred", query: "board/:id" },
   ];
   const navigate = useNavigate();
+
+  const handleDropDown = () => {
+    console.log("Open dropdown");
+    setDropdown(!dropdown);
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -38,6 +45,16 @@ const Navbar = () => {
             </Link>
           );
         })}
+
+        <div>
+          <h3 className="templates-li" onClick={handleDropDown}>
+            Templates
+          </h3>
+        </div>
+
+        {dropdown !== false && (
+          <DropDown className="dropdown" onClose={() => setDropdown(false)} />
+        )}
       </div>
 
       <div className="logo-style">

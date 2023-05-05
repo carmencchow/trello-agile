@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { AiOutlineDelete } from "react-icons/ai";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -112,7 +113,6 @@ const Board = () => {
   const toggleCards = () => {
     setShowArchived(!showArchived);
   };
-
   const handleDelete = async (boardId) => {
     console.log("Deleting board:", id);
     const token = localStorage.getItem("token");
@@ -166,16 +166,16 @@ const Board = () => {
       }}
     >
       <Navbar />
-      <h3>{board.title}</h3>
+      <h3>
+        {board.title}
+        <AiOutlineDelete className="delete-board" onClick={handleDelete} />
+      </h3>
 
       <div className="buttons">
         <button className="toggle" onClick={toggleCards}>
           {showArchived
             ? "Showing Archived Cards:"
             : "Showing Unarchived Cards:"}
-        </button>
-        <button className="delete-board-btn" onClick={handleDelete}>
-          <span>Delete board</span>
         </button>
       </div>
 

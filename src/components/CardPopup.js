@@ -92,6 +92,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
           <h2 className="card-name">
             {cardData.card.title}
             <FiEdit2
+              className="edit-cardtitle"
               onClick={() => {
                 setOpenInput(true);
               }}
