@@ -18,7 +18,7 @@ const Templates = () => {
     "background6.jpg",
     "background7.jpg",
     "background8.jpg",
-    "background9.jpg",
+    // "background9.jpg",
     "background10.jpg",
     "background11.jpg",
     "background13.jpg",
@@ -64,7 +64,7 @@ const Templates = () => {
         {images.map((image, index) => (
           <div key={images.index}>
             <img
-              src={require(`../assets/${image}`)}
+              src={`${process.env.PUBLIC_URL}/assets/${image}`}
               alt="background"
               onClick={() => {
                 console.log(`changing color ${image}`);

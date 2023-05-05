@@ -3,10 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { AiOutlineDelete } from "react-icons/ai";
 import { fetchData } from "../store/thunks/fetchList";
 import { DataContext } from "../context/DataContext";
-import background9 from "../assets/background9.jpg";
 import List from "../components/List";
 import Navbar from "./Navbar";
 import "./Board.css";
@@ -154,9 +152,6 @@ const Board = () => {
   if (!board) {
     return <div>Loading...</div>;
   }
-
-  console.log("Board data: ", boardData);
-  console.log(process.env.PUBLIC_URL + board.background);
 
   return (
     <div
