@@ -45,8 +45,8 @@ const Workspaces = () => {
       <Navbar />
       {userInfo ? (
         <div className="greeting">
-          Hi, <strong>{userInfo.username}!</strong>
-          <div className="boards-container">
+          👋 Hi, <strong>{userInfo.username}!</strong>
+          <div className="boards-parent-container">
             {userInfo.boards.length > 0 ? (
               userInfo.boards.map((board, index) => {
                 return (

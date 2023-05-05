@@ -13,9 +13,10 @@
   width: 20%;
   font-size: 24px;
 }
-.container {
+.list-container {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 .cards {
   width: 245px;

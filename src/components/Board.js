@@ -180,7 +180,7 @@ const Board = () => {
       </div>
 
       <DragDropContext onDragEnd={(result) => onDragEnd(result, tBoard.lists)}>
-        <div className="container">
+        <div className="list-container">
           {tBoard &&
             tBoard.lists &&
             tBoard.lists.map((list) => (

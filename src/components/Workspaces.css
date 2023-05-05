@@ -32,6 +32,11 @@
 .delete:hover {
   color: white;
 }
+.boards-parent-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 .newboard {
   background-color: rgb(243, 242, 242);
   height: 170px;
@@ -61,10 +66,10 @@
 .boards-container {
   display: flex;
   flex-direction: row;
-  width: 70%;
   justify-content: flex-start;
   margin: 0px auto;
   margin-top: 25px;
+  overflow: hidden;
 }
 .your-boards {
   display: flex;
@@ -76,7 +81,6 @@
 }
 .container,
 .heading {
-  width: 70%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -88,6 +92,8 @@
 }
 .heading {
   margin-bottom: 0px;
+  font-size: 18px;
+  margin-left: 10px;
 }
 .title {
   width: 60%;
