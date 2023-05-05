@@ -166,7 +166,7 @@ const Board = () => {
       }}
     >
       <Navbar />
-      <h3>
+      <h3 className="board-title">
         {board.title}
         <AiOutlineDelete className="delete-board" onClick={handleDelete} />
       </h3>

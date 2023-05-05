@@ -53,6 +53,16 @@ const Workspaces = () => {
                   <div key={board._id} className="boards-container">
                     <div
                       className="boards"
+                      style={{
+                        backgroundImage: `url(${
+                          "/assets/" + board.background
+                        })`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center",
+                        backgroundSize: "cover",
+                        height: "170px",
+                        width: "230px",
+                      }}
                       onClick={() => goToBoard(board._id)}
                     >
                       <h5 className="title">{board.title}</h5>

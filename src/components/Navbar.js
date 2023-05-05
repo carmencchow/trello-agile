@@ -14,7 +14,6 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleDropDown = () => {
-    console.log("Open dropdown");
     setDropdown(!dropdown);
   };
 
@@ -45,13 +44,11 @@ const Navbar = () => {
             </Link>
           );
         })}
-
         <div>
           <h3 className="templates-li" onClick={handleDropDown}>
             Templates
           </h3>
         </div>
-
         {dropdown !== false && (
           <DropDown className="dropdown" onClose={() => setDropdown(false)} />
         )}
