@@ -1,4 +1,3 @@
-
 .boards {
   background-color: darkcyan;
   height: 170px;
@@ -9,19 +8,18 @@
   color: white;
   cursor: pointer;
 }
-.hi{
+.hi {
   font-size: 20px;
   margin-right: 3px;
   display: flex;
   flex-direction: row;
-  /* width: 100%; */
 }
-.greeting{
+.greeting {
   margin-left: 5%;
   margin-top: 5%;
   font-size: 20px;
 }
-.delete{
+.delete {
   font-size: 12px;
   cursor: pointer;
   color: rgb(174, 169, 169);
@@ -31,10 +29,15 @@
   display: flex;
   flex-direction: row-reverse;
 }
-.delete:hover{
+.delete:hover {
   color: white;
 }
-.newboard{
+.boards-parent-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.newboard {
   background-color: rgb(243, 242, 242);
   height: 170px;
   width: 200px;
@@ -46,15 +49,15 @@
   color: rgb(132, 131, 131);
   font-size: 16px;
 }
-.newboard p{
+.newboard p {
   margin-left: 20px;
   margin-top: 30px;
   font-size: 16px;
 }
-.user-panel{
+.user-panel {
   margin-left: 20px;
 }
-.bcontainer{
+.bcontainer {
   margin-top: 80px;
   margin-left: 0px;
   display: flex;
@@ -63,21 +66,21 @@
 .boards-container {
   display: flex;
   flex-direction: row;
-  width: 70%;
   justify-content: flex-start;
   margin: 0px auto;
   margin-top: 25px;
+  overflow: hidden;
 }
-.your-boards{
+.your-boards {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  margin: 30px auto;  
+  margin: 30px auto;
   width: 70%;
   margin-bottom: 0px;
 }
-.container, .heading{
-  width: 70%;
+.container,
+.heading {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -87,8 +90,10 @@
   display: flex;
   flex-direction: row;
 }
-.heading{
+.heading {
   margin-bottom: 0px;
+  font-size: 18px;
+  margin-left: 10px;
 }
 .title {
   width: 60%;
@@ -96,8 +101,9 @@
   border-radius: 5px;
   margin-left: 20px;
   cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
 }
-.createBtn{
+.createBtn {
   margin-left: 30px;
   width: 100px;
   height: 36px;
@@ -109,19 +115,19 @@
   border-radius: 5px;
   cursor: pointer;
 }
-.createBtn:hover{
+.createBtn:hover {
   background-color: rgb(234, 231, 231);
   border: none;
   border-radius: 5px;
 }
-.newboard-input{
+.newboard-input {
   width: 140px;
   background-color: rgb(243, 242, 242);
 }
 input {
-  outline:none;
+  outline: none;
 }
-.newboard-input{
+.newboard-input {
   font-size: 16px;
   margin-top: 16px;
   text-align: center;

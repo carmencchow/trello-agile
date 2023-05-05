@@ -68,8 +68,8 @@ const DropDown = ({ onClose }) => {
 
   return (
     <div className="dropdown-grid" ref={modalRef}>
-      {images.map((image, index) => (
-        <div key={images.index}>
+      {images.map((image, idx) => (
+        <div key={images.idx}>
           <img
             src={`${process.env.PUBLIC_URL}/assets/${image}`}
             alt="backgroundimage"

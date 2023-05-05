@@ -166,7 +166,7 @@ const Board = () => {
       }}
     >
       <Navbar />
-      <h3>
+      <h3 className="board-title">
         {board.title}
         <AiOutlineDelete className="delete-board" onClick={handleDelete} />
       </h3>
@@ -180,7 +180,7 @@ const Board = () => {
       </div>
 
       <DragDropContext onDragEnd={(result) => onDragEnd(result, tBoard.lists)}>
-        <div className="container">
+        <div className="list-container">
           {tBoard &&
             tBoard.lists &&
             tBoard.lists.map((list) => (
