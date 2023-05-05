@@ -23,20 +23,20 @@ const DropDown = ({ onClose }) => {
   }, [modalRef]);
 
   const images = [
-    "background1.jpg",
-    "background2.jpg",
-    "background3.jpg",
-    "background4.jpg",
-    "background5.jpg",
-    "background6.jpg",
-    "background7.jpg",
-    "background8.jpg",
-    "background9.jpg",
-    "background10.jpg",
-    "background11.jpg",
-    "background14.jpg",
-    "background15.jpg",
-    "background16.jpg",
+    "art.jpg",
+    "astronaut.jpg",
+    "beach.jpg",
+    "bubbles.jpg",
+    "cairo.jpg",
+    "concert.jpg",
+    "ice.jpg",
+    "japan.jpg",
+    "lavenderfield.jpg",
+    "leaves.jpg",
+    "lizard.jpg",
+    "mountains.jpg",
+    "nycity.jpg",
+    "rainbow.jpg",
   ];
 
   const onChangeBackground = async (backgroundImage) => {
