@@ -10,7 +10,9 @@ export const DataProvider = ({ children }) => {
   const [cardId, setCardId] = useState(null);
   const [boardId, setBoardId] = useState(null);
   const [cardData, setCardData] = useState(null);
-  const [boardData, setBoardData] = useState(null);
+  const [boardData, setBoardData] = useState({
+    board: { background: `background1.jpg` },
+  });
   const [archiveBtn, setArchiveBtn] = useState(true);
   const dispatch = useDispatch();
 
@@ -31,6 +33,7 @@ export const DataProvider = ({ children }) => {
   const getBoard = async (id) => {
     try {
       const res = await axios.get(`http://localhost:5000/api/board/${id}`);
+      console.log(res);
       setBoardData(res.data);
       const data = res.data;
       console.log("Board data:", data);
@@ -66,6 +69,7 @@ export const DataProvider = ({ children }) => {
         archiveBtn,
         setArchiveBtn,
         getCard,
+        boardData,
         getBoard,
         clearComment,
         handleFetchData,

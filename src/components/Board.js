@@ -3,10 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { AiOutlineDelete } from "react-icons/ai";
 import { fetchData } from "../store/thunks/fetchList";
 import { DataContext } from "../context/DataContext";
-import background9 from "../assets/background9.jpg";
 import List from "../components/List";
 import Navbar from "./Navbar";
 import "./Board.css";
@@ -14,7 +12,7 @@ import "./Board.css";
 const Board = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { setBoardId } = useContext(DataContext);
+  const { setBoardId, boardId, boardData } = useContext(DataContext);
   const [showArchived, setShowArchived] = useState(false);
   const [tBoard, setTBoard] = useState(null);
   const [userInfo, setUserInfo] = useState("");
@@ -137,6 +135,7 @@ const Board = () => {
   }, [dispatch, id]);
 
   const board = useSelector((state) => state.data.board);
+  console.log(board);
 
   useEffect(() => {
     if (board) {
@@ -158,8 +157,7 @@ const Board = () => {
     <div
       className="board-container"
       style={{
-        // backgroundImage: `url(${background9})`,
-        backgroundImage: `url(${board.background})`,
+        backgroundImage: `url(${"/assets/" + board.background})`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundSize: "cover",

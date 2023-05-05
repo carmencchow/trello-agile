@@ -5,9 +5,9 @@ import Navbar from "./Navbar";
 import "./Templates.css";
 
 const Templates = () => {
+  const { setBoardId, boardId, getBoard } = useContext(DataContext);
   const [backgroundImage, setBackgroundImage] = useState("");
   const [userInfo, setUserInfo] = useState("");
-  const { boardId, getBoard } = useContext(DataContext);
 
   const images = [
     "background1.jpg",
@@ -18,7 +18,7 @@ const Templates = () => {
     "background6.jpg",
     "background7.jpg",
     "background8.jpg",
-    "background9.jpg",
+    // "background9.jpg",
     "background10.jpg",
     "background11.jpg",
     "background13.jpg",
@@ -27,23 +27,7 @@ const Templates = () => {
     "background16.jpg",
   ];
 
-  // // WRONG - this fetches ALL boards
-  // const getUserProfile = async () => {
-  //   const token = localStorage.getItem("token");
-  //   if (!token) {
-  //     throw new Error("No token found in localStorage");
-  //   }
-  //   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  //   try {
-  //     const res = await axios.get("http://localhost:5000/api/user/me");
-  //     setUserInfo(res.data);
-  //     console.log("Data:", res.data.boards[0].background);
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // };
-
-  const onChangeBackground = async () => {
+  const onChangeBackground = async (backgroundImage) => {
     try {
       const token = localStorage.getItem("token");
       if (!token) {
@@ -63,10 +47,10 @@ const Templates = () => {
         }
       );
       console.log(`Selected background:',  ${backgroundImage}`);
+      console.log(res);
       const data = res.data;
       console.log("Data is:", data);
-      getBoard();
-      // getUserProfile();
+      // getBoard(boardId);
     } catch (err) {
       console.log(err);
     }
@@ -80,12 +64,12 @@ const Templates = () => {
         {images.map((image, index) => (
           <div key={images.index}>
             <img
-              src={require(`../assets/${image}`)}
+              src={`${process.env.PUBLIC_URL}/assets/${image}`}
               alt="background"
               onClick={() => {
                 console.log(`changing color ${image}`);
                 setBackgroundImage(`${image}`);
-                onChangeBackground();
+                onChangeBackground(image);
               }}
             />
           </div>
