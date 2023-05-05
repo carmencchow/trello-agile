@@ -14,7 +14,7 @@ import "./Board.css";
 const Board = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { setBoardId } = useContext(DataContext);
+  const { setBoardId, boardId, boardData } = useContext(DataContext);
   const [showArchived, setShowArchived] = useState(false);
   const [tBoard, setTBoard] = useState(null);
   const [userInfo, setUserInfo] = useState("");
@@ -137,6 +137,7 @@ const Board = () => {
   }, [dispatch, id]);
 
   const board = useSelector((state) => state.data.board);
+  console.log(board);
 
   useEffect(() => {
     if (board) {
@@ -154,12 +155,14 @@ const Board = () => {
     return <div>Loading...</div>;
   }
 
+  console.log("Board data: ", boardData);
+  console.log(process.env.PUBLIC_URL + board.background);
+
   return (
     <div
       className="board-container"
       style={{
-        // backgroundImage: `url(${background9})`,
-        backgroundImage: `url(${board.background})`,
+        backgroundImage: `url(${"/assets/" + board.background})`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundSize: "cover",
