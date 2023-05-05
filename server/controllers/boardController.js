@@ -74,7 +74,7 @@ const createBoard = async (req, res) => {
     const newBoard = await Board.create({
       title: title,
       user: [user._id],
-      background: "background13.jpg",
+      background: "",
     });
 
     const todoList = await List.create({
@@ -114,7 +114,7 @@ const updateBackground = async (req, res) => {
     board.background = newBackground;
     await board.save();
     console.log(board.background);
-    return res.status(200).send({ message: "Board background updated" });
+    return res.status(200).send({ message: "Board background updated", board });
   } catch (err) {
     console.log(err);
   }

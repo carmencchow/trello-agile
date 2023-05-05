@@ -1,12 +1,26 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useEffect, useState } from "react";
 import axios from "axios";
 import { DataContext } from "../context/DataContext";
-import Navbar from "./Navbar";
 import "./DropDown.css";
 
-const DropDown = () => {
+const DropDown = ({ onClose }) => {
   const { boardId } = useContext(DataContext);
   const [backgroundImage, setBackgroundImage] = useState("");
+  const modalRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        onClose();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [modalRef]);
 
   const images = [
     "background1.jpg",
@@ -20,7 +34,6 @@ const DropDown = () => {
     "background9.jpg",
     "background10.jpg",
     "background11.jpg",
-    "background13.jpg",
     "background14.jpg",
     "background15.jpg",
     "background16.jpg",
@@ -45,34 +58,29 @@ const DropDown = () => {
           },
         }
       );
-      console.log(`Selected background:',  ${backgroundImage}`);
-      console.log(res);
+      console.log("Result:", res);
       const data = res.data;
-      console.log("Data is:", data);
+      console.log("Data:", data);
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <div className="DropDown-container">
-      <Navbar />
-      <h3>Change board template</h3>
-      <div className="DropDown-grid">
-        {images.map((image, index) => (
-          <div key={images.index}>
-            <img
-              src={`${process.env.PUBLIC_URL}/assets/${image}`}
-              alt="background"
-              onClick={() => {
-                console.log(`changing color ${image}`);
-                setBackgroundImage(`${image}`);
-                onChangeBackground(image);
-              }}
-            />
-          </div>
-        ))}
-      </div>
+    <div className="dropdown-grid" ref={modalRef}>
+      {images.map((image, index) => (
+        <div key={images.index}>
+          <img
+            src={`${process.env.PUBLIC_URL}/assets/${image}`}
+            alt="backgroundimage"
+            onClick={() => {
+              console.log(`changing background to ${image}`);
+              setBackgroundImage(`${image}`);
+              onChangeBackground(image);
+            }}
+          />
+        </div>
+      ))}
     </div>
   );
 };

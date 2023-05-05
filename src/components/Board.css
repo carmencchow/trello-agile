@@ -33,24 +33,24 @@ input {
   margin-left: 10px;
 }
 
-.toggle,
-.delete-board-btn {
+.toggle {
   width: 220px;
   height: 40px;
   margin-left: 20px;
   font-size: 14px;
   font-weight: bolder;
   border: 2px solid black;
-  /* border: 2px solid rgb(188, 190, 249); */
-  /* background-color: white; */
   background-color: transparent;
   color: black;
   margin-bottom: 30px;
   border-radius: 5px;
   cursor: pointer;
 }
-.delete-board-btn {
-  width: 140px;
+.delete-board {
+  margin-left: 10px;
+}
+.delete-board:hover {
+  color: blue;
 }
 .toggle:hover {
   color: blue;
@@ -107,4 +107,9 @@ span {
   font-size: 14px;
   margin-left: 8px;
   margin-top: 0px;
+}
+.delete-board {
+  cursor: pointer;
+  font-size: 22px;
+  margin-top: 2px;
 }

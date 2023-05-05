@@ -8,7 +8,7 @@
   right: 0;
   bottom: 0;
 }
-.card-content{
+.card-content {
   margin: 20px 50px;
   height: 90vh;
 }
@@ -21,7 +21,11 @@
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.card-name{
+.edit-cardtitle {
+  font-size: 22px;
+  margin-left: 10px;
+}
+.card-name {
   margin-left: 50px;
 }
 .card-popup-heading {
@@ -29,7 +33,7 @@
   justify-content: space-between;
   height: 70px;
 }
-.card-right{
+.card-right {
   display: flex;
 }
 .close-btn {
@@ -49,7 +53,7 @@
   width: 60%;
   margin-left: 40px;
 }
-.color-row span{
+.color-row span {
   width: 100px;
   height: 10px;
   cursor: pointer;
@@ -83,23 +87,23 @@ p {
 .pink {
   background-color: pink;
 }
-.burlywood{
+.burlywood {
   background-color: burlywood;
 }
-.white{
+.white {
   background-color: white;
   border: 1px solid gainsboro;
 }
-h4{
+h4 {
   padding-right: 20px;
 }
-.comment-container{
+.comment-container {
   overflow: auto;
 }
-.activity-label{
+.activity-label {
   display: flex;
 }
-.comments{
+.comments {
   height: 20px;
   width: 540px;
   font-size: 14px;
@@ -109,18 +113,18 @@ h4{
   display: flex;
 }
 .activity-icon,
-.card-icon{
+.card-icon {
   margin-right: 7px;
   margin-top: 5px;
 }
-.button-row{
+.button-row {
   display: flex;
   flex-direction: row-reverse;
   margin-top: 10%;
 }
 .delete-card,
 .edit-card,
-.archive-card{
+.archive-card {
   color: black;
   font-size: 14px;
   font-weight: lighter;
@@ -129,13 +133,13 @@ h4{
   text-align: center;
   width: 60px;
   height: 50px;
-  cursor: pointer; 
+  cursor: pointer;
 }
-span.edit-icon svg{
+span.edit-icon svg {
   font-size: 24px;
   cursor: pointer;
 }
-.color-btn{
+.color-btn {
   font-size: 14px;
   font-weight: lighter;
   line-height: 40px;
