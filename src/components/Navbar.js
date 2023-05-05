@@ -1,13 +1,14 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbutton } from "./NavButton";
+import DropDown from "./DropDown";
 
 const Navbar = () => {
   const selectOptions = [
     { name: "Workspaces", query: "workspaces" },
-    { name: "Recent", query: "workspaces" },
-    { name: "Starred", query: "workspaces" },
-    { name: "Templates", query: "templates" },
+    { name: "Recent", query: "board/:id" },
+    { name: "Starred", query: "board/:id" },
+    { name: "Templates", query: "board/:id" },
   ];
   const navigate = useNavigate();
 

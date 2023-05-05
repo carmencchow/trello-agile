@@ -2,9 +2,9 @@ import React, { useContext, useState } from "react";
 import axios from "axios";
 import { DataContext } from "../context/DataContext";
 import Navbar from "./Navbar";
-import "./Templates.css";
+import "./DropDown.css";
 
-const Templates = () => {
+const DropDown = () => {
   const { boardId } = useContext(DataContext);
   const [backgroundImage, setBackgroundImage] = useState("");
 
@@ -55,10 +55,10 @@ const Templates = () => {
   };
 
   return (
-    <div className="templates-container">
+    <div className="DropDown-container">
       <Navbar />
       <h3>Change board template</h3>
-      <div className="templates-grid">
+      <div className="DropDown-grid">
         {images.map((image, index) => (
           <div key={images.index}>
             <img
@@ -77,4 +77,4 @@ const Templates = () => {
   );
 };
 
-export default Templates;
+export default DropDown;
