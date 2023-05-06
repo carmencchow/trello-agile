@@ -158,7 +158,6 @@ const Board = () => {
       className="board-container"
       style={{
         backgroundImage: `url(${"/assets/" + board.background})`,
-        // src={require(`../assets/${image}`)}
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundSize: "cover",
