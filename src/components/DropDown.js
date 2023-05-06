@@ -71,7 +71,7 @@ const DropDown = ({ onClose }) => {
       {images.map((image, idx) => (
         <div key={images.idx}>
           <img
-            src={`${process.env.PUBLIC_URL}/assets/${image}`}
+            src={require(`../assets/${image}`)}
             alt="backgroundimage"
             onClick={() => {
               console.log(`changing background to ${image}`);
