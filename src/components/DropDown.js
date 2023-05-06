@@ -36,7 +36,6 @@ const DropDown = ({ onClose }) => {
     "lizard.jpg",
     "mountains.jpg",
     "nycity.jpg",
-    "rainbow.jpg",
   ];
 
   const onChangeBackground = async (backgroundImage) => {
