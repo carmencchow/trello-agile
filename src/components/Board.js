@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { AiOutlineDelete } from "react-icons/ai";
+import { RiInboxUnarchiveFill, RiArchiveFill } from "react-icons/ri";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -167,18 +168,19 @@ const Board = () => {
     >
       <Navbar />
       <div className="board-title">
-        <p className="p-title">
-          {board.title}
-          <AiOutlineDelete className="delete-board" onClick={handleDelete} />
-        </p>
-      </div>
+        <p className="p-title">{board.title}</p>
 
-      <div className="buttons">
-        <button className="toggle" onClick={toggleCards}>
-          {showArchived
+        <div className="archive-toggle">
+          <div className="archive-icons" onClick={toggleCards}>
+            {showArchived ? <RiArchiveFill /> : <RiInboxUnarchiveFill />}
+            {/* {showArchived
             ? "Showing Archived Cards:"
-            : "Showing Unarchived Cards:"}
-        </button>
+            : "Showing Unarchived Cards:"} */}
+          </div>
+        </div>
+        {/* <div className="icons"> */}
+        <AiOutlineDelete className="delete-board" onClick={handleDelete} />
+        {/* </div> */}
       </div>
 
       <DragDropContext onDragEnd={(result) => onDragEnd(result, tBoard.lists)}>
