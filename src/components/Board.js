@@ -166,10 +166,12 @@ const Board = () => {
       }}
     >
       <Navbar />
-      <h3 className="board-title">
-        {board.title}
-        <AiOutlineDelete className="delete-board" onClick={handleDelete} />
-      </h3>
+      <div className="board-title">
+        <p className="p-title">
+          {board.title}
+          <AiOutlineDelete className="delete-board" onClick={handleDelete} />
+        </p>
+      </div>
 
       <div className="buttons">
         <button className="toggle" onClick={toggleCards}>

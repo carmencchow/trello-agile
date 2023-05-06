@@ -13,21 +13,21 @@
   height: 100vh;
   margin-top: 0px;
 }
-input{
+input {
   height: 70px;
 }
-.login{
+.login {
   font-size: 14px;
   text-align: right;
   cursor: pointer;
   margin-top: 20px;
   color: blue;
 }
-.have-acct{
+.have-acct {
   font-size: 14px;
   font-weight: lighter;
 }
-.login:hover{
+.login:hover {
   font-weight: bolder;
 }
 .register-form {
@@ -40,7 +40,7 @@ input{
   width: 400px;
   max-width: 100%;
 }
-.register-row{
+.register-row {
   margin-left: 40px;
   display: flex;
   flex-direction: row;
@@ -73,18 +73,17 @@ input{
   color: white;
 }
 
-.register-content{
- margin: 40px auto;
+.register-content {
+  margin: 40px auto;
 }
 
 .error-message {
   color: red;
   font-weight: bold;
 }
-.register-button{
+.register-button {
   border: blue;
   height: 30px;
   width: 60px;
   border-radius: 5px;
 }
-

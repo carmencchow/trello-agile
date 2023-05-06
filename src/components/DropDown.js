@@ -29,6 +29,7 @@ const DropDown = ({ onClose }) => {
     "bubbles.jpg",
     "cairo.jpg",
     "concert.jpg",
+    "gym.jpg",
     "ice.jpg",
     "japan.jpg",
     "lavenderfield.jpg",
@@ -70,8 +71,8 @@ const DropDown = ({ onClose }) => {
       {images.map((image, idx) => (
         <div key={images.idx}>
           <img
-            src={require(`../assets/${image}`)}
-            // src={`${process.env.PUBLIC_URL}/assets/${image}`}
+            // src={require(`../assets/${image}`)}
+            src={`${process.env.PUBLIC_URL}/assets/${image}`}
             alt="backgroundimage"
             onClick={() => {
               console.log(`changing background to ${image}`);

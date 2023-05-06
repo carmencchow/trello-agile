@@ -19,7 +19,6 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    // alert("User logged out");
     navigate("/login");
   };
 

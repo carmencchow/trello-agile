@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
-import axios from 'axios'
-import { DataContext } from '../context/DataContext'
+import axios from "axios";
+import { DataContext } from "../context/DataContext";
 import "./AddCard.css";
 
 const AddCard = ({ openAddCard, listId, onClose }) => {
   const { handleFetchData } = useContext(DataContext);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
 
   const handleInput = (e) => {
     setInput(e.target.value);
@@ -19,27 +19,27 @@ const AddCard = ({ openAddCard, listId, onClose }) => {
       }
       const res = await axios.post(
         `http://localhost:5000/api/card/?listId=${listId}`,
-      
-        { 
-          title: `${input}` 
+
+        {
+          title: `${input}`,
         },
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-        const data = res.data;
-        console.log(data);
-        handleFetchData();
-        setInput('');
-        onClose();
-      } catch (err) {
-        console.log(err);
-      }
-    };
+      const data = res.data;
+      console.log(data);
+      handleFetchData();
+      setInput("");
+      onClose();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   if (!openAddCard) return null;
 
@@ -55,9 +55,9 @@ const AddCard = ({ openAddCard, listId, onClose }) => {
       />
 
       <div className="save-cancel-btns">
-        <button className="save-card-btn" onClick={handleSave}>Save
-      </button>
-      
+        <button className="save-card-btn" onClick={handleSave}>
+          Save
+        </button>
       </div>
     </div>
   );
