@@ -62,7 +62,8 @@ const Templates = () => {
         {images.map((image, index) => (
           <div key={images.index}>
             <img
-              src={`${process.env.PUBLIC_URL}/assets/${image}`}
+              src={require(`../assets/${image}`)}
+              // src={`${process.env.PUBLIC_URL}/assets/${image}`}
               alt="background"
               onClick={() => {
                 console.log(`changing color ${image}`);
