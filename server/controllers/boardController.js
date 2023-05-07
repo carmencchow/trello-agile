@@ -75,6 +75,7 @@ const createBoard = async (req, res) => {
       title: title,
       user: [user._id],
       background: "default.jpg",
+      isStarred: false,
     });
 
     const todoList = await List.create({
