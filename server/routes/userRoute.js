@@ -36,7 +36,6 @@ router.post("/signup", async (req, res) => {
       lists: [],
       cards: [],
       boards: [],
-      organization: "Parsity",
     });
 
     const salt = await bcrypt.genSalt(10);

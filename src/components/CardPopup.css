@@ -1,6 +1,6 @@
 .card-background {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.3);
   position: fixed;
   height: 100%;
   top: 0;
@@ -13,13 +13,14 @@
   height: 90vh;
 }
 .card-popup {
-  height: 750px;
-  width: 700px;
+  height: 600px;
+  width: 600px;
   position: absolute;
   background-color: #f4f5f7;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  border-radius: 10px;
 }
 .edit-cardtitle {
   font-size: 22px;
@@ -97,9 +98,6 @@ p {
 h4 {
   padding-right: 20px;
 }
-.comment-container {
-  overflow: auto;
-}
 .activity-label {
   display: flex;
 }
@@ -112,6 +110,9 @@ h4 {
   padding-left: 10px;
   display: flex;
 }
+.comments-container {
+  overflow: hidden;
+}
 .activity-icon,
 .card-icon {
   margin-right: 7px;
@@ -120,7 +121,7 @@ h4 {
 .button-row {
   display: flex;
   flex-direction: row-reverse;
-  margin-top: 10%;
+  margin-top: 100px;
 }
 .delete-card,
 .edit-card,

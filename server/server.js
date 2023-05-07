@@ -1,6 +1,5 @@
 require("dotenv").config();
 const http = require("http");
-const { Server } = require("socket.io");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -46,7 +45,6 @@ app.get("/loaddata", async (req, res) => {
         lists: [],
         cards: [],
         boards: [],
-        organization: "Parsity",
         // will be populated with lists in the same endpoint call
       });
       await board.save();

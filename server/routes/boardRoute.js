@@ -1,7 +1,6 @@
 const express = require("express");
 const auth = require("../middleware/auth");
 
-// import functions from boardController
 const {
   getBoard,
   getBoards,

@@ -34,7 +34,6 @@ const Board = () => {
 
     const { source, destination } = result;
 
-    // Find source and destination lists
     const sourceListIndex = lists.findIndex(
       (list) => list._id === source.droppableId
     );
@@ -137,7 +136,6 @@ const Board = () => {
   }, [dispatch, id]);
 
   const board = useSelector((state) => state.data.board);
-  console.log(board);
 
   useEffect(() => {
     if (board) {

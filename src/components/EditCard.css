@@ -1,17 +1,19 @@
-.name-change-input, .comment-input{
+.name-change-input,
+.comment-input {
   display: flex;
   flex-direction: row;
   margin-top: 10px;
 }
-.change-input{
+.change-input {
   height: 40px;
   width: 300px;
 }
-.add-input{
+.add-input {
   height: 40px;
-  width: 400px;
+  width: 300px;
 }
-.update-btn, .comment-btn{
+.update-btn,
+.comment-btn {
   font-size: 14px;
   font-weight: lighter;
   line-height: 40px;
@@ -22,6 +24,6 @@
   height: 40px;
   text-align: center;
 }
-.editname-icon{
+.editname-icon {
   margin-left: 20px;
 }

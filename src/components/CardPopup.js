@@ -34,6 +34,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
 
   const toggleArchive = async () => {
     try {
+      console.log("Toggling archive");
       const token = localStorage.getItem("token");
       if (!token) {
         throw new Error("No token found in localStorage");
@@ -75,6 +76,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
         }
       );
       const data = res.data;
+      console.log("Color:", data.card.color);
       handleFetchData();
       getCard(cardId);
     } catch (err) {
@@ -159,6 +161,8 @@ const CardPopup = ({ openModal, onCloseModal }) => {
               })}
             </div>
           </div>
+
+          <div></div>
 
           <div className="button-row">
             <AddComment
