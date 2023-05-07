@@ -6,13 +6,13 @@
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   background-color: #f7f8f9;
-  opacity: 0.9;
+  /* opacity: 0.97; */
 }
 .board-title {
-  font-size: 24px;
+  font-size: 20px;
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   color: white;
   background-color: rgba(0, 0, 0, 0.3);
   padding: 2px 5px;
@@ -23,7 +23,7 @@
   margin-left: 10px;
 }
 .list-container {
-  margin-top: 50px;
+  margin-top: 80px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -42,9 +42,18 @@
 input {
   margin-left: 10px;
 }
+.archive-toggle {
+  display: flex;
+  margin-top: 10px;
+  font-size: 30px;
+  margin-left: 20px;
+  cursor: pointer;
+}
 .archive-icons {
   font-size: 30px;
   color: white;
+  cursor: pointer;
+  padding-right: 5px;
 }
 .add-card {
   width: 230px;
@@ -75,7 +84,7 @@ input {
 .list-name {
   margin-top: 2px;
   font-weight: bolder;
-  font-size: 20px;
+  font-size: 16px;
 }
 .archived {
   cursor: pointer;
@@ -98,11 +107,4 @@ span {
   font-size: 14px;
   margin-left: 8px;
   margin-top: 0px;
-}
-.delete-board {
-  color: white;
-  cursor: pointer;
-  font-size: 30px;
-  margin-right: 10%;
-  padding-right: 10%;
 }

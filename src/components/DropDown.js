@@ -4,23 +4,9 @@ import { DataContext } from "../context/DataContext";
 import "./DropDown.css";
 
 const DropDown = ({ onClose }) => {
-  const { boardId } = useContext(DataContext);
+  const { boardId, handleFetchData } = useContext(DataContext);
   const [backgroundImage, setBackgroundImage] = useState("");
   const modalRef = useRef();
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (modalRef.current && !modalRef.current.contains(e.target)) {
-        onClose();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [modalRef]);
 
   const images = [
     "art.jpg",
@@ -58,13 +44,26 @@ const DropDown = ({ onClose }) => {
           },
         }
       );
-      console.log("Result:", res);
       const data = res.data;
+      handleFetchData();
       console.log("Data:", data);
     } catch (err) {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        onClose();
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [modalRef]);
 
   return (
     <div className="dropdown-grid" ref={modalRef}>

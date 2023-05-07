@@ -5,12 +5,13 @@
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(7, 1fr);
   background-color: #026aa7;
-  margin-top: 182px;
+  margin-top: 164px;
 }
 .dropdown-grid img {
   width: 60px;
   height: 60px;
   border: 1px solid white;
+  cursor: pointer;
 }
 .dropdown-grid img:hover {
   box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;

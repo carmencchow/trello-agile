@@ -34,7 +34,6 @@ const CardPopup = ({ openModal, onCloseModal }) => {
 
   const toggleArchive = async () => {
     try {
-      console.log("Toggling archive");
       const token = localStorage.getItem("token");
       if (!token) {
         throw new Error("No token found in localStorage");

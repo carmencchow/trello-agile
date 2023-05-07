@@ -14,7 +14,7 @@ import "./Board.css";
 const Board = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { setBoardId, boardId, boardData } = useContext(DataContext);
+  const { setBoardId } = useContext(DataContext);
   const [showArchived, setShowArchived] = useState(false);
   const [tBoard, setTBoard] = useState(null);
   const [userInfo, setUserInfo] = useState("");
@@ -114,6 +114,7 @@ const Board = () => {
   const toggleCards = () => {
     setShowArchived(!showArchived);
   };
+
   const handleDelete = async (boardId) => {
     console.log("Deleting board:", id);
     const token = localStorage.getItem("token");
@@ -173,14 +174,9 @@ const Board = () => {
         <div className="archive-toggle">
           <div className="archive-icons" onClick={toggleCards}>
             {showArchived ? <RiArchiveFill /> : <RiInboxUnarchiveFill />}
-            {/* {showArchived
-            ? "Showing Archived Cards:"
-            : "Showing Unarchived Cards:"} */}
           </div>
+          <AiOutlineDelete className="delete-board" onClick={handleDelete} />
         </div>
-        {/* <div className="icons"> */}
-        <AiOutlineDelete className="delete-board" onClick={handleDelete} />
-        {/* </div> */}
       </div>
 
       <DragDropContext onDragEnd={(result) => onDragEnd(result, tBoard.lists)}>

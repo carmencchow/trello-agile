@@ -5,7 +5,6 @@ import Board from "./components/Board";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Workspaces from "./components/Workspaces";
-import Template from "./components/Templates";
 
 function App() {
   return (
@@ -19,7 +18,6 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/board/:id" element={<Board />} />
               <Route path="/workspaces" element={<Workspaces />} />
-              <Route path="/templates" element={<Template />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </DataProvider>
