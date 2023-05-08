@@ -35,6 +35,20 @@
   position: absolute;
   cursor: pointer;
 }
+.user {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background-color: #614dab;
+  text-align: center;
+  margin-top: 2px;
+  margin-left: 5px;
+  font-size: 14px;
+  font-weight: lighter;
+}
+.user:hover {
+  background-color: #9985e3;
+}
 .list-container {
   margin-top: 80px;
   display: flex;

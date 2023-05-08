@@ -163,6 +163,7 @@ const Board = () => {
   }, [dispatch, id]);
 
   const board = useSelector((state) => state.data.board);
+  console.log("Board data", board.user);
 
   useEffect(() => {
     if (board) {
@@ -203,6 +204,11 @@ const Board = () => {
         </span>
 
         <div className="archive-toggle">
+          {board.user.map((user) => (
+            <div key={user._id}>
+              <p className="user">{user.username.charAt(0).toUpperCase()}</p>
+            </div>
+          ))}
           <Searchbar />
           <div className="archive-icons" onClick={toggleCards}>
             {showArchived ? <RiArchiveFill /> : <RiInboxUnarchiveFill />}

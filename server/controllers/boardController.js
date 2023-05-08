@@ -6,12 +6,15 @@ const Card = require("../models/cardModel");
 // GET a board by id
 const getBoard = async (req, res) => {
   try {
-    const board = await Board.findOne({ _id: req.params.id }).populate({
-      path: "lists",
-      populate: {
-        path: "cards",
-      },
-    });
+    const board = await Board.findOne({ _id: req.params.id })
+      .populate({
+        path: "lists",
+        populate: {
+          path: "cards",
+        },
+      })
+      .populate("user");
+
     if (!board) {
       return res.status(404).send({ message: "Board not found" });
     }

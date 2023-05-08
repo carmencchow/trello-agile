@@ -46,6 +46,7 @@ const Starred = () => {
                   <div key={board._id} className="boards-container">
                     <div
                       className="boards"
+                      onClick={() => goToBoard(board._id)}
                       style={{
                         backgroundImage: `url(${
                           "/assets/" + board.background
@@ -56,14 +57,8 @@ const Starred = () => {
                         height: "170px",
                         width: "230px",
                       }}
-                      // onClick={() => goToBoard(board._id)}
                     >
-                      <h5
-                        className="title"
-                        onClick={() => goToBoard(board._id)}
-                      >
-                        {board.title}
-                      </h5>
+                      <h5 className="title">{board.title}</h5>
                     </div>
                   </div>
                 );
