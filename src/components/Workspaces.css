@@ -18,6 +18,7 @@
   right: 5px;
   position: absolute;
   cursor: pointer;
+  transition: 4s ease-in;
 }
 .filled-star {
   display: none;

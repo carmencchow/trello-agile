@@ -21,7 +21,7 @@ const Login = () => {
       localStorage.setItem("token", res.data.token);
       setServerResponse(res.data.message);
       navigate("/workspaces");
-      getUserProfile();
+      // getUserProfile();
     } catch (error) {
       setServerResponse(error.response.data);
     }
@@ -30,20 +30,20 @@ const Login = () => {
     setPassword("");
   };
 
-  const getUserProfile = async () => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      throw new Error("No token found in localStorage");
-    }
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    try {
-      const res = await axios.get("http://localhost:5000/api/user/me");
-      setUserInfo(res.data);
-      console.log(res.data);
-    } catch (error) {
-      throw error;
-    }
-  };
+  // const getUserProfile = async () => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token) {
+  //     throw new Error("No token found in localStorage");
+  //   }
+  //   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  //   try {
+  //     const res = await axios.get("http://localhost:5000/api/user/me");
+  //     setUserInfo(res.data);
+  //     console.log(res.data);
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // };
 
   return (
     <div>

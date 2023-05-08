@@ -1,16 +1,13 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { DataContext } from "../context/DataContext";
 import axios from "axios";
+import Navbar from "../components/Navbar";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import StarIcon from "@mui/icons-material/Star";
-import AddBoard from "./AddBoard";
-import Navbar from "./Navbar";
-import "./Workspaces.css";
+import "../index.css";
+import "./Starred.css";
 
-const Workspaces = () => {
+const Starred = () => {
   const navigate = useNavigate();
-  const { boardId, handleFetchData } = useContext(DataContext);
   const [userInfo, setUserInfo] = useState("");
 
   const getUserProfile = async () => {
@@ -21,33 +18,9 @@ const Workspaces = () => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     try {
       const res = await axios.get("http://localhost:5000/api/user/me");
-      setUserInfo(res.data);
-      console.log(
-        "Displaying user boards:",
-        res.data.boards.map((board) => {
-          return board._id;
-        })
-      );
+      setUserInfo(res.data.boards.filter((board) => board.isStarred === true));
     } catch (error) {
       throw error;
-    }
-  };
-
-  const handleStarredBoard = async () => {
-    try {
-      console.log("add board to starred list");
-      const token = localStorage.getItem("token");
-      if (!token) {
-        throw new Error("No token found in localStorage");
-      }
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const res = await axios.put(
-        `http://localhost:5000/api/board/${boardId}/starred`
-      );
-      console.log(res.data);
-      handleFetchData();
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -61,14 +34,14 @@ const Workspaces = () => {
   }, []);
 
   return (
-    <div>
+    <div className="starred-container">
       <Navbar />
       {userInfo && (
-        <div className="greeting">
-          👋 Hi, <strong>{userInfo.username}!</strong>
+        <div className="starred-heading">
+          <StarBorderIcon /> Starred Boards
           <div className="boards-parent-container">
-            {userInfo.boards.length > 0 ? (
-              userInfo.boards.map((board, index) => {
+            {userInfo.length > 0 ? (
+              userInfo.map((board, index) => {
                 return (
                   <div key={board._id} className="boards-container">
                     <div
@@ -83,6 +56,7 @@ const Workspaces = () => {
                         height: "170px",
                         width: "230px",
                       }}
+                      // onClick={() => goToBoard(board._id)}
                     >
                       <h5
                         className="title"
@@ -90,12 +64,6 @@ const Workspaces = () => {
                       >
                         {board.title}
                       </h5>
-                      <span className="star">
-                        <StarBorderIcon />
-                        <span className="filled-star">
-                          <StarIcon onClick={handleStarredBoard} />
-                        </span>
-                      </span>
                     </div>
                   </div>
                 );
@@ -104,16 +72,10 @@ const Workspaces = () => {
               <p></p>
             )}
           </div>
-          <h3 className="heading"> Create a board:</h3>
-          <div className="container">
-            <div className="newboard">
-              <AddBoard />
-            </div>
-          </div>
         </div>
       )}
     </div>
   );
 };
 
-export default Workspaces;
+export default Starred;

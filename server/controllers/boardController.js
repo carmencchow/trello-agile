@@ -121,6 +121,23 @@ const updateBackground = async (req, res) => {
   }
 };
 
+// STAR a board
+const starredBoard = async (req, res) => {
+  console.log("Starred board");
+  try {
+    await Board.findById({ _id: req.params.id });
+    const filter = { _id: req.params.id };
+    const update = { isStarred: true };
+    let board = await Board.findOneAndUpdate(filter, update);
+    board = await Board.findOne(filter);
+    await board.save();
+    console.log("isStarred:", board.isStarred);
+    return res.status(200).send({ board });
+  } catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
+};
+
 // DELETE A BOARD
 const deleteBoard = async (req, res) => {
   try {
@@ -149,4 +166,5 @@ module.exports = {
   getBoards,
   createBoard,
   deleteBoard,
+  starredBoard,
 };

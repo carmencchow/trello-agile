@@ -9,7 +9,7 @@ const Navbar = () => {
   const selectOptions = [
     { name: "Workspaces", query: "workspaces" },
     { name: "Recent", query: "board/:id" },
-    { name: "Starred", query: "board/:id" },
+    { name: "Starred", query: "starred" },
   ];
   const navigate = useNavigate();
 

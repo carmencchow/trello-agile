@@ -70,7 +70,6 @@ const DropDown = ({ onClose }) => {
       {images.map((image, idx) => (
         <div key={images.idx}>
           <img
-            // src={require(`../assets/${image}`)}
             src={`${process.env.PUBLIC_URL}/assets/${image}`}
             alt="backgroundimage"
             onClick={() => {

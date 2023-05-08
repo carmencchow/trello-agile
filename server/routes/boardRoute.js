@@ -3,6 +3,7 @@ const auth = require("../middleware/auth");
 
 const {
   getBoard,
+  starredBoard,
   getBoards,
   getArchived,
   createBoard,
@@ -19,5 +20,6 @@ router.get("/:id", auth, getBoard);
 router.delete("/:id", auth, deleteBoard);
 router.put("/:id/background", auth, updateBackground);
 router.get("/:id/archived", auth, getArchived);
+router.put("/:id/starred", auth, starredBoard);
 
 module.exports = router;
