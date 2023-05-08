@@ -7,6 +7,7 @@ const {
   getBoards,
   getArchived,
   createBoard,
+  addMember,
   deleteBoard,
   updateBackground,
 } = require("../controllers/boardController");
@@ -21,5 +22,6 @@ router.delete("/:id", auth, deleteBoard);
 router.put("/:id/background", auth, updateBackground);
 router.get("/:id/archived", auth, getArchived);
 router.put("/:id/starred", auth, starredBoard);
+router.put("/:id/addMember", auth, addMember);
 
 module.exports = router;

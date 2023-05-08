@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { fetchData } from "../store/thunks/fetchList";
 import { DataContext } from "../context/DataContext";
+import Searchbar from "../components/Searchbar";
 import List from "../components/List";
 import Navbar from "./Navbar";
 import "./Board.css";
@@ -170,6 +171,7 @@ const Board = () => {
         <p className="p-title">{board.title}</p>
 
         <div className="archive-toggle">
+          <Searchbar />
           <div className="archive-icons" onClick={toggleCards}>
             {showArchived ? <RiArchiveFill /> : <RiInboxUnarchiveFill />}
           </div>
