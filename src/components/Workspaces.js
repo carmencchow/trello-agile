@@ -13,6 +13,7 @@ const Workspaces = () => {
   const { boardId, handleFetchData } = useContext(DataContext);
   const [userInfo, setUserInfo] = useState("");
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
   const getUserProfile = async () => {
     const token = localStorage.getItem("token");
@@ -22,9 +23,11 @@ const Workspaces = () => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     try {
       const res = await axios.get("http://localhost:5000/api/user/me");
+      console.log("Res", res);
       console.log("Display boards", res.data);
       setUserInfo(res.data.boards.filter((board) => !board.isStarred));
       setName(res.data.username);
+      setEmail(res.data.email);
     } catch (error) {
       throw error;
     }
@@ -32,14 +35,17 @@ const Workspaces = () => {
 
   const handleStarredBoard = async () => {
     try {
-      console.log("add board to starred list", boardId);
+      console.log("add board to starred list", boardId, email);
       const token = localStorage.getItem("token");
       if (!token) {
         throw new Error("No token found in localStorage");
       }
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       const res = await axios.put(
-        `http://localhost:5000/api/board/${boardId}/starred`
+        `http://localhost:5000/api/board/${boardId}/starred`,
+        {
+          email: `${email}`,
+        }
       );
       console.log(res.data);
       getUserProfile();
@@ -71,6 +77,7 @@ const Workspaces = () => {
                 return (
                   <div key={board._id} className="boards-container">
                     <div
+                      // onClick={() => goToBoard(board._id)}
                       className="boards"
                       style={{
                         backgroundImage: `url(${

@@ -6,7 +6,7 @@ const userSchema = new Schema({
     type: String,
   },
   organization: {
-    type: String, 
+    type: String,
   },
   email: {
     type: String,
@@ -27,6 +27,12 @@ const userSchema = new Schema({
     },
   ],
   boards: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "board",
+    },
+  ],
+  isStarred: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "board",

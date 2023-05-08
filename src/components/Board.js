@@ -5,6 +5,9 @@ import { RiInboxUnarchiveFill, RiArchiveFill } from "react-icons/ri";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import StarIcon from "@mui/icons-material/Star";
+
 import { fetchData } from "../store/thunks/fetchList";
 import { DataContext } from "../context/DataContext";
 import Searchbar from "../components/Searchbar";
@@ -17,6 +20,7 @@ const Board = () => {
   const { id } = useParams();
   const { setBoardId } = useContext(DataContext);
   const [showArchived, setShowArchived] = useState(false);
+  const [email, setEmail] = useState();
   const [tBoard, setTBoard] = useState(null);
   const [userInfo, setUserInfo] = useState("");
   const navigate = useNavigate();
@@ -115,6 +119,28 @@ const Board = () => {
     setShowArchived(!showArchived);
   };
 
+  const handleStarredBoard = async () => {
+    try {
+      console.log(id, email);
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found in localStorage");
+      }
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      const res = await axios.put(
+        `http://localhost:5000/api/board/${id}/starred`,
+        {
+          email: `${email}`,
+        }
+      );
+      console.log("add board to starred list", id, email);
+      console.log(res.data);
+      // getUserProfile();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleDelete = async (boardId) => {
     console.log("Deleting board:", id);
     const token = localStorage.getItem("token");
@@ -125,6 +151,7 @@ const Board = () => {
     try {
       const res = await axios.delete(`http://localhost:5000/api/board/${id}`);
       setUserInfo(res.data);
+      setEmail(res.data.email);
       console.log("Deleting board");
       navigate("/workspaces");
     } catch (error) {
@@ -169,12 +196,19 @@ const Board = () => {
       <Navbar />
       <div className="board-title">
         <p className="p-title">{board.title}</p>
+        <span className="star">
+          <StarBorderIcon />
+          <span className="filled-star">
+            <StarIcon onClick={handleStarredBoard} />
+          </span>
+        </span>
 
         <div className="archive-toggle">
           <Searchbar />
           <div className="archive-icons" onClick={toggleCards}>
             {showArchived ? <RiArchiveFill /> : <RiInboxUnarchiveFill />}
           </div>
+
           <AiOutlineDelete className="delete-board" onClick={handleDelete} />
         </div>
       </div>

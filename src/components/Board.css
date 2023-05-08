@@ -21,6 +21,22 @@
   margin-top: 10px;
   margin-left: 10px;
 }
+.star {
+  color: white;
+  font-size: 40x;
+  position: relative;
+}
+.filled-star {
+  display: none;
+}
+.star:hover .filled-star {
+  color: yellow;
+  display: block;
+  /* bottom: 0px;
+  right: 0px; */
+  position: absolute;
+  cursor: pointer;
+}
 .list-container {
   margin-top: 80px;
   display: flex;

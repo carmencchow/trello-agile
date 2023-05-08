@@ -108,7 +108,6 @@ const createBoard = async (req, res) => {
 
 // CHANGE board background
 const updateBackground = async (req, res) => {
-  console.log("newbackground");
   const newBackground = req.body.background;
   try {
     const board = await Board.findById({ _id: req.params.id });
@@ -123,18 +122,18 @@ const updateBackground = async (req, res) => {
 
 // STAR a board
 const starredBoard = async (req, res) => {
-  console.log("Starred board");
   try {
-    await Board.findById({ _id: req.params.id });
-    const filter = { _id: req.params.id };
-    const update = { isStarred: true };
-    let board = await Board.findOneAndUpdate(filter, update);
-    board = await Board.findOne(filter);
-    await board.save();
-    console.log("isStarred:", board.isStarred);
-    return res.status(200).send({ board });
+    const board = await Board.findById({ _id: req.params.id });
+    const email = req.body.email;
+    console.log(board._id, email);
+    const findUser = await User.findOne({ email });
+    console.log("Found", findUser);
+    findUser.isStarred.push(board._id);
+    await findUser.save();
+    console.log("Starred boards are:", findUser.isStarred);
+    return res.status(200).send({ msg: findUser.isStarred });
   } catch (err) {
-    return res.status(500).send({ message: err.message });
+    console.log("Could not find user email");
   }
 };
 

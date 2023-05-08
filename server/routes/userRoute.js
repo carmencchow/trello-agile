@@ -36,6 +36,7 @@ router.post("/signup", async (req, res) => {
       lists: [],
       cards: [],
       boards: [],
+      isStarred: [],
     });
 
     const salt = await bcrypt.genSalt(10);
@@ -106,6 +107,7 @@ router.get("/me", auth, async (req, res) => {
     const user = await User.findById(req.user.id).populate("boards");
     res.json({
       username: user.username,
+      email: user.email,
       boards: user.boards,
     });
   } catch (error) {
