@@ -135,7 +135,6 @@ const Board = () => {
       );
       console.log("add board to starred list", id, email);
       console.log(res.data);
-      // getUserProfile();
     } catch (error) {
       console.log(error);
     }

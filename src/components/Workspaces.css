@@ -9,28 +9,6 @@
   cursor: pointer;
   position: relative;
 }
-.star {
-  display: none;
-}
-.boards:hover .star {
-  display: block;
-  bottom: 5px;
-  right: 5px;
-  position: absolute;
-  cursor: pointer;
-  transition: 4s ease-in;
-}
-.filled-star {
-  display: none;
-}
-.star:hover .filled-star {
-  color: yellow;
-  display: block;
-  bottom: 0px;
-  right: 0px;
-  position: absolute;
-  cursor: pointer;
-}
 .hi {
   font-size: 20px;
   margin-right: 3px;

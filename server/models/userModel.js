@@ -32,12 +32,6 @@ const userSchema = new Schema({
       ref: "board",
     },
   ],
-  isStarred: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "board",
-    },
-  ],
 });
 
 module.exports = mongoose.model("user", userSchema);

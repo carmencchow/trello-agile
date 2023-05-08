@@ -32,8 +32,6 @@
 .star:hover .filled-star {
   color: yellow;
   display: block;
-  /* bottom: 0px;
-  right: 0px; */
   position: absolute;
   cursor: pointer;
 }

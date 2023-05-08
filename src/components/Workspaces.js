@@ -2,8 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataContext } from "../context/DataContext";
 import axios from "axios";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
-import StarIcon from "@mui/icons-material/Star";
 import AddBoard from "./AddBoard";
 import Navbar from "./Navbar";
 import "./Workspaces.css";
@@ -33,27 +31,6 @@ const Workspaces = () => {
     }
   };
 
-  const handleStarredBoard = async () => {
-    try {
-      console.log("add board to starred list", boardId, email);
-      const token = localStorage.getItem("token");
-      if (!token) {
-        throw new Error("No token found in localStorage");
-      }
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const res = await axios.put(
-        `http://localhost:5000/api/board/${boardId}/starred`,
-        {
-          email: `${email}`,
-        }
-      );
-      console.log(res.data);
-      getUserProfile();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const goToBoard = (id) => {
     navigate(`/board/${id}`);
     console.log("Board:", id);
@@ -77,7 +54,7 @@ const Workspaces = () => {
                 return (
                   <div key={board._id} className="boards-container">
                     <div
-                      // onClick={() => goToBoard(board._id)}
+                      onClick={() => goToBoard(board._id)}
                       className="boards"
                       style={{
                         backgroundImage: `url(${
@@ -90,18 +67,7 @@ const Workspaces = () => {
                         width: "230px",
                       }}
                     >
-                      <h5
-                        className="title"
-                        onClick={() => goToBoard(board._id)}
-                      >
-                        {board.title}
-                      </h5>
-                      <span className="star">
-                        <StarBorderIcon />
-                        <span className="filled-star">
-                          <StarIcon onClick={handleStarredBoard} />
-                        </span>
-                      </span>
+                      <h5 className="title">{board.title}</h5>
                     </div>
                   </div>
                 );

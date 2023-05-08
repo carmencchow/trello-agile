@@ -109,6 +109,7 @@ router.get("/me", auth, async (req, res) => {
       username: user.username,
       email: user.email,
       boards: user.boards,
+      isStarred: user.isStarred,
     });
   } catch (error) {
     console.log(error);

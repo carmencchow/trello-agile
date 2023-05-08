@@ -21,6 +21,9 @@ const boardSchema = new Schema(
     background: {
       type: String,
     },
+    isStarred: {
+      type: Boolean,
+    },
   },
   { timestamps: true }
 );
