@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button } from "@mui/material";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import StarIcon from "@mui/icons-material/Star";
 import AddBoard from "./AddBoard";
 import Navbar from "./Navbar";
 import "./Workspaces.css";
@@ -65,6 +67,12 @@ const Workspaces = () => {
                       onClick={() => goToBoard(board._id)}
                     >
                       <h5 className="title">{board.title}</h5>
+                      <span className="star">
+                        <StarBorderIcon />
+                        <span className="filled-star">
+                          <StarIcon />
+                        </span>
+                      </span>
                     </div>
                   </div>
                 );
