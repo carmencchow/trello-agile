@@ -1,0 +1,10 @@
+.search-member {
+  background: transparent;
+  border: 1px solid white;
+  margin-right: 10px;
+  height: 35px;
+  color: white;
+}
+.search-member input {
+  color: white;
+}

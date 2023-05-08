@@ -13,8 +13,6 @@ const AddComment = ({ commentInput, setCommentInput }) => {
 
   const handleUpdate = async () => {
     try {
-      console.log("New comment", comment);
-
       const token = localStorage.getItem("token");
       if (!token) {
         throw new Error("No token found in localStorage");

@@ -138,6 +138,24 @@ const starredBoard = async (req, res) => {
   }
 };
 
+// ADD a member to the board
+const addMember = async (req, res) => {
+  try {
+    const email = req.body.userEmail;
+    const findUser = await User.findOne({ email });
+    const board = await Board.findByIdAndUpdate(req.params.id, {
+      $addToSet: { user: findUser._id },
+    });
+    await board.save();
+    findUser.boards.push(board._id);
+    await findUser.save();
+    console.log("User and board added", findUser._id, board.id);
+    return res.status(200).send({ msg: "Board members", user: board.user });
+  } catch (err) {
+    console.log("Could not find user email");
+  }
+};
+
 // DELETE A BOARD
 const deleteBoard = async (req, res) => {
   try {
@@ -162,6 +180,7 @@ const deleteBoard = async (req, res) => {
 module.exports = {
   getArchived,
   getBoard,
+  addMember,
   updateBackground,
   getBoards,
   createBoard,

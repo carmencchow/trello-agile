@@ -12,6 +12,7 @@ const Workspaces = () => {
   const navigate = useNavigate();
   const { boardId, handleFetchData } = useContext(DataContext);
   const [userInfo, setUserInfo] = useState("");
+  const [name, setName] = useState("");
 
   const getUserProfile = async () => {
     const token = localStorage.getItem("token");
@@ -21,13 +22,9 @@ const Workspaces = () => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     try {
       const res = await axios.get("http://localhost:5000/api/user/me");
-      setUserInfo(res.data);
-      console.log(
-        "Displaying user boards:",
-        res.data.boards.map((board) => {
-          return board._id;
-        })
-      );
+      console.log("Display boards", res.data);
+      setUserInfo(res.data.boards.filter((board) => !board.isStarred));
+      setName(res.data.username);
     } catch (error) {
       throw error;
     }
@@ -35,7 +32,7 @@ const Workspaces = () => {
 
   const handleStarredBoard = async () => {
     try {
-      console.log("add board to starred list");
+      console.log("add board to starred list", boardId);
       const token = localStorage.getItem("token");
       if (!token) {
         throw new Error("No token found in localStorage");
@@ -45,7 +42,7 @@ const Workspaces = () => {
         `http://localhost:5000/api/board/${boardId}/starred`
       );
       console.log(res.data);
-      handleFetchData();
+      getUserProfile();
     } catch (error) {
       console.log(error);
     }
@@ -63,12 +60,14 @@ const Workspaces = () => {
   return (
     <div>
       <Navbar />
+      <h3 className="greeting">
+        👋 Hi, <strong>{name}!</strong>
+      </h3>
       {userInfo && (
         <div className="greeting">
-          👋 Hi, <strong>{userInfo.username}!</strong>
           <div className="boards-parent-container">
-            {userInfo.boards.length > 0 ? (
-              userInfo.boards.map((board, index) => {
+            {userInfo.length > 0 ? (
+              userInfo.map((board, index) => {
                 return (
                   <div key={board._id} className="boards-container">
                     <div
