@@ -6,8 +6,6 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import StarIcon from "@mui/icons-material/Star";
-
 import { fetchData } from "../store/thunks/fetchList";
 import { DataContext } from "../context/DataContext";
 import Searchbar from "../components/Searchbar";
@@ -46,7 +44,6 @@ const Board = () => {
       (list) => list._id === destination.droppableId
     );
     if (source.droppableId !== destination.droppableId) {
-      // Make copies of the source and destination lists
       let sourceList = { ...lists[sourceListIndex] };
       let destinationList = { ...lists[destinationListIndex] };
 
@@ -119,6 +116,14 @@ const Board = () => {
     setShowArchived(!showArchived);
   };
 
+  const board = useSelector((state) => state.data.board);
+
+  useEffect(() => {
+    if (board) {
+      setTBoard(board);
+    }
+  }, [board]);
+
   const handleStarredBoard = async () => {
     try {
       console.log(id, email);
@@ -131,17 +136,17 @@ const Board = () => {
         `http://localhost:5000/api/board/${id}/starred`,
         {
           email: `${email}`,
+          background: `${board.background}`,
         }
       );
-      console.log("add board to starred list", id, email);
-      console.log(res.data);
+      navigate("/starred");
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleDelete = async (boardId) => {
-    console.log("Deleting board:", id);
+    console.log("Deleting board:", boardId);
     const token = localStorage.getItem("token");
     if (!token) {
       throw new Error("No token found in localStorage");
@@ -151,7 +156,6 @@ const Board = () => {
       const res = await axios.delete(`http://localhost:5000/api/board/${id}`);
       setUserInfo(res.data);
       setEmail(res.data.email);
-      console.log("Deleting board");
       navigate("/workspaces");
     } catch (error) {
       throw error;
@@ -161,14 +165,6 @@ const Board = () => {
   useEffect(() => {
     dispatch(fetchData({ id }));
   }, [dispatch, id]);
-
-  const board = useSelector((state) => state.data.board);
-
-  useEffect(() => {
-    if (board) {
-      setTBoard(board);
-    }
-  }, [board]);
 
   useEffect(() => {
     if (id) {
@@ -194,16 +190,19 @@ const Board = () => {
     >
       <Navbar />
       <div className="board-title">
-        <p className="p-title">{board.title}</p>
-        <span className="star">
-          <StarBorderIcon />
-          <span className="filled-star">
-            <StarIcon onClick={handleStarredBoard} />
-          </span>
-        </span>
+        <div className="left-side">
+          <p className="p-title">{board.title}</p>
+          <StarBorderIcon className="star" onClick={handleStarredBoard} />
+        </div>
 
         <div className="archive-toggle">
-          <Searchbar />
+          {board.user.map((user) => (
+            <div className="user" key={user._id}>
+              <p>{user.username.charAt(0).toUpperCase()}</p>
+            </div>
+          ))}
+          <Searchbar className="search-bar" />
+
           <div className="archive-icons" onClick={toggleCards}>
             {showArchived ? <RiArchiveFill /> : <RiInboxUnarchiveFill />}
           </div>

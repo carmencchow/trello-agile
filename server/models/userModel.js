@@ -32,6 +32,7 @@ const userSchema = new Schema({
       ref: "board",
     },
   ],
+  isStarred: [],
 });
 
 module.exports = mongoose.model("user", userSchema);
