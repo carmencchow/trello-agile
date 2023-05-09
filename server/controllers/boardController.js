@@ -24,7 +24,6 @@ const getBoard = async (req, res) => {
   }
 };
 
-// When button is clicked: return Archived cards
 const getArchived = async (req, res) => {
   try {
     const board = await Board.findOne({ _id: req.params.id }).populate({
@@ -124,24 +123,6 @@ const updateBackground = async (req, res) => {
 };
 
 // STAR a board
-// const starredBoard = async (req, res) => {
-//   try {
-//     const board = await Board.findById({ _id: req.params.id });
-
-//     const email = req.body.email;
-//     console.log(board._id, email);
-//     const findUser = await User.findOne({ email });
-//     console.log("Found", findUser);
-//     findUser.isStarred.push(board._id);
-//     await findUser.save();
-//     console.log("Starred boards are:", findUser.isStarred);
-//     return res.status(200).send({ msg: findUser.isStarred });
-//   } catch (err) {
-//     console.log("Could not find user email");
-//   }
-// };
-
-// STAR a board
 const starredBoard = async (req, res) => {
   console.log("Starred board");
   try {
@@ -163,6 +144,7 @@ const addMember = async (req, res) => {
   try {
     const email = req.body.userEmail;
     const findUser = await User.findOne({ email });
+    console.log(findUser, email);
     const board = await Board.findByIdAndUpdate(req.params.id, {
       $addToSet: { user: findUser._id },
     });

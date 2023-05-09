@@ -7,9 +7,10 @@ import axios from "axios";
 
 const Searchbar = () => {
   const [userEmail, setUserEmail] = useState("");
-  const { boardId } = useContext(DataContext);
+  const { boardId, handleFetchData, getCard, cardId } = useContext(DataContext);
 
   const handleSubmit = async (e) => {
+    console.log(boardId, userEmail);
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
@@ -32,8 +33,8 @@ const Searchbar = () => {
       const data = res.data;
       console.log(data);
       setUserEmail("");
-      // handleFetchData();
-      // getCard(cardId);
+      handleFetchData();
+      getCard(cardId);
     } catch (err) {
       console.log(err);
     }

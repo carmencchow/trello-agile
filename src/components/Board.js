@@ -133,6 +133,7 @@ const Board = () => {
       );
       console.log("add board to starred list", id, email);
       console.log(res.data);
+      navigate("/starred");
     } catch (error) {
       console.log(error);
     }

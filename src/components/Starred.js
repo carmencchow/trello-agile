@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-import GradeIcon from "@mui/icons-material/Grade";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import "../index.css";
 import "./Starred.css";
