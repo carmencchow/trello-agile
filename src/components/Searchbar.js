@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./Searchbar.css";
 import { DataContext } from "../context/DataContext";
+import SearchIcon from "@mui/icons-material/Search";
 
 import axios from "axios";
 
@@ -39,7 +40,7 @@ const Searchbar = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <>
       <input
         className="search-member"
         type="text"
@@ -47,7 +48,8 @@ const Searchbar = () => {
         placeholder="Find a member"
         onChange={(e) => setUserEmail(e.target.value)}
       ></input>
-    </form>
+      <SearchIcon onClick={handleSubmit} className="search" />
+    </>
   );
 };
 

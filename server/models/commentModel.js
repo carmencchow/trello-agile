@@ -9,6 +9,10 @@ const commentSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "card",
   },
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+  },
 });
 
 module.exports = mongoose.model("comment", commentSchema);

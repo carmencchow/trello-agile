@@ -2,9 +2,24 @@
   background: transparent;
   border: 1px solid white;
   margin-right: 10px;
-  height: 35px;
+  height: 30px;
   color: white;
 }
 .search-member input {
   color: white;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+form {
+  margin-top: 0px;
+}
+.search {
+  color: white;
+  width: 27px;
+  height: 27px;
+  margin-top: 4px;
+  margin-right: 5px;
+}
+button {
+  background-color: none;
 }

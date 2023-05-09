@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import GradeIcon from "@mui/icons-material/Grade";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import "../index.css";
 import "./Starred.css";
@@ -38,7 +39,8 @@ const Starred = () => {
       <Navbar />
       {userInfo && (
         <div className="starred-heading">
-          <StarBorderIcon /> Starred Boards
+          <StarBorderIcon />
+          Starred Boards
           <div className="boards-parent-container">
             {userInfo.length > 0 ? (
               userInfo.map((board, index) => {
