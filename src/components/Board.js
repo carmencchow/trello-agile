@@ -44,7 +44,6 @@ const Board = () => {
       (list) => list._id === destination.droppableId
     );
     if (source.droppableId !== destination.droppableId) {
-      // Make copies of the source and destination lists
       let sourceList = { ...lists[sourceListIndex] };
       let destinationList = { ...lists[destinationListIndex] };
 
@@ -117,6 +116,14 @@ const Board = () => {
     setShowArchived(!showArchived);
   };
 
+  const board = useSelector((state) => state.data.board);
+
+  useEffect(() => {
+    if (board) {
+      setTBoard(board);
+    }
+  }, [board]);
+
   const handleStarredBoard = async () => {
     try {
       console.log(id, email);
@@ -129,17 +136,16 @@ const Board = () => {
         `http://localhost:5000/api/board/${id}/starred`,
         {
           email: `${email}`,
+          background: `${board.background}`,
         }
       );
-      console.log("add board to starred list", id, email);
-      console.log(res.data);
       navigate("/starred");
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleDelete = async (boardId) => {
+  const handleDelete = async () => {
     console.log("Deleting board:", id);
     const token = localStorage.getItem("token");
     if (!token) {
@@ -160,15 +166,6 @@ const Board = () => {
   useEffect(() => {
     dispatch(fetchData({ id }));
   }, [dispatch, id]);
-
-  const board = useSelector((state) => state.data.board);
-  console.log("Board data", board.user);
-
-  useEffect(() => {
-    if (board) {
-      setTBoard(board);
-    }
-  }, [board]);
 
   useEffect(() => {
     if (id) {

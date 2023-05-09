@@ -32,9 +32,9 @@ const Searchbar = () => {
       );
       const data = res.data;
       console.log(data);
-      setUserEmail("");
       handleFetchData();
       getCard(cardId);
+      setUserEmail("");
     } catch (err) {
       console.log(err);
     }
