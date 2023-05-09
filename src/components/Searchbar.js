@@ -1,14 +1,16 @@
 import React, { useState, useContext } from "react";
 import "./Searchbar.css";
 import { DataContext } from "../context/DataContext";
+import SearchIcon from "@mui/icons-material/Search";
 
 import axios from "axios";
 
 const Searchbar = () => {
   const [userEmail, setUserEmail] = useState("");
-  const { boardId } = useContext(DataContext);
+  const { boardId, handleFetchData, getCard, cardId } = useContext(DataContext);
 
   const handleSubmit = async (e) => {
+    console.log(boardId, userEmail);
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
@@ -31,15 +33,15 @@ const Searchbar = () => {
       const data = res.data;
       console.log(data);
       setUserEmail("");
-      // handleFetchData();
-      // getCard(cardId);
+      handleFetchData();
+      getCard(cardId);
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <>
       <input
         className="search-member"
         type="text"
@@ -47,7 +49,8 @@ const Searchbar = () => {
         placeholder="Find a member"
         onChange={(e) => setUserEmail(e.target.value)}
       ></input>
-    </form>
+      <SearchIcon onClick={handleSubmit} className="search" />
+    </>
   );
 };
 

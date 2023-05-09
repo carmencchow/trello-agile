@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
 import { BiArchive, BiCommentDetail } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
 import { FiEdit2 } from "react-icons/fi";
@@ -44,7 +43,6 @@ const CardPopup = ({ openModal, onCloseModal }) => {
         `http://localhost:5000/api/card/archive/${cardId}/`
       );
       console.log(res.data.card.title, res.data.card.status);
-      toast.success(`Card is now archived`);
       setArchiveBtn(!archiveBtn);
       handleFetchData();
       onCloseModal();
@@ -155,6 +153,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
                   <div className="comments">
                     <p className="displayed-comments">
                       <RiDoubleQuotesL /> {comment.content} <RiDoubleQuotesR />
+                      {comment.author}
                     </p>
                   </div>
                 );

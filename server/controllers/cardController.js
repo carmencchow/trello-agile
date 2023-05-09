@@ -138,6 +138,7 @@ const createComment = async (req, res) => {
     const newComment = await Comment.create({
       content,
       owner: cardId,
+      //    author: cardId.user._id,
     });
     console.log("parentCard is: ", cardId, newComment);
     await newComment.save();

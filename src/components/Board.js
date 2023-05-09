@@ -6,8 +6,6 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import StarIcon from "@mui/icons-material/Star";
-
 import { fetchData } from "../store/thunks/fetchList";
 import { DataContext } from "../context/DataContext";
 import Searchbar from "../components/Searchbar";
@@ -135,6 +133,7 @@ const Board = () => {
       );
       console.log("add board to starred list", id, email);
       console.log(res.data);
+      navigate("/starred");
     } catch (error) {
       console.log(error);
     }
@@ -163,6 +162,7 @@ const Board = () => {
   }, [dispatch, id]);
 
   const board = useSelector((state) => state.data.board);
+  console.log("Board data", board.user);
 
   useEffect(() => {
     if (board) {
@@ -194,16 +194,19 @@ const Board = () => {
     >
       <Navbar />
       <div className="board-title">
-        <p className="p-title">{board.title}</p>
-        <span className="star">
-          <StarBorderIcon />
-          <span className="filled-star">
-            <StarIcon onClick={handleStarredBoard} />
-          </span>
-        </span>
+        <div className="left-side">
+          <p className="p-title">{board.title}</p>
+          <StarBorderIcon className="star" onClick={handleStarredBoard} />
+        </div>
 
         <div className="archive-toggle">
-          <Searchbar />
+          {board.user.map((user) => (
+            <div className="user" key={user._id}>
+              <p>{user.username.charAt(0).toUpperCase()}</p>
+            </div>
+          ))}
+          <Searchbar className="search-bar" />
+
           <div className="archive-icons" onClick={toggleCards}>
             {showArchived ? <RiArchiveFill /> : <RiInboxUnarchiveFill />}
           </div>
