@@ -28,7 +28,6 @@
 .star {
   color: white;
   font-size: 26px;
-  position: relative;
   margin-left: 10px;
   margin-top: 12px;
 }
@@ -40,14 +39,20 @@
   display: none;
   margin-top: 12px;
 }
-.star:hover .filled-star {
-  color: yellow;
-  display: block;
-  position: absolute;
-  cursor: pointer;
-}
 .search-bar {
   margin-top: 0px;
+}
+.delete-board {
+  position: relative;
+}
+.delete-board-hover {
+  position: absolute;
+  display: none;
+}
+.delete-board:hover + .delete-board-hover {
+  display: block;
+  top: 0px;
+  left: 0px;
 }
 .user {
   border-radius: 50%;

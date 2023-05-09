@@ -145,8 +145,8 @@ const Board = () => {
     }
   };
 
-  const handleDelete = async () => {
-    console.log("Deleting board:", id);
+  const handleDelete = async (boardId) => {
+    console.log("Deleting board:", boardId);
     const token = localStorage.getItem("token");
     if (!token) {
       throw new Error("No token found in localStorage");
@@ -156,7 +156,6 @@ const Board = () => {
       const res = await axios.delete(`http://localhost:5000/api/board/${id}`);
       setUserInfo(res.data);
       setEmail(res.data.email);
-      console.log("Deleting board");
       navigate("/workspaces");
     } catch (error) {
       throw error;
