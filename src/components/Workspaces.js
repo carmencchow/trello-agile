@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { DataContext } from "../context/DataContext";
 import axios from "axios";
 import AddBoard from "./AddBoard";
 import Navbar from "./Navbar";
@@ -8,7 +7,6 @@ import "./Workspaces.css";
 
 const Workspaces = () => {
   const navigate = useNavigate();
-  const { boardId, handleFetchData } = useContext(DataContext);
   const [userInfo, setUserInfo] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -23,6 +21,7 @@ const Workspaces = () => {
       const res = await axios.get("http://localhost:5000/api/user/me");
       console.log("Res", res);
       console.log("Display boards", res.data);
+      setUserInfo(res.data.boards);
       setUserInfo(res.data.boards.filter((board) => !board.isStarred));
       setName(res.data.username);
       setEmail(res.data.email);

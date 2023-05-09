@@ -6,7 +6,6 @@ import "./Login.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userInfo, setUserInfo] = useState("");
   const [serverResponse, setServerResponse] = useState("");
   const navigate = useNavigate();
 
@@ -66,7 +65,7 @@ const Login = () => {
 
           <div className="register-row">
             <p className="no-acct">
-              Don't have an account?{" "}
+              Don't have an account?
               <span className="register" onClick={() => navigate("/register")}>
                 Sign Up
               </span>

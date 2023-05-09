@@ -13,6 +13,7 @@ const getBoard = async (req, res) => {
           path: "cards",
         },
       })
+      .populate("isStarred")
       .populate("user");
 
     if (!board) {
@@ -63,12 +64,11 @@ const getBoards = async (req, res) => {
 // CREATE board
 const createBoard = async (req, res) => {
   const title = req.body.title;
-
   try {
-    const existingBoard = await Board.collection.findOne({ title: title });
+    const existingBoard = await Board.findOne({ title });
     if (existingBoard) {
       console.log("board already exists");
-      return res.sendStatus(200); //Stop here, new board not created
+      return res.status(200).send({ message: "Board name already exists" });
     }
 
     const user = await User.findById({ _id: req.user.id });
@@ -144,7 +144,7 @@ const addMember = async (req, res) => {
   try {
     const email = req.body.userEmail;
     const findUser = await User.findOne({ email });
-    console.log(findUser, email);
+    console.log("Finding user", findUser, email);
     const board = await Board.findByIdAndUpdate(req.params.id, {
       $addToSet: { user: findUser._id },
     });
