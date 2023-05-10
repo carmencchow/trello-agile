@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { DataContext } from "../context/DataContext";
 import "./CardPopup.css";
@@ -23,7 +22,6 @@ const DeleteCard = ({ id, onClose }) => {
         className="edit-card"
         onClick={() => {
           handleDelete();
-          toast.success(`Card deleted`);
         }}
       >
         <span className="edit-icon">
