@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
+import { server } from "./utils";
 import { DataContext } from "../context/DataContext";
 import Navbar from "./Navbar";
 import "./Templates.css";

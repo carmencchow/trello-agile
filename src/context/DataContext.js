@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { fetchData } from "../store/thunks/fetchList";
 import { useDispatch } from "react-redux";
+import { server } from "./utils";
 import axios from "axios";
 
 export const DataContext = createContext();

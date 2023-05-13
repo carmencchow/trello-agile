@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { server } from "./utils";
 import Navbar from "../components/Navbar";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import "../index.css";
