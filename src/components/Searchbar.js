@@ -19,7 +19,9 @@ const Searchbar = () => {
         throw new Error("No token found in localStorage");
       }
       const res = await axios.put(
-        `${server}/api/board/${boardId}/addmember`,
+        // `${server}/api/board/${boardId}/addmember`,
+        `https://trello-agile-project.onrender.com/api/board/${boardId}/addmember`,
+
         {
           userEmail: `${userEmail}`,
         },

@@ -40,7 +40,10 @@ const CardPopup = ({ openModal, onCloseModal }) => {
         throw new Error("No token found in localStorage");
       }
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const res = await axios.get(`${server}/api/card/archive/${cardId}/`);
+      // const res = await axios.get(`${server}/api/card/archive/${cardId}/`);
+      const res = await axios.get(
+        `https://trello-agile-project.onrender.com/api/card/archive/${cardId}/`
+      );
       console.log(res.data.card.title, res.data.card.status);
       setArchiveBtn(!archiveBtn);
       handleFetchData();
