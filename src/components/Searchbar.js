@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import "./Searchbar.css";
+import { server } from "./utils";
 import { DataContext } from "../context/DataContext";
 import SearchIcon from "@mui/icons-material/Search";
 
