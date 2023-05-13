@@ -80,7 +80,10 @@ const Board = () => {
 
       setTBoard({ ...tBoard, lists: newLists });
       axios
-        .put(`${server}/api/board/${id}`, { lists: newLists })
+        // .put(`${server}/api/board/${id}`, { lists: newLists })
+        .put(`https://trello-agile-project.onrender.com/api/board/${id}`, {
+          lists: newLists,
+        })
         .then((res) => {})
         .catch((err) => console.log(err));
     } else {
@@ -133,10 +136,14 @@ const Board = () => {
         throw new Error("No token found in localStorage");
       }
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const res = await axios.put(`${server}/api/board/${id}/starred`, {
-        email: `${email}`,
-        background: `${board.background}`,
-      });
+      // const res = await axios.put(`${server}/api/board/${id}/starred`, {
+      const res = await axios.put(
+        `https://trello-agile-project.onrender.com/api/board/${id}/starred`,
+        {
+          email: `${email}`,
+          background: `${board.background}`,
+        }
+      );
       navigate("/starred");
     } catch (error) {
       console.log(error);

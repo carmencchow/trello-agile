@@ -19,7 +19,11 @@ const Register = () => {
         password: password,
         username: username,
       };
-      const res = await axios.post(`${server}` + "/api/user/signup", challenge);
+      // const res = await axios.post(`${server}` + "/api/user/signup", challenge);
+      const res = await axios.post(
+        "https://trello-agile-project.onrender.com/api/user/signup",
+        challenge
+      );
       localStorage.setItem("token", res.data.token);
       setServerResponse(res.data.message);
       navigate("/login");

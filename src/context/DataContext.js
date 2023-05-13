@@ -22,7 +22,10 @@ export const DataProvider = ({ children }) => {
 
   const getCard = async (id) => {
     try {
-      const res = await axios.get(`${server}` + "/api/card/" + `${id}`);
+      // const res = await axios.get(`${server}` + "/api/card/" + `${id}`);
+      const res = await axios.get(
+        `https://trello-agile-project.onrender.com/api/card/${id}`
+      );
       setCardData(res.data);
     } catch (e) {
       console.log(e);

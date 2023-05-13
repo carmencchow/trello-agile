@@ -19,7 +19,8 @@ const AddComment = ({ commentInput, setCommentInput }) => {
         throw new Error("No token found in localStorage");
       }
       const res = await axios.post(
-        `${server}/api/card/${cardId}/comment`,
+        // `${server}/api/card/${cardId}/comment`,
+        `https://trello-agile-project.onrender.com/api/card/${cardId}/comment`,
         {
           comment: `${comment}`,
         },

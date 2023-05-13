@@ -34,7 +34,8 @@ const Templates = () => {
         throw new Error("No token found in localStorage");
       }
       const res = await axios.put(
-        `${server}/api/board/${boardId}/background`,
+        // `${server}/api/board/${boardId}/background`,
+        `https://trello-agile-project.onrender.com/api/board/${boardId}/background`,
         {
           background: `${backgroundImage}`,
         },
