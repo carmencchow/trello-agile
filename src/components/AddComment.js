@@ -18,7 +18,7 @@ const AddComment = ({ commentInput, setCommentInput }) => {
         throw new Error("No token found in localStorage");
       }
       const res = await axios.post(
-        `http://localhost:5000/api/card/${cardId}/comment`,
+        `${server}/api/card/${cardId}/comment`,
         {
           comment: `${comment}`,
         },

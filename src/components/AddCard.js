@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
+import { server } from "./utils";
 import { DataContext } from "../context/DataContext";
 import "./AddCard.css";
 
@@ -18,7 +19,7 @@ const AddCard = ({ openAddCard, listId, onClose }) => {
         throw new Error("No token found in localStorage");
       }
       const res = await axios.post(
-        `http://localhost:5000/api/card/?listId=${listId}`,
+        `${server}/api/card/?listId=${listId}`,
 
         {
           title: `${input}`,

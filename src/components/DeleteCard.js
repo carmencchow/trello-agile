@@ -8,7 +8,7 @@ const DeleteCard = ({ id, onClose }) => {
   const { handleFetchData } = useContext(DataContext);
 
   const handleDelete = async () => {
-    await axios.delete(`http://localhost:5000/api/card/${id}`).then((res) => {
+    await axios.delete(`${server}/api/card/${id}`).then((res) => {
       console.log(`Card deleted`, res.data);
       onClose();
     });
