@@ -17,7 +17,7 @@ const Starred = () => {
     }
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     try {
-      const res = await axios.get("http://localhost:5000/api/user/me");
+      const res = await axios.get(`${server}` + "/api/user/me");
       console.log(res.data);
       setUserInfo(res.data.boards.filter((board) => board.isStarred === true));
     } catch (error) {

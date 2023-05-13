@@ -21,7 +21,7 @@ export const DataProvider = ({ children }) => {
 
   const getCard = async (id) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/card/${id}`);
+      const res = await axios.get(`${server}/api/card/${id}`);
       setCardData(res.data);
     } catch (e) {
       console.log(e);

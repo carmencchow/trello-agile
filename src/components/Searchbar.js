@@ -18,7 +18,7 @@ const Searchbar = () => {
         throw new Error("No token found in localStorage");
       }
       const res = await axios.put(
-        `http://localhost:5000/api/board/${boardId}/addmember`,
+        `${server}/api/board/${boardId}/addmember`,
         {
           userEmail: `${userEmail}`,
         },

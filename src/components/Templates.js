@@ -33,7 +33,7 @@ const Templates = () => {
         throw new Error("No token found in localStorage");
       }
       const res = await axios.put(
-        `http://localhost:5000/api/board/${boardId}/background`,
+        `${server}/api/board/${boardId}/background`,
         {
           background: `${backgroundImage}`,
         },

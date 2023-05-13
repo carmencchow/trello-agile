@@ -39,9 +39,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
         throw new Error("No token found in localStorage");
       }
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const res = await axios.get(
-        `http://localhost:5000/api/card/archive/${cardId}/`
-      );
+      const res = await axios.get(`${server}/api/card/archive/${cardId}/`);
       console.log(res.data.card.title, res.data.card.status);
       setArchiveBtn(!archiveBtn);
       handleFetchData();
@@ -61,7 +59,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
         throw new Error("No token found in localStorage");
       }
       const res = await axios.put(
-        `http://localhost:5000/api/card/${cardId}/color`,
+        `${server}/api/card/${cardId}/color`,
         {
           color: `${color}`,
         },
