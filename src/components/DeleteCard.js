@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import axios from "axios";
-import { server } from "./utils";
+import { server } from "../utils";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { DataContext } from "../context/DataContext";
 import "./CardPopup.css";

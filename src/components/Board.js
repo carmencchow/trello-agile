@@ -5,7 +5,7 @@ import { RiInboxUnarchiveFill, RiArchiveFill } from "react-icons/ri";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { server } from "./utils";
+import { server } from "../utils";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { fetchData } from "../store/thunks/fetchList";
 import { DataContext } from "../context/DataContext";
