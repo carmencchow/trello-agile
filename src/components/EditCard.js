@@ -21,8 +21,8 @@ const EditCard = ({ openInput, setOpenInput }) => {
         throw new Error("No token found in localStorage");
       }
       const res = await axios.put(
-        // `${server}/api/card/${cardId}`,
-        `https://trello-agile-project.onrender.com/api/card/${cardId}`,
+        `${server}/api/card/${cardId}`,
+        // `https://trello-agile-project.onrender.com/api/card/${cardId}`,
 
         { title: `${input}` },
         {

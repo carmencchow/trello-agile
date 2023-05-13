@@ -80,10 +80,10 @@ const Board = () => {
 
       setTBoard({ ...tBoard, lists: newLists });
       axios
-        // .put(`${server}/api/board/${id}`, { lists: newLists })
-        .put(`https://trello-agile-project.onrender.com/api/board/${id}`, {
-          lists: newLists,
-        })
+        .put(`${server}/api/board/${id}`, { lists: newLists })
+        // .put(`https://trello-agile-project.onrender.com/api/board/${id}`, {
+        //   lists: newLists,
+        // })
         .then((res) => {})
         .catch((err) => console.log(err));
     } else {

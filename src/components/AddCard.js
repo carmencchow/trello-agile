@@ -19,8 +19,8 @@ const AddCard = ({ openAddCard, listId, onClose }) => {
         throw new Error("No token found in localStorage");
       }
       const res = await axios.post(
-        // `${server}/api/card/?listId=${listId}`,
-        `https://trello-agile-project.onrender.com/api/card/?listId=${listId}`,
+        `${server}/api/card/?listId=${listId}`,
+        // `https://trello-agile-project.onrender.com/api/card/?listId=${listId}`,
 
         {
           title: `${input}`,
