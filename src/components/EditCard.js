@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
-import { server } from "./utils";
+import { server } from "../utils";
 import { DataContext } from "../context/DataContext";
 import "./EditCard.css";
 

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { server } from "./utils";
+import { server } from "../utils";
 
 export const fetchData = createAsyncThunk(
   "board/fetchBoard",

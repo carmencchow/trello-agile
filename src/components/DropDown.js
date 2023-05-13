@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
 import axios from "axios";
-import { server } from "./utils";
+import { server } from "../utils";
 import { DataContext } from "../context/DataContext";
 import "./DropDown.css";
 

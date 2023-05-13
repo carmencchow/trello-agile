@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { server } from "./utils";
+import { server } from "../utils";
 import AddBoard from "./AddBoard";
 import Navbar from "./Navbar";
 import "./Workspaces.css";
