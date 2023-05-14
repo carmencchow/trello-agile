@@ -14,11 +14,11 @@ const Login = () => {
     e.preventDefault();
     try {
       const challenge = { email: email, password: password };
-      // const res = await axios.post(`${server}` + "/api/user/login", challenge);
-      const res = await axios.post(
-        "https://trello-agile-project.onrender.com/api/user/login",
-        challenge
-      );
+      const res = await axios.post(`${server}` + "/api/user/login", challenge);
+      // const res = await axios.post(
+      //   "https://trello-agile-project.onrender.com/api/user/login",
+      //   challenge
+      // );
       localStorage.setItem("token", res.data.token);
       setServerResponse(res.data.message);
       navigate("/workspaces");

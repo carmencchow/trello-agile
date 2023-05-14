@@ -19,10 +19,10 @@ const Workspaces = () => {
     }
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     try {
-      // const res = await axios.get(`${server}` + "/api/user/me");
-      const res = await axios.get(
-        "https://trello-agile-project.onrender.com/api/user/me"
-      );
+      const res = await axios.get(`${server}` + "/api/user/me");
+      // const res = await axios.get(
+      //   "https://trello-agile-project.onrender.com/api/user/me"
+      // );
       console.log("Res", res);
       console.log("Display boards", res.data);
       setUserInfo(res.data.boards);
