@@ -19,15 +19,7 @@ const server = http.createServer(app);
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.use(cors());
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5000",
-      "https://trello-agile-project.onrender.com",
-    ],
-  })
-);
+app.use(cors());
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);
