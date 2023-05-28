@@ -20,40 +20,63 @@ const Board = () => {
   const { setBoardId } = useContext(DataContext);
   const [showArchived, setShowArchived] = useState(false);
   const [email, setEmail] = useState();
-  const [tBoard, setTBoard] = useState(null);
+  const [currentBoard, setCurrentBoard] = useState(null);
   const [userInfo, setUserInfo] = useState("");
   const navigate = useNavigate();
 
-  const rearangeArr = (arr, sourceIndex, destIndex) => {
-    const arrCopy = [...arr];
-    const [removed] = arrCopy.splice(sourceIndex, 1);
+  const board = useSelector((state) => state.data.board);
+
+  useEffect(() => {
+    if (board) {
+      setCurrentBoard(board);
+    }
+  }, [board]);
+
+  // Rearrange array of cards by moving a card from the source index to destination index
+  const rearrangeCards = (cardsArray, sourceIndex, destIndex) => {
+    // create copy of original cards array
+    const arrCopy = [...cardsArray];
+    // Only remove one item from array starting at the sourceIndex
+    const removed = arrCopy.splice(sourceIndex, 1)[0];
+    // const [removed] = arrCopy.splice(sourceIndex, 1);
+
+    // Add 'removed' card at the destination index
     arrCopy.splice(destIndex, 0, removed);
     return arrCopy;
   };
 
+  // onDragEnd function for the drag and drop action
+  // result object (source, droppableId, index, destination)
   const onDragEnd = (result, lists) => {
+    // Check for valid destination for dropped item
     if (!result.destination) {
       return;
     }
 
     const { source, destination } = result;
 
+    // Find indexes of source and destination lists
     const sourceListIndex = lists.findIndex(
       (list) => list._id === source.droppableId
     );
     const destinationListIndex = lists.findIndex(
       (list) => list._id === destination.droppableId
     );
+
+    // Update list if source and destination lists are different
     if (source.droppableId !== destination.droppableId) {
       let sourceList = { ...lists[sourceListIndex] };
       let destinationList = { ...lists[destinationListIndex] };
 
       let removedItem;
+
+      // If source list has a 'cards' property and valid source index ...
       if (
         sourceList?.cards &&
         source.index >= 0 &&
         source.index < sourceList.cards.length
       ) {
+        // ... remove item at the source index
         removedItem = sourceList.cards[source.index];
         sourceList.cards = [
           ...sourceList.cards.slice(0, source.index),
@@ -61,11 +84,13 @@ const Board = () => {
         ];
       }
 
+      // If destination list has a 'cards' property and valid destination index ...
       if (
         destinationList?.cards &&
         destination.index >= 0 &&
         destination.index <= destinationList.cards.length
       ) {
+        // ... insert item at the source index
         destinationList.cards = [
           ...destinationList.cards.slice(0, destination.index),
           removedItem,
@@ -73,34 +98,37 @@ const Board = () => {
         ];
       }
 
-      // Update the lists array
+      // Update the lists array by creating a new array. Replace old lists with updated lists
       const newLists = [...lists];
       newLists[sourceListIndex] = sourceList;
       newLists[destinationListIndex] = destinationList;
 
-      setTBoard({ ...tBoard, lists: newLists });
+      // Update backend server
+      setCurrentBoard({ ...currentBoard, lists: newLists });
       axios
-        .put(`${server}/api/board/${id}`, { lists: newLists })
-        // .put(`https://trello-agile-project.onrender.com/api/board/${id}`, {
-        //   lists: newLists,
-        // })
+        .put(`${server}/api/board/${id}`, {
+          lists: newLists,
+        })
         .then((res) => {})
         .catch((err) => console.log(err));
+
+      // If source and destination droppableId are the same
     } else {
-      setTBoard({
-        ...tBoard,
-        lists: tBoard.lists.map((li, i) => {
+      setCurrentBoard({
+        ...currentBoard,
+        lists: currentBoard.lists.map((list, i) => {
+          // if current index matches sourceListIndex:
           if (sourceListIndex === i) {
             return {
-              ...li,
-              cards: rearangeArr(
-                tBoard.lists[i].cards,
+              ...list,
+              cards: rearrangeCards(
+                currentBoard.lists[i].cards,
                 source.index,
                 destination.index
               ),
             };
           } else {
-            return li;
+            return list;
           }
         }),
       });
@@ -119,14 +147,6 @@ const Board = () => {
   const toggleCards = () => {
     setShowArchived(!showArchived);
   };
-
-  const board = useSelector((state) => state.data.board);
-
-  useEffect(() => {
-    if (board) {
-      setTBoard(board);
-    }
-  }, [board]);
 
   const handleStarredBoard = async () => {
     try {
@@ -216,11 +236,13 @@ const Board = () => {
         </div>
       </div>
 
-      <DragDropContext onDragEnd={(result) => onDragEnd(result, tBoard.lists)}>
+      <DragDropContext
+        onDragEnd={(result) => onDragEnd(result, currentBoard.lists)}
+      >
         <div className="list-container">
-          {tBoard &&
-            tBoard.lists &&
-            tBoard.lists.map((list) => (
+          {currentBoard &&
+            currentBoard.lists &&
+            currentBoard.lists.map((list) => (
               <List
                 key={list._id}
                 cards={showCards(list)}

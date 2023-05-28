@@ -20,10 +20,6 @@ const Register = () => {
         username: username,
       };
       const res = await axios.post(`${server}` + "/api/user/signup", challenge);
-      // const res = await axios.post(
-      //   "https://trello-agile-project.onrender.com/api/user/signup",
-      //   challenge
-      // );
       localStorage.setItem("token", res.data.token);
       setServerResponse(res.data.message);
       navigate("/login");
@@ -40,7 +36,7 @@ const Register = () => {
     <div>
       <div className="navbar-layout">
         <div className="logo-style">
-          <h1 className="trello-home">Trello</h1>
+          <h1 className="trello-home">Trellify</h1>
         </div>
       </div>
       <div className="register-container">

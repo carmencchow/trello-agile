@@ -33,8 +33,8 @@ const Login = () => {
   return (
     <div>
       <div className="navbar-layout">
-        <div className="w-style">
-          <h1 className="trello-home">Trello</h1>
+        <div className="logo-style">
+          <h1 className="trello-home">Trellify</h1>
         </div>
       </div>
       <div className="login-container">
