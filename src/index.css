@@ -56,6 +56,10 @@ code {
   text-decoration: none;
   color: white;
 }
+h3 .templates-li .wallpaper-icon {
+  margin-bottom: 30px;
+  background: blue;
+}
 
 .logout-btn {
   padding-bottom: 0.5em;

@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { RiLogoutCircleRFill } from "react-icons/ri";
+import { MdWallpaper } from "react-icons/md";
+import { CiLogout } from "react-icons/ci";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbutton } from "./NavButton";
 import DropDown from "./DropDown";
@@ -8,7 +11,7 @@ const Navbar = () => {
 
   const selectOptions = [
     { name: "Workspaces", query: "workspaces" },
-    { name: "Recent", query: "board/:id" },
+    // { name: "Recent", query: "board/:id" },
     { name: "Starred", query: "starred" },
   ];
   const navigate = useNavigate();
@@ -45,7 +48,8 @@ const Navbar = () => {
         })}
         <div>
           <h3 className="templates-li" onClick={handleDropDown}>
-            Templates
+            {/* Templates */}
+            <MdWallpaper className="wallpaper-icon" size={30} />
           </h3>
         </div>
         {dropdown !== false && (
@@ -55,7 +59,8 @@ const Navbar = () => {
 
       <div className="logo-style">
         <h1 className="logout-home" onClick={handleLogout}>
-          Logout
+          <CiLogout />
+          {/* Logout */}
         </h1>
       </div>
     </div>
