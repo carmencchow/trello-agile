@@ -56,11 +56,9 @@ code {
   text-decoration: none;
   color: white;
 }
-h3 .templates-li .wallpaper-icon {
-  margin-bottom: 30px;
-  background: blue;
+.templates-li .wallpaper-icon {
+  font-size: 40px;
 }
-
 .logout-btn {
   padding-bottom: 0.5em;
   margin-bottom: 10px;
@@ -119,4 +117,14 @@ h3 .templates-li .wallpaper-icon {
   justify-content: center;
   width: 33%;
   border: 1px red solid;
+}
+
+@media (max-width: 500px) {
+  .trello-home {
+    font-size: 16px;
+  }
+  .navbutton-style {
+    font-size: 12px;
+    margin-right: 0em;
+  }
 }

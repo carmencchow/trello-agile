@@ -21,6 +21,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   border-radius: 10px;
+  border-top-left-radius: 30px;
 }
 .edit-cardtitle {
   font-size: 22px;
@@ -152,4 +153,112 @@ span.edit-icon svg {
   cursor: pointer;
   height: 40px;
   text-align: center;
+}
+
+@media (max-width: 500px) {
+  .card-popup {
+    max-height: 450px;
+    width: 450px;
+    position: absolute;
+    background-color: #f4f5f7;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+  }
+  .color-text,
+  .activity-label {
+    font-size: 14px;
+  }
+  .color-row span {
+    width: 90px;
+    height: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+  .color-btn {
+    font-size: 10px;
+    font-weight: lighter;
+    line-height: 30px;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    width: 60px;
+    margin-left: 10px;
+    cursor: pointer;
+    height: 30px;
+    text-align: center;
+  }
+  .card-content {
+    margin: 20px 25px;
+    height: 90vh;
+  }
+  .delete-card,
+  .edit-card,
+  .archive-card {
+    font-size: 12px;
+  }
+  .change-input {
+    width: 170px;
+    height: 40px;
+  }
+  .card-name {
+    margin-left: 20px;
+    font-size: 20px;
+  }
+  .name-change-input {
+    margin-right: -10px;
+  }
+  .close-btn {
+    font-size: 20px;
+    flex-direction: column;
+    margin-top: 15px;
+  }
+  span.edit-icon svg {
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 600px) {
+  .color-row span {
+    width: 300px;
+    height: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 5px;
+  }
+  .card-popup {
+    max-height: 500px;
+    width: 500px;
+    position: absolute;
+    background-color: #f4f5f7;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+  }
+  .card-name {
+    margin-left: 15px;
+    font-size: 16px;
+  }
+  .change-input {
+    width: 190px;
+    height: 40px;
+  }
+  .name-change-input {
+    margin-right: -70px;
+  }
+  .update-btn {
+    font-size: 12px;
+    line-height: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+    height: 25px;
+    text-align: center;
+    margin-top: 10px;
+  }
 }

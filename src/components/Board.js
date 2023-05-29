@@ -156,7 +156,6 @@ const Board = () => {
         throw new Error("No token found in localStorage");
       }
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      // const res = await axios.put(`${server}/api/board/${id}/starred`, {
       const res = await axios.put(
         `https://trello-agile-project.onrender.com/api/board/${id}/starred`,
         {

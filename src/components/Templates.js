@@ -35,7 +35,6 @@ const Templates = () => {
       }
       const res = await axios.put(
         `${server}/api/board/${boardId}/background`,
-        // `https://trello-agile-project.onrender.com/api/board/${boardId}/background`,
         {
           background: `${backgroundImage}`,
         },
@@ -47,13 +46,8 @@ const Templates = () => {
           },
         }
       );
-      console.log(`Selected background:',  ${backgroundImage}`);
-      console.log(res);
       const data = res.data;
-      console.log("Data is:", data);
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   return (
@@ -64,7 +58,6 @@ const Templates = () => {
         {images.map((image, index) => (
           <div key={images.index}>
             <img
-              // src={require(`../assets/${image}`)}
               src={`${process.env.PUBLIC_URL}/assets/${image}`}
               alt="background"
               onClick={() => {

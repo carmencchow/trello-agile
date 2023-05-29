@@ -10,20 +10,20 @@
   margin-bottom: 5px;
   align-items: left;
 }
-.card-title{
+.card-title {
   font-size: 16px;
   font-weight: lighter;
   display: flex;
   justify-content: left;
   align-items: flex-start;
 }
-.add-card{
+.add-card {
   background-color: none;
   height: 50px;
   justify-content: left;
   margin-bottom: 10px;
 }
-.add-card-text{
+.add-card-text {
   font-weight: lighter;
   margin-bottom: 10px;
 }
@@ -35,7 +35,7 @@
   text-align: left;
   justify-content: left;
   box-shadow: 0 1px 0 #091e4240;
-  background-color: #fff;  
+  background-color: #fff;
   width: 240px;
   font-weight: bolder;
 }
@@ -103,13 +103,18 @@
   height: 6px;
   border-radius: 5px;
 }
-.burlywood{
+.burlywood {
   background-color: burlywood;
   width: 20px;
   height: 6px;
   border-radius: 5px;
 }
-.dots{
+.dots {
   margin-top: 0px;
 }
 
+@media (max-width: 500px) {
+  .cards {
+    margin-top: 0px;
+  }
+}

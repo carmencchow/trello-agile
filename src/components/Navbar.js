@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { RiLogoutCircleRFill } from "react-icons/ri";
+import { BsPersonWorkspace } from "react-icons/bs";
 import { MdWallpaper } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
 import { Link, useNavigate } from "react-router-dom";
@@ -47,10 +48,10 @@ const Navbar = () => {
           );
         })}
         <div>
-          <h3 className="templates-li" onClick={handleDropDown}>
+          <div className="wallpaper-icon" onClick={handleDropDown}>
             {/* Templates */}
             <MdWallpaper className="wallpaper-icon" size={30} />
-          </h3>
+          </div>
         </div>
         {dropdown !== false && (
           <DropDown className="dropdown" onClose={() => setDropdown(false)} />
@@ -59,7 +60,7 @@ const Navbar = () => {
 
       <div className="logo-style">
         <h1 className="logout-home" onClick={handleLogout}>
-          <CiLogout />
+          <CiLogout size={30} />
           {/* Logout */}
         </h1>
       </div>

@@ -20,8 +20,6 @@ const Searchbar = () => {
       }
       const res = await axios.put(
         `${server}/api/board/${boardId}/addmember`,
-        // `https://trello-agile-project.onrender.com/api/board/${boardId}/addmember`,
-
         {
           userEmail: `${userEmail}`,
         },
