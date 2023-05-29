@@ -28,11 +28,27 @@
   margin-left: 20px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   .add-input {
-    height: 40px;
-    width: 200px;
+    height: 30px;
+    width: 100px;
   }
+  .update-btn,
+  .comment-btn {
+    font-size: 10px;
+    font-weight: lighter;
+    line-height: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+    height: 25px;
+    text-align: center;
+    margin-top: 5px;
+  }
+}
+
+@media (min-width: 600px) {
   .update-btn {
     font-size: 10px;
     font-weight: lighter;
@@ -43,12 +59,10 @@
     cursor: pointer;
     height: 25px;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 5px;
   }
-}
-
-@media (min-width: 600px) {
-  .update-btn {
-    font-size: 12p;
+  .add-input {
+    height: 40px;
+    width: 200px;
   }
 }

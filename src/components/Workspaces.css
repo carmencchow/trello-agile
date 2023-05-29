@@ -134,3 +134,9 @@ input {
   margin-top: 16px;
   text-align: center;
 }
+
+@media (min-width: 500px) {
+  .newboard {
+    margin: 0 auto;
+  }
+}

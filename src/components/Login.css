@@ -90,3 +90,9 @@
   justify-content: center;
   margin-left: 30px;
 }
+
+@media (max-width: 500px) {
+  .register {
+    margin-left: 5px;
+  }
+}

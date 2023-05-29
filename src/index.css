@@ -52,12 +52,16 @@ code {
 .trello-home {
   text-decoration: none;
 }
+.trellify {
+  text-decoration: none;
+  color: white;
+}
 .no-underline {
   text-decoration: none;
   color: white;
 }
 .templates-li .wallpaper-icon {
-  font-size: 40px;
+  font-size: 36px;
 }
 .logout-btn {
   padding-bottom: 0.5em;

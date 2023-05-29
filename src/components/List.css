@@ -117,4 +117,10 @@
   .cards {
     margin-top: 0px;
   }
+  .list {
+    overflow: auto;
+  }
+  .list-header {
+    margin-bottom: 0;
+  }
 }

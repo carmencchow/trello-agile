@@ -1,9 +1,7 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 import { server } from "../utils";
-import { BiArchive, BiCommentDetail } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
-import { FiEdit2 } from "react-icons/fi";
 import { BsFolder2, BsChatLeftQuote } from "react-icons/bs";
 import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
 import { DataContext } from "../context/DataContext";
@@ -41,9 +39,6 @@ const CardPopup = ({ openModal, onCloseModal }) => {
       }
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       const res = await axios.get(`${server}/api/card/archive/${cardId}/`);
-      // const res = await axios.get(
-      //   `https://trello-agile-project.onrender.com/api/card/archive/${cardId}/`
-      // );
       console.log(res.data.card.title, res.data.card.status);
       setArchiveBtn(!archiveBtn);
       handleFetchData();
@@ -90,14 +85,13 @@ const CardPopup = ({ openModal, onCloseModal }) => {
     <div className="card-background">
       <div className="card-popup">
         <div className="card-popup-heading" style={{ backgroundColor: color }}>
-          <h2 className="card-name">
+          <h2
+            className="edit-cardtitle"
+            onClick={() => {
+              setOpenInput(true);
+            }}
+          >
             {cardData.card.title}
-            <FiEdit2
-              className="edit-cardtitle"
-              onClick={() => {
-                setOpenInput(true);
-              }}
-            />
           </h2>
           <EditCard
             openInput={openInput}
@@ -180,7 +174,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
                     setCommentInput(true);
                   }}
                 >
-                  <BiCommentDetail />
+                  {/* <BiCommentDetail /> */}
                   Comment
                 </span>
               </h4>
@@ -190,7 +184,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
 
             <h4 onClick={toggleArchive} className="edit-card">
               <span className="edit-icon">
-                <BiArchive />
+                {/* <BiArchive /> */}
                 {archiveBtn ? "Archive" : "Unarchive card"}
               </span>
             </h4>

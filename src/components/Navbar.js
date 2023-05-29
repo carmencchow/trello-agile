@@ -29,7 +29,11 @@ const Navbar = () => {
   return (
     <div className="navbar-layout">
       <div className="logo-style">
-        <h1 className="trello-home">Trellify</h1>
+        <h1 className="trello-home">
+          <Link className="trellify" to="/workspaces">
+            Trellify
+          </Link>
+        </h1>
       </div>
       <div className="option-placement">
         {selectOptions.map((option) => {
@@ -50,7 +54,7 @@ const Navbar = () => {
         <div>
           <div className="wallpaper-icon" onClick={handleDropDown}>
             {/* Templates */}
-            <MdWallpaper className="wallpaper-icon" size={30} />
+            <MdWallpaper className="wallpaper-icon" size={28} />
           </div>
         </div>
         {dropdown !== false && (
@@ -60,7 +64,7 @@ const Navbar = () => {
 
       <div className="logo-style">
         <h1 className="logout-home" onClick={handleLogout}>
-          <CiLogout size={30} />
+          <CiLogout size={28} />
           {/* Logout */}
         </h1>
       </div>

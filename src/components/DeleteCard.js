@@ -10,9 +10,6 @@ const DeleteCard = ({ id, onClose }) => {
 
   const handleDelete = async () => {
     await axios.delete(`${server}/api/card/${id}`).then((res) => {
-      // await axios
-      //   .delete(`https://trello-agile-project.onrender.com/api/card/${id}`)
-      //   .then((res) => {
       console.log(`Card deleted`, res.data);
       onClose();
     });
@@ -29,7 +26,7 @@ const DeleteCard = ({ id, onClose }) => {
         }}
       >
         <span className="edit-icon">
-          <RiDeleteBin6Line />
+          {/* <RiDeleteBin6Line /> */}
           Delete
         </span>
       </h4>

@@ -22,7 +22,6 @@ const AddBoard = () => {
 
       const res = await axios.post(
         `${server}` + "/api/board",
-        // "https://trello-agile-project.onrender.com/api/board",
         {
           title: `${input}`,
         },
