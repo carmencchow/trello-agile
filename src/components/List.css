@@ -121,6 +121,6 @@
     overflow: auto;
   }
   .list-header {
-    margin-bottom: 0;
+    margin-bottom: 0.5em;
   }
 }

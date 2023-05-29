@@ -158,6 +158,7 @@ input {
     font-size: 14px;
   }
   .list-container {
+    margin-left: 1.8em;
     justify-content: center;
     flex-direction: column;
   }
