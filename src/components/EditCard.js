@@ -26,7 +26,6 @@ const EditCard = ({ openInput, setOpenInput }) => {
 
         { title: `${input}` },
         {
-          method: "PUT",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,

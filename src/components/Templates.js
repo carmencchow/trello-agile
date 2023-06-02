@@ -39,7 +39,6 @@ const Templates = () => {
           background: `${backgroundImage}`,
         },
         {
-          method: "PUT",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,

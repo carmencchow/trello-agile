@@ -63,7 +63,6 @@ const CardPopup = ({ openModal, onCloseModal }) => {
           color: `${color}`,
         },
         {
-          method: "PUT",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,

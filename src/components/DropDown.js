@@ -39,7 +39,6 @@ const DropDown = ({ onClose }) => {
           background: `${backgroundImage}`,
         },
         {
-          method: "PUT",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,

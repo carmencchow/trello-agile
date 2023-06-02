@@ -26,7 +26,6 @@ const AddCard = ({ openAddCard, listId, onClose }) => {
           title: `${input}`,
         },
         {
-          method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
