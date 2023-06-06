@@ -23,7 +23,6 @@ const Register = () => {
       localStorage.setItem("token", res.data.token);
       setServerResponse(res.data.message);
       navigate("/workspaces");
-      console.log("Navigate", navigate);
     } catch (error) {
       console.log("Registration error", error);
       setServerResponse(error.response.data);
