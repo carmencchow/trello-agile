@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
-import axios from "axios";
-import { server } from "../utils";
-import { RiDeleteBin6Line } from "react-icons/ri";
+import { api } from "../utils";
 import { DataContext } from "../context/DataContext";
 import "./CardPopup.css";
 
@@ -9,7 +7,7 @@ const DeleteCard = ({ id, onClose }) => {
   const { handleFetchData } = useContext(DataContext);
 
   const handleDelete = async () => {
-    await axios.delete(`${server}/api/card/${id}`).then((res) => {
+    await api.delete(`/card/${id}`).then((res) => {
       console.log(`Card deleted`, res.data);
       onClose();
     });
@@ -25,10 +23,7 @@ const DeleteCard = ({ id, onClose }) => {
           handleDelete();
         }}
       >
-        <span className="edit-icon">
-          {/* <RiDeleteBin6Line /> */}
-          Delete
-        </span>
+        <span className="edit-icon">Delete</span>
       </h4>
     </div>
   );

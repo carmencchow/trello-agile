@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { server } from "../utils";
-import axios from "axios";
+import { api } from "../utils";
 import "./Login.css";
 
 const Login = () => {
@@ -13,12 +12,8 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const challenge = { email: email, password: password };
-      const res = await axios.post(`${server}` + "/api/user/login", challenge);
-      // const res = await axios.post(
-      //   "https://trello-agile-project.onrender.com/api/user/login",
-      //   challenge
-      // );
+      const userInfo = { email: email, password: password };
+      const res = await api.post("/user/login", userInfo);
       localStorage.setItem("token", res.data.token);
       setServerResponse(res.data.message);
       navigate("/workspaces");
@@ -39,6 +34,7 @@ const Login = () => {
       </div>
       <div className="login-container">
         <form className="login-form" onSubmit={handleLogin}>
+          <h3>Login</h3>
           <div className="login-content">
             <label htmlFor="username">Email:</label>
             <input

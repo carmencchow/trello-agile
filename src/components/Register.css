@@ -21,6 +21,7 @@ input {
   text-align: right;
   cursor: pointer;
   margin-top: 20px;
+  margin-left: 5px;
   color: blue;
 }
 .have-acct {

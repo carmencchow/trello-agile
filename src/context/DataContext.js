@@ -1,8 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { fetchData } from "../store/thunks/fetchList";
 import { useDispatch } from "react-redux";
-import { server } from "../utils";
-import axios from "axios";
+import { api } from "../utils";
 
 export const DataContext = createContext();
 
@@ -22,10 +21,7 @@ export const DataProvider = ({ children }) => {
 
   const getCard = async (id) => {
     try {
-      const res = await axios.get(`${server}` + "/api/card/" + `${id}`);
-      // const res = await axios.get(
-      //   `https://trello-agile-project.onrender.com/api/card/${id}`
-      // );
+      const res = await api.get(`/card/${id}`);
       setCardData(res.data);
     } catch (e) {
       console.log(e);
@@ -60,6 +56,7 @@ export const DataProvider = ({ children }) => {
         setArchiveBtn,
         getCard,
         boardData,
+        setBoardData,
         clearComment,
         handleFetchData,
       }}

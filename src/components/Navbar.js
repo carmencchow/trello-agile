@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { RiLogoutCircleRFill } from "react-icons/ri";
-import { BsPersonWorkspace } from "react-icons/bs";
 import { MdWallpaper } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,7 +10,6 @@ const Navbar = () => {
 
   const selectOptions = [
     { name: "Workspaces", query: "workspaces" },
-    // { name: "Recent", query: "board/:id" },
     { name: "Starred", query: "starred" },
   ];
   const navigate = useNavigate();
