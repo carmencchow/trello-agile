@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
-import { server } from "../utils";
+import { api } from "../utils";
+// import { server } from "../utils";
 import { DataContext } from "../context/DataContext";
 import Navbar from "./Navbar";
 import "./Templates.css";
@@ -33,14 +34,15 @@ const Templates = () => {
       if (!token) {
         throw new Error("No token found in localStorage");
       }
-      const res = await axios.put(
-        `${server}/api/board/${boardId}/background`,
+      const res = await api.put(
+        `/board/${boardId}/background`,
+        // `${server}/api/board/${boardId}/background`,
         {
           background: `${backgroundImage}`,
         },
         {
           headers: {
-            "Content-Type": "application/json",
+            // "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
         }

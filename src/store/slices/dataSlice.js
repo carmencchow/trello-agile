@@ -2,22 +2,21 @@ import { createSlice } from "@reduxjs/toolkit";
 import { fetchData } from "../thunks/fetchList";
 
 export const dataSlice = createSlice({
-  name: 'data',
+  name: "data",
   initialState: {
     board: {
-      _id: '',
-      title: '',
+      _id: "",
+      title: "",
       user: [],
       lists: [],
     },
-    message: '',
+    message: "",
   },
   reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(fetchData.fulfilled, (state, action) => {
-        // console.log(action.payload,'action payload');
-        state.board = action.payload;
-      });
+    builder.addCase(fetchData.fulfilled, (state, action) => {
+      // console.log(action.payload,'action payload');
+      state.board = action.payload;
+    });
   },
-}); 
+});

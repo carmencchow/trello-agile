@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
-import { server } from "../utils";
+import { api } from "../utils";
+// import { server } from "../utils";
 import { DataContext } from "../context/DataContext";
 import "./EditCard.css";
 
@@ -20,14 +21,15 @@ const EditCard = ({ openInput, setOpenInput }) => {
       if (!token) {
         throw new Error("No token found in localStorage");
       }
-      const res = await axios.put(
-        `${server}/api/card/${cardId}`,
+      const res = await api.put(
+        `/card/${cardId}`,
+        // `${server}/api/card/${cardId}`,
         // `https://trello-agile-project.onrender.com/api/card/${cardId}`,
 
         { title: `${input}` },
         {
           headers: {
-            "Content-Type": "application/json",
+            // "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
         }

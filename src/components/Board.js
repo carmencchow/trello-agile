@@ -5,7 +5,7 @@ import { RiInboxUnarchiveFill, RiArchiveFill } from "react-icons/ri";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { server } from "../utils";
+import { api } from "../utils";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { fetchData } from "../store/thunks/fetchList";
 import { DataContext } from "../context/DataContext";
@@ -21,7 +21,6 @@ const Board = () => {
   const [showArchived, setShowArchived] = useState(false);
   const [email, setEmail] = useState();
   const [currentBoard, setCurrentBoard] = useState(null);
-  const [userInfo, setUserInfo] = useState("");
   const navigate = useNavigate();
 
   const board = useSelector((state) => state.data.board);
@@ -105,9 +104,12 @@ const Board = () => {
 
       // Update backend server
       setCurrentBoard({ ...currentBoard, lists: newLists });
-      axios
-        .put(`${server}/api/board/${id}`, {
+      api
+        .put(`/board/${id}`, {
           lists: newLists,
+          // axios
+          // .put(`${server}/api/board/${id}`, {
+          //   lists: newLists,
         })
         .then((res) => {})
         .catch((err) => console.log(err));
@@ -156,13 +158,11 @@ const Board = () => {
         throw new Error("No token found in localStorage");
       }
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const res = await axios.put(
-        `https://trello-agile-project.onrender.com/api/board/${id}/starred`,
-        {
-          email: `${email}`,
-          background: `${board.background}`,
-        }
-      );
+      const res = await api.put(`/board/${id}/starred`, {
+        email: `${email}`,
+        background: `${board.background}`,
+      });
+      console.log(res);
       navigate("/starred");
     } catch (error) {
       console.log(error);
@@ -177,8 +177,7 @@ const Board = () => {
     }
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     try {
-      const res = await axios.delete(`${server}/api/board/${id}`);
-      setUserInfo(res.data);
+      const res = await api.delete(`/board/${id}`);
       setEmail(res.data.email);
       navigate("/workspaces");
     } catch (error) {
@@ -213,6 +212,7 @@ const Board = () => {
       }}
     >
       <Navbar />
+
       <div className="board-title">
         <div className="left-side">
           <p className="p-title">{board.title}</p>
