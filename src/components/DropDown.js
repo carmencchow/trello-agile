@@ -1,7 +1,5 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
-// import axios from "axios";
 import { api } from "../utils";
-// import { server } from "../utils";
 import { DataContext } from "../context/DataContext";
 import "./DropDown.css";
 
@@ -14,16 +12,12 @@ const DropDown = ({ onClose }) => {
     "art.jpg",
     "astronaut.jpg",
     "beach.jpg",
-    // "bubbles.jpg",
-    // "cairo.jpg",
     "concert.jpg",
     "gym.jpg",
     "ice.jpg",
     "japan.jpg",
     "lavenderfield.jpg",
     "leaves.jpg",
-    // "lizard.jpg",
-    // "mountains.jpg",
     "nycity.jpg",
   ];
 
@@ -33,19 +27,9 @@ const DropDown = ({ onClose }) => {
       if (!token) {
         throw new Error("No token found in localStorage");
       }
-      const res = await api.put(
-        `/board/${boardId}/background`,
-        // `${server}/api/board/${boardId}/background`,
-        {
-          background: `${backgroundImage}`,
-        },
-        {
-          headers: {
-            // "Content-Type": "application/json",
-            // Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await api.put(`/board/${boardId}/background`, {
+        background: `${backgroundImage}`,
+      });
       const data = res.data;
       handleFetchData();
       console.log("Data:", data);

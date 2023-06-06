@@ -107,9 +107,6 @@ const Board = () => {
       api
         .put(`/board/${id}`, {
           lists: newLists,
-          // axios
-          // .put(`${server}/api/board/${id}`, {
-          //   lists: newLists,
         })
         .then((res) => {})
         .catch((err) => console.log(err));

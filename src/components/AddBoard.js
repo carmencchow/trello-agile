@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { server } from "../utils";
-import axios from "axios";
 import { api } from "../utils";
 import "./Workspaces.css";
 
@@ -21,18 +19,9 @@ const AddBoard = () => {
         throw new Error("No token found in localStorage");
       }
 
-      const res = await api.post(
-        // `${server}` + "/api/board",
-        "/board",
-        {
-          title: `${input}`,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await api.post("/board", {
+        title: `${input}`,
+      });
 
       // GET new id from MongoDB
       const data = res.data;

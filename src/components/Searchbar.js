@@ -1,11 +1,8 @@
 import React, { useState, useContext } from "react";
 import "./Searchbar.css";
 import { api } from "../utils";
-// import { server } from "../utils";
 import { DataContext } from "../context/DataContext";
 import SearchIcon from "@mui/icons-material/Search";
-
-import axios from "axios";
 
 const Searchbar = () => {
   const [userEmail, setUserEmail] = useState("");
@@ -19,19 +16,9 @@ const Searchbar = () => {
       if (!token) {
         throw new Error("No token found in localStorage");
       }
-      const res = await api.put(
-        `/board/${boardId}/addmember`,
-        // `${server}/api/board/${boardId}/addmember`,
-        {
-          userEmail: `${userEmail}`,
-        },
-        {
-          headers: {
-            // "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await api.put(`/board/${boardId}/addmember`, {
+        userEmail: `${userEmail}`,
+      });
       const data = res.data;
       console.log(data);
       handleFetchData();
