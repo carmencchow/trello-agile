@@ -42,10 +42,6 @@ const Register = () => {
       <div className="register-container">
         <form className="register-form" onSubmit={handleRegister}>
           <h3>Sign Up</h3>
-          <h5>
-            Thanks for checking out this website! If you are signing up for the
-            first time please allow some time to fetch data from the server.
-          </h5>
           <div className="register-content">
             <label htmlFor="username">Username:</label>
             <input
