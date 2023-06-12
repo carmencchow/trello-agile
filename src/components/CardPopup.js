@@ -88,7 +88,6 @@ const CardPopup = ({ openModal, onCloseModal }) => {
             id={cardId}
             setOpenInput={setOpenInput}
           />
-
           {!openInput ? (
             <div
               className="editname-card"

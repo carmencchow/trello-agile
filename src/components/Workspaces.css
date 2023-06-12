@@ -37,6 +37,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-top: 0px;
 }
 .newboard {
   background-color: rgb(243, 242, 242);
