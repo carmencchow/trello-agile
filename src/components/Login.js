@@ -7,10 +7,14 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [serverResponse, setServerResponse] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
+  const alert =
+    "Server response time may take up to 30 seconds for users logging in for the first time, so don't go anywhere!";
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setShowAlert(true);
     try {
       const userInfo = { email: email, password: password };
       const res = await api.post("/user/login", userInfo);
@@ -35,6 +39,8 @@ const Login = () => {
       <div className="login-container">
         <form className="login-form" onSubmit={handleLogin}>
           <h3>Login</h3>
+          {showAlert && <p className="alert">{alert}</p>}
+
           <div className="login-content">
             <label htmlFor="username">Email:</label>
             <input

@@ -11,7 +11,7 @@ const Register = () => {
   const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
   const alert =
-    "Don't go anywhere! Server response time may take up to 30 seconds for users registering for the first time. It's only 30 seconds, enough time to try to recite the alphabet ... backwards";
+    "Server response time may take up to 30 seconds for users registering for the first time, so don't go anywhere!";
 
   const handleRegister = async (e) => {
     e.preventDefault();
