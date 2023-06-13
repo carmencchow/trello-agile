@@ -13,6 +13,11 @@
   height: 100vh;
   margin-top: 0px;
 }
+.alert {
+  font-size: 12px;
+  font-style: italic;
+  color: blue;
+}
 input {
   height: 70px;
 }

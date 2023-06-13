@@ -8,10 +8,14 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [serverResponse, setServerResponse] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
+  const alert =
+    "Wait time will be approximately 30 seconds as we try to reach the server. Thank you for your patience!";
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setShowAlert(true);
     try {
       const userInfo = {
         email: email,
@@ -42,11 +46,9 @@ const Register = () => {
       <div className="register-container">
         <form className="register-form" onSubmit={handleRegister}>
           <h3>Sign Up</h3>
-          <p>
-            It may take 40s-50s to reach the server on Render. We appreciate
-            your patience. Once you're registered, the login time will be must
-            faster."
-          </p>
+
+          {showAlert && <p className="alert">{alert}</p>}
+
           <div className="register-content">
             <label htmlFor="username">Username:</label>
             <input
