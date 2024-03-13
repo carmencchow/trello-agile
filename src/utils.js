@@ -1,3 +1,20 @@
-const server = "https://trello-agile-project.onrender.com";
+import axios from "axios";
 
-export { server };
+const api = axios.create({
+  baseURL: "https://trello-agile-project.onrender.com/api/",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
+});
+
+// Set the Authorization header before each request with updated token
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers["Authorization"] = `Bearer ${token}`;
+  }
+  return config;
+});
+
+export { api };

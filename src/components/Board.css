@@ -152,8 +152,90 @@ input {
   justify-content: space-between;
   margin-right: 40px;
 }
-span {
-  font-size: 14px;
-  margin-left: 8px;
-  margin-top: 0px;
+
+@media (max-width: 500px) {
+  .p-title {
+    font-size: 14px;
+  }
+  .list-container {
+    margin-left: 1.8em;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .list {
+    justify-content: center;
+    width: 80vw;
+    height: 25vh;
+    margin: 15px;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    background-color: #f7f8f9;
+  }
+  .cards {
+    width: 92%;
+    height: 40px;
+    margin: 5px;
+    margin-left: 10px;
+    padding: 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: white;
+    font-weight: bolder;
+  }
+  .archive-icons,
+  .delete-board,
+  .search {
+    font-size: 22px;
+    padding-top: 5px;
+  }
+  .archive-toggle {
+    display: flex;
+    margin-top: 10px;
+    font-size: 30px;
+    margin-left: 0px;
+    cursor: pointer;
+  }
+  .list-container {
+    margin-top: 10px;
+  }
+  .list-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  .cards {
+    margin-top: 0px;
+  }
+  .user {
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    background-color: #614dab;
+    text-align: center;
+    margin-top: 4px;
+    margin-left: 5px;
+    font-size: 12px;
+    font-weight: lighter;
+  }
+  .user p {
+    margin-top: 3px;
+  }
+}
+
+@media (min-width: 500px) {
+  .cards {
+    max-width: 80%;
+    height: 50px;
+    margin: 5px;
+    margin-left: 10px;
+    padding: 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: white;
+    font-weight: bolder;
+  }
+  .list {
+    justify-content: center;
+  }
 }

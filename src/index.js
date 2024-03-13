@@ -4,13 +4,13 @@ import "./index.css";
 import App from "./App";
 import { Provider } from "react-redux";
 import { store } from "./store";
-import { DragDropContext } from 'react-beautiful-dnd'
+import { DragDropContext } from "react-beautiful-dnd";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <DragDropContext>
-  <Provider store={store}>
-    <App />
-  </Provider>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </DragDropContext>
 );

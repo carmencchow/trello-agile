@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { server } from "../utils";
+import { api } from "../utils";
 import "./Register.css";
 
 const Register = () => {
@@ -9,28 +8,29 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [serverResponse, setServerResponse] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
+  const alert =
+    "Server response time may take up to 30 seconds for users registering for the first time, so don't go anywhere!";
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setShowAlert(true);
     try {
-      const challenge = {
+      const userInfo = {
         email: email,
         password: password,
         username: username,
       };
-      const res = await axios.post(`${server}` + "/api/user/signup", challenge);
-      // const res = await axios.post(
-      //   "https://trello-agile-project.onrender.com/api/user/signup",
-      //   challenge
-      // );
+      const res = await api.post("/user/signup", userInfo);
+      console.log(res.data);
       localStorage.setItem("token", res.data.token);
       setServerResponse(res.data.message);
-      navigate("/login");
+      navigate("/workspaces");
     } catch (error) {
+      console.log("Registration error", error);
       setServerResponse(error.response.data);
     }
-
     setEmail("");
     setPassword("");
     setUsername("");
@@ -40,11 +40,15 @@ const Register = () => {
     <div>
       <div className="navbar-layout">
         <div className="logo-style">
-          <h1 className="trello-home">Trello</h1>
+          <h1 className="trello-home">Trellify</h1>
         </div>
       </div>
       <div className="register-container">
         <form className="register-form" onSubmit={handleRegister}>
+          <h3>Sign Up</h3>
+
+          {showAlert && <p className="alert">{alert}</p>}
+
           <div className="register-content">
             <label htmlFor="username">Username:</label>
             <input
@@ -82,7 +86,7 @@ const Register = () => {
 
           <div className="register-row">
             <p className="have-acct">
-              Have an account?{" "}
+              Have an account?
               <span className="login" onClick={() => navigate("/login")}>
                 Log In
               </span>

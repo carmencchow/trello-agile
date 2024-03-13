@@ -13,8 +13,8 @@
   height: 90vh;
 }
 .card-popup {
-  height: 650px;
-  width: 650px;
+  height: 60%;
+  width: 90%;
   position: absolute;
   background-color: #f4f5f7;
   left: 50%;
@@ -25,6 +25,7 @@
 .edit-cardtitle {
   font-size: 22px;
   margin-left: 10px;
+  cursor: pointer;
 }
 .card-name {
   margin-left: 50px;
@@ -33,6 +34,9 @@
   display: flex;
   justify-content: space-between;
   height: 70px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding-left: 20px;
 }
 .card-right {
   display: flex;
@@ -152,4 +156,137 @@ span.edit-icon svg {
   cursor: pointer;
   height: 40px;
   text-align: center;
+}
+
+@media (max-width: 500px) {
+  .card-popup {
+    height: 60%;
+    width: 95%;
+    position: absolute;
+    background-color: #f4f5f7;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+  }
+  .card-popup-heading {
+    height: 50px;
+  }
+  .edit-icon svg {
+    font-size: 16px;
+    margin-right: 0px;
+  }
+  .edit-icon text {
+    display: none;
+  }
+  .color-text,
+  .activity-label {
+    font-size: 12px;
+  }
+  .color-row span {
+    width: 90px;
+    height: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+    margin-left: 5px;
+  }
+  .color-btn {
+    font-size: 10px;
+    font-weight: lighter;
+    margin-top: 5px;
+    line-height: 20px;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    width: 60px;
+    margin-left: 10px;
+    cursor: pointer;
+    height: 20px;
+    text-align: center;
+  }
+  .card-content {
+    margin: 0px 25px;
+    height: 90vh;
+  }
+  .delete-card,
+  .edit-card,
+  .archive-card {
+    font-size: 12px;
+  }
+  .change-input {
+    width: 170px;
+    height: 30px;
+  }
+  .card-name {
+    margin-left: 20px;
+    font-size: 16px;
+  }
+  .name-change-input {
+    margin-right: -10px;
+  }
+  .close-btn {
+    font-size: 20px;
+    flex-direction: column;
+    margin-top: 15px;
+  }
+  span.edit-icon svg {
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .edit-cardtitle {
+    font-size: 16px;
+  }
+  .activity-label {
+    margin-top: 0px;
+  }
+  .comments {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 500px) {
+  .card-popup {
+    height: 60%;
+    width: 90%;
+    position: absolute;
+    background-color: #f4f5f7;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+  }
+  .card-popup-heading {
+    height: 50px;
+  }
+  .edit-cardtitle {
+    font-size: 18px;
+  }
+  .change-input {
+    height: 30px;
+  }
+}
+
+@media (min-width: 700px) {
+  .card-popup {
+    height: 570px;
+    width: 570px;
+    position: absolute;
+    background-color: #f4f5f7;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+  }
+  .color-row span {
+    width: 90px;
+    height: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+    margin-left: 5px;
+  }
+  .change-input {
+    width: 200px;
+  }
 }

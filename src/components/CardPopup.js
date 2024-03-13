@@ -1,9 +1,7 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
-import { server } from "../utils";
-import { BiArchive, BiCommentDetail } from "react-icons/bi";
+import { api } from "../utils";
 import { GrFormClose } from "react-icons/gr";
-import { FiEdit2 } from "react-icons/fi";
 import { BsFolder2, BsChatLeftQuote } from "react-icons/bs";
 import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
 import { DataContext } from "../context/DataContext";
@@ -40,10 +38,7 @@ const CardPopup = ({ openModal, onCloseModal }) => {
         throw new Error("No token found in localStorage");
       }
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const res = await axios.get(`${server}/api/card/archive/${cardId}/`);
-      // const res = await axios.get(
-      //   `https://trello-agile-project.onrender.com/api/card/archive/${cardId}/`
-      // );
+      const res = await api.get(`/card/archive/${cardId}/`);
       console.log(res.data.card.title, res.data.card.status);
       setArchiveBtn(!archiveBtn);
       handleFetchData();
@@ -62,19 +57,9 @@ const CardPopup = ({ openModal, onCloseModal }) => {
       if (!token) {
         throw new Error("No token found in localStorage");
       }
-      const res = await axios.put(
-        `${server}/api/card/${cardId}/color`,
-        {
-          color: `${color}`,
-        },
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await api.put(`/card/${cardId}/color`, {
+        color: `${color}`,
+      });
       const data = res.data;
       console.log("Color:", data.card.color);
       handleFetchData();
@@ -90,28 +75,26 @@ const CardPopup = ({ openModal, onCloseModal }) => {
     <div className="card-background">
       <div className="card-popup">
         <div className="card-popup-heading" style={{ backgroundColor: color }}>
-          <h2 className="card-name">
+          <h2
+            className="edit-cardtitle"
+            onClick={() => {
+              setOpenInput(true);
+            }}
+          >
             {cardData.card.title}
-            <FiEdit2
-              className="edit-cardtitle"
-              onClick={() => {
-                setOpenInput(true);
-              }}
-            />
           </h2>
           <EditCard
             openInput={openInput}
             id={cardId}
             setOpenInput={setOpenInput}
           />
-
           {!openInput ? (
-            <h4
+            <div
               className="editname-card"
               onClick={() => {
                 setOpenInput(true);
               }}
-            ></h4>
+            ></div>
           ) : (
             <div></div>
           )}
@@ -180,7 +163,6 @@ const CardPopup = ({ openModal, onCloseModal }) => {
                     setCommentInput(true);
                   }}
                 >
-                  <BiCommentDetail />
                   Comment
                 </span>
               </h4>
@@ -190,7 +172,6 @@ const CardPopup = ({ openModal, onCloseModal }) => {
 
             <h4 onClick={toggleArchive} className="edit-card">
               <span className="edit-icon">
-                <BiArchive />
                 {archiveBtn ? "Archive" : "Unarchive card"}
               </span>
             </h4>

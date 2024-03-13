@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { server } from "../utils";
+import { api } from "../utils";
 import Navbar from "../components/Navbar";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import "../index.css";
@@ -18,10 +18,7 @@ const Starred = () => {
     }
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     try {
-      const res = await axios.get(`${server}` + "/api/user/me");
-      // const res = await axios.get(
-      //   "https://trello-agile-project.onrender.com/api/user/me"
-      // );
+      const res = await api.get("/user/me");
       console.log(res.data);
       setUserInfo(res.data.boards.filter((board) => board.isStarred === true));
     } catch (error) {

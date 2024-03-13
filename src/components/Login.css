@@ -1,6 +1,6 @@
 .navbar-layout {
   display: flex;
-  background-color: #026aa7;
+  background-color: #392196;
   padding: none;
   line-height: 1px;
   height: 41.63px;
@@ -22,6 +22,7 @@
   text-align: right;
   cursor: pointer;
   margin-top: 20px;
+  margin-left: 5px;
   color: blue;
 }
 .no-acct {
@@ -89,4 +90,10 @@
   border-radius: 5px;
   justify-content: center;
   margin-left: 30px;
+}
+
+@media (max-width: 500px) {
+  .register {
+    margin-left: 5px;
+  }
 }

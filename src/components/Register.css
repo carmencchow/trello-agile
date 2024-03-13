@@ -1,6 +1,6 @@
 .navbar-layout {
   display: flex;
-  background-color: #026aa7;
+  background-color: #392196;
   padding: none;
   line-height: 1px;
   height: 41.63px;
@@ -13,6 +13,11 @@
   height: 100vh;
   margin-top: 0px;
 }
+.alert {
+  font-size: 12px;
+  font-style: italic;
+  color: blue;
+}
 input {
   height: 70px;
 }
@@ -21,6 +26,7 @@ input {
   text-align: right;
   cursor: pointer;
   margin-top: 20px;
+  margin-left: 5px;
   color: blue;
 }
 .have-acct {

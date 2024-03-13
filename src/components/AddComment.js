@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
-import axios from "axios";
 import { DataContext } from "../context/DataContext";
-import { server } from "../utils";
+import { api } from "../utils";
 import "./EditCard.css";
 
 const AddComment = ({ commentInput, setCommentInput }) => {
@@ -18,20 +17,9 @@ const AddComment = ({ commentInput, setCommentInput }) => {
       if (!token) {
         throw new Error("No token found in localStorage");
       }
-      const res = await axios.post(
-        `${server}/api/card/${cardId}/comment`,
-        // `https://trello-agile-project.onrender.com/api/card/${cardId}/comment`,
-        {
-          comment: `${comment}`,
-        },
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await api.post(`/card/${cardId}/comment`, {
+        comment: `${comment}`,
+      });
       const data = res.data;
       console.log(data);
       handleFetchData();

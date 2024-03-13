@@ -1,6 +1,5 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
-import axios from "axios";
-import { server } from "../utils";
+import { api } from "../utils";
 import { DataContext } from "../context/DataContext";
 import "./DropDown.css";
 
@@ -13,16 +12,12 @@ const DropDown = ({ onClose }) => {
     "art.jpg",
     "astronaut.jpg",
     "beach.jpg",
-    "bubbles.jpg",
-    "cairo.jpg",
     "concert.jpg",
     "gym.jpg",
     "ice.jpg",
     "japan.jpg",
     "lavenderfield.jpg",
     "leaves.jpg",
-    "lizard.jpg",
-    "mountains.jpg",
     "nycity.jpg",
   ];
 
@@ -32,20 +27,9 @@ const DropDown = ({ onClose }) => {
       if (!token) {
         throw new Error("No token found in localStorage");
       }
-      const res = await axios.put(
-        `${server}/api/board/${boardId}/background`,
-        // `https://trello-agile-project.onrender.com/api/board/${boardId}/background`,
-        {
-          background: `${backgroundImage}`,
-        },
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await api.put(`/board/${boardId}/background`, {
+        background: `${backgroundImage}`,
+      });
       const data = res.data;
       handleFetchData();
       console.log("Data:", data);
@@ -73,7 +57,7 @@ const DropDown = ({ onClose }) => {
         <div key={images.idx}>
           <img
             src={`${process.env.PUBLIC_URL}/assets/${image}`}
-            alt="backgroundimage"
+            alt="backgroundImage"
             onClick={() => {
               console.log(`changing background to ${image}`);
               setBackgroundImage(`${image}`);

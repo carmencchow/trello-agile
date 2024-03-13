@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { server } from "../../utils";
+import { api } from "../../utils";
 
 export const fetchData = createAsyncThunk(
   "board/fetchBoard",
@@ -11,7 +11,7 @@ export const fetchData = createAsyncThunk(
         throw new Error("No token found in localStorage");
       }
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const res = await axios.get(`${server}/api/board/${id}`);
+      const res = await api.get(`/board/${id}`);
       return res.data.board;
     } catch (error) {
       return reject(error.response.data);

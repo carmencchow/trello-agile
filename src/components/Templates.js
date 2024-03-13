@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
-import axios from "axios";
-import { server } from "../utils";
+import { api } from "../utils";
 import { DataContext } from "../context/DataContext";
 import Navbar from "./Navbar";
 import "./Templates.css";
@@ -33,27 +32,12 @@ const Templates = () => {
       if (!token) {
         throw new Error("No token found in localStorage");
       }
-      const res = await axios.put(
-        `${server}/api/board/${boardId}/background`,
-        // `https://trello-agile-project.onrender.com/api/board/${boardId}/background`,
-        {
-          background: `${backgroundImage}`,
-        },
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log(`Selected background:',  ${backgroundImage}`);
-      console.log(res);
+      const res = await api.put(`/board/${boardId}/background`, {
+        background: `${backgroundImage}`,
+      });
       const data = res.data;
-      console.log("Data is:", data);
-    } catch (err) {
-      console.log(err);
-    }
+      console.log(data);
+    } catch (err) {}
   };
 
   return (
@@ -64,7 +48,6 @@ const Templates = () => {
         {images.map((image, index) => (
           <div key={images.index}>
             <img
-              // src={require(`../assets/${image}`)}
               src={`${process.env.PUBLIC_URL}/assets/${image}`}
               alt="background"
               onClick={() => {

@@ -23,3 +23,14 @@ form {
 button {
   background-color: none;
 }
+
+@media (max-width: 500px) {
+  .search-member {
+    background: transparent;
+    border: 1px solid white;
+    margin-right: 10px;
+    height: 30px;
+    width: 130px;
+    color: white;
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { server } from "../utils";
+import { api } from "../utils";
 import AddBoard from "./AddBoard";
 import Navbar from "./Navbar";
 import "./Workspaces.css";
@@ -10,25 +10,20 @@ const Workspaces = () => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState("");
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
 
   const getUserProfile = async () => {
     const token = localStorage.getItem("token");
+    console.log("Token", token);
     if (!token) {
       throw new Error("No token found in localStorage");
     }
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
     try {
-      const res = await axios.get(`${server}` + "/api/user/me");
-      // const res = await axios.get(
-      //   "https://trello-agile-project.onrender.com/api/user/me"
-      // );
-      console.log("Res", res);
+      const res = await api.get("user/me");
       console.log("Display boards", res.data);
-      setUserInfo(res.data.boards);
       setUserInfo(res.data.boards.filter((board) => !board.isStarred));
       setName(res.data.username);
-      setEmail(res.data.email);
     } catch (error) {
       throw error;
     }
