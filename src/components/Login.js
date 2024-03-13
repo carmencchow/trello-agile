@@ -16,8 +16,10 @@ const Login = () => {
     e.preventDefault();
     setShowAlert(true);
     try {
-      const userInfo = { email: email, password: password };
-      const res = await api.post("/user/login", userInfo);
+      const challenge = { email: email, password: password };
+      const res = await axios.post(`${server}` + "/api/user/login", challenge);
+   // const userInfo = { email: email, password: password };
+   // const res = await api.post("/user/login", userInfo);
       localStorage.setItem("token", res.data.token);
       setServerResponse(res.data.message);
       navigate("/workspaces");
